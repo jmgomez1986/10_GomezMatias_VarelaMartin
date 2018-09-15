@@ -1,11 +1,13 @@
 <?php
-	require_once("database.php");
+
+	require_once "controller/TemporadasController.php";
 
 	if($_GET['action'] == ''){
 		//no hay accion, muestro accion por defecto
 		echo "debe ingresar una accion a realizar";
 	}
 	else{
+		$controller = new TemporadasController();
 		//parseo la URL
 		$partesURL = explode ("/", $_GET['action']);
 		//leo las partes de la URL para saber que accion tomar
@@ -17,15 +19,7 @@
 		.../episodio/1                (lista de todos los episodios 1)
 */
 		if($partesURL[0] === 'temporadas') {
-			echo "Las temporadas son:<ul>";
-			$temporadas = getTemporadas();
-			echo "<ul>";
-			foreach($temporadas as $temporada){
-				echo "<li>" . "Temporada N° "  . $temporada["id_season"] .
-								" - Cant. Episodios: " . $temporada["cant_episodes"] .
-						 "</li>";
-			}
-			echo "</ul>";
+			echo $controller->Temporadas();
 		}
 		elseif ($partesURL[0] === 'temporada' && $partesURL[1] != 'episodio'){
 			if(isset($partesURL[1]) && $partesURL[1] !== ''){
