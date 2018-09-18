@@ -3,5 +3,5 @@
 	RewriteCond %{REQUEST_FILENAME} -f [OR]
 	RewriteCond %{REQUEST_FILENAME} -l
 	RewriteRule ^[css|img|js].*$ - [L]
-	RewriteRule ^(.*)$ route.php?action=$1 [QSA,L]
+	RewriteRule ^(.*)$ routeAdvance.php?action=$1 [QSA,L]
 </IfModule>
