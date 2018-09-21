@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.33, created on 2018-09-21 01:55:59
+/* Smarty version 3.1.33, created on 2018-09-21 02:20:44
   from 'C:\xampp\htdocs\Proyectos\Facultad\10_GomezMatias_VarelaMartin\templates\header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5ba4338f85c1e1_53283893',
+  'unifunc' => 'content_5ba4395ce419c7_76179330',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ba4338f85c1e1_53283893 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ba4395ce419c7_76179330 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
   <head>
