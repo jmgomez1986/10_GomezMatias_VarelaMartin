@@ -19,19 +19,10 @@
     }
 
     function Temporadas(){
-
-      $lista = "Las temporadas son:<ul>";
 			$temporadas = $this->model->getTemporadas();
-			foreach($temporadas as $temporada){
-				$lista .= "<li>" . "Temporada N° "  . $temporada["id_season"] .
-								" - Cant. Episodios: " . $temporada["cant_episodes"] .
-						 "</li>";
-			}
-			$lista .= "</ul>";
-      return $lista;
+      $this->view->Mostrar($temporadas);
     }
 
   }
-
 
  ?>

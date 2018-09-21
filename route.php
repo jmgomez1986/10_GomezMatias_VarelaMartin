@@ -19,7 +19,7 @@
 		.../episodio/1                (lista de todos los episodios 1)
 */
 		if($partesURL[0] === 'temporadas') {
-			echo $controller->Temporadas();
+			$controller->Temporadas();
 		}
 		elseif ($partesURL[0] === 'temporada' && $partesURL[1] != 'episodio'){
 			if(isset($partesURL[1]) && $partesURL[1] !== ''){
