@@ -9,7 +9,7 @@
         <p>Copyright © 2018 GOT Fans. Todos los derechos reservados.</p>
       </div>
       <div class="logoFooter">
-        <a href="index.html"><img src="images/GOT_Logo_Vect_Blanco.svg" alt="Logo Game Of Thrones"></a>
+        <a href="index.html"><img src="./images/GOT_Logo_Vect_Blanco.svg" alt="Logo Game Of Thrones"></a>
       </div>
     </div>
 

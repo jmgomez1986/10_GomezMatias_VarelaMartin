@@ -22,6 +22,7 @@
              <td>{$temporada["cant_episodes"]}</td>
              <td>{$temporada["season_begin"]}</td>
              <td>{$temporada["season_end"]}</td>
+             <td><a href="editar/{$temporada["id_season"]}">EDITAR</a></td>
            </tr>
           {/foreach}
 

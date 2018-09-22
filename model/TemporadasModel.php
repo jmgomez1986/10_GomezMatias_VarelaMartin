@@ -36,6 +36,18 @@
 			return $temporadas;
 		}
 
+		function getTemporada($id_temporada){
+			$db = $this->connectToDB();
+
+			$sentencia = $db->prepare("SELECT * FROM season WHERE id_season = ?");
+			$sentencia->execute( array($id_temporada) );
+			$temporada = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+			$db = $this->disconnect();
+
+			return $temporada;
+		}
+
 		function getEpisodios($temporada){
 			$db = connectToDB();
 
@@ -125,14 +137,15 @@
 
 			try{
 				$sentencia = $db->prepare("UPDATE `season`
-																		SET `id_season`='$temporada',`cant_episodes`='$cantEpis',`season_begin`='$fechaC',`season_end`='$fechaF'
+																		SET `id_season`    = '$temporada',
+																		    `cant_episodes`= '$cantEpis',
+																				`season_begin` = '$fechaC',
+																				`season_end`   = '$fechaF'
 																		WHERE id_season='$temporada'");
 				$sentencia->execute();
-
-				return "se actualizo bien";
 			}
 			catch(PDOException $exception){
-				return $exception->getMessage();
+				//return $exception->getMessage();
 			}
 		}
 
