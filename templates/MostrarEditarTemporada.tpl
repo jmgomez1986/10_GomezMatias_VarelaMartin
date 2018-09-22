@@ -9,7 +9,7 @@
 
         <div class="form-group">
           <label for="tituloForm">Titulo</label>
-          <input type="text" class="form-control" id="tituloForm" name="tituloForm" value="{$temporada["id_season"]}">
+          <input disabled type="text" class="form-control" id="tituloForm" name="tituloForm" value="{$temporada["id_season"]}">
         </div>
 
         <div class="form-group">

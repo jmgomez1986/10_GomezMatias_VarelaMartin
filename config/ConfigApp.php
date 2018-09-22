@@ -5,9 +5,9 @@ class ConfigApp
     public static $ACTION = 'action';
     public static $PARAMS = 'params';
     public static $ACTIONS = [
-                                // ''=> 'TareasController#Home',
+                                // ''=> 'TemporadasController#Home',
                                 // 'home'      => 'TemporadasController#Home',
-                                ''             => 'TareasController#Temporadas',
+                                ''             => 'TemporadasController#Temporadas',
                                 'home'         => 'TemporadasController#Temporadas',
                                 'temporadas'   => 'TemporadasController#Temporadas',
                                 'editar'       => 'TemporadasController#EditarTemporada',
