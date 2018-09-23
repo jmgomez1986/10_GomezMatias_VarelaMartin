@@ -18,7 +18,11 @@
        <tbody>
           {foreach from=$temporadas item=temporada}
            <tr>
-             <td><a href="temporada/{$temporada["id_season"]}/episodios" target="_self">{$temporada["id_season"]}</a></td>
+<<<<<<< HEAD
+             <td><a href="temporada/{$temporada["id_season"]}/episodios" target= "_self">{$temporada["id_season"]}</a></td>
+=======
+             <td><a href="temporada/{$temporada["id_season"]}/episodios" target= "_self">{$temporada["id_season"]}</a></td>
+>>>>>>> b29ef173a35a5de4e27ed9660af8915e2cbc7b05
              <td>{$temporada["cant_episodes"]}</td>
              <td>{$temporada["season_begin"]}</td>
              <td>{$temporada["season_end"]}</td>

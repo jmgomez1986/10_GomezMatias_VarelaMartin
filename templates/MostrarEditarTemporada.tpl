@@ -4,7 +4,7 @@
 
     <div class="container">
       <h2>Formulario</h2>
-      <form method="post" action="{$home}/guardarEditar">
+      <form method="post" action="guardarEditar">
         <input type="hidden" class="form-control" id="idForm" name="idForm" value="{$temporada["id_season"]}">
 
         <div class="form-group">

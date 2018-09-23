@@ -40,6 +40,29 @@
       $this->Smarty->display('templates/episodios.tpl');
     }
 
+    function MostrarEditarEpisodio($episodio){
+
+      $this->Smarty->assign('episodio',$episodio);
+      //$this->smarty->debugging = true;
+      $this->Smarty->display('templates/MostrarEditarepisodio.tpl');
+    }
+
+    function Home(){
+      $this->Smarty->assign('home',"http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]));
+      $this->Smarty->display('templates/home.tpl');
+      ;
+    }
+
+    function Map(){
+      $this->Smarty->assign('home',"http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]));
+      $this->Smarty->display('templates/map.tpl');
+    }
+
+    function Casas(){
+      $this->Smarty->assign('home',"http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]));
+      $this->Smarty->display('templates/casas.tpl');
+    }
+
   }
 
  ?>

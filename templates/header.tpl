@@ -22,10 +22,10 @@
         </div>
         <div class="barraNavegacion">
           <ul>
-            <li><a href="index.html">INICIO</a></li>
-            <li><a href="casas.html">CASAS</a></li>
-            <li><a href="map.html">MAPA</a></li>
-            <li><a href="temporadas.html">TEMPORADAS</a></li>
+            <li><a href="home">INICIO</a></li>
+            <li><a href="casas">CASAS</a></li>
+            <li><a href="map">MAPA</a></li>
+            <li><a href="temporadas">TEMPORADAS</a></li>
           </ul>
         </div>  <!-- Fin de "Barra de Navegacion" -->
       </div>
