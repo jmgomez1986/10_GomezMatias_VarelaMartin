@@ -10,7 +10,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="./css/style.css">
-    <link rel="icon" type="./image/x-icon" href="stark.ico" />
+    <link rel="icon" type="./image/x-icon" href="./images/stark.ico" />
     <title>Guía de Game Of Thrones</title>
   </head>
 
@@ -22,10 +22,10 @@
         </div>
         <div class="barraNavegacion">
           <ul>
-            <li><a href="index.html">INICIO</a></li>
-            <li><a href="casas.html">CASAS</a></li>
-            <li><a href="map.html">MAPA</a></li>
-            <li><a href="temporadas.html">TEMPORADAS</a></li>
+            <li><a href="home">INICIO</a></li>
+            <li><a href="casas">CASAS</a></li>
+            <li><a href="map">MAPA</a></li>
+            <li><a href="temporadas">TEMPORADAS</a></li>
           </ul>
         </div>  <!-- Fin de "Barra de Navegacion" -->
       </div>

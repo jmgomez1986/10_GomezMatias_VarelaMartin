@@ -49,6 +49,25 @@
       $this->view->MostrarEpisodios($episodios);
     }
 
+    function EditarEpisodio($param){
+      $id_temporada = $param[0];
+      $id_episodio = $param[1];
+      $episodio = $this->model->getEpisodio($id_temporada,$id_episodio);
+      $this->view->MostrarEditarEpisodio($episodio[0]);
+    }
+
+    function Home(){
+      $this->view->Home();
+    }
+
+    function Map(){
+      $this->view->Map();
+    }
+
+    function Casas(){
+      $this->view->Casas(); 
+    }
+
   }
 
  ?>

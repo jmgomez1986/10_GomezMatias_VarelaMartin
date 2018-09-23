@@ -1,15 +1,15 @@
     <div class="pie">
       <div class="textContainerFooter">
         <ul>
-          <li><a href="index.html">INICIO</a></li>
-          <li><a href="casas.html">CASAS</a></li>
-          <li><a href="map.html">MAPA</a></li>
-          <li><a href="temporadas.html">TEMPORADAS</a></li>
+          <li><a href="home">INICIO</a></li>
+          <li><a href="casas">CASAS</a></li>
+          <li><a href="map">MAPA</a></li>
+          <li><a href="temporadas">TEMPORADAS</a></li>
         </ul>
         <p>Copyright © 2018 GOT Fans. Todos los derechos reservados.</p>
       </div>
       <div class="logoFooter">
-        <a href="index.html"><img src="./images/GOT_Logo_Vect_Blanco.svg" alt="Logo Game Of Thrones"></a>
+        <a href="home"><img src="./images/GOT_Logo_Vect_Blanco.svg" alt="Logo Game Of Thrones"></a>
       </div>
     </div>
 
