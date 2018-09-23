@@ -17,9 +17,10 @@
       $this->Smarty = new SmartyBC();
     }
 
-    function MostrarTemporadas($temporadas){
+    function MostrarTemporadas($temporadas, $episodios){
 
       $this->Smarty->assign('temporadas',$temporadas);
+      $this->Smarty->assign('episodios',$episodios);
       //$this->Smarty->assign('home',"http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]));
       //$this->smarty->debugging = true;
       $this->Smarty->display('templates/temporadas.tpl');
@@ -37,7 +38,13 @@
 
       $this->Smarty->assign('episodios',$episodios);
       // $this->smarty->debugging = true;
-      $this->Smarty->display('templates/episodios.tpl');
+      $this->Smarty->display('templates/episodiosT.tpl');
+    }
+
+    function MostrarEpisodio($episodio){
+      $this->Smarty->assign('episodios',$episodio);
+      // $this->smarty->debugging = true;
+      $this->Smarty->display('templates/episodiosT.tpl');
     }
 
     function MostrarEditarEpisodio($episodio){

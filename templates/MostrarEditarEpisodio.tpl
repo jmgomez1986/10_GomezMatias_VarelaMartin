@@ -1,9 +1,8 @@
 {include file="header.tpl"}
-<!-- <h1>{$titulo}</h1> -->
 
     <div class="container">
       <h2>Edicion de Temporada {$episodio["id_season"]} episodio {$episodio["id_episode"]}</h2>
-      <form method="post" action="guardarEditarE id="confirmationForm">
+      <form method="post" action="guardarEditarE" id="confirmationForm">
         <input type="hidden" class="form-control" id="idTemp" name="idTemp" value="{$episodio["id_season"]}">
         <input type="hidden" class="form-control" id="idEpis" name="idEpis" value="{$episodio["id_episode"]}">
 
@@ -20,4 +19,5 @@
         <button type="submit" class="btn btn-primary">Editar Episodio</button>
       </form>
     </div>
+    
 {include file="footer.tpl"}
