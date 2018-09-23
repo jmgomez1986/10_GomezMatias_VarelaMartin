@@ -6,11 +6,11 @@
       {php}
         echo '<base href="http://'.$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]).'/" target="_blank">';
       {/php}
-      
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="./css/style.css">
-    <link rel="icon" type="./image/x-icon" href="stark.ico" />
+    <link rel="icon" type="./image/x-icon" href="./images/stark.ico" />
     <title>Guía de Game Of Thrones</title>
   </head>
 
