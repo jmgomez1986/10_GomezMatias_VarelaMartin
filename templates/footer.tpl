@@ -1,10 +1,10 @@
     <div class="pie">
       <div class="textContainerFooter">
         <ul>
-          <li><a href="home">INICIO</a></li>
-          <li><a href="casas">CASAS</a></li>
-          <li><a href="map">MAPA</a></li>
-          <li><a href="temporadas">TEMPORADAS</a></li>
+          <li><a href="home"       target= "_self">INICIO</a></li>
+          <li><a href="casas"      target= "_self">CASAS</a></li>
+          <li><a href="map"        target= "_self">MAPA</a></li>
+          <li><a href="temporadas" target= "_self">TEMPORADAS</a></li>
         </ul>
         <p>Copyright © 2018 GOT Fans. Todos los derechos reservados.</p>
       </div>

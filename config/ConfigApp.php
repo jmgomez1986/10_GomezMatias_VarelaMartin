@@ -8,12 +8,12 @@
                                     ''             => 'TemporadasController#Home',
                                     'home'         => 'TemporadasController#Home',
                                     'map'          => 'TemporadasController#Map',
-                                    'casas'        => 'TemporadasController#Casas',
+                                    'casasGOT'     => 'TemporadasController#Casas',
                                     'temporadas'   => 'TemporadasController#Temporadas',
                                     'editar'       => 'TemporadasController#EditarTemporada',
                                     'guardarEditar'=> 'TemporadasController#GuardarEditarTemporada',
                                     'temporada'    => 'TemporadasController#Episodios',
-                                    'editarEpis'    => 'TemporadasController#EditarEpisodio',
+                                    'editarEpis'   => 'TemporadasController#EditarEpisodio',
                                  ];
         }
  ?>

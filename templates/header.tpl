@@ -18,14 +18,14 @@
 
     <div class="header">
         <div class="logo">
-          <a href="index.html"><img src="./images/GOT_Logo_Vect_Blanco.svg" alt="Logo Game Of Thrones"></a>
+          <a href="home"><img src="./images/GOT_Logo_Vect_Blanco.svg" alt="Logo Game Of Thrones"></a>
         </div>
         <div class="barraNavegacion">
           <ul>
-            <li><a href="home">INICIO</a></li>
-            <li><a href="casas">CASAS</a></li>
-            <li><a href="map">MAPA</a></li>
-            <li><a href="temporadas">TEMPORADAS</a></li>
+            <li><a href="home"       target= "_self">INICIO</a></li>
+            <li><a href="casasGOT"     target= "_self">CASAS</a></li>
+            <li><a href="map"        target= "_self">MAPA</a></li>
+            <li><a href="temporadas" target= "_self">TEMPORADAS</a></li>
           </ul>
         </div>  <!-- Fin de "Barra de Navegacion" -->
       </div>
