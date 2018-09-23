@@ -48,11 +48,11 @@
 			return $temporada;
 		}
 
-		function getEpisodios($temporada){
-			$db = connectToDB();
+		function getEpisodios($id_temporada){
+			$db = $this->connectToDB();
 
-			$sentencia = $db->prepare("SELECT * FROM episode WHERE id_season=$temporada");
-			$sentencia->execute();
+			$sentencia = $db->prepare("SELECT * FROM episode WHERE id_season = ?");
+			$sentencia->execute( array($id_temporada) );
 			$episodios = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
 			$db = $this->disconnect();

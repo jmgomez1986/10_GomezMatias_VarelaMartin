@@ -4,7 +4,8 @@
  *
  */
 
- require('libs/Smarty.class.php');
+ // require_once('libs/Smarty.class.php');
+ require_once('libs/SmartyBC.class.php');
 
   class TemporadasView
   {
@@ -12,12 +13,14 @@
 
     function __construct()
     {
-      $this->Smarty = new Smarty();
+      //$this->Smarty = new Smarty();
+      $this->Smarty = new SmartyBC();
     }
 
-    function Mostrar($temporadas){
+    function MostrarTemporadas($temporadas){
 
       $this->Smarty->assign('temporadas',$temporadas);
+      $this->Smarty->assign('home',"http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]));
       //$this->smarty->debugging = true;
       $this->Smarty->display('templates/temporadas.tpl');
     }
@@ -28,6 +31,13 @@
       $this->Smarty->assign('home',"http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]));
       //$smarty->debugging = true;
       $this->Smarty->display('templates/MostrarEditarTemporada.tpl');
+    }
+
+    function MostrarEpisodios($episodios){
+
+      $this->Smarty->assign('episodios',$episodios);
+      // $this->smarty->debugging = true;
+      $this->Smarty->display('templates/episodios.tpl');
     }
 
   }

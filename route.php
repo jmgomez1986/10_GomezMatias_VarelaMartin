@@ -23,16 +23,7 @@
 		}
 		elseif ($partesURL[0] === 'temporada' && $partesURL[1] != 'episodio'){
 			if(isset($partesURL[1]) && $partesURL[1] !== ''){
-				echo "Los episodios de la temporada ". $partesURL[1] . " son:</br>";
-				$episodios = getEpisodios($partesURL[1]);
-				echo "<ul>";
-				foreach($episodios as $episodio){
-        	echo "<li>" .
-									"Episodio N°: " . $episodio["id_episode"]    .
-									" - Titulo: "   . $episodio["episode_title"] .
-							 "</li>";
-    		}
-				echo "</ul>";
+				$controller->Episodios();
 			}
 			else{
 				echo "Debe ingresar un numero de temporada";

@@ -16,6 +16,7 @@
 
       $urlData = parseURL($_GET['action']);
       $action = $urlData[ConfigApp::$ACTION];
+
       if(array_key_exists($action,ConfigApp::$ACTIONS)){
           $params = $urlData[ConfigApp::$PARAMS];
           $action = explode('#',ConfigApp::$ACTIONS[$action]);
@@ -28,8 +29,8 @@
               echo $controller->$metodo();
           }
       }else{
-        // $controller =  new TareasController();
-        // echo $controller->Home();
+        $controller =  new TemporadasController();
+        echo $controller->Home();
       }
   }
 

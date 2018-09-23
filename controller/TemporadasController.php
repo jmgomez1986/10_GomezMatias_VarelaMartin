@@ -20,7 +20,7 @@
 
     function Temporadas(){
 			$temporadas = $this->model->getTemporadas();
-      $this->view->Mostrar($temporadas);
+      $this->view->MostrarTemporadas($temporadas);
     }
 
     function EditarTemporada($param){
@@ -39,6 +39,14 @@
       $this->model->setTemporada($id_emporada,$cantEpisodios,$comienzoTemporada,$finTemporada);
 
       header("Location: http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]));
+    }
+
+    function Episodios($param){
+      $id_temporada = $param[0];
+
+			$episodios = $this->model->getEpisodios($id_temporada);
+      //var_dump($episodios);
+      $this->view->MostrarEpisodios($episodios);
     }
 
   }
