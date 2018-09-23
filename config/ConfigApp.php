@@ -10,10 +10,12 @@
                                     'map'          => 'TemporadasController#Map',
                                     'casas'        => 'TemporadasController#Casas',
                                     'temporadas'   => 'TemporadasController#Temporadas',
-                                    'editar'       => 'TemporadasController#EditarTemporada',
-                                    'guardarEditar'=> 'TemporadasController#GuardarEditarTemporada',
+                                    'editarT'       => 'TemporadasController#EditarTemporada',
+                                    'guardarEditarT'=> 'TemporadasController#GuardarEditarTemporada',
                                     'temporada'    => 'TemporadasController#Episodios',
-                                    'editarEpis'    => 'TemporadasController#EditarEpisodio',
+                                    'editarE'    => 'TemporadasController#EditarEpisodio',
+                                    'guardarEditarE'=> 'TemporadasController#GuardarEditarEpisodio',
+
                                  ];
         }
  ?>
