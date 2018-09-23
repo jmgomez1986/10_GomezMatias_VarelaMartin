@@ -68,6 +68,19 @@
       $this->view->Casas(); 
     }
 
+    function GuardarEditarEpisodio(){
+      $id_temporada = $_POST["idTemp"];
+      $id_episodio  = $_POST["idEpis"];
+      $titulo       = $_POST["tituloForm"];
+      $descripcion  = $_POST["descripcion"];
+
+      
+
+      $this->model->setEpisodio($id_temporada,$id_episodio,$titulo,$descripcion);
+
+      header("Location: http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]));
+    }
+
   }
 
  ?>

@@ -17,7 +17,7 @@
              <td class="fondoTd">{$episodio["id_episode"]}</td>
              <td class="fondoTd">{$episodio["episode_title"]}</td>
              <td class="fondoTd">{$episodio["episode_desc"]}</td>
-             <td class="fondoTd"><a href="editarEpis/{$episodio["id_season"]}/{$episodio["id_episode"]}">EDITAR</a></td>
+             <td class="fondoTd"><a href="editarE/{$episodio["id_season"]}/{$episodio["id_episode"]}">EDITAR</a></td>
            </tr>
           {/foreach}
        </tbody>
