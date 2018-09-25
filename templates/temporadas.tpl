@@ -29,4 +29,6 @@
        </tbody>
      </table>
 
+    {include file="episodios.tpl" pages=$episodios}
+
 {include file="footer.tpl"}

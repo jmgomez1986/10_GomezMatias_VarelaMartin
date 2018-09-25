@@ -20,7 +20,8 @@
 
     function Temporadas(){
 			$temporadas = $this->model->getTemporadas();
-      $this->view->MostrarTemporadas($temporadas);
+      $episodios  = $this->model->getAllEpisodios();
+      $this->view->MostrarTemporadas($temporadas, $episodios);
     }
 
     function EditarTemporada($param){
@@ -49,6 +50,14 @@
       $this->view->MostrarEpisodios($episodios);
     }
 
+    function Episodio($param){
+      $id_temporada = $param[0];
+      $id_episodio  = $param[2];
+
+			$episodio = $this->model->getEpisodio($id_temporada,$id_episodio);
+      $this->view->MostrarEpisodio($episodio);
+    }
+
     function EditarEpisodio($param){
       $id_temporada = $param[0];
       $id_episodio = $param[1];
@@ -65,7 +74,7 @@
     }
 
     function Casas(){
-      $this->view->Casas(); 
+      $this->view->Casas();
     }
 
     function GuardarEditarEpisodio(){
@@ -74,11 +83,13 @@
       $titulo       = $_POST["tituloForm"];
       $descripcion  = $_POST["descripcion"];
 
-      
-
       $this->model->setEpisodio($id_temporada,$id_episodio,$titulo,$descripcion);
 
       header("Location: http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]));
+    }
+
+    function Login(){
+      $this->view->Login();
     }
 
   }

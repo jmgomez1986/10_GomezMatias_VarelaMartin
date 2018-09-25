@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 
       {php}
-        echo '<base href="http://'.$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]).'/" target="_blank">';
+        echo '<base href="http://'.$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]).'/" target="_self">';
       {/php}
 
     <!-- Bootstrap CSS -->
