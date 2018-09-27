@@ -74,6 +74,15 @@
       $this->Smarty->display('templates/login.tpl');
     }
 
+    function AdminTools($temporadas, $episodios){
+
+      $this->Smarty->assign('temporadas',$temporadas);
+      $this->Smarty->assign('episodios',$episodios);
+      //$this->smarty->debugging = true;
+
+      $this->Smarty->display('templates/adminTools.tpl');
+    }
+
   }
 
  ?>

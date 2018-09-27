@@ -18,6 +18,7 @@
       $this->model = new TemporadasModel();
     }
 
+    //Devuelve todas las temporadas de la DB y todos los episodios de la DB
     function Temporadas(){
 			$temporadas = $this->model->getTemporadas();
       $episodios  = $this->model->getAllEpisodios();
@@ -42,14 +43,15 @@
       header("Location: http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]));
     }
 
+    //Devolver los episodios de una temporada dada
     function Episodios($param){
       $id_temporada = $param[0];
 
 			$episodios = $this->model->getEpisodios($id_temporada);
-      //var_dump($episodios);
       $this->view->MostrarEpisodios($episodios);
     }
 
+    //Devuelve un episodio dado de una temporada dada
     function Episodio($param){
       $id_temporada = $param[0];
       $id_episodio  = $param[2];
@@ -60,7 +62,8 @@
 
     function EditarEpisodio($param){
       $id_temporada = $param[0];
-      $id_episodio = $param[1];
+      $id_episodio  = $param[1];
+
       $episodio = $this->model->getEpisodio($id_temporada,$id_episodio);
       $this->view->MostrarEditarEpisodio($episodio[0]);
     }
@@ -90,6 +93,16 @@
 
     function Login(){
       $this->view->Login();
+    }
+
+/***********************************/
+/*********** AdminTools ***********/
+/***********************************/
+    function AdminTools(){
+
+      $temporadas = $this->model->getTemporadasID();
+      $episodios  = $this->model->getAllEpisodios();
+      $this->view->AdminTools($temporadas, $episodios);
     }
 
   }

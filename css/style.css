@@ -352,3 +352,11 @@ textarea {
   margin-top: 30px;
   margin-left: 360px;
 }
+
+.visible {
+  display: visible;
+}
+
+.oculto {
+  display: none;
+}

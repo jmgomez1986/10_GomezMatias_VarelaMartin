@@ -9,8 +9,13 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="./css/style.css">
     <link rel="icon" type="./image/x-icon" href="./images/stark.ico" />
+    <!-- Others Links -->
+    <link rel="icon" type="image/x-icon" href="icons/stark.ico" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+
     <title>Guía de Game Of Thrones</title>
   </head>
 

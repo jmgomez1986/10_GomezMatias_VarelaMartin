@@ -17,6 +17,7 @@
                                     'temporadaE'     => 'TemporadasController#Episodio',
                                     'guardarEditarE' => 'TemporadasController#GuardarEditarEpisodio',
                                     'login'          => 'TemporadasController#Login',
+                                    'admin'          => 'TemporadasController#AdminTools',
                                  ];
         }
  ?>

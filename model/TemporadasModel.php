@@ -60,10 +60,11 @@
 			return $episodios;
 		}
 
-		function getEpisodio($temporada,$episodio){
+		function getEpisodio($temporada, $episodio){
 			$db = $this->connectToDB();
 
-			$sentencia = $db->prepare("SELECT * FROM episode WHERE id_season=$temporada AND id_episode=$episodio");
+			$sentencia = $db->prepare("SELECT * FROM episode WHERE id_season = $temporada AND
+				                                                     id_episode = $episodio");
 			$sentencia->execute();
 			$episodio = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
@@ -87,8 +88,8 @@
 		function getAllEpisodio($episodio){
 			$db = $this->connectToDB();
 
-			$sentencia = $db->prepare("SELECT * FROM episode WHERE id_episode=$episodio");
-			$sentencia->execute();
+			$sentencia = $db->prepare("SELECT * FROM episode WHERE id_episode = ?");
+			$sentencia->execute(array($episodio));
 			$episodio = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
 			$db = $this->disconnect();
@@ -109,9 +110,7 @@
 			catch(PDOException $exception){
 				 return $exception->getMessage();
 			}
-
 			$db = $this->disconnect();
-
 		}
 
 		function insertEpisodio($idSeason, $idEpisode, $episodeTitle, $episodeDesc){
@@ -127,9 +126,7 @@
 			catch(PDOException $exception){
 				 return $exception->getMessage();
 			}
-
 			$db = $this->disconnect();
-
 		}
 
 		function setTemporada($temporada,$cantEpis,$fechaC,$fechaF){
@@ -141,29 +138,50 @@
 																		    `cant_episodes`= '$cantEpis',
 																				`season_begin` = '$fechaC',
 																				`season_end`   = '$fechaF'
-																		WHERE id_season='$temporada'");
+																		WHERE id_season = $temporada");
 				$sentencia->execute();
 			}
 			catch(PDOException $exception){
 				//return $exception->getMessage();
 			}
+			$db = $this->disconnect();
 		}
 
 		function setEpisodio($temporada,$episodio,$title,$desc){
 			$db = $this->connectToDB();
 
 			try{
-				$sentencia = $db->prepare("UPDATE `episode` SET `id_season`='$temporada',`id_episode`='$episodio',`episode_title`='$title',`episode_desc`='$desc' WHERE `id_season`='$temporada' and `id_episode`='$episodio'");
+				$sentencia = $db->prepare("UPDATE `episode` SET `id_season`     = $temporada,
+					                                              `id_episode`    = $episodio,
+																												`episode_title` = $title,
+																												`episode_desc` = $desc
+																										WHERE `id_season`  = $temporada AND
+																										      `id_episode` = $episodio");
 	    	$sentencia->execute();
 	      return "se actualizo bien";
 	    }
 	    catch(PDOException $exception){
 				return $exception->getMessage();
 			}
-
 			$db = $this->disconnect();
-
 		}
+
+/***********************************/
+/*********** AdminTools ***********/
+/***********************************/
+function getTemporadasID(){
+	$db = $this->connectToDB();
+
+	$sentencia = $db->prepare("SELECT id_season FROM season
+		                           GROUP BY id_season");
+	$sentencia->execute( );
+	$temporadas = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+	$db = $this->disconnect();
+
+	return $temporadas;
+}
+
 
 	}
 
