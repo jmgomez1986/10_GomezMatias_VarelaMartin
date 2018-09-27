@@ -1,9 +1,9 @@
 {include file="header.tpl"}
 
-  <form>
+  <form class="formAdmin" method="post">
     <div class="form-row mt-3">
-      <div class="col-md-2 mb-3 mb-sm-3">
-        <select class="js-eleccionT custom-select ">
+      <div class="mb-3 mb-sm-3">
+        <select class="js-eleccionT input-lg">
           <option value="0" selected>Temporadas...</option>
           {foreach from=$temporadas item=temporada}
             <option value="{$temporada["id_season"]}">Temporada N° {$temporada["id_season"]}</option>
@@ -11,25 +11,31 @@
         </select>
       </div>
 
-      <div class="col-md-4">
-        <select class="js-eleccionE custom-select ">
+      <div class="ml-3">
+        <select class="js-eleccionE input-lg">
           <option selected>Episodios...</option>
             {foreach from=$episodios item=episodio}
               <option value="{$episodio["id_season"]}">{$episodio["id_season"]}Episodio N° {$episodio["id_episode"]} - {$episodio["episode_title"]}</option>
             {/foreach}
         </select>
       </div>
-      <div class="px-3">
-        <button class="btn btn-success" type="button">Editar</button>
+      <div class="px-2">
+        <button class="js-edt btn btn-success btn-sm" type="submit">Editar Temporada</button>
+      </div>     
+      <div class="px-2">
+        <button class="js-eds btn btn-success btn-sm" type="submit">Editar Episodio</button>
       </div>
-      <div class="px-3">
-        <button class="btn btn-success" type="button">Eliminar</button>
+      <div class="px-2">
+        <button class="js-elt btn btn-success btn-sm" type="submit">Eliminar Temporada</button>
       </div>
-      <div class="px-3">
-        <button class="btn btn-success" type="button">Agregar Temporada</button>
+      <div class="px-2">
+        <button class="js-ele btn btn-success btn-sm" type="submit">Eliminar Episodio</button>
+      </div>      
+      <div class="px-2">
+        <button class="js-agt btn btn-success btn-sm" type="submit">Agregar Temporada</button>
       </div>
-      <div class="px-3">
-        <button class="btn btn-success" type="button">Agregar Episodio</button>
+      <div class="px-2">
+        <button class="js-age btn btn-success btn-sm" type="submit">Agregar Episodio</button>
       </div>
 
     </div>
