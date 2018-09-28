@@ -1,19 +1,17 @@
 <?php
 
-  /**
-   *
-   */
+  require_once "./view/TemporadasView.php";
+  require_once "./model/TemporadasModel.php";
+  require_once "SecuredController.php";
 
-   require_once "./view/TemporadasView.php";
-   require_once "./model/TemporadasModel.php";
-
-  class TemporadasController
+  class TemporadasController extends SecuredController
   {
     private $view;
     private $model;
 
     function __construct()
     {
+      parent::__construct();
       $this->view  = new TemporadasView();
       $this->model = new TemporadasModel();
     }
