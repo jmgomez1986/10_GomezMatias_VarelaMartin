@@ -3,27 +3,39 @@
   require_once "./view/TemporadasView.php";
   require_once "./model/TemporadasModel.php";
   require_once "SecuredController.php";
+  require_once "LoginController.php";
 
-  class TemporadasController //extends SecuredController
+  class TemporadasController extends SecuredController
   {
     private $view;
     private $model;
+    private $link;
 
     function __construct()
     {
-      //parent::__construct();
+      parent::__construct();
       $this->view  = new TemporadasView();
       $this->model = new TemporadasModel();
+      if (LoginController::isLogueado()){
+        $this->link="temporadasAdmin";
+      }
+      else{
+        $this->link="temporadas";
+      }
     }
 
     //Devuelve todas las temporadas de la DB y todos los episodios de la DB
     function Temporadas(){
-			$temporadas = $this->model->getTemporadas();
-      $episodios  = $this->model->getAllEpisodios();
-      $this->view->MostrarTemporadas($temporadas, $episodios);
+      if (LoginController::isLogueado()){
+        $this->TemporadasAdmin();
+      }
+      else {
+        $this->TemporadasNormal(); 
+      }
     }
 
     function EditarTemporada($param){
+
         $id_temporada = $param[0];
 
         $Temporada = $this->model->GetTemporada($id_temporada);
@@ -46,7 +58,7 @@
       $id_temporada = $param[0];
 
 			$episodios = $this->model->getEpisodios($id_temporada);
-      $this->view->MostrarEpisodios($episodios);
+      $this->view->MostrarEpisodios($episodios,$this->link);
     }
 
     //Devuelve un episodio dado de una temporada dada
@@ -55,7 +67,7 @@
       $id_episodio  = $param[2];
 
 			$episodio = $this->model->getEpisodio($id_temporada,$id_episodio);
-      $this->view->MostrarEpisodio($episodio);
+      $this->view->MostrarEpisodio($episodio,$this->link);
     }
 
     function EditarEpisodio($param){
@@ -65,18 +77,6 @@
       $episodio = $this->model->getEpisodio($id_temporada,$id_episodio);
       $this->view->MostrarEditarEpisodio($episodio[0]);
     }
-
-    // function Home(){
-    //   $this->view->Home();
-    // }
-    //
-    // function Map(){
-    //   $this->view->Map();
-    // }
-    //
-    // function Casas(){
-    //   $this->view->Casas();
-    // }
 
     function GuardarEditarEpisodio(){
       $id_temporada = $_POST["idTemp"];
@@ -89,13 +89,15 @@
       header("Location: http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]));
     }
 
-    function Login(){
-      $this->view->Login();
-    }
-
 /***********************************/
 /*********** AdminTools ***********/
 /***********************************/
+    function TemporadasNormal(){
+      $temporadas = $this->model->getTemporadas();
+      $episodios  = $this->model->getAllEpisodios();
+      $this->view->MostrarTemporadas($temporadas, $episodios);
+    }
+
     function TemporadasAdmin(){
 
       $temporadasID = $this->model->getTemporadasID();

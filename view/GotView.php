@@ -15,15 +15,18 @@
       $this->Smarty = new SmartyBC();
     }
 
-    function Home(){
+    function Home($link){
+      $this->Smarty->assign('link',$link);
       $this->Smarty->display('templates/home.tpl');
     }
 
-    function Map(){
+    function Map($link){
+      $this->Smarty->assign('link',$link);
       $this->Smarty->display('templates/map.tpl');
     }
 
-    function Casas(){
+    function Casas($link){
+      $this->Smarty->assign('link',$link);
       $this->Smarty->display('templates/casas.tpl');
     }
 

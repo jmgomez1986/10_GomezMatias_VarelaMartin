@@ -18,10 +18,7 @@
 
       $urlData = parseURL($_GET['action']);
       $action = $urlData[ConfigApp::$ACTION];
-      // var_dump($urlData);
-      // echo "</br>";
-      // var_dump($action);
-      if(array_key_exists($action,ConfigApp::$ACTIONS)){
+       if(array_key_exists($action,ConfigApp::$ACTIONS)){
           $params = $urlData[ConfigApp::$PARAMS];
           $action = explode('#',ConfigApp::$ACTIONS[$action]);
           $controller =  new $action[0]();

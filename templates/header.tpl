@@ -30,7 +30,13 @@
             <li><a href="home"       target= "_self">INICIO</a></li>
             <li><a href="casasGOT"   target= "_self">CASAS</a></li>
             <li><a href="map"        target= "_self">MAPA</a></li>
-            <li><a href="temporadas" target= "_self">TEMPORADAS</a></li>
+            <li><a href="{$link}" target= "_self">TEMPORADAS</a></li>
           </ul>
         </div>  <!-- Fin de "Barra de Navegacion" -->
+        <div class="login">
+          <form method="post" action="login">
+            <button class="js-login btn btn-success btn-sm" type="submit">LOGIN</button>
+          </form>
+          
+        </div>
       </div>

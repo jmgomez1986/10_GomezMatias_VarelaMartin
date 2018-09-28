@@ -22,6 +22,10 @@ class LoginController {
 	 	header(LOGIN);
 	 }
 
+	 function isLogueado(){
+	 	return isset($_SESSION["User"]);	
+	 }
+
 	 function verifyLogin(){
 	 	$user = $_POST["user"];
 	 	$pass = $_POST["pass"];
@@ -31,7 +35,7 @@ class LoginController {
 	 		if(password_verify($pass,$dbUser[0]["user_password"])){
 	 			session_start();
               	$_SESSION["User"] = $user;
-	 			header(HOMEADMIN);
+	 			header(HOME);
 	 		}
 	 		else{
 	 			$this->view->login("Contraseña incorrecta");

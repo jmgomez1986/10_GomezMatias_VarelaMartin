@@ -57,5 +57,6 @@ function loadPage() {
     let formAdmin = document.querySelector(".formAdmin").action = url;
 
   });
+  
 
 }

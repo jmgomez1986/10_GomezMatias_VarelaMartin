@@ -61,6 +61,10 @@ body{
   border-radius: 15%;
   border: 4px solid grey;
 }
+
+.login{
+  display: inline-block;
+}
 /*------------------------------------------------*/
 
 /*  *INDEX */
