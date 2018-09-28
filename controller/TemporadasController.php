@@ -98,11 +98,12 @@
 /***********************************/
 /*********** AdminTools ***********/
 /***********************************/
-    function AdminTools(){
+    function TemporadasAdmin(){
 
-      $temporadas = $this->model->getTemporadasID();
-      $episodios  = $this->model->getAllEpisodios();
-      $this->view->AdminTools($temporadas, $episodios);
+      $temporadasID = $this->model->getTemporadasID();
+      $temporadas   = $this->model->getTemporadas();
+      $episodios    = $this->model->getAllEpisodios();
+      $this->view->AdminTools($temporadas, $temporadasID, $episodios);
     }
 
   }

@@ -42,32 +42,20 @@ function loadPage() {
     let eleccionTemp = document.querySelector(".js-eleccionT");
     let temporada    = eleccionTemp.value;
 
-    let url       = 'editarT/' + temporada + "/"; 
+    let url       = 'editarT/' + temporada + "/";
     let formAdmin = document.querySelector(".formAdmin").action = url;
 
   });
 
   let btnEditarEpisodio = document.querySelector(".js-eds").addEventListener('click', function(){
     let eleccionTemp = document.querySelector(".js-eleccionT");
-    let temporada    = eleccionTemp.value;    
+    let temporada    = eleccionTemp.value;
     let eleccionEp   = document.querySelector(".js-eleccionE");
     let episodio     = eleccionEp.value;
 
-    let url       = 'editarE/' + temporada + "/" + episodio + "/"; 
+    let url       = 'editarE/' + temporada + "/" + episodio + "/";
     let formAdmin = document.querySelector(".formAdmin").action = url;
 
   });
 
-}
-
-function showElement(objectDom){
-  //Cambio la clase del formulario para que se muestre
-  objectDom.classList.add("visible");
-  objectDom.classList.remove("oculto");
-}
-
-function hideElement(objectDom){
-  //Cambio la clase del formulario para que se muestre
-  objectDom.classList.add("oculto");
-  objectDom.classList.remove("visible");
 }

@@ -291,12 +291,13 @@ textarea {
   padding: 3px;
 }
 .tablaTemporadas{
-  width: 100%;
+  /* width: 100%; */
+  /* width:auto; */
+  width: 70%;
 }
 .tablaTemporadas p{
   text-align:justify;
 }
-
 .contenidoTemporadasEpisodios {
   clear: both;
   padding: 30px;
@@ -351,12 +352,4 @@ textarea {
   height: 30px;
   margin-top: 30px;
   margin-left: 360px;
-}
-
-.visible {
-  display: visible;
-}
-
-.oculto {
-  display: none;
 }

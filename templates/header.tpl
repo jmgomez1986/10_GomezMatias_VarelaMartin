@@ -28,7 +28,7 @@
         <div class="barraNavegacion">
           <ul>
             <li><a href="home"       target= "_self">INICIO</a></li>
-            <li><a href="casasGOT"     target= "_self">CASAS</a></li>
+            <li><a href="casasGOT"   target= "_self">CASAS</a></li>
             <li><a href="map"        target= "_self">MAPA</a></li>
             <li><a href="temporadas" target= "_self">TEMPORADAS</a></li>
           </ul>
