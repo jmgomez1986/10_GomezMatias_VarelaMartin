@@ -1,7 +1,8 @@
 {include file="header.tpl"}
 
-   <div class="contenidoTemporadasEpisodios" name="top">
+  {include file="adminToolsT.tpl"}
 
+  <div class="contenidoTemporadasEpisodios" name="top">
      <table class="tablaTemporadas">
        <thead>
          <tr>
@@ -24,11 +25,12 @@
              <td>{$temporada["season_end"]}</td>
            </tr>
           {/foreach}
-
        </tbody>
      </table>
    </div>
-   
-    {include file="episodios.tpl" pages=$episodios}
 
-{include file="footer.tpl"}
+  {include file="adminToolsE.tpl"}
+
+  {include file="episodios.tpl" pages=$episodios}
+
+{include file="footerAdmin.tpl"}

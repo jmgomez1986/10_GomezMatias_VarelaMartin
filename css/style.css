@@ -291,12 +291,13 @@ textarea {
   padding: 3px;
 }
 .tablaTemporadas{
-  width: 100%;
+  /* width: 100%; */
+  /* width:auto; */
+  width: 70%;
 }
 .tablaTemporadas p{
   text-align:justify;
 }
-
 .contenidoTemporadasEpisodios {
   clear: both;
   padding: 30px;

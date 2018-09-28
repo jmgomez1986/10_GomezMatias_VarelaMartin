@@ -19,6 +19,6 @@ class SecuredController{
     session_destroy();
     header(LOGIN);
   }
-  
+
 }
 ?>
