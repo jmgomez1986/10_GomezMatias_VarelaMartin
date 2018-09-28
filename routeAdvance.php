@@ -1,6 +1,7 @@
 <?php
 
   require_once "config/ConfigApp.php";
+  require_once "controller/GotController.php";
   require_once "controller/TemporadasController.php";
   require_once "controller/LoginController.php";
 

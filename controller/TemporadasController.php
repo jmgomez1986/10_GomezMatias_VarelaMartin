@@ -4,14 +4,14 @@
   require_once "./model/TemporadasModel.php";
   require_once "SecuredController.php";
 
-  class TemporadasController extends SecuredController
+  class TemporadasController //extends SecuredController
   {
     private $view;
     private $model;
 
     function __construct()
     {
-      parent::__construct();
+      //parent::__construct();
       $this->view  = new TemporadasView();
       $this->model = new TemporadasModel();
     }
@@ -66,17 +66,17 @@
       $this->view->MostrarEditarEpisodio($episodio[0]);
     }
 
-    function Home(){
-      $this->view->Home();
-    }
-
-    function Map(){
-      $this->view->Map();
-    }
-
-    function Casas(){
-      $this->view->Casas();
-    }
+    // function Home(){
+    //   $this->view->Home();
+    // }
+    //
+    // function Map(){
+    //   $this->view->Map();
+    // }
+    //
+    // function Casas(){
+    //   $this->view->Casas();
+    // }
 
     function GuardarEditarEpisodio(){
       $id_temporada = $_POST["idTemp"];
