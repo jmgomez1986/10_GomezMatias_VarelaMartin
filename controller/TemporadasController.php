@@ -4,14 +4,14 @@
   require_once "./model/TemporadasModel.php";
   require_once "SecuredController.php";
 
-  class TemporadasController extends SecuredController
+  class TemporadasController //extends SecuredController
   {
     private $view;
     private $model;
 
     function __construct()
     {
-      parent::__construct();
+      //parent::__construct();
       $this->view  = new TemporadasView();
       $this->model = new TemporadasModel();
     }
