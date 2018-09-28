@@ -70,10 +70,6 @@
       $this->Smarty->display('templates/casas.tpl');
     }
 
-    function Login(){
-      $this->Smarty->display('templates/login.tpl');
-    }
-
   }
 
  ?>

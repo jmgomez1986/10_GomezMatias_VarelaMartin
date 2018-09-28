@@ -1,4 +1,8 @@
 <?php
+    
+    define('HOMEADMIN', 'Location: http://'.$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]). '/temporadas');
+    define('LOGIN', 'Location: http://'.$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]). '/login');
+    define('LOGOUT', 'Location: http://'.$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]). '/logout');
 
     class ConfigApp
     {
@@ -16,7 +20,8 @@
                                     'editarE'        => 'TemporadasController#EditarEpisodio',
                                     'temporadaE'     => 'TemporadasController#Episodio',
                                     'guardarEditarE' => 'TemporadasController#GuardarEditarEpisodio',
-                                    'login'          => 'TemporadasController#Login',
+                                    'login'          => 'LoginController#login',
+                                    'verificarLogin' => 'LoginController#verifyLogin'
                                  ];
         }
  ?>
