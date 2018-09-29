@@ -166,23 +166,35 @@
 			$db = $this->disconnect();
 		}
 
+		function eliminarEpisodio($temporada,$episodio){
+			$db = $this->connectToDB();
+
+			try{
+				$sentencia = $db->prepare("DELETE FROM `episode`
+					                         	WHERE `id_season` = ? AND
+																		      `id_episode`= ?");
+	    	$sentencia->execute(array($temporada,$episodio));
+	    }
+	    catch(PDOException $exception){
+
+			}
+			$db = $this->disconnect();
+		}
+
 /***********************************/
 /*********** AdminTools ***********/
 /***********************************/
-function getTemporadasID(){
-	$db = $this->connectToDB();
+		function getTemporadasID(){
+			$db = $this->connectToDB();
 
-	$sentencia = $db->prepare("SELECT id_season FROM season
-		                           GROUP BY id_season");
-	$sentencia->execute( );
-	$temporadas = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+			$sentencia = $db->prepare("SELECT id_season FROM season
+				                           GROUP BY id_season");
+			$sentencia->execute( );
+			$temporadas = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
-	$db = $this->disconnect();
+			$db = $this->disconnect();
 
-	return $temporadas;
-}
-
-
-	}
-
+			return $temporadas;
+		}
+	} //END CLASS
 ?>

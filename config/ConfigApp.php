@@ -24,8 +24,10 @@
                                     'editarE'         => 'TemporadasController#EditarEpisodio',
                                     'temporadaE'      => 'TemporadasController#Episodio',
                                     'guardarEditarE'  => 'TemporadasController#GuardarEditarEpisodio',
+                                    'eliminarE'       => 'TemporadasController#EliminarEpisodio',
                                     'login'           => 'LoginController#login',
-                                    'verificarLogin'  => 'LoginController#verifyLogin'                                    
-                                 ];
+                                    'logout'          => 'SecuredController#logout',
+                                    'verificarLogin'  => 'LoginController#verifyLogin'
+                                ];
         }
  ?>

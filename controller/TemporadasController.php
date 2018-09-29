@@ -30,7 +30,7 @@
         $this->TemporadasAdmin();
       }
       else {
-        $this->TemporadasNormal(); 
+        $this->TemporadasNormal();
       }
     }
 
@@ -87,6 +87,16 @@
       $this->model->setEpisodio($id_temporada,$id_episodio,$titulo,$descripcion);
 
       header("Location: http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]));
+    }
+
+    function EliminarEpisodio($param){
+      $id_temporada = $param[0];
+      $id_episodio  = $param[1];
+
+      $this->model->eliminarEpisodio($id_temporada,$id_episodio);
+
+      header("Location: http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]) . '/temporadasAdmin');
+
     }
 
 /***********************************/

@@ -18,12 +18,20 @@ body{
     background-image: url("../images/fondoMapaNegro.jpg");
     background-repeat: repeat;
 }
-.header {
+.visible {
+  display: visible;
+}
+
+.oculto {
+  display: none;
+}
+
+/* .header {
   background-color: black;
   border-bottom: 2px solid rgb(50, 50, 50);
   height: 110px;
-}
-.logo {
+} */
+/* .logo {
   color: white;
   display: inline-block;
   width: 20%;
@@ -34,8 +42,8 @@ body{
 .logo a img{
   height: 110px;
   width: 90%;
-}
-.barraNavegacion{
+} */
+/* .barraNavegacion{
   display: inline-block;
   vertical-align: top;
   padding: 0px;
@@ -60,11 +68,27 @@ body{
   font-size: 18px;
   border-radius: 15%;
   border: 4px solid grey;
+} */
+
+.navFont {
+  font-family: "Game Of Thrones";
+  font-size: 1.5vw;
 }
 
-.login{
-  display: inline-block;
+.barNavlink{
+  /* margin: 5%; */
+  /* font-size: 18px; */
+  border-radius: 15%;
+  border: 4px solid grey;
 }
+
+.logoNav{
+  width: 250px;
+}
+
+/* .login{
+  display: inline-block;
+} */
 /*------------------------------------------------*/
 
 /*  *INDEX */
@@ -297,7 +321,7 @@ textarea {
 .tablaTemporadas{
   /* width: 100%; */
   /* width:auto; */
-  width: 70%;
+  width: 90%;
 }
 .tablaTemporadas p{
   text-align:justify;
@@ -315,6 +339,18 @@ textarea {
 .fondoTh {
   background-color: grey;
   font-weight: bold;
+}
+
+.colE5{
+  width: 5%;
+}
+
+.colE10{
+  width: 10%;
+}
+
+.colE40{
+  width: 40%;
 }
 /*------------------------------------------------*/
 

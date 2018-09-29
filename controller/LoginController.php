@@ -18,12 +18,8 @@ class LoginController {
 	 	$this->view->login();
 	 }
 
-	 function logout(){
-	 	header(LOGIN);
-	 }
-
 	 function isLogueado(){
-	 	return isset($_SESSION["User"]);	
+	 	return isset($_SESSION["User"]);
 	 }
 
 	 function verifyLogin(){

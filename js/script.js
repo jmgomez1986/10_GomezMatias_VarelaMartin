@@ -12,23 +12,49 @@ function loadPage() {
   //   }
   // )
 
-  //Opcion elegida de la lista desplegable de Temporadas
-  let eleccionDropdownTemp = document.querySelector(".js-eleccionT");
+  function showElement(objectDom){
+    //Cambio la clase del formulario para que se muestre
+    objectDom.classList.add("visible");
+    objectDom.classList.remove("oculto");
+  }
+
+  function hideElement(objectDom){
+    //Cambio la clase del formulario para que se muestre
+    objectDom.classList.add("oculto");
+    objectDom.classList.remove("visible");
+  }
+
+/****************************************/
+/*********** ABM de Temporadas **********/
+/****************************************/
+
+  let btnEditarTemporada = document.querySelector(".js-edt").addEventListener('click', function(){
+    let eleccionTemp = document.querySelector(".js-eleccionT");
+    let temporada    = eleccionTemp.value;
+
+    let url       = 'editarT/' + temporada + "/";
+    let formAdmin = document.querySelector(".formAdmin").action = url;
+  });
+
+/**************************************/
+/********** ABM de Episodios **********/
+/**************************************/
+
+  //Opcion elegida de la lista desplegable de Temporadas para filtrar la lista desplegable de episodios
+  let eleccionDropdownTemp = document.querySelector(".js-eleccionTE");
 
   eleccionDropdownTemp.addEventListener('click', function(){
-    //Lista despplegable de Episodios
+    //Lista desplegable de Episodios
     let dropdownEp = document.querySelectorAll(".js-eleccionE");
 
     dropdownEp.forEach(function(ep){
-       // console.log(ep.options);
+
        for (let i = 0; i < ep.options.length; i++) {
-         // console.log(ep.options[i].value);
          if ( eleccionDropdownTemp.value == '0' ){
            showElement(ep.options[i]);
         }
         else if (ep.options[i].value != eleccionDropdownTemp.value ) {
           hideElement(ep.options[i]);
-          // console.log(ep.options[i]);
         }
         else {
           showElement(ep.options[i]);
@@ -38,25 +64,38 @@ function loadPage() {
 
   });
 
-  let btnEditarTemporada = document.querySelector(".js-edt").addEventListener('click', function(){
-    let eleccionTemp = document.querySelector(".js-eleccionT");
-    let temporada    = eleccionTemp.value;
-
-    let url       = 'editarT/' + temporada + "/";
-    let formAdmin = document.querySelector(".formAdmin").action = url;
-
-  });
-
-  let btnEditarEpisodio = document.querySelector(".js-eds").addEventListener('click', function(){
-    let eleccionTemp = document.querySelector(".js-eleccionT");
+  let btnEditarEpisodio = document.querySelector(".js-ede").addEventListener('click', function(){
+    let eleccionTemp = document.querySelector(".js-eleccionTE");
     let temporada    = eleccionTemp.value;
     let eleccionEp   = document.querySelector(".js-eleccionE");
     let episodio     = eleccionEp.value;
 
     let url       = 'editarE/' + temporada + "/" + episodio + "/";
-    let formAdmin = document.querySelector(".formAdmin").action = url;
+    let formAdmin = document.querySelector(".formAdminE").action = url;
 
   });
-  
+
+  let btnEliminarEpisodio = document.querySelector(".js-ele").addEventListener('click', function(){
+    let eleccionTemp = document.querySelector(".js-eleccionTE");
+    let indexT       = eleccionTemp.selectedIndex;
+    let temporada    = eleccionTemp.value;
+    let temporadaID  = eleccionTemp.options[indexT].getAttribute("name");
+
+    let eleccionEp   = document.querySelector(".js-eleccionE");
+    let episodio     = eleccionEp.value;
+    let indexE       = eleccionEp.selectedIndex;
+    let episodioID   = eleccionEp.options[indexE].getAttribute("name");
+
+    let respuesta = confirm("¿Seguro que desea eliminar el episodio " + episodioID + " de la temporada " + temporadaID + "?????");
+
+    if (respuesta == true) {
+        let url       = 'eliminarE/' + temporadaID + "/" + episodioID + "/";
+        let formAdmin = document.querySelector(".formAdminE").action = url;
+        alert("Episodio Eliminado!!!");
+    } else {
+        alert("Accion cancelada");
+    }
+    
+  });
 
 }

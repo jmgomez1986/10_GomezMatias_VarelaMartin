@@ -2,7 +2,7 @@
 
    <div class="contenidoTemporadasEpisodios" name="top">
 
-     <table class="tablaTemporadas">
+     <table class="tablaTemporadas table">
        <thead>
          <tr>
            <th class="fondoTh">Episodio N°</th>
@@ -14,9 +14,9 @@
        <tbody>
           {foreach from=$episodios item=episodio}
              <tr class="font-weight-bold">
-               <td class="fondoTd">{$episodio["id_episode"]}</td>
-               <td class="fondoTd">{$episodio["episode_title"]}</td>
-               <td class="fondoTd">{$episodio["episode_desc"]}</td>
+               <td class="fondoTd colE5">{$episodio["id_episode"]}</td>
+               <td class="fondoTd colE10">{$episodio["episode_title"]}</td>
+               <td class="fondoTd colE40">{$episodio["episode_desc"]}</td>
              </tr>
           {/foreach}
        </tbody>

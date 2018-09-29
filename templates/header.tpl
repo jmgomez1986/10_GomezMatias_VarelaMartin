@@ -21,7 +21,38 @@
 
   <body>
 
-    <div class="header">
+    <header>
+      <nav class="navbar navbar-expand-sm navbar-light bg-dark text-white">
+        <a class="navbar-brand" href="home"><img class="logoNav" src="./images/GOT_Logo_Vect_Blanco.svg" alt="Logo Game Of Thrones"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <div class="navbar-nav mr-auto ml-auto text-center navFont">
+            <div class="barNavlink mr-3">
+              <a class="nav-item nav-link text-white pr-3" href="home"     target= "_self">INICIO</a>
+            </div>
+            <div class="barNavlink mr-3">
+              <a class="nav-item nav-link text-white pr-3" href="casasGOT" target= "_self">CASAS</a>
+            </div>
+            <div class="barNavlink mr-3">
+              <a class="nav-item nav-link text-white pr-3"  href="map"     target= "_self">MAPA</a>
+            </div>
+            <div class="barNavlink mr-3">
+              <a class="nav-item nav-link text-white pr-3" href="{$link}"  target= "_self">TEMPORADAS</a>
+            </div>
+          </div>
+        </div>
+        <form method="post" action="login" class="px-2">
+          <button class="js-login btn btn-success btn-xs" type="submit">Login</button>
+        </form>
+        <form method="post" action="logout" class="px-2">
+          <button class="js-logout btn btn-success btn-xs" type="submit">Logout</button>
+        </form>
+      </nav>
+    </header>
+
+    <!-- <div class="header">
         <div class="logo">
           <a href="home"><img src="./images/GOT_Logo_Vect_Blanco.svg" alt="Logo Game Of Thrones"></a>
         </div>
@@ -31,12 +62,11 @@
             <li><a href="casasGOT"   target= "_self">CASAS</a></li>
             <li><a href="map"        target= "_self">MAPA</a></li>
             <li><a href="{$link}" target= "_self">TEMPORADAS</a></li>
-          </ul>
-        </div>  <!-- Fin de "Barra de Navegacion" -->
-        <div class="login">
+          </ul> -->
+        <!-- </div> -->  <!-- Fin de "Barra de Navegacion" -->
+         <!-- <div class="login">
           <form method="post" action="login">
             <button class="js-login btn btn-success btn-sm" type="submit">LOGIN</button>
           </form>
-          
         </div>
-      </div>
+      </div> -->
