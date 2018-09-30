@@ -51,7 +51,7 @@
 
       $this->model->setTemporada($id_emporada,$cantEpisodios,$comienzoTemporada,$finTemporada);
 
-      header("Location: http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]));
+      header(TEMPADMIN);
     }
 
     //Devolver los episodios de una temporada dada
@@ -87,7 +87,7 @@
 
       $this->model->setEpisodio($id_temporada,$id_episodio,$titulo,$descripcion);
 
-      header("Location: http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]));
+      header(TEMPADMIN);
     }
 
     function EliminarEpisodio($param){
@@ -96,7 +96,7 @@
 
       $this->model->eliminarEpisodio($id_temporada,$id_episodio);
 
-      header("Location: http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]) . '/temporadasAdmin');
+      header(TEMPADMIN);
 
     }
 
