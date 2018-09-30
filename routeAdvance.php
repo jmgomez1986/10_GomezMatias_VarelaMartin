@@ -30,7 +30,7 @@
               echo $controller->$metodo();
           }
       }else{
-        $controller =  new TemporadasController();
+        $controller =  new GotController();
         echo $controller->Home();
       }
   }

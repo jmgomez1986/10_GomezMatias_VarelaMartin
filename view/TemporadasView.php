@@ -57,6 +57,15 @@
       $this->Smarty->display('templates/MostrarEditarEpisodio.tpl');
     }
 
+    function MostrarAgregarEpisodio($titulo, $id_temporada, /*$id_episodio,*/ $link){
+      $this->Smarty->assign('titulo',$titulo); // El 'Titulo' del assign puede ser cualquier valor
+      $this->Smarty->assign('id_temporada', $id_temporada);
+      //$this->Smarty->assign('id_episodio',$id_episodio);
+      $this->Smarty->assign('link', $link);
+      // $this->Smarty->debugging = true;
+      $this->Smarty->display('templates/MostrarAgregarEpisodio.tpl');
+    }
+
     function AdminTools($temporadas, $temporadasID, $episodios){
 
       $this->Smarty->assign('temporadas',$temporadas);
@@ -66,7 +75,7 @@
       // $this->Smarty->debugging = true;
       $this->Smarty->display('templates/temporadasAdmin.tpl');
     }
-    
+
   } //END CLASS
 
  ?>
