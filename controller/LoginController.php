@@ -18,6 +18,12 @@ class LoginController {
 	 	$this->view->login();
 	 }
 
+	 function logout(){
+     session_start();
+     session_destroy();
+     header(HOME);
+   }
+
 	 function isLogueado(){
 	 	return isset($_SESSION["User"]);
 	 }

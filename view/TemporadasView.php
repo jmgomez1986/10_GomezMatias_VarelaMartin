@@ -26,10 +26,10 @@
       $this->Smarty->display('templates/temporadas.tpl');
     }
 
-    function MostrarEditarTemporada($titulo, $temporada){
+    function MostrarEditarTemporada($titulo, $temporada, $link){
       $this->Smarty->assign('titulo',$titulo); // El 'Titulo' del assign puede ser cualquier valor
       $this->Smarty->assign('temporada',$temporada);
-      $this->Smarty->assign('link','temporadasAdmin');
+      $this->Smarty->assign('link',$link);
       //$smarty->debugging = true;
       $this->Smarty->display('templates/MostrarEditarTemporada.tpl');
     }
@@ -49,12 +49,12 @@
       $this->Smarty->display('templates/episodiosT.tpl');
     }
 
-    function MostrarEditarEpisodio($episodio){
-
+    function MostrarEditarEpisodio($titulo, $episodio, $link){
+      $this->Smarty->assign('titulo',$titulo); // El 'Titulo' del assign puede ser cualquier valor
       $this->Smarty->assign('episodio',$episodio);
-      $this->Smarty->assign('link','temporadasAdmin');
-      //$this->smarty->debugging = true;
-      $this->Smarty->display('templates/MostrarEditarepisodio.tpl');
+      $this->Smarty->assign('link', $link);
+      $this->smarty->debugging = true;
+      $this->Smarty->display('templates/MostrarEditarEpisodio.tpl');
     }
 
     function AdminTools($temporadas, $temporadasID, $episodios){
@@ -64,7 +64,6 @@
       $this->Smarty->assign('episodios',$episodios);
       $this->Smarty->assign('link','temporadasAdmin');
       //$this->smarty->debugging = true;
-
       $this->Smarty->display('templates/temporadasAdmin.tpl');
     }
   }

@@ -16,6 +16,7 @@
       parent::__construct();
       $this->view  = new TemporadasView();
       $this->model = new TemporadasModel();
+
       if (LoginController::isLogueado()){
         $this->link="temporadasAdmin";
       }
@@ -39,7 +40,7 @@
         $id_temporada = $param[0];
 
         $Temporada = $this->model->GetTemporada($id_temporada);
-        $this->view->MostrarEditarTemporada("Editar Temporada", $Temporada[0]);
+        $this->view->MostrarEditarTemporada("Editar Temporada", $Temporada[0], 'temporadasAdmin');
     }
 
     function GuardarEditarTemporada(){
@@ -75,7 +76,7 @@
       $id_episodio  = $param[1];
 
       $episodio = $this->model->getEpisodio($id_temporada,$id_episodio);
-      $this->view->MostrarEditarEpisodio($episodio[0]);
+      $this->view->MostrarEditarEpisodio('Editar episodio', $episodio[0], 'temporadasAdmin');
     }
 
     function GuardarEditarEpisodio(){

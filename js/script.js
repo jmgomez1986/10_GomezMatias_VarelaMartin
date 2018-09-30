@@ -32,8 +32,17 @@ function loadPage() {
     let eleccionTemp = document.querySelector(".js-eleccionT");
     let temporada    = eleccionTemp.value;
 
-    let url       = 'editarT/' + temporada + "/";
-    let formAdmin = document.querySelector(".formAdmin").action = url;
+    let indexT       = eleccionTemp.selectedIndex;
+    let temporadaID  = eleccionTemp.options[indexT].getAttribute("name");
+
+    if ( temporadaID === "0" ){
+      alert("Elija una temporada");
+    }
+    else{
+      let url       = 'editarT/' + temporadaID + "/";
+      let formAdmin = document.querySelector(".formAdmin").action = url;
+    }
+
   });
 
 /**************************************/
@@ -67,11 +76,22 @@ function loadPage() {
   let btnEditarEpisodio = document.querySelector(".js-ede").addEventListener('click', function(){
     let eleccionTemp = document.querySelector(".js-eleccionTE");
     let temporada    = eleccionTemp.value;
+    let indexT       = eleccionTemp.selectedIndex;
+    let temporadaID  = eleccionTemp.options[indexT].getAttribute("name");
+
     let eleccionEp   = document.querySelector(".js-eleccionE");
     let episodio     = eleccionEp.value;
+    let indexE       = eleccionEp.selectedIndex;
+    let episodioID   = eleccionEp.options[indexE].getAttribute("name");
 
-    let url       = 'editarE/' + temporada + "/" + episodio + "/";
-    let formAdmin = document.querySelector(".formAdminE").action = url;
+    if ( ( temporadaID === "0" ) || ( episodioID === "0" ) ){
+      alert("Elija una temporada y un episodio");
+    }
+    else{
+      let url       = 'editarE/' + temporadaID + "/" + episodioID + "/";
+      
+      let formAdmin = document.querySelector(".formAdminE").action = url;
+    }
 
   });
 
@@ -95,7 +115,7 @@ function loadPage() {
     } else {
         alert("Accion cancelada");
     }
-    
+
   });
 
 }
