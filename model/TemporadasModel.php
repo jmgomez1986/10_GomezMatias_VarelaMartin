@@ -197,4 +197,5 @@
 			return $temporadas;
 		}
 	} //END CLASS
+	
 ?>

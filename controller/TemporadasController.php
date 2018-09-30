@@ -117,6 +117,6 @@
       $this->view->AdminTools($temporadas, $temporadasID, $episodios);
     }
 
-  }
+  } //END CLASS
 
  ?>

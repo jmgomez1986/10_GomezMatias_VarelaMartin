@@ -4,8 +4,8 @@
  *
  */
 
- // require_once('libs/Smarty.class.php');
- require_once('libs/SmartyBC.class.php');
+  // require_once('libs/Smarty.class.php');
+  require_once('libs/SmartyBC.class.php');
 
   class TemporadasView
   {
@@ -66,6 +66,7 @@
       // $this->Smarty->debugging = true;
       $this->Smarty->display('templates/temporadasAdmin.tpl');
     }
-  }
+    
+  } //END CLASS
 
  ?>
