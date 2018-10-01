@@ -5,7 +5,7 @@
 		function __construct(){
 	    session_start();
 	    if(isset($_SESSION["User"])){
-	      if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 10)) {
+	      if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 30)) {
 	        $this->logout();
 	        header(TEMP);
 	      }else{

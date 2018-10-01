@@ -158,7 +158,7 @@
          // $id_episodio  = $param[1];
 
          //$episodio = $this->model->getEpisodio($id_temporada,$id_episodio);
-         //if (empty($episodio)){
+         //
            $this->view->MostrarAgregarEpisodio('Agregar episodio', $id_temporada, /*$id_episodio,*/ 'temporadasAdmin');
          //}
       }
@@ -171,12 +171,15 @@
       if ($this->admin){
         $id_temporada = $_POST["idTemp"];
         $id_episodio  = $_POST["idEp"];
-        $titulo       = $_POST["tituloT"];
+        $titulo       = $_POST["tituloE"];
         $descripcion  = $_POST["descE"];
 
-        $this->model->insertEpisodio($id_temporada, $id_episodio, $titulo, $descripcion);
+        $episodio = $this->model->getEpisodio($id_temporada,$id_episodio);
 
-        header(TEMPADMIN);
+        if (empty($episodio)){
+          $this->model->insertEpisodio($id_temporada, $id_episodio, $titulo, $descripcion);
+          header(TEMPADMIN);
+        }
       }
       else{
         header(LOGIN);

@@ -110,8 +110,59 @@ function loadPage() {
 
     if (respuesta == true) {
         let url       = 'eliminarE/' + temporadaID + "/" + episodioID + "/";
-        let formAdmin = document.querySelector(".formAdminE").action = url;
-        alert("Episodio Eliminado!!!");
+        //let formAdmin = document.querySelector(".formAdminE").action = url;
+
+        // let alertS = document.createElement("span");
+        // alertS.setAttribute("class", "closebtn");
+        // alertS.setAttribute("onclick","this.parentElement.style.display='none';");
+        // alertS.innerHTML ="&times;";
+        //
+        // let textAlert = document.createTextNode("<strong>Danger!</strong> Indicates a dangerous or potentially negative action.");
+        //
+        // let divAlert = document.querySelector(".alert");
+        // divAlert.appendChild(alertS);
+        // divAlert.appendChild(textAlert);
+
+        let dialogAlert = document.createElement("dialog");
+        dialogAlert.open = true;
+        dialogAlert.innerHTML = "Episodio Eliminado!!!";
+
+        let alertSpan = document.createElement("span");
+        alertSpan.setAttribute("class", "closebtn");
+        alertSpan.setAttribute("onclick","this.parentElement.style.display='none';");
+        alertSpan.innerHTML ="&times;";
+        let alertP = document.createElement("p");
+        alertP.innerHTML = "Episodio Eliminado!!!";
+
+        let divAlertDialog = document.createElement("div");
+        divAlertDialog.setAttribute("class", "alert");
+        divAlertDialog.appendChild(alertSpan);
+        divAlertDialog.appendChild(alertP);
+
+        let divAlert = document.querySelector(".dialog");
+        // divAlert.appendChild(alertSpan);
+        divAlert.appendChild(alertP);
+        //divAlert.appendChild(divAlertDialog);
+        //divAlert.appendChild(dialogAlert);
+
+        //console.log(divAlert);
+
+        // $( function() {
+        //   $( ".dialog" ).dialog();
+        // } );
+
+        $( ".dialog" ).dialog({
+          dialogClass: "no-close",
+          buttons: [
+            {
+              text: "OK",
+              click: function() {
+                $( this ).dialog( "close" );
+              }
+            }
+          ]
+        });
+
     } else {
         alert("Accion cancelada");
     }

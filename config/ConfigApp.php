@@ -25,6 +25,7 @@
                                     'guardarEditarE'  => 'TemporadasController#GuardarEditarEpisodio',
                                     'eliminarE'       => 'TemporadasController#EliminarEpisodio',
                                     'agregarE'        => 'TemporadasController#AgregarEpisodio',
+                                    'guardarAgregarE' => 'TemporadasController#GuardarAgregarEpisodio',
                                     'login'           => 'LoginController#login',
                                     'logout'          => 'LoginController#logout',
                                     'verificarLogin'  => 'LoginController#verifyLogin'
