@@ -106,9 +106,30 @@ function loadPage() {
     let indexE       = eleccionEp.selectedIndex;
     let episodioID   = eleccionEp.options[indexE].getAttribute("name");
 
-    let respuesta = confirm("¿Seguro que desea eliminar el episodio " + episodioID + " de la temporada " + temporadaID + "?????");
+    // let respuesta = confirm("¿Seguro que desea eliminar el episodio " + episodioID + " de la temporada " + temporadaID + "?????");
 
-    if (respuesta == true) {
+    $( ".dialog" ).dialog({
+      dialogClass: "no-close",
+      // $( this ).title("¿Seguro que desea eliminar el episodio " + episodioID + " de la temporada " + temporadaID + "?????");
+      buttons: [
+        {
+          text: "Cancelar",
+          click: function() {
+            $( this ).dialog( "close" );
+          }
+        },
+        {
+          text: "OK",
+          click: function() {
+            $( this ).dialog( "close" );
+          }
+        }
+      ]
+    });
+    let alertP = document.createTextNode("¿Seguro que desea eliminar el episodio " + episodioID + " de la temporada " + temporadaID + "?????");
+    this.appendChild(alertP);
+
+    // if (respuesta == true) {
         let url       = 'eliminarE/' + temporadaID + "/" + episodioID + "/";
         //let formAdmin = document.querySelector(".formAdminE").action = url;
 
@@ -123,21 +144,21 @@ function loadPage() {
         // divAlert.appendChild(alertS);
         // divAlert.appendChild(textAlert);
 
-        let dialogAlert = document.createElement("dialog");
-        dialogAlert.open = true;
-        dialogAlert.innerHTML = "Episodio Eliminado!!!";
-
-        let alertSpan = document.createElement("span");
-        alertSpan.setAttribute("class", "closebtn");
-        alertSpan.setAttribute("onclick","this.parentElement.style.display='none';");
-        alertSpan.innerHTML ="&times;";
+        // let dialogAlert = document.createElement("dialog");
+        // dialogAlert.open = true;
+        // dialogAlert.innerHTML = "Episodio Eliminado!!!";
+        //
+        // let alertSpan = document.createElement("span");
+        // alertSpan.setAttribute("class", "closebtn");
+        // alertSpan.setAttribute("onclick","this.parentElement.style.display='none';");
+        // alertSpan.innerHTML ="&times;";
         let alertP = document.createElement("p");
         alertP.innerHTML = "Episodio Eliminado!!!";
 
-        let divAlertDialog = document.createElement("div");
-        divAlertDialog.setAttribute("class", "alert");
-        divAlertDialog.appendChild(alertSpan);
-        divAlertDialog.appendChild(alertP);
+        // let divAlertDialog = document.createElement("div");
+        // divAlertDialog.setAttribute("class", "alert");
+        // divAlertDialog.appendChild(alertSpan);
+        // divAlertDialog.appendChild(alertP);
 
         let divAlert = document.querySelector(".dialog");
         // divAlert.appendChild(alertSpan);
@@ -152,15 +173,6 @@ function loadPage() {
         // } );
 
         $( ".dialog" ).dialog({
-          dialogClass: "no-close",
-          buttons: [
-            {
-              text: "OK",
-              click: function() {
-                $( this ).dialog( "close" );
-              }
-            }
-          ]
         });
 
     } else {

@@ -1,6 +1,6 @@
 {include file="header.tpl"}
 
-<div class="dialog" title="Basic dialog">
+<div class="dialog" title="Mensajes">
 
 </div>
 
