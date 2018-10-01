@@ -110,7 +110,7 @@
     }
 
     function TemporadasAdmin(){
-
+      
       $temporadasID = $this->model->getTemporadasID();
       $temporadas   = $this->model->getTemporadas();
       $episodios    = $this->model->getAllEpisodios();
