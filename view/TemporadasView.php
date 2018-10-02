@@ -17,11 +17,11 @@
       $this->Smarty = new SmartyBC();
     }
 
-    function MostrarTemporadas($temporadas, $episodios){
+    function MostrarTemporadas($temporadas, $episodios,$link){
 
       $this->Smarty->assign('temporadas',$temporadas);
       $this->Smarty->assign('episodios',$episodios);
-      $this->Smarty->assign('link','temporadas');
+      $this->Smarty->assign('link', $link);
       // $this->Smarty->debugging = true;
       $this->Smarty->display('templates/temporadas.tpl');
     }

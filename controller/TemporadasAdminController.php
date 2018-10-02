@@ -70,7 +70,25 @@ class TemporadasAdminController extends SecuredController{
       $this->model->eliminarEpisodio($id_temporada,$id_episodio);
 
       header(TEMPADMIN);
+    }
 
+    function AgregarEpisodio($param){
+         $id_temporada = $param[0];
+         $this->view->MostrarAgregarEpisodio('Agregar episodio', $id_temporada, /*$id_episodio,*/ 'temporadasAdmin');
+    }
+
+    function GuardarAgregarEpisodio(){
+        $id_temporada = $_POST["idTemp"];
+        $id_episodio  = $_POST["idEp"];
+        $titulo       = $_POST["tituloE"];
+        $descripcion  = $_POST["descE"];
+
+        $episodio = $this->model->getEpisodio($id_temporada,$id_episodio);
+
+        if (empty($episodio)){
+          $this->model->insertEpisodio($id_temporada, $id_episodio, $titulo, $descripcion);
+          header(TEMPADMIN);
+        }
     }
 }
 ?>

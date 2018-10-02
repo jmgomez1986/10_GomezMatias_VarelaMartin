@@ -1,19 +1,16 @@
 <?php
 
   require_once "./view/GotView.php";
-  // require_once "./model/GotModel.php";
   require_once "SecuredController.php";
   require_once "LoginController.php";
 
-  class GotController extends SecuredController
+  class GotController 
   {
     private $view;
     private $link;
-    // private $model;
 
     function __construct()
     {
-      parent::__construct();
       $this->view = new GotView();
       if (LoginController::isLogueado()){
         $this->link="temporadasAdmin";
@@ -21,8 +18,6 @@
       else{
         $this->link="temporadas";
       }
-      // $this->model = new GotModel();
-
     }
 
     function Home(){
