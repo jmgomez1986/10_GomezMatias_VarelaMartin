@@ -4,7 +4,7 @@
  *
  */
 
- require_once('libs/SmartyBC.class.php');
+  require_once('libs/SmartyBC.class.php');
 
   class GotView
   {
@@ -30,6 +30,6 @@
       $this->Smarty->display('templates/casas.tpl');
     }
 
-  }
+  }  //END CLASS
 
  ?>

@@ -7,6 +7,7 @@
         echo '<base href="http://'.$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]).'/" target="_self">';
       {/php}
 
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <!-- Custom CSS -->
@@ -51,22 +52,3 @@
         </form>
       </nav>
     </header>
-
-    <!-- <div class="header">
-        <div class="logo">
-          <a href="home"><img src="./images/GOT_Logo_Vect_Blanco.svg" alt="Logo Game Of Thrones"></a>
-        </div>
-        <div class="barraNavegacion">
-          <ul>
-            <li><a href="home"       target= "_self">INICIO</a></li>
-            <li><a href="casasGOT"   target= "_self">CASAS</a></li>
-            <li><a href="map"        target= "_self">MAPA</a></li>
-            <li><a href="{$link}" target= "_self">TEMPORADAS</a></li>
-          </ul> -->
-        <!-- </div> -->  <!-- Fin de "Barra de Navegacion" -->
-         <!-- <div class="login">
-          <form method="post" action="login">
-            <button class="js-login btn btn-success btn-sm" type="submit">LOGIN</button>
-          </form>
-        </div>
-      </div> -->

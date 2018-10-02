@@ -26,58 +26,12 @@ body{
   display: none;
 }
 
-/* .header {
-  background-color: black;
-  border-bottom: 2px solid rgb(50, 50, 50);
-  height: 110px;
-} */
-/* .logo {
-  color: white;
-  display: inline-block;
-  width: 20%;
-  height: 110px;
-  text-align:center;
-  background-color: black;
-}
-.logo a img{
-  height: 110px;
-  width: 90%;
-} */
-/* .barraNavegacion{
-  display: inline-block;
-  vertical-align: top;
-  padding: 0px;
-  width: 79.6%;
-  height: 110px;
-}
-.barraNavegacion ul {
-  text-align:center;
-  width: 80%;
-  padding: 0px;
-  margin: 2.5% auto;
-}
-.barraNavegacion ul li {
-  display: inline-block;
-  padding: 15px 50px;
-}
-.barraNavegacion ul li a{
-  color: white;
-  text-decoration: none;
-  font-family:"Game Of Thrones";
-  padding: 6px;
-  font-size: 18px;
-  border-radius: 15%;
-  border: 4px solid grey;
-} */
-
 .navFont {
   font-family: "Game Of Thrones";
   font-size: 1.5vw;
 }
 
 .barNavlink{
-  /* margin: 5%; */
-  /* font-size: 18px; */
   border-radius: 15%;
   border: 4px solid grey;
 }
@@ -86,9 +40,6 @@ body{
   width: 250px;
 }
 
-/* .login{
-  display: inline-block;
-} */
 /*------------------------------------------------*/
 
 /*  *INDEX */
@@ -319,8 +270,6 @@ textarea {
   padding: 3px;
 }
 .tablaTemporadas{
-  /* width: 100%; */
-  /* width:auto; */
   width: 90%;
 }
 .tablaTemporadas p{

@@ -10,6 +10,7 @@
     private $view;
     private $model;
     private $link;
+    private $admin;
 
     function __construct()
     {
@@ -18,16 +19,18 @@
       $this->model = new TemporadasModel();
 
       if (LoginController::isLogueado()){
-        $this->link="temporadasAdmin";
+        $this->link  = "temporadasAdmin";
+        $this->admin = true;
       }
       else{
-        $this->link="temporadas";
+        $this->link  = "temporadas";
+        $this->admin = false;
       }
     }
 
     //Devuelve todas las temporadas de la DB y todos los episodios de la DB
     function Temporadas(){
-      if (LoginController::isLogueado()){
+      if ($this->admin){
         $this->TemporadasAdmin();
       }
       else {
@@ -35,23 +38,23 @@
       }
     }
 
-    function EditarTemporada($param){
-
-        $id_temporada = $param[0];
-
-        $Temporada = $this->model->GetTemporada($id_temporada);
-        $this->view->MostrarEditarTemporada("Editar Temporada", $Temporada[0], 'temporadasAdmin');
+    function TemporadasNormal(){
+      $temporadas = $this->model->getTemporadas();
+      $episodios  = $this->model->getAllEpisodios();
+      $this->view->MostrarTemporadas($temporadas, $episodios);
     }
 
-    function GuardarEditarTemporada(){
-      $id_emporada        = $_POST["idForm"];
-      $cantEpisodios      = $_POST["cantEpForm"];
-      $comienzoTemporada  = $_POST["comienzoForm"];
-      $finTemporada       = $_POST["finForm"];
+    function TemporadasAdmin(){
+      if ($this->admin){
+        $temporadasID = $this->model->getTemporadasID();
+        $temporadas   = $this->model->getTemporadas();
+        $episodios    = $this->model->getAllEpisodios();
+        $this->view->AdminTools($temporadas, $temporadasID, $episodios);
 
-      $this->model->setTemporada($id_emporada,$cantEpisodios,$comienzoTemporada,$finTemporada);
-
-      header(TEMPADMIN);
+      }
+      else{
+        header(LOGIN);
+      }
     }
 
     //Devolver los episodios de una temporada dada
@@ -71,42 +74,97 @@
       $this->view->MostrarEpisodio($episodio,$this->link);
     }
 
-    function EditarEpisodio($param){
-      $id_temporada = $param[0];
-      $id_episodio  = $param[1];
-
-      $episodio = $this->model->getEpisodio($id_temporada,$id_episodio);
-      $this->view->MostrarEditarEpisodio('Editar episodio', $episodio[0], 'temporadasAdmin');
-    }
-
-    function GuardarEditarEpisodio(){
-      $id_temporada = $_POST["idTemp"];
-      $id_episodio  = $_POST["idEpis"];
-      $titulo       = $_POST["tituloForm"];
-      $descripcion  = $_POST["descripcion"];
-
-      $this->model->setEpisodio($id_temporada,$id_episodio,$titulo,$descripcion);
-
-      header(TEMPADMIN);
-    }
-
-    function EliminarEpisodio($param){
-      $id_temporada = $param[0];
-      $id_episodio  = $param[1];
-
-      $this->model->eliminarEpisodio($id_temporada,$id_episodio);
-
-      header(TEMPADMIN);
-
-    }
-
 /***********************************/
 /*********** AdminTools ***********/
 /***********************************/
-    function TemporadasNormal(){
-      $temporadas = $this->model->getTemporadas();
-      $episodios  = $this->model->getAllEpisodios();
-      $this->view->MostrarTemporadas($temporadas, $episodios);
+
+  /*********** AdminTemporadas ***********/
+    function EditarTemporada($param){
+      if ($this->admin){
+
+        $id_temporada = $param[0];
+
+        $Temporada = $this->model->GetTemporada($id_temporada);
+        $this->view->MostrarEditarTemporada("Editar Temporada", $Temporada[0], 'temporadasAdmin');
+      }
+      else{
+        header(LOGIN);
+      }
+    }
+
+    function GuardarEditarTemporada(){
+      if ($this->admin){
+        $id_emporada        = $_POST["idForm"];
+        $cantEpisodios      = $_POST["cantEpForm"];
+        $comienzoTemporada  = $_POST["comienzoForm"];
+        $finTemporada       = $_POST["finForm"];
+
+        $this->model->setTemporada($id_emporada,$cantEpisodios,$comienzoTemporada,$finTemporada);
+
+        header(TEMPADMIN);
+      }
+      else{
+        header(LOGIN);
+      }
+    }
+
+  /*********** AdminEpisodios ***********/
+    function EditarEpisodio($param){
+      if ($this->admin){
+        $id_temporada = $param[0];
+        $id_episodio  = $param[1];
+
+        $episodio = $this->model->getEpisodio($id_temporada,$id_episodio);
+        $this->view->MostrarEditarEpisodio('Editar episodio', $episodio[0], 'temporadasAdmin');
+      }
+      else{
+        header(LOGIN);
+      }
+    }
+
+    function GuardarEditarEpisodio(){
+      if ($this->admin){
+        $id_temporada = $_POST["idTemp"];
+        $id_episodio  = $_POST["idEpis"];
+        $titulo       = $_POST["tituloForm"];
+        $descripcion  = $_POST["descripcion"];
+
+        $this->model->setEpisodio($id_temporada,$id_episodio,$titulo,$descripcion);
+
+        header(TEMPADMIN);
+      }
+      else{
+        header(LOGIN);
+      }
+    }
+
+    function EliminarEpisodio($param){
+      if ($this->admin){
+        $id_temporada = $param[0];
+        $id_episodio  = $param[1];
+
+        $this->model->eliminarEpisodio($id_temporada,$id_episodio);
+
+        header(TEMPADMIN);
+      }
+      else{
+        header(LOGIN);
+      }
+    }
+
+    function AgregarEpisodio($param){
+      if ($this->admin){
+         $id_temporada = $param[0];
+         // $id_episodio  = $param[1];
+
+         //$episodio = $this->model->getEpisodio($id_temporada,$id_episodio);
+         //
+           $this->view->MostrarAgregarEpisodio('Agregar episodio', $id_temporada, /*$id_episodio,*/ 'temporadasAdmin');
+         //}
+      }
+      else{
+        header(LOGIN);
+      }
     }
 
     function TemporadasAdmin(){
@@ -117,6 +175,25 @@
       $this->view->AdminTools($temporadas, $temporadasID, $episodios);
     }
 
-  }
+    function GuardarAgregarEpisodio(){
+      if ($this->admin){
+        $id_temporada = $_POST["idTemp"];
+        $id_episodio  = $_POST["idEp"];
+        $titulo       = $_POST["tituloE"];
+        $descripcion  = $_POST["descE"];
+
+        $episodio = $this->model->getEpisodio($id_temporada,$id_episodio);
+
+        if (empty($episodio)){
+          $this->model->insertEpisodio($id_temporada, $id_episodio, $titulo, $descripcion);
+          header(TEMPADMIN);
+        }
+      }
+      else{
+        header(LOGIN);
+      }
+    }
+
+  } //END CLASS
 
  ?>

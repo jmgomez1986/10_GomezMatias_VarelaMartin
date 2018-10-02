@@ -37,6 +37,6 @@
     function Map(){
       $this->view->Map($this->link);
     }
-  }
+  } //END CLASS
 
  ?>

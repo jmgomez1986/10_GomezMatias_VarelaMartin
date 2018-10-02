@@ -1,5 +1,9 @@
 {include file="header.tpl"}
 
+<div class="dialog" title="Mensajes">
+
+</div>
+
   {include file="adminToolsT.tpl"}
 
   <div class="contenidoTemporadasEpisodios" name="top">
