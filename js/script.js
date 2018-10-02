@@ -96,6 +96,7 @@ function loadPage() {
   });
 
   let btnEliminarEpisodio = document.querySelector(".js-ele").addEventListener('click', function(){
+    let answer;
     let eleccionTemp = document.querySelector(".js-eleccionTE");
     let indexT       = eleccionTemp.selectedIndex;
     let temporada    = eleccionTemp.value;
@@ -106,78 +107,62 @@ function loadPage() {
     let indexE       = eleccionEp.selectedIndex;
     let episodioID   = eleccionEp.options[indexE].getAttribute("name");
 
-    // let respuesta = confirm("¿Seguro que desea eliminar el episodio " + episodioID + " de la temporada " + temporadaID + "?????");
-
-    $( ".dialog" ).dialog({
-      dialogClass: "no-close",
-      // $( this ).title("¿Seguro que desea eliminar el episodio " + episodioID + " de la temporada " + temporadaID + "?????");
-      buttons: [
-        {
-          text: "Cancelar",
-          click: function() {
-            $( this ).dialog( "close" );
-          }
-        },
-        {
-          text: "OK",
-          click: function() {
-            $( this ).dialog( "close" );
-          }
-        }
-      ]
-    });
-    let alertP = document.createTextNode("¿Seguro que desea eliminar el episodio " + episodioID + " de la temporada " + temporadaID + "?????");
-    this.appendChild(alertP);
-
-    // if (respuesta == true) {
-        let url       = 'eliminarE/' + temporadaID + "/" + episodioID + "/";
-        //let formAdmin = document.querySelector(".formAdminE").action = url;
-
-        // let alertS = document.createElement("span");
-        // alertS.setAttribute("class", "closebtn");
-        // alertS.setAttribute("onclick","this.parentElement.style.display='none';");
-        // alertS.innerHTML ="&times;";
-        //
-        // let textAlert = document.createTextNode("<strong>Danger!</strong> Indicates a dangerous or potentially negative action.");
-        //
-        // let divAlert = document.querySelector(".alert");
-        // divAlert.appendChild(alertS);
-        // divAlert.appendChild(textAlert);
-
-        // let dialogAlert = document.createElement("dialog");
-        // dialogAlert.open = true;
-        // dialogAlert.innerHTML = "Episodio Eliminado!!!";
-        //
-        // let alertSpan = document.createElement("span");
-        // alertSpan.setAttribute("class", "closebtn");
-        // alertSpan.setAttribute("onclick","this.parentElement.style.display='none';");
-        // alertSpan.innerHTML ="&times;";
-        let alertP = document.createElement("p");
-        alertP.innerHTML = "Episodio Eliminado!!!";
-
-        // let divAlertDialog = document.createElement("div");
-        // divAlertDialog.setAttribute("class", "alert");
-        // divAlertDialog.appendChild(alertSpan);
-        // divAlertDialog.appendChild(alertP);
-
-        let divAlert = document.querySelector(".dialog");
-        // divAlert.appendChild(alertSpan);
-        divAlert.appendChild(alertP);
-        //divAlert.appendChild(divAlertDialog);
-        //divAlert.appendChild(dialogAlert);
-
-        //console.log(divAlert);
-
-        // $( function() {
-        //   $( ".dialog" ).dialog();
-        // } );
-
-        $( ".dialog" ).dialog({
-        });
-
-    } else {
-        alert("Accion cancelada");
+    if ( ( temporadaID === "0" ) || ( episodioID === "0" ) ){
+        alert("Elija una temporada y un episodio");
     }
+    else{
+
+      let respuesta = confirm("¿Seguro que desea eliminar el episodio " + episodioID + " de la temporada " + temporadaID + "?????");
+      if (respuesta == true) {
+        let url       = 'eliminarE/' + temporadaID + "/" + episodioID + "/";
+        let formAdmin = document.querySelector(".formAdminE").action = url;
+        alert("Episodio Eliminado!!!");
+      }else {
+        alert("Accion cancelada");
+      }
+    }
+
+    // if ( ( temporadaID === "0" ) || ( episodioID === "0" ) ){
+    //   $(function () {
+    //       $(".dialog").dialog({
+    //         dialogClass: "no-close",
+    //         buttons: {
+    //           "Cerrar": function () {
+    //             $(this).dialog("close");
+    //           }
+    //         }
+    //       });
+    //     $(".dialog").text("Elija una temporada y un episodio");
+    //   });
+    // }
+    // else{
+    //
+    //   $(function () {
+    //       $(".dialog").dialog({
+    //         // dialogClass: "no-close",
+    //         modal: true,
+    //         buttons: {
+    //           "Aceptar": function () {
+    //             // let url       = 'eliminarE/' + temporadaID + "/" + episodioID + "/";
+    //             // let formAdmin = document.querySelector(".formAdminE").action = url;
+    //             answer=1;
+    //             $(this).dialog("close");
+    //           },
+    //           "Cerrar": function () {
+    //             $(this).dialog("close");
+    //           }
+    //         }
+    //       });
+    //
+    //       $(".dialog").text("¿Seguro que desea eliminar el episodio " + episodioID + " de la temporada " + temporadaID + "?????");
+    //   });
+    // }
+
+    // if (answer===1) {
+    //   let url       = 'eliminarE/' + temporadaID + "/" + episodioID + "/";
+    //   let formAdmin = document.querySelector(".formAdminE").action = url;
+    // };
+
 
   });
 

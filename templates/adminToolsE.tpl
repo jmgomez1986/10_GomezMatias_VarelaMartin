@@ -22,7 +22,7 @@
         <button class="js-ede btn btn-success btn-sm" type="submit">Editar</button>
       </div>
       <div class="px-2">
-        <button class="js-ele btn btn-success btn-sm" type="button">Eliminar</button>
+        <button class="js-ele btn btn-success btn-sm" type="submit">Eliminar</button>
       </div>
       <div class="px-2">
         <button class="js-age btn btn-success btn-sm" type="submit">Agregar</button>
