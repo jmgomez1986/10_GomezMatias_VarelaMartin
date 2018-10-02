@@ -70,7 +70,6 @@
       $this->Smarty->display('templates/casas.tpl');
     }
 
-<<<<<<< HEAD
     function Login(){
       $this->Smarty->display('templates/login.tpl');
     }
@@ -84,9 +83,6 @@
 
       $this->Smarty->display('templates/temporadasAdmin.tpl');
     }
-
-=======
->>>>>>> master
   }
 
  ?>
