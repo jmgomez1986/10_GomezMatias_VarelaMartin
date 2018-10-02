@@ -28,7 +28,7 @@
     function Temporadas(){
       $temporadas = $this->model->getTemporadas();
       $episodios  = $this->model->getAllEpisodios();
-      $this->view->MostrarTemporadas($temporadas, $episodios);
+      $this->view->MostrarTemporadas($temporadas, $episodios,$this->link);
     }
 
     //Devolver los episodios de una temporada dada

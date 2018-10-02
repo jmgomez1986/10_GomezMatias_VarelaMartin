@@ -1,5 +1,6 @@
 <?php
 
+  require_once "./model/GotModel.php";
   require_once "./view/GotView.php";
   require_once "SecuredController.php";
   require_once "LoginController.php";
@@ -8,20 +9,24 @@
   {
     private $view;
     private $link;
+    private $model;
 
     function __construct()
     {
-      $this->view = new GotView();
+      $this->view  = new GotView();
+      $this->model = new GotModel();
+
       if (LoginController::isLogueado()){
-        $this->link="temporadasAdmin";
+        $this->link = "temporadasAdmin";
       }
       else{
-        $this->link="temporadas";
+        $this->link = "temporadas";
       }
     }
 
     function Home(){
 
+      $this->model->CreateDB();
       $this->view->Home($this->link);
     }
 
