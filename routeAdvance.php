@@ -1,7 +1,9 @@
 <?php
 
   require_once "config/ConfigApp.php";
+  require_once "controller/GotController.php";
   require_once "controller/TemporadasController.php";
+  require_once "controller/TemporadasAdminController.php";
   require_once "controller/LoginController.php";
 
   function parseURL($url)
@@ -17,9 +19,6 @@
 
       $urlData = parseURL($_GET['action']);
       $action = $urlData[ConfigApp::$ACTION];
-      // var_dump($urlData);
-      // echo "</br>";
-      // var_dump($action);
       if(array_key_exists($action,ConfigApp::$ACTIONS)){
           $params = $urlData[ConfigApp::$PARAMS];
           $action = explode('#',ConfigApp::$ACTIONS[$action]);
@@ -32,7 +31,7 @@
               echo $controller->$metodo();
           }
       }else{
-        $controller =  new TemporadasController();
+        $controller =  new GotController();
         echo $controller->Home();
       }
   }

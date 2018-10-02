@@ -8,22 +8,29 @@ class LoginController {
 	private $model;
 	private $titulo;
 
-	 function __construct(){
+	function __construct(){
 	 	$this->view = new LoginView();
 	 	$this->model = new UsuarioModel();
 	 	$this->titulo = "Login";
-	 }
+	}
 
-	 function login(){
-	 	$this->view->login();
-	 }
+	function login(){
+		$this->view->login();
+	}
 
-	 function logout(){
-	 	header(LOGIN);
-	 }
+	function logout(){
+		session_start();
+		session_destroy();
+		header(HOME);
+   	}
 
-	 function verifyLogin(){
-	 	$user = $_POST["user"];
+	function isLogueado(){
+		session_start();
+	 	return isset($_SESSION["User"]);
+	}
+
+	function verifyLogin(){
+		$user = $_POST["user"];
 	 	$pass = $_POST["pass"];
 	 	$dbUser = $this->model->getUser($user);
 
@@ -31,7 +38,7 @@ class LoginController {
 	 		if(password_verify($pass,$dbUser[0]["user_password"])){
 	 			session_start();
               	$_SESSION["User"] = $user;
-	 			header(HOMEADMIN);
+	 			header(TEMPADMIN);
 	 		}
 	 		else{
 	 			$this->view->login("Contraseña incorrecta");
@@ -41,6 +48,6 @@ class LoginController {
 	 		$this->view->login("No existe el usuario");
 	 	}
 	 }
-
 }
+
 ?>

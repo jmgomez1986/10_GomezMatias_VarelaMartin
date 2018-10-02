@@ -1,6 +1,6 @@
 <?php
 
-require_once('libs/SmartyBC.class.php');
+  require_once('libs/SmartyBC.class.php');
 
   class LoginView
   {
@@ -15,5 +15,6 @@ require_once('libs/SmartyBC.class.php');
       $this->Smarty->assign('Message',$message);
       $this->Smarty->display('templates/login.tpl');
     }
-}
+  }  //END CLASS
+
 ?>
