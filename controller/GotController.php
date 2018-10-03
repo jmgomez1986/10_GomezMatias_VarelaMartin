@@ -5,7 +5,7 @@
   require_once "SecuredController.php";
   require_once "LoginController.php";
 
-  class GotController 
+  class GotController
   {
     private $view;
     private $link;
