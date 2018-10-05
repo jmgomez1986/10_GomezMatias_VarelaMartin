@@ -30,7 +30,6 @@
       $this->Smarty->assign('titulo',$titulo); // El 'Titulo' del assign puede ser cualquier valor
       $this->Smarty->assign('temporada',$temporada);
       $this->Smarty->assign('link', $link);
-      // $this->Smarty->debugging = true;
       $this->Smarty->display('templates/MostrarEditarTemporada.tpl');
     }
 
@@ -38,14 +37,12 @@
 
       $this->Smarty->assign('episodios',$episodios);
       $this->Smarty->assign('link',$link);
-      // $this->Smarty->debugging = true;
       $this->Smarty->display('templates/episodiosT.tpl');
     }
 
     function MostrarEpisodio($episodio,$link){
       $this->Smarty->assign('episodios',$episodio);
       $this->Smarty->assign('link',$link);
-      // $this->Smarty->debugging = true;
       $this->Smarty->display('templates/episodiosT.tpl');
     }
 
@@ -53,17 +50,21 @@
       $this->Smarty->assign('titulo',$titulo); // El 'Titulo' del assign puede ser cualquier valor
       $this->Smarty->assign('episodio',$episodio);
       $this->Smarty->assign('link', $link);
-      // $this->Smarty->debugging = true;
       $this->Smarty->display('templates/MostrarEditarEpisodio.tpl');
     }
 
-
-    function MostrarAgregarEpisodio($titulo, $id_temporada, /*$id_episodio,*/ $link){
+    function MostrarAgregarEpisodio($titulo, $id_temporada, $link, $valoresEpisodio){
       $this->Smarty->assign('titulo',$titulo); // El 'Titulo' del assign puede ser cualquier valor
       $this->Smarty->assign('id_temporada', $id_temporada);
-      //$this->Smarty->assign('id_episodio',$id_episodio);
       $this->Smarty->assign('link', $link);
-      // $this->Smarty->debugging = true;
+      if ( !empty($valoresEpisodio) ){
+        $this->Smarty->assign('existencia', 'existencia');
+      }
+      else{
+        $valoresEpisodio = ['','','',''];
+        $this->Smarty->assign('existencia', '');
+      }
+      $this->Smarty->assign('valoresEpisodio',$valoresEpisodio);
       $this->Smarty->display('templates/MostrarAgregarEpisodio.tpl');
     }
 
@@ -73,7 +74,6 @@
       $this->Smarty->assign('temporadasID',$temporadasID);
       $this->Smarty->assign('episodios',$episodios);
       $this->Smarty->assign('link','temporadasAdmin');
-      // $this->Smarty->debugging = true;
       $this->Smarty->display('templates/temporadasAdmin.tpl');
     }
 

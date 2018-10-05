@@ -157,7 +157,7 @@ function loadPage() {
     //       $(".dialog").text("¿Seguro que desea eliminar el episodio " + episodioID + " de la temporada " + temporadaID + "?????");
     //   });
     // }
-
+    //
     // if (answer===1) {
     //   let url       = 'eliminarE/' + temporadaID + "/" + episodioID + "/";
     //   let formAdmin = document.querySelector(".formAdminE").action = url;

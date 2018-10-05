@@ -28,8 +28,9 @@
 																								id_episode    int(11)     NOT NULL,
 																								episode_title varchar(50) DEFAULT NULL,
 																								episode_desc  text,
-																								PRIMARY KEY(id_season,id_episode),
-																								FOREIGN KEY (id_season) REFERENCES season (id_season)",
+																								PRIMARY KEY (id_season,id_episode),
+																								FOREIGN KEY (id_season) REFERENCES season (id_season)
+																								ON DELETE CASCADE ON UPDATE CASCADE",
 																'user_admin' => "id_user      int(11)      NOT NULL,
 																								user_name     varchar(15)  DEFAULT NULL,
 																								user_password varchar(256) DEFAULT NULL,
@@ -48,44 +49,45 @@
 				$stmt = $pdo->prepare("SELECT COUNT(SCHEMA_NAME) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '$this->db'");
 				$stmt->execute();
 
-				$resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
-				// var_dump($resultado);
+				$resultado = $stmt->fetchColumn();
 
-				if ( empty($resultado) ){
+				if ( $resultado ){
 					echo "<h1 style='color:red;'>La DB " . $this->db . " ya existe</h1>";
 				}
 				else{
-					$dbh = new PDO("mysql:host=$this->host",
-					$this->root,
-					$this->root_password);
-					$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+					try {
+						$dbh = new PDO("mysql:host=$this->host",
+						$this->root,
+						$this->root_password);
+						$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-					$sentencia = $dbh->prepare("CREATE DATABASE $this->db");
-					$sentencia->execute();
-
-					//or die(print_r($sentencia->errorInfo(), true));
-
-					for ($i=0; $i < count($this->tableNames) ; $i++) {
-
-						$tabName    = $this->tableNames[$i];
-						$valColumns = $this->columns[$this->tableNames[$i]];
-
-						$dbCreate = new PDO('mysql:host='.$this->host.';dbname='.$this->db.';charset=utf8',
-																$this->root,
-																$this->root_password);
-						$dbCreate->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-						$sentencia  = $dbCreate->prepare("CREATE TABLE $tabName ($valColumns)");
+						$sentencia = $dbh->prepare("CREATE DATABASE $this->db");
 						$sentencia->execute();
-					}
 
-					$this->InsertSeason($dbCreate, $this->tableNames[0]);
-					$this->InsertEpisode($dbCreate, $this->tableNames[1]);
-					$this->InsertUser($dbCreate,$this->tableNames[2]);
+						for ($i=0; $i < count($this->tableNames) ; $i++) {
+
+							$tabName    = $this->tableNames[$i];
+							$valColumns = $this->columns[$this->tableNames[$i]];
+
+							$dbCreate = new PDO('mysql:host='.$this->host.';dbname='.$this->db.';charset=utf8',
+																	$this->root,
+																	$this->root_password);
+							$dbCreate->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+							$sentencia  = $dbCreate->prepare("CREATE TABLE $tabName ($valColumns)");
+							$sentencia->execute();
+						}
+
+						$this->InsertSeason($dbCreate, $this->tableNames[0]);
+						$this->InsertEpisode($dbCreate, $this->tableNames[1]);
+						$this->InsertUser($dbCreate,$this->tableNames[2]);
+					}
+					catch (PDOException $e) {
+						die("DB ERROR: ". $e->getMessage());
+					}
 				}
 			}
 			catch (PDOException $e) {
-				echo "PASO POR ACA</br>";
 				die("DB ERROR: ". $e->getMessage());
 			}
 
