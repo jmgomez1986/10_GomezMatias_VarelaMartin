@@ -11,7 +11,7 @@
           <label for="tituloForm">Episodio Nº</label>
           <input type="number" class="form-control" id="idEp" name="idEp" value="{$valoresEpisodio[1]}">
           {if $existencia ne ''}
-            <p style="color:red;">El episodio ya esiste!!!!</p>
+            <p style="color:red;">El episodio ya existe!!!!</p>
           {/if}
         </div>
 

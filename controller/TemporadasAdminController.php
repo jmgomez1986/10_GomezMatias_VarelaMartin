@@ -97,7 +97,8 @@ class TemporadasAdminController extends SecuredController{
     }
 
     function agregarTemporada(){
-      $this->view->MostrarAgregarTemporada('Agregar temporada','temporadasAdmin');
+			$valores = array();
+      $this->view->MostrarAgregarTemporada('Agregar temporada','temporadasAdmin', $valores);
     }
 
     function GuardarAgregarTemporada(){
@@ -113,7 +114,8 @@ class TemporadasAdminController extends SecuredController{
 				}
 				else {
 					$message = "La temporada ya existe";
-					$this->view->MostrarAgregarTemporada('Agregar temporada','temporadasAdmin',$message);
+					$valoresTemporada = [$id_temporada, 	$cant_epis, $comienzo, 	$fin ];
+					$this->view->MostrarAgregarTemporada('Agregar temporada','temporadasAdmin',$valoresTemporada);
 				}
     }
 

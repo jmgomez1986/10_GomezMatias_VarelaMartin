@@ -77,10 +77,17 @@
       $this->Smarty->display('templates/temporadasAdmin.tpl');
     }
 
-    function MostrarAgregarTemporada($titulo, $link, $mes=""){
+    function MostrarAgregarTemporada($titulo, $link, $valoresTemporada){
       $this->Smarty->assign('titulo',$titulo); // El 'Titulo' del assign puede ser cualquier valor
       $this->Smarty->assign('link', $link);
-      $this->Smarty->assign('message', $mes);
+      if ( !empty($valoresTemporada) ){
+        $this->Smarty->assign('existencia', 'existencia');
+      }
+      else{
+        $valoresTemporada = ['','','',''];
+        $this->Smarty->assign('existencia', '');
+      }
+      $this->Smarty->assign('valoresTemporada',$valoresTemporada);
       $this->Smarty->display('templates/MostrarAgregarTemporada.tpl');
     }
 
