@@ -74,7 +74,8 @@ class TemporadasAdminController extends SecuredController{
 
     function AgregarEpisodio($param){
          $id_temporada = $param[0];
-         $this->view->MostrarAgregarEpisodio('Agregar episodio', $id_temporada, /*$id_episodio,*/ 'temporadasAdmin');
+				 $valores = array();
+				 $this->view->MostrarAgregarEpisodio('Agregar episodio', $id_temporada, 'temporadasAdmin', $valores);
     }
 
     function GuardarAgregarEpisodio(){
@@ -89,6 +90,10 @@ class TemporadasAdminController extends SecuredController{
           $this->model->insertEpisodio($id_temporada, $id_episodio, $titulo, $descripcion);
           header(TEMPADMIN);
         }
+				else{
+					$valoresEpisodio = [$id_temporada, 	$id_episodio, $titulo, 	$descripcion ];
+					$this->view->MostrarAgregarEpisodio('Agregar episodio', $id_temporada, 'temporadasAdmin', $valoresEpisodio);
+				}
     }
 
     function agregarTemporada(){

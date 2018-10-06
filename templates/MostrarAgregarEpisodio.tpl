@@ -9,17 +9,20 @@
 
         <div class="form-group">
           <label for="tituloForm">Episodio Nº</label>
-          <input type="number" class="form-control" id="idEp" name="idEp" value="">
+          <input type="number" class="form-control" id="idEp" name="idEp" value="{$valoresEpisodio[1]}">
+          {if $existencia ne ''}
+            <p style="color:red;">El episodio ya esiste!!!!</p>
+          {/if}
         </div>
 
         <div class="form-group">
           <label for="tituloForm">Titulo</label>
-          <input type="text" class="form-control" id="tituloE" name="tituloE" value="">
+          <input type="text" class="form-control" id="tituloE" name="tituloE" value="{$valoresEpisodio[2]}">
         </div>
 
         <div class="form-group">
           <label for="descForm">Descripción</label>
-          <textarea name="descE" id="descE" form="confirmationForm"></textarea>
+          <textarea name="descE" id="descE" form="confirmationForm">{$valoresEpisodio[3]}</textarea>
         </div>
 
         <button type="submit" class="btn btn-primary">Agregar Episodio</button>
