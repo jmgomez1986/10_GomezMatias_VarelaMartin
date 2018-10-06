@@ -1,56 +1,60 @@
 <?php
-require_once "./view/TemporadasView.php";
-require_once "./model/TemporadasModel.php";
-require_once "SecuredController.php";
-require_once "LoginController.php";
 
-class TemporadasAdminController extends SecuredController{
+	require_once "./view/TemporadasView.php";
+	require_once "./model/TemporadasModel.php";
+	require_once "SecuredController.php";
+	require_once "LoginController.php";
 
-	private $view;
-    private $model;
-    private $link;
+	class TemporadasAdminController extends SecuredController{
 
-	function __construct(){
-		parent::__construct();
-      	$this->view  = new TemporadasView();
-      	$this->model = new TemporadasModel();
-      	$this->link = "TemporadasAdmin";
-	}
+		private $view;
+	  private $model;
+	  private $link;
 
-	function TemporadasAdmin(){
+		function __construct(){
+			parent::__construct();
+	    $this->view        = new TemporadasView();
+	    $this->model       = new TemporadasModel();
+	    $this->link        = "TemporadasAdmin";
+			$this->claseLogin  = "oculto";
+			$this->claseLogout = "visible";
+		}
 
-      $temporadasID = $this->model->getTemporadasID();
-      $temporadas   = $this->model->getTemporadas();
-      $episodios    = $this->model->getAllEpisodios();
-      $this->view->AdminTools($temporadas, $temporadasID, $episodios);
-    }
+		function TemporadasAdmin(){
 
-    function EditarTemporada($param){
+	    $temporadasID = $this->model->getTemporadasID();
+	    $temporadas   = $this->model->getTemporadas();
+	    $episodios    = $this->model->getAllEpisodios();
+	    $this->view->AdminTools($temporadas, $temporadasID, $episodios, $this->link, $this->claseLogin, $this->claseLogout);
+	  }
 
-        $id_temporada = $param[0];
+	  function EditarTemporada($param){
 
-        $Temporada = $this->model->GetTemporada($id_temporada);
-        $this->view->MostrarEditarTemporada("Editar Temporada", $Temporada[0], 'temporadasAdmin');
-    }
+	      $id_temporada = $param[0];
 
-    function GuardarEditarTemporada(){
-      $id_emporada        = $_POST["idForm"];
-      $cantEpisodios      = $_POST["cantEpForm"];
-      $comienzoTemporada  = $_POST["comienzoForm"];
-      $finTemporada       = $_POST["finForm"];
+	      $Temporada = $this->model->GetTemporada($id_temporada);
+	      $this->view->MostrarEditarTemporada("Editar Temporada", $Temporada[0], $this->link, $this->claseLogin, $this->claseLogout);
+	  }
 
-      $this->model->setTemporada($id_emporada,$cantEpisodios,$comienzoTemporada,$finTemporada);
+	  function GuardarEditarTemporada(){
 
-      header(TEMPADMIN);
-    }
+	    $id_emporada        = $_POST["idForm"];
+	    $cantEpisodios      = $_POST["cantEpForm"];
+	    $comienzoTemporada  = $_POST["comienzoForm"];
+	    $finTemporada       = $_POST["finForm"];
 
-    function EditarEpisodio($param){
-      $id_temporada = $param[0];
-      $id_episodio  = $param[1];
+	    $this->model->setTemporada($id_emporada,$cantEpisodios,$comienzoTemporada,$finTemporada);
 
-      $episodio = $this->model->getEpisodio($id_temporada,$id_episodio);
-      $this->view->MostrarEditarEpisodio('Editar episodio', $episodio[0], 'temporadasAdmin');
-    }
+	    header(TEMPADMIN);
+	  }
+
+	  function EditarEpisodio($param){
+	      $id_temporada = $param[0];
+	      $id_episodio  = $param[1];
+
+	      $episodio = $this->model->getEpisodio($id_temporada,$id_episodio);
+	      $this->view->MostrarEditarEpisodio('Editar episodio', $episodio[0], $this->link, $this->claseLogin, $this->claseLogout);
+	    }
 
     function GuardarEditarEpisodio(){
       $id_temporada = $_POST["idTemp"];
@@ -73,9 +77,9 @@ class TemporadasAdminController extends SecuredController{
     }
 
     function AgregarEpisodio($param){
-         $id_temporada = $param[0];
-				 $valores = array();
-				 $this->view->MostrarAgregarEpisodio('Agregar episodio', $id_temporada, 'temporadasAdmin', $valores);
+         $id_temporada    = $param[0];
+				 $valoresEpisodio = array();
+				 $this->view->MostrarAgregarEpisodio('Agregar episodio', $id_temporada, $valoresEpisodio, $this->link, $this->claseLogin, $this->claseLogout);
     }
 
     function GuardarAgregarEpisodio(){
@@ -92,8 +96,10 @@ class TemporadasAdminController extends SecuredController{
         }
 				else{
 					$valoresEpisodio = [$id_temporada, 	$id_episodio, $titulo, 	$descripcion ];
-					$this->view->MostrarAgregarEpisodio('Agregar episodio', $id_temporada, 'temporadasAdmin', $valoresEpisodio);
+					$this->view->MostrarAgregarEpisodio('Agregar episodio', $id_temporada, $valoresEpisodio, $this->link, $this->claseLogin, $this->claseLogout);
 				}
     }
-}
+
+	} // ENDCLASS
+
 ?>

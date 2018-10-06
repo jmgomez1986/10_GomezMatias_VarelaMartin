@@ -24,21 +24,21 @@ function loadPage() {
     objectDom.classList.remove("visible");
   }
 
-  let btnLoginClick = document.querySelector(".js-login").addEventListener('click', function(){
-      let btnLogin  = document.querySelector(".js-login")
-      let btnLogout = document.querySelector(".js-logout");
-      
-      hideElement(btnLogin);
-      showElement(btnLogout);
-    }
-  )
-
-  let btnLogoutClick = document.querySelector(".js-logout").addEventListener('click', function(){
-      let btnLogin  = document.querySelector(".js-login");
-      let btnLogout = document.querySelector(".js-logout")
-      hideElement(btnLogout);
-      showElement(btnLogin);
-    }
-  )  
+  // let btnLoginClick = document.querySelector(".js-login").addEventListener('click', function(){
+  //     let btnLogin  = document.querySelector(".js-login")
+  //     let btnLogout = document.querySelector(".js-logout");
+  //
+  //     hideElement(btnLogin);
+  //     showElement(btnLogout);
+  //   }
+  // )
+  //
+  // let btnLogoutClick = document.querySelector(".js-logout").addEventListener('click', function(){
+  //     let btnLogin  = document.querySelector(".js-login");
+  //     let btnLogout = document.querySelector(".js-logout")
+  //     hideElement(btnLogout);
+  //     showElement(btnLogin);
+  //   }
+  // )
 
 }

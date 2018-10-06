@@ -54,7 +54,7 @@
 				$resultado = $stmt->fetchColumn();
 
 				if ( $resultado ){
-					echo "<h1 style='color:red;'>La DB " . $this->db . " ya existe</h1>";
+					//echo "<h1 style='color:red;'>La DB " . $this->db . " ya existe</h1>";
 				}
 				else{
 					try {

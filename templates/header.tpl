@@ -45,10 +45,10 @@
           </div>
         </div>
         <form method="post" action="login" class="px-2">
-          <button class="js-login btn btn-success btn-xs" type="submit">Login</button>
+          <button class="{$claseLogin} js-login btn btn-success btn-xs" type="submit">Login</button>
         </form>
         <form method="post" action="logout" class="px-2">
-          <button class="js-logout btn btn-success btn-xs" type="submit">Logout</button>
+          <button class="{$claseLogout} js-logout btn btn-success btn-xs" type="submit">Logout</button>
         </form>
       </nav>
     </header>

@@ -4,14 +4,6 @@ document.addEventListener("DOMContentLoaded", loadPage);
 
 function loadPage() {
 
-  // let contImgMapa = document.querySelector('.contenedorMapa');
-
-  // contImgMapa.addEventListener('click', function(){
-  //     contImgMapa.firstElementChild.classList.toggle('mapaZoom');
-  //     contImgMapa.classList.toggle('contenedorMapaZoom');
-  //   }
-  // )
-
   function showElement(objectDom){
     //Cambio la clase del formulario para que se muestre
     objectDom.classList.add("visible");
@@ -112,7 +104,8 @@ function loadPage() {
     }
     else{
 
-      let respuesta = confirm("¿Seguro que desea eliminar el episodio " + episodioID + " de la temporada " + temporadaID + "?????");
+      // let respuesta = confirm("¿Seguro que desea eliminar el episodio " + episodioID + " de la temporada " + temporadaID + "?????");
+
       if (respuesta == true) {
         let url       = 'eliminarE/' + temporadaID + "/" + episodioID + "/";
         let formAdmin = document.querySelector(".formAdminE").action = url;
@@ -122,48 +115,6 @@ function loadPage() {
       }
     }
 
-    // if ( ( temporadaID === "0" ) || ( episodioID === "0" ) ){
-    //   $(function () {
-    //       $(".dialog").dialog({
-    //         dialogClass: "no-close",
-    //         buttons: {
-    //           "Cerrar": function () {
-    //             $(this).dialog("close");
-    //           }
-    //         }
-    //       });
-    //     $(".dialog").text("Elija una temporada y un episodio");
-    //   });
-    // }
-    // else{
-    //
-    //   $(function () {
-    //       $(".dialog").dialog({
-    //         // dialogClass: "no-close",
-    //         modal: true,
-    //         buttons: {
-    //           "Aceptar": function () {
-    //             // let url       = 'eliminarE/' + temporadaID + "/" + episodioID + "/";
-    //             // let formAdmin = document.querySelector(".formAdminE").action = url;
-    //             answer=1;
-    //             $(this).dialog("close");
-    //           },
-    //           "Cerrar": function () {
-    //             $(this).dialog("close");
-    //           }
-    //         }
-    //       });
-    //
-    //       $(".dialog").text("¿Seguro que desea eliminar el episodio " + episodioID + " de la temporada " + temporadaID + "?????");
-    //   });
-    // }
-    //
-    // if (answer===1) {
-    //   let url       = 'eliminarE/' + temporadaID + "/" + episodioID + "/";
-    //   let formAdmin = document.querySelector(".formAdminE").action = url;
-    // };
-
-
   });
 
   let btnAgregarEpisodio = document.querySelector(".js-age").addEventListener('click', function(){
@@ -171,11 +122,6 @@ function loadPage() {
     let temporada    = eleccionTemp.value;
     let indexT       = eleccionTemp.selectedIndex;
     let temporadaID  = eleccionTemp.options[indexT].getAttribute("name");
-
-    // let eleccionEp   = document.querySelector(".js-eleccionE");
-    // let episodio     = eleccionEp.value;
-    // let indexE       = eleccionEp.selectedIndex;
-    // let episodioID   = eleccionEp.options[indexE].getAttribute("name");
 
     if ( ( temporadaID === "0" ) ){
       alert("Elija una temporada");

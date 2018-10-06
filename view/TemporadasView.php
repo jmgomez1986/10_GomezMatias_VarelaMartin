@@ -17,46 +17,58 @@
       $this->Smarty = new SmartyBC();
     }
 
-    function MostrarTemporadas($temporadas, $episodios,$link){
+    function MostrarTemporadas($temporadas, $episodios,$link, $claseLogin, $claseLogout){
 
       $this->Smarty->assign('temporadas',$temporadas);
       $this->Smarty->assign('episodios',$episodios);
       $this->Smarty->assign('link', $link);
+      $this->Smarty->assign('claseLogin', $claseLogin);
+      $this->Smarty->assign('claseLogout', $claseLogout);
       // $this->Smarty->debugging = true;
       $this->Smarty->display('templates/temporadas.tpl');
     }
 
-    function MostrarEditarTemporada($titulo, $temporada, $link){
+    function MostrarEditarTemporada($titulo, $temporada, $link, $claseLogin, $claseLogout){
       $this->Smarty->assign('titulo',$titulo); // El 'Titulo' del assign puede ser cualquier valor
       $this->Smarty->assign('temporada',$temporada);
       $this->Smarty->assign('link', $link);
+      $this->Smarty->assign('claseLogin', $claseLogin);
+      $this->Smarty->assign('claseLogout', $claseLogout);
       $this->Smarty->display('templates/MostrarEditarTemporada.tpl');
     }
 
-    function MostrarEpisodios($episodios,$link){
+    function MostrarEpisodios($episodios, $link, $claseLogin, $claseLogout){
 
       $this->Smarty->assign('episodios',$episodios);
       $this->Smarty->assign('link',$link);
+      $this->Smarty->assign('claseLogin', $claseLogin);
+      $this->Smarty->assign('claseLogout', $claseLogout);
       $this->Smarty->display('templates/episodiosT.tpl');
     }
 
-    function MostrarEpisodio($episodio,$link){
+    function MostrarEpisodio($episodio, $link, $claseLogin, $claseLogout){
       $this->Smarty->assign('episodios',$episodio);
       $this->Smarty->assign('link',$link);
+      $this->Smarty->assign('claseLogin', $claseLogin);
+      $this->Smarty->assign('claseLogout', $claseLogout);
       $this->Smarty->display('templates/episodiosT.tpl');
     }
 
-    function MostrarEditarEpisodio($titulo, $episodio, $link){
-      $this->Smarty->assign('titulo',$titulo); // El 'Titulo' del assign puede ser cualquier valor
+    function MostrarEditarEpisodio($titulo, $episodio, $link, $claseLogin, $claseLogout){
+      $this->Smarty->assign('titulo',$titulo);
       $this->Smarty->assign('episodio',$episodio);
       $this->Smarty->assign('link', $link);
+      $this->Smarty->assign('claseLogin', $claseLogin);
+      $this->Smarty->assign('claseLogout', $claseLogout);
       $this->Smarty->display('templates/MostrarEditarEpisodio.tpl');
     }
 
-    function MostrarAgregarEpisodio($titulo, $id_temporada, $link, $valoresEpisodio){
-      $this->Smarty->assign('titulo',$titulo); // El 'Titulo' del assign puede ser cualquier valor
+    function MostrarAgregarEpisodio($titulo, $id_temporada, $valoresEpisodio, $link, $claseLogin, $claseLogout){
+      $this->Smarty->assign('titulo',$titulo);
       $this->Smarty->assign('id_temporada', $id_temporada);
       $this->Smarty->assign('link', $link);
+      $this->Smarty->assign('claseLogin', $claseLogin);
+      $this->Smarty->assign('claseLogout', $claseLogout);
       if ( !empty($valoresEpisodio) ){
         $this->Smarty->assign('existencia', 'existencia');
       }
@@ -68,12 +80,14 @@
       $this->Smarty->display('templates/MostrarAgregarEpisodio.tpl');
     }
 
-    function AdminTools($temporadas, $temporadasID, $episodios){
+    function AdminTools($temporadas, $temporadasID, $episodios, $link, $claseLogin, $claseLogout){
 
       $this->Smarty->assign('temporadas',$temporadas);
       $this->Smarty->assign('temporadasID',$temporadasID);
       $this->Smarty->assign('episodios',$episodios);
-      $this->Smarty->assign('link','temporadasAdmin');
+      $this->Smarty->assign('link',$link);
+      $this->Smarty->assign('claseLogin', $claseLogin);
+      $this->Smarty->assign('claseLogout', $claseLogout);
       $this->Smarty->display('templates/temporadasAdmin.tpl');
     }
 
