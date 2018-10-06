@@ -181,14 +181,28 @@
 			$db = $this->disconnect();
 		}
 
+		function eliminarTemporada($temporada){
+			$db = $this->connectToDB();
+
+			try{
+				$sentencia = $db->prepare("DELETE FROM `season`
+					                         	WHERE `id_season` = ? ");
+	    	$sentencia->execute(array($temporada));
+	    }
+	    catch(PDOException $exception){
+
+			}
+			$db = $this->disconnect();
+		}
+
 /***********************************/
 /*********** AdminTools ***********/
 /***********************************/
 		function getTemporadasID(){
 			$db = $this->connectToDB();
 
-			$sentencia = $db->prepare("SELECT id_season FROM season
-				                           GROUP BY id_season");
+			$sentencia = $db->prepare("SELECT `id_season` FROM `season`
+				                           GROUP BY `id_season`");
 			$sentencia->execute( );
 			$temporadas = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 

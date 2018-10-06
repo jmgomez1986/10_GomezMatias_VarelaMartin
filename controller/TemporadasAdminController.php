@@ -5,7 +5,7 @@ require_once "SecuredController.php";
 require_once "LoginController.php";
 
 class TemporadasAdminController extends SecuredController{
-	
+
 	private $view;
     private $model;
     private $link;
@@ -18,7 +18,7 @@ class TemporadasAdminController extends SecuredController{
 	}
 
 	function TemporadasAdmin(){
-      
+
       $temporadasID = $this->model->getTemporadasID();
       $temporadas   = $this->model->getTemporadas();
       $episodios    = $this->model->getAllEpisodios();
@@ -89,6 +89,33 @@ class TemporadasAdminController extends SecuredController{
           $this->model->insertEpisodio($id_temporada, $id_episodio, $titulo, $descripcion);
           header(TEMPADMIN);
         }
+    }
+
+    function agregarTemporada(){
+      $this->view->MostrarAgregarTemporada('Agregar temporada','temporadasAdmin');
+    }
+
+    function GuardarAgregarTemporada(){
+        $id_temporada = $_POST["idTemp"];
+        $cant_epis    = $_POST["cantEp"];
+        $comienzo     = $_POST["comienzoTemp"];
+        $fin          = $_POST["finTemp"];
+
+				$temporada = $this->model->getTemporada($id_temporada);
+				if (empty($temporada)){
+           $this->model->insertTemporada($id_temporada,$cant_epis,$comienzo,$fin);
+					 header(TEMPADMIN);
+				}
+				else {
+					$message = "La temporada ya existe";
+					$this->view->MostrarAgregarTemporada('Agregar temporada','temporadasAdmin',$message);
+				}
+    }
+
+		function EliminarTemporada($param){
+			$id_temporada = $param[0];
+			$this->model->eliminarTemporada($id_temporada);
+      header(TEMPADMIN);
     }
 }
 ?>

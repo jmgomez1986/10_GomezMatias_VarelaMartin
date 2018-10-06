@@ -26,6 +26,9 @@
                                     'eliminarE'       => 'TemporadasAdminController#EliminarEpisodio',
                                     'agregarE'        => 'TemporadasAdminController#AgregarEpisodio',
                                     'guardarAgregarE' => 'TemporadasAdminController#GuardarAgregarEpisodio',
+                                    'agregarT'        => 'TemporadasAdminController#AgregarTemporada',
+                                    'guardarAgregarT' => 'TemporadasAdminController#GuardarAgregarTemporada',
+                                    'eliminarT'       => 'TemporadasAdminController#EliminarTemporada',
                                     'login'           => 'LoginController#login',
                                     'logout'          => 'LoginController#logout',
                                     'verificarLogin'  => 'LoginController#verifyLogin'

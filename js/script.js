@@ -45,6 +45,27 @@ function loadPage() {
 
   });
 
+  let btnAgregarTemp = document.querySelector(".js-agt").addEventListener('click',function(){
+    let url = 'agregarT' + "/";
+    let formAdmin = document.querySelector(".formAdmin").action = url;
+  })
+
+  let btnEliminarTemp = document.querySelector(".js-elt").addEventListener('click',function(){
+    let eleccionTemp = document.querySelector(".js-eleccionT");
+    let temporada    = eleccionTemp.value;
+
+    let indexT       = eleccionTemp.selectedIndex;
+    let temporadaID  = eleccionTemp.options[indexT].getAttribute("name");
+
+    if ( temporadaID === "0" ){
+      alert("Elija una temporada");
+    }
+    else{
+      let url       = 'eliminarT/' + temporadaID + "/";
+      let formAdmin = document.querySelector(".formAdmin").action = url;
+    }
+  })
+
 /**************************************/
 /********** ABM de Episodios **********/
 /**************************************/
