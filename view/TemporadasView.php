@@ -57,6 +57,7 @@
       $this->Smarty->display('templates/MostrarEditarEpisodio.tpl');
     }
 
+
     function MostrarAgregarEpisodio($titulo, $id_temporada, /*$id_episodio,*/ $link){
       $this->Smarty->assign('titulo',$titulo); // El 'Titulo' del assign puede ser cualquier valor
       $this->Smarty->assign('id_temporada', $id_temporada);

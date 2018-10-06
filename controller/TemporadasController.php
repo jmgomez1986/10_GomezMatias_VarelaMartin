@@ -3,6 +3,7 @@
   require_once "./model/TemporadasModel.php";
   require_once "LoginController.php";
 
+
   class TemporadasController
   {
     private $view;
@@ -11,6 +12,7 @@
 
     function __construct()
     {
+
       $this->view  = new TemporadasView();
       $this->model = new TemporadasModel();
 
