@@ -126,7 +126,7 @@ function loadPage() {
     else{
 
       // let respuesta = confirm("¿Seguro que desea eliminar el episodio " + episodioID + " de la temporada " + temporadaID + "?????");
-
+      let respuesta = true;
       if (respuesta == true) {
         let url       = 'eliminarE/' + temporadaID + "/" + episodioID + "/";
         let formAdmin = document.querySelector(".formAdminE").action = url;

@@ -9,7 +9,7 @@
           <label for="tituloForm">Temporada Nº</label>
           <input type="number" class="form-control" id="idTemp" name="idTemp" value="{$valoresTemporada[0]}">
           {if $existencia ne ''}
-            <p style="color:red;">La temporada ya existe!!!!</p>
+            <p class="errorForm">La temporada ya existe!!!!</p>
           {/if}
         </div>
 

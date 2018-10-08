@@ -117,7 +117,6 @@
 					 header(TEMPADMIN);
 				}
 				else {
-					$message = "La temporada ya existe";
 					$valoresTemporada = [$id_temporada, 	$cant_epis, $comienzo, 	$fin ];
 					$this->view->MostrarAgregarTemporada('Agregar temporada', $valoresTemporada, $this->link, $this->claseLogin, $this->claseLogout);
 				}

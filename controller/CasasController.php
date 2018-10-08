@@ -1,5 +1,6 @@
 <?php
 
+  require_once "./model/CasasModel.php";
   require_once "./view/CasasView.php";
   require_once "SecuredController.php";
   require_once "LoginController.php";
@@ -14,6 +15,7 @@
 
     function __construct()
     {
+      $this->model = new CasasModel();
       $this->view  = new CasasView();
 
       if (LoginController::isLogueado()){
@@ -29,12 +31,15 @@
     }
 
     function Casas($param){
-      $casas = ['casa_arryn', 'casa_baratheon', 'casa_greyjoy', 'casa_lannister',
-                'casa_stark', 'casa_targaryen'];
-      $casa  = $param[0];
-      $casaNombre = array_search($casa, $casas);
-      //echo "<h1>".$casas[$casaNombre]."</h1>";
-      $this->view->Casas($casas[$casaNombre], $this->link, $this->claseLogin, $this->claseLogout);
+      $casaNombre  = $param[0];
+
+      $casa = $this->model->getCasa($casaNombre);
+      $cantMiembros = count($casa['miembros']);
+      $columnasMiembrosCasas = array_chunk($casa['miembros'],8,true);
+      $cantCol      = count($columnasMiembrosCasas);
+      //var_dump($columnasMiembrosCasas);
+      //echo "<h1 style=\"color:red;\">".$cantCol."</h1>";
+      $this->view->Casas($casa, $columnasMiembrosCasas, $cantCol, $this->link, $this->claseLogin, $this->claseLogout);
 
     }
 
