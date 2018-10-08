@@ -34,7 +34,6 @@
       $casaNombre  = $param[0];
 
       $casa = $this->model->getCasa($casaNombre);
-      $cantMiembros = count($casa['miembros']);
       $columnasMiembrosCasas = array_chunk($casa['miembros'],8,true);
       $cantCol      = count($columnasMiembrosCasas);
       //var_dump($columnasMiembrosCasas);
