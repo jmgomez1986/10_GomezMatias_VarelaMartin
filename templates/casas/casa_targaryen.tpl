@@ -1,5 +1,7 @@
+{include file="header.tpl"}
+
 <hgroup>
-  <div class="container-fluid display-1 text-center titFont pt-3 pb-4"> 
+  <div class="container-fluid display-1 text-center titFont pt-3 pb-4">
     <h1>CASA TARGARYEN</h1>
   </div>
   <div class="container-fluid">
@@ -20,7 +22,7 @@
   <header>
     <h3 class="display-4 text-center pb-3 listFont">Miembros de la casa:</h3>
   </header>
-  
+
 
   <section>
     <div class="row justify-content-center pb-4">
@@ -63,4 +65,5 @@
     </div>
   </section>
 </article>
-    
+
+{include file="footer.tpl"}

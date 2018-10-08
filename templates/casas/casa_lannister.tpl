@@ -1,3 +1,5 @@
+{include file="header.tpl"}
+
 <hgroup>
 
   <div class="container-fluid display-1 text-center titFont pt-3 pb-4">
@@ -60,3 +62,5 @@
     </div>
   </section>
 </article>
+
+{include file="footer.tpl"}

@@ -5,6 +5,7 @@
   require_once "controller/TemporadasController.php";
   require_once "controller/TemporadasAdminController.php";
   require_once "controller/LoginController.php";
+  require_once "controller/CasasController.php";
 
   function parseURL($url)
   {

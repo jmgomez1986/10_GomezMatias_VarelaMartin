@@ -15,6 +15,7 @@
                                     'home'            => 'GotController#Home',
                                     'map'             => 'GotController#Map',
                                     'casasGOT'        => 'GotController#Casas',
+                                    'casas'           => 'CasasController#Casas',
                                     'temporadas'      => 'TemporadasController#Temporadas',
                                     'temporadasAdmin' => 'TemporadasAdminController#TemporadasAdmin',
                                     'editarT'         => 'TemporadasAdminController#EditarTemporada',
