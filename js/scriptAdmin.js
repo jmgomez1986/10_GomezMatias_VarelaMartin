@@ -53,8 +53,18 @@ function loadPage() {
       alert("Elija una temporada");
     }
     else{
-      let url       = 'eliminarT/' + temporadaID + "/";
-      let formAdmin = document.querySelector(".formAdmin").action = url;
+
+      let respuesta = confirm("¿Seguro que desea eliminar la temporada " + temporadaID + "?????");
+      if (respuesta == true) {
+        let url       = 'eliminarT/' + temporadaID + "/";
+        let formAdmin = document.querySelector(".formAdmin").action = url;
+        alert("Temporada Eliminada!!!");
+      }
+      else{
+        let url       = "temporadasAdmin/";
+        let formAdmin = document.querySelector(".formAdmin").action = url;
+        alert("Accion cancelada");
+      }
     }
   })
 
@@ -125,13 +135,14 @@ function loadPage() {
     }
     else{
 
-      // let respuesta = confirm("¿Seguro que desea eliminar el episodio " + episodioID + " de la temporada " + temporadaID + "?????");
-      let respuesta = true;
+      let respuesta = confirm("¿Seguro que desea eliminar el episodio " + episodioID + " de la temporada " + temporadaID + "?????");
       if (respuesta == true) {
         let url       = 'eliminarE/' + temporadaID + "/" + episodioID + "/";
         let formAdmin = document.querySelector(".formAdminE").action = url;
         alert("Episodio Eliminado!!!");
       }else {
+        let url       = "temporadasAdmin/";
+        let formAdmin = document.querySelector(".formAdminE").action = url;
         alert("Accion cancelada");
       }
     }
