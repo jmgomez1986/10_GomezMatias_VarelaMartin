@@ -15,7 +15,7 @@
 			parent::__construct();
 	    $this->view        = new TemporadasView();
 	    $this->model       = new TemporadasModel();
-	    $this->link        = "TemporadasAdmin";
+	    $this->link        = "temporadasAdmin";
 			$this->claseLogin  = "oculto";
 			$this->claseLogout = "visible";
 		}
