@@ -10,14 +10,17 @@
   font-family:"Viking";
   src: local("Viking"), url("fonts/Viking.ttf") format('truetype');
 }
+
 html, body {
   margin: 0px;
   padding: 0px;
 }
+
 body{
     background-image: url("../images/fondoMapaNegro.jpg");
     background-repeat: repeat;
 }
+
 .visible {
   display: visible;
 }
@@ -161,13 +164,14 @@ body{
 /*------------------------------------------------*/
 /* Estilo para div contenedor de la imagen chica */
 .contenedorMapa{
+  text-align: center;
   width: 756px;
-  height: 488px;
-  padding: 7%;
+  height: 475px;
   margin: 0px auto;
 }
 /* Estilo para div contenedor de la imagen grande */
 .contenedorMapaZoom{
+  text-align: center;
   width: 1345px;
   height: 855px;
   margin: 0px auto;
@@ -176,7 +180,7 @@ body{
 .mapaComun{
   text-align: center;
   width: 756px;
-  height: 480px;
+  height: 475px;
   cursor: url("images/zoom-in.cur"), pointer;
 }
 /* Estilo para imagen grande */

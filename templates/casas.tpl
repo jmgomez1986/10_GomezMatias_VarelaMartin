@@ -1,6 +1,6 @@
 {include file="header.tpl"}
 
-<div class="casasPrincConteiner">
+    <div class="casasPrincConteiner">
 
       <div class="divCasas">
         <div class="casaLogo">

@@ -10,13 +10,15 @@
     private $model;
     private $view;
     private $link;
+    private $script;
     private $claseLogin;
     private $claseLogout;
 
     function __construct()
     {
-      $this->model = new CasasModel();
-      $this->view  = new CasasView();
+      $this->model  = new CasasModel();
+      $this->view   = new CasasView();
+      $this->script = "";
 
       if (LoginController::isLogueado()){
         $this->link        = "temporadasAdmin";
@@ -38,7 +40,7 @@
       $cantCol      = count($columnasMiembrosCasas);
       //var_dump($columnasMiembrosCasas);
       //echo "<h1 style=\"color:red;\">".$cantCol."</h1>";
-      $this->view->Casas($casa, $columnasMiembrosCasas, $cantCol, $this->link, $this->claseLogin, $this->claseLogout);
+      $this->view->Casas($casa, $columnasMiembrosCasas, $cantCol, $this->link, $this->script, $this->claseLogin, $this->claseLogout);
 
     }
 

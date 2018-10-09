@@ -10,12 +10,14 @@
 		private $view;
 	  private $model;
 	  private $link;
+		private $script;
 
 		function __construct(){
 			parent::__construct();
 	    $this->view        = new TemporadasView();
 	    $this->model       = new TemporadasModel();
-	    $this->link        = "TemporadasAdmin";
+	    $this->link        = "temporadasAdmin";
+			$this->script      = "./js/scriptAdmin.js";
 			$this->claseLogin  = "oculto";
 			$this->claseLogout = "visible";
 		}
@@ -25,7 +27,7 @@
 	    $temporadasID = $this->model->getTemporadasID();
 	    $temporadas   = $this->model->getTemporadas();
 	    $episodios    = $this->model->getAllEpisodios();
-	    $this->view->AdminTools($temporadas, $temporadasID, $episodios, $this->link, $this->claseLogin, $this->claseLogout);
+	    $this->view->AdminTools($temporadas, $temporadasID, $episodios, $this->link, $this->script, $this->claseLogin, $this->claseLogout);
 	  }
 
 	  function EditarTemporada($param){
@@ -33,7 +35,7 @@
 	      $id_temporada = $param[0];
 
 	      $Temporada = $this->model->GetTemporada($id_temporada);
-	      $this->view->MostrarEditarTemporada("Editar Temporada", $Temporada[0], $this->link, $this->claseLogin, $this->claseLogout);
+	      $this->view->MostrarEditarTemporada("Editar Temporada", $Temporada[0], $this->link, $this->script, $this->claseLogin, $this->claseLogout);
 	  }
 
 	  function GuardarEditarTemporada(){
@@ -43,7 +45,7 @@
 	    $comienzoTemporada  = $_POST["comienzoForm"];
 	    $finTemporada       = $_POST["finForm"];
 
-	    $this->model->setTemporada($id_emporada,$cantEpisodios,$comienzoTemporada,$finTemporada);
+	    $this->model->setTemporada($id_emporada, $cantEpisodios, $comienzoTemporada, $finTemporada);
 
 	    header(TEMPADMIN);
 	  }
@@ -52,8 +54,8 @@
 	      $id_temporada = $param[0];
 	      $id_episodio  = $param[1];
 
-	      $episodio = $this->model->getEpisodio($id_temporada,$id_episodio);
-	      $this->view->MostrarEditarEpisodio('Editar episodio', $episodio[0], $this->link, $this->claseLogin, $this->claseLogout);
+	      $episodio = $this->model->getEpisodio($id_temporada, $id_episodio);
+	      $this->view->MostrarEditarEpisodio('Editar episodio', $episodio[0], $this->link, $this->script, $this->claseLogin, $this->claseLogout);
 	    }
 
     function GuardarEditarEpisodio(){
@@ -62,7 +64,7 @@
       $titulo       = $_POST["tituloForm"];
       $descripcion  = $_POST["descripcion"];
 
-      $this->model->setEpisodio($id_temporada,$id_episodio,$titulo,$descripcion);
+      $this->model->setEpisodio($id_temporada, $id_episodio, $titulo, $descripcion);
 
       header(TEMPADMIN);
     }
@@ -71,7 +73,7 @@
       $id_temporada = $param[0];
       $id_episodio  = $param[1];
 
-      $this->model->eliminarEpisodio($id_temporada,$id_episodio);
+      $this->model->eliminarEpisodio($id_temporada, $id_episodio);
 
       header(TEMPADMIN);
     }
@@ -79,7 +81,7 @@
     function AgregarEpisodio($param){
          $id_temporada    = $param[0];
 				 $valoresEpisodio = array();
-				 $this->view->MostrarAgregarEpisodio('Agregar episodio', $id_temporada, $valoresEpisodio, $this->link, $this->claseLogin, $this->claseLogout);
+				 $this->view->MostrarAgregarEpisodio('Agregar episodio', $id_temporada, $valoresEpisodio, $this->link, $this->script, $this->claseLogin, $this->claseLogout);
     }
 
     function GuardarAgregarEpisodio(){
@@ -96,13 +98,13 @@
         }
 				else{
 					$valoresEpisodio = [$id_temporada, 	$id_episodio, $titulo, 	$descripcion ];
-					$this->view->MostrarAgregarEpisodio('Agregar episodio', $id_temporada, $valoresEpisodio, $this->link, $this->claseLogin, $this->claseLogout);
+					$this->view->MostrarAgregarEpisodio('Agregar episodio', $id_temporada, $valoresEpisodio, $this->link, $this->script, $this->claseLogin, $this->claseLogout);
 				}
     }
 
     function agregarTemporada(){
 			$valoresTemporada = array();
-      $this->view->MostrarAgregarTemporada('Agregar temporada', $valoresTemporada, $this->link, $this->claseLogin, $this->claseLogout);
+      $this->view->MostrarAgregarTemporada('Agregar temporada', $valoresTemporada, $this->link, $this->script, $this->claseLogin, $this->claseLogout);
     }
 
     function GuardarAgregarTemporada(){
@@ -118,7 +120,7 @@
 				}
 				else {
 					$valoresTemporada = [$id_temporada, 	$cant_epis, $comienzo, 	$fin ];
-					$this->view->MostrarAgregarTemporada('Agregar temporada', $valoresTemporada, $this->link, $this->claseLogin, $this->claseLogout);
+					$this->view->MostrarAgregarTemporada('Agregar temporada', $valoresTemporada, $this->link, $this->script, $this->claseLogin, $this->claseLogout);
 				}
     }
 
