@@ -44,20 +44,21 @@ body{
 }
 
 /*------------------------------------------------*/
-
 /*  *INDEX */
-
 /*------------------------------------------------*/
+
 .content{
   width: 70%;
   margin: 0px auto;
   padding: 30px;
 }
+
 .noticeContainer {
   width: 75%;
   margin: 0px auto;
   margin-bottom: 5px;
 }
+
 .notice {
   display: inline-block;
   width: 55%;
@@ -69,6 +70,7 @@ body{
   border: 2px solid rgb(50, 50, 50);
   padding: 8px;
 }
+
 .notice h1 {
   text-decoration: none;
   color:rgb(63, 70, 69);
@@ -76,12 +78,14 @@ body{
   font-size: 22px;
   margin: 4px;
 }
+
 .notice p {
   text-decoration: none;
   text-align:justify;
   font-size: 18px;
   padding: 4px;
 }
+
 .imageContainer {
   display: inline-block;
   vertical-align: middle;
@@ -89,17 +93,18 @@ body{
   margin: 3px;
   text-align: center;
 }
+
 .imageContainer img {
   width: 97%;
   margin: 3px;
   border-radius: 4%;
   border: 1px solid rgb(50, 50, 50);
 }
-/*------------------------------------------------*/
 
+/*------------------------------------------------*/
 /* CASAS HOME */
-
 /*------------------------------------------------*/
+
 .casasPrincConteiner, .divCasas, .casaLogo {
   margin: 0px auto;
 }
@@ -107,6 +112,7 @@ body{
 .casasPrincConteiner{
   background-color:#a38f73;
 }
+
 .logoMiddleCasas{
   font-family:"Game Of Thrones";
   text-transform: uppercase;
@@ -114,21 +120,25 @@ body{
   font-size: 36px;
   padding: 7px;
 }
+
 .divCasas{
   width: 70%;
   padding: 10px;
   text-align: center;
 }
+
 .casaLogo{
   display: inline-block;
   width: 25%;
 }
+
 .casaLogo p {
   font-weight: bold;
   text-align: center;
   font-size: 22px;
   margin: 0px auto;
 }
+
 .casaLogo img {
   box-sizing: border-box;
   border-radius: 10px;
@@ -137,9 +147,7 @@ body{
   margin-top: 3%;
 }
 /*------------------------------------------------*/
-
 /* CASAS  PAGINAS */
-
 /*------------------------------------------------*/
 
 .titFont{
@@ -158,10 +166,9 @@ body{
 }
 
 /*------------------------------------------------*/
-
 /* MAPA */
-
 /*------------------------------------------------*/
+
 /* Estilo para div contenedor de la imagen chica */
 .contenedorMapa{
   text-align: center;
@@ -192,10 +199,9 @@ body{
 }
 
 /*------------------------------------------------*/
-
 /* TEMPORADAS */
-
 /*------------------------------------------------*/
+
 .tablaTemporadas, th, td {
   font-size: 17px;
   text-align:center;
@@ -236,13 +242,9 @@ body{
   width: 40%;
 }
 /*------------------------------------------------*/
-
 /* PIE */
-
 /*------------------------------------------------*/
-.pie {
-  background-color: rgb(64, 63, 63);
-}
+
 .textContainerFooter {
   display: inline-block;
   vertical-align: top;
@@ -250,32 +252,32 @@ body{
   height: 80px;
   padding-left: 10px;
   color: white;
+  margin: 0px;
 }
+
 .textContainerFooter p{
   margin: 0px;
 }
+.textContainerFooter ul{
+  padding: 0;
+  list-style-type: none;
+}
+
 .textContainerFooter ul li {
   display: inline-block;
   border-right: 1px solid rgb(181, 181, 181);
   padding-right: 5px;
 }
+
 .textContainerFooter ul li:last-child {
   border-right: none;
 }
+
 .textContainerFooter ul li a {
   color: rgb(181, 181, 181);
   text-decoration: none;
 }
-.logoFooter {
-  display: inline-block;
-  width: 48%;
-  height: 80px;
-}
-.logoFooter img {
-  height: 30px;
-  margin-top: 30px;
-  margin-left: 360px;
-}
+
 /*********************************/
 
 .errorForm{

@@ -1,19 +1,27 @@
   </div>
-  
-    <div class="pie">
-      <div class="textContainerFooter">
-        <ul>
-          <li><a href="home"       target= "_self">INICIO</a></li>
-          <li><a href="casas"      target= "_self">CASAS</a></li>
-          <li><a href="map"        target= "_self">MAPA</a></li>
-          <li><a href={$link}      target= "_self">TEMPORADAS</a></li>
-        </ul>
-        <p>Copyright © 2018 GOT Fans. Todos los derechos reservados.</p>
+
+    <footer class="container-fluid" >
+      <div class="row bg-secondary">
+
+        <div class="col-md-12 col-sm-12 text-center align-items-center">
+          <a href="home"><img class="logoNav" src="./images/GOT_Logo_Vect_Blanco.svg" alt="Logo Game Of Thrones"></a>
+        </div>
       </div>
-      <div class="logoFooter">
-        <a href="home"><img src="./images/GOT_Logo_Vect_Blanco.svg" alt="Logo Game Of Thrones"></a>
+      <div class="row bg-dark">
+        <div class="container-fluid text-center">
+          <div class="textContainerFooter pt-4 align-items-center">
+            <ul>
+              <li><a href="home"       target= "_self">INICIO</a></li>
+              <li><a href="casas"      target= "_self">CASAS</a></li>
+              <li><a href="map"        target= "_self">MAPA</a></li>
+              <li><a href={$link}      target= "_self">TEMPORADAS</a></li>
+            </ul>
+            <p class="text-white">Copyright © 2018 GOT Fans. Todos los derechos reservados.</p>
+          </div>
+        </div>
+
       </div>
-    </div>
+    </footer>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
