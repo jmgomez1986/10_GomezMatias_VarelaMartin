@@ -1,5 +1,7 @@
 {include file="header.tpl"}
 
+    <div class="casasPrincConteiner container-fluid">
+
       <hgroup>
         <div class="container-fluid display-1 text-center titFont pt-3 pb-4">
           <h1>{$casa['titulo']}</h1>
@@ -33,5 +35,7 @@
           </div>
         </section>
       </article>
+
+    </div>
 
 {include file="footer.tpl"}

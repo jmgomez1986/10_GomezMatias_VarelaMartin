@@ -4,12 +4,12 @@
       <div class="row bg-secondary">
 
         <div class="col-md-12 col-sm-12 text-center align-items-center">
-          <a href="home"><img class="logoNav" src="./images/GOT_Logo_Vect_Blanco.svg" alt="Logo Game Of Thrones"></a>
+          <a href="home"><img class="logoNav pt-1 pb-1" src="./images/GOT_Logo_Vect_Blanco.svg" alt="Logo Game Of Thrones"></a>
         </div>
       </div>
       <div class="row bg-dark">
         <div class="container-fluid text-center">
-          <div class="textContainerFooter pt-4 align-items-center">
+          <div class="textContainerFooter pt-3 align-items-center">
             <ul>
               <li><a href="home"       target= "_self">INICIO</a></li>
               <li><a href="casas"      target= "_self">CASAS</a></li>
