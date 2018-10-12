@@ -5,13 +5,13 @@
        <table class="tablaTemporadas table table-sm table-bordered text-center">
          <thead>
            <tr>
-             <th class="fondoTh" rowspan="2">Temporada</th>
-             <th class="fondoTh" rowspan="2">Episodios</th>
-             <th class="fondoTh" colspan="2">Emisión original</th>
+             <th class="fondoTh" scope="col" rowspan="2">Temporada</th>
+             <th class="fondoTh" scope="col" rowspan="2">Episodios</th>
+             <th class="fondoTh" scope="col" colspan="2">Emisión original</th>
            </tr>
            <tr>
-             <th class="fondoTh">Inicio</th>
-             <th class="fondoTh">Final</th>
+             <th class="fondoTh" scope="col" >Inicio</th>
+             <th class="fondoTh" scope="col" >Final</th>
            </tr>
          </thead>
 

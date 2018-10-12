@@ -46,10 +46,14 @@
           </div>
         </div>
         <form method="post" action="login" class="px-2">
-          <button class="{$claseLogin} js-login btn btn-success btn-xs" type="submit">Login</button>
+          <div class="form-group">
+            <button class="{$claseLogin} js-login btn btn-success btn-xs" type="submit">Login</button>
+          </div>
         </form>
         <form method="post" action="logout" class="px-2">
-          <button class="{$claseLogout} js-logout btn btn-success btn-xs" type="submit">Logout</button>
+          <div class="form-group">
+            <button class="{$claseLogout} js-logout btn btn-success btn-xs" type="submit">Logout</button>
+          </div>
         </form>
       </nav>
     </header>
