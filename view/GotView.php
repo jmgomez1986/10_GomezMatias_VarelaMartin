@@ -15,24 +15,27 @@
       $this->Smarty = new SmartyBC();
     }
 
-    function Home($link, $claseLogin, $claseLogout){
+    function Home($link, $script, $claseLogin, $claseLogout){
       $this->Smarty->assign('link',$link);
+      $this->Smarty->assign('script', $script);
       $this->Smarty->assign('claseLogin', $claseLogin);
       $this->Smarty->assign('claseLogout', $claseLogout);
       $this->Smarty->display('templates/home.tpl');
     }
 
-    function Map($link, $claseLogin, $claseLogout){
+    function Map($link, $script, $claseLogin, $claseLogout){
       $this->Smarty->assign('link',$link);
+      $this->Smarty->assign('script', $script);
       $this->Smarty->assign('claseLogin', $claseLogin);
       $this->Smarty->assign('claseLogout', $claseLogout);
       $this->Smarty->display('templates/map.tpl');
     }
 
-    function Casas($link, $claseLogin, $claseLogout){
+    function Casas($link, $script, $claseLogin, $claseLogout){
       $this->Smarty->assign('link',$link);
+      $this->Smarty->assign('script', $script);
       $this->Smarty->assign('claseLogin', $claseLogin);
-      $this->Smarty->assign('claseLogout', $claseLogout);      
+      $this->Smarty->assign('claseLogout', $claseLogout);
       $this->Smarty->display('templates/casas.tpl');
     }
 

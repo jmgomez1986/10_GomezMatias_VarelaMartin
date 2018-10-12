@@ -86,11 +86,6 @@
 
 		function getCasa($casaNombre){
 
-			// $casas = ['casa_arryn', 'casa_baratheon', 'casa_greyjoy', 'casa_lannister',
-      //           'casa_stark', 'casa_targaryen'];
-
-      // $casaNombrePos = array_search($casaNombre, $this->casas);
-
 			return $this->casas[$casaNombre];
 
 		}
