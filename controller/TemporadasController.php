@@ -4,8 +4,8 @@
   require_once "LoginController.php";
 
 
-  class TemporadasController
-  {
+  class TemporadasController{
+
     private $view;
     private $model;
     private $link;
@@ -14,8 +14,10 @@
     private $claseLogout;
 
     function __construct(){
-      $this->view   = new TemporadasView("temporadas","","visible","oculto");
+
+      $this->view   = new TemporadasView("temporadas", "", "visible", "oculto");
       $this->model  = new TemporadasModel();
+
     }
 
     //Devuelve todas las temporadas de la DB y todos los episodios de la DB

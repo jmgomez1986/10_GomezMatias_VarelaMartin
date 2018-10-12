@@ -141,22 +141,26 @@ body{
   border: 1px solid black;
   padding: 3px;
 }
+
 .tablaTemporadas{
   width: 90%;
 }
+
 .tablaTemporadas p{
   text-align:justify;
 }
+
 .contenidoTemporadasEpisodios {
   clear: both;
   padding: 30px;
   margin: 0px auto;
-  background-color:#a38f73;
 }
+
 .fondoTd {
-  background-color: #DED193;
+  background: rgba(222, 209, 147, 0.85);
   font-weight: bold;
 }
+
 .fondoTh {
   background-color: grey;
   font-weight: bold;
@@ -173,18 +177,10 @@ body{
 .colE40{
   width: 40%;
 }
+
 /*------------------------------------------------*/
 /* PIE */
 /*------------------------------------------------*/
-
-.textContainerFooter {
-  display: inline-block;
-  vertical-align: top;
-  width: 50%;
-  padding-left: 10px;
-  color: white;
-  margin: 0px;
-}
 
 .textContainerFooter p{
   margin: 0px;

@@ -13,33 +13,29 @@
     private $claseLogin;
     private $claseLogout;
 
-    function __construct()
-    {
-      $this->view   = new GotView();
-      $this->model  = new GotModel();
-      $this->script = "";
+    function __construct(){
 
+      $this->view   = new GotView("temporadas", "", "visible", "oculto" );
+      $this->model  = new GotModel();
 
       if (LoginController::isLogueado()){
         LoginController::logout();
       }
-      $this->link        = "temporadas";
-      $this->claseLogin  = "visible";
-      $this->claseLogout = "oculto";
+      
     }
 
     function Home(){
       $this->model->CreateDB();
-      $this->view->Home($this->link, $this->script, $this->claseLogin, $this->claseLogout);
+      $this->view->Home();
     }
 
     function Casas(){
-      $this->view->Casas($this->link, $this->script, $this->claseLogin, $this->claseLogout);
+      $this->view->Casas();
     }
 
     function Map(){
       $script = "./js/script.js";
-      $this->view->Map($this->link, $script, $this->claseLogin, $this->claseLogout);
+      $this->view->Map($script);
     }
   } //END CLASS
 

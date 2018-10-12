@@ -13,18 +13,16 @@
     private $claseLogin;
     private $claseLogout;
 
-    function __construct()
-    {
+    function __construct(){
+
       $this->model  = new CasasModel();
-      $this->view   = new CasasView();
+      $this->view   = new CasasView("temporadas", "", "visible", "oculto");
       $this->script = "";
 
       if (LoginController::isLogueado()){
         LoginController::logout();
       }
-      $this->link        = "temporadas";
-      $this->claseLogin  = "visible";
-      $this->claseLogout = "oculto";
+
     }
 
     function Casas($param){
@@ -32,8 +30,8 @@
 
       $casa = $this->model->getCasa($casaNombre);
       $columnasMiembrosCasas = array_chunk($casa['miembros'],8,true);
-      $cantCol      = count($columnasMiembrosCasas);
-      $this->view->Casas($casa, $columnasMiembrosCasas, $cantCol, $this->link, $this->script, $this->claseLogin, $this->claseLogout);
+      $cantCol               = count($columnasMiembrosCasas);
+      $this->view->Casas($casa, $columnasMiembrosCasas, $cantCol);
 
     }
 

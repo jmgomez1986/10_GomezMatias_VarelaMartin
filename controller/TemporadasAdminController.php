@@ -12,9 +12,11 @@
 		private $script;
 
 		function __construct(){
+
 			parent::__construct();
-	    $this->view        = new TemporadasView("temporadasAdmin","./js/scriptAdmin.js", "oculto","visible");
+	    $this->view        = new TemporadasView("temporadasAdmin", "./js/scriptAdmin.js", "oculto", "visible");
 	    $this->model       = new TemporadasModel();
+
 		}
 
 		function TemporadasAdmin(){
@@ -99,8 +101,9 @@
 
     function agregarTemporada(){
 			$valoresTemporada = array();
-    }
-		$this->view->MostrarAgregarTemporada('Agregar temporada', $valoresTemporada);
+
+			$this->view->MostrarAgregarTemporada('Agregar temporada', $valoresTemporada);
+		}
 
     function GuardarAgregarTemporada(){
         $id_temporada = $_POST["idTemp"];
