@@ -10,8 +10,9 @@
 
     private $Smarty;
 
-    function __construct($link, $script, $claseLogin, $claseLogout){
+    function __construct($titulo, $link, $script, $claseLogin, $claseLogout){
       $this->Smarty = new Smarty();
+      $this->Smarty->assign('titulo', $titulo);
       $this->Smarty->assign('link', $link);
       $this->Smarty->assign('script', $script);
       $this->Smarty->assign('claseLogin', $claseLogin);
@@ -86,7 +87,7 @@
         $valoresTemporada = ['','','',''];
         $this->Smarty->assign('existencia', '');
       }
-      
+
       $this->Smarty->assign('valoresTemporada', $valoresTemporada);
 
       $this->Smarty->display('templates/MostrarAgregarTemporada.tpl');

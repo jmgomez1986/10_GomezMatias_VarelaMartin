@@ -16,8 +16,7 @@
     function __construct(){
 
       $this->model  = new CasasModel();
-      $this->view   = new CasasView("temporadas", "", "visible", "oculto");
-      $this->script = "";
+      $this->view   = new CasasView("Game of Thrones", "temporadas", "", "visible", "oculto");
 
       if (LoginController::isLogueado()){
         LoginController::logout();

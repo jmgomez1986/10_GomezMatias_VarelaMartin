@@ -15,7 +15,7 @@
 
     function __construct(){
 
-      $this->view   = new TemporadasView("temporadas", "", "visible", "oculto");
+      $this->view   = new TemporadasView("Game of Thrones", "temporadas", "", "visible", "oculto");
       $this->model  = new TemporadasModel();
 
     }

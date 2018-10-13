@@ -15,13 +15,13 @@
 
     function __construct(){
 
-      $this->view   = new GotView("temporadas", "", "visible", "oculto" );
+      $this->view   = new GotView("Game of Thrones", "temporadas", "", "visible", "oculto" );
       $this->model  = new GotModel();
 
       if (LoginController::isLogueado()){
         LoginController::logout();
       }
-      
+
     }
 
     function Home(){
