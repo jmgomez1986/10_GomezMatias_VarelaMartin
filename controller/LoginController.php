@@ -36,7 +36,7 @@
 		 	if(isset($dbUser)){
 		 		if(password_verify($pass,$dbUser[0]["user_password"])){
 		 			session_start();
-	        $_SESSION["User"] = $user;
+	        $_SESSION['User'] = $user;
 		 		 	header(TEMPADMIN);
 		 		}
 		 		else{

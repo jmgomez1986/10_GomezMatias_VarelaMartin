@@ -14,6 +14,7 @@
 		function __construct(){
 
 			parent::__construct();
+
 	    $this->view        = new TemporadasView("Game of Thrones", "temporadasAdmin", "./js/scriptAdmin.js", "oculto", "visible");
 	    $this->model       = new TemporadasModel();
 
@@ -124,8 +125,10 @@
 
 		function EliminarTemporada($param){
 			$id_temporada = $param[0];
+
 			$this->model->eliminarTemporada($id_temporada);
-      header(TEMPADMIN);
+
+			header(TEMPADMIN);
     }
 
 	} // ENDCLASS

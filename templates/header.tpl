@@ -2,7 +2,7 @@
 <html>
   <head>
 
-    <base href="http://{$smarty.server.SERVER_NAME}{dirname($smarty.server.PHP_SELF)}/" target="_self">
+    <base href="//{$smarty.server.SERVER_NAME}{dirname($smarty.server.PHP_SELF)}/" target="_self">
 
     <title>{$titulo}</title>
     <!-- Required meta tags -->
