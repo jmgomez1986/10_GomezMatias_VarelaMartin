@@ -4,8 +4,7 @@
   require_once "./view/GotView.php";
   require_once "LoginController.php";
 
-  class GotController
-  {
+  class GotController{
     private $model;
     private $view;
     private $link;

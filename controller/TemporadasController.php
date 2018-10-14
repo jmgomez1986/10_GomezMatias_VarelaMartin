@@ -18,6 +18,10 @@
       $this->view   = new TemporadasView("Game of Thrones", "temporadas", "", "visible", "oculto");
       $this->model  = new TemporadasModel();
 
+      if (LoginController::isLogueado()){
+        LoginController::logout();
+      }
+
     }
 
     //Devuelve todas las temporadas de la DB y todos los episodios de la DB

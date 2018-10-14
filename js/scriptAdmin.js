@@ -57,9 +57,9 @@ function loadPage() {
       let respuesta = confirm("¿Seguro que desea eliminar la temporada " + temporadaID + "?????");
       //let respuesta = true;
       if (respuesta == true) {
-        let url       = 'eliminarT/' + temporadaID + "/";
-        let formAdmin = document.querySelector(".formAdmin").action = url;
-        alert("Temporada Eliminada!!!");
+          let url       = 'eliminarT/' + temporadaID + "/";
+          let formAdmin = document.querySelector(".formAdmin").action = url;
+          alert("Temporada Eliminada!!!");
       }
       else{
         let url       = "temporadasAdmin/";
