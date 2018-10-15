@@ -14,7 +14,7 @@
       	$_SESSION['LAST_ACTIVITY'] = time(); // actualiza el último instante de actividad
 			}
 			else{
-				// header(LOGIN);
+				 header(LOGIN);
 				// throw new Exception('Sin usuario logueado');
 		  }
 	  }
