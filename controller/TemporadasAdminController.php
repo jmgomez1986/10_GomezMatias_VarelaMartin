@@ -8,12 +8,14 @@
 
 		private $view;
 	  private $model;
-	  private $link;
-		private $script;
 
 		function __construct(){
-
-			parent::__construct();
+			// try{
+				parent::__construct();
+			// }
+			// catch (Exception $e){
+				// throw new Exception($e);
+			// }
 
 	    $this->view        = new TemporadasView("Game of Thrones", "temporadasAdmin", "./js/scriptAdmin.js", "oculto", "visible");
 	    $this->model       = new TemporadasModel();
