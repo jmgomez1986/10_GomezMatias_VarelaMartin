@@ -100,12 +100,12 @@
 
 			try{
 				$sentencia = $this->db->prepare("UPDATE `season`
-																						SET `id_season`    = $temporada,
-																						    `cant_episodes`= $cantEpis,
-																								`season_begin` = $fechaC,
-																								`season_end`   = $fechaF
-																						WHERE id_season = $temporada");
-				$sentencia->execute( /*array($temporada, $cantEpis, $fechaC, $fechaF)*/ );
+																						SET `id_season`    = ?,
+																						    `cant_episodes`= ?,
+																								`season_begin` = ?,
+																								`season_end`   = ?
+																						WHERE id_season = ?");
+				$sentencia->execute( array($temporada, $cantEpis, $fechaC, $fechaF, $temporada) );
 			}
 			catch(PDOException $exception){
 				return $exception->getMessage();
@@ -116,13 +116,13 @@
 			$db = $this->connectToDB();
 
 			try{
-				$sentencia = $this->db->prepare("UPDATE `episode` SET `id_season`     = $temporada,
-								                                              `id_episode`    = $episodio,
-																															`episode_title` = $title,
-																															`episode_desc`  = $desc
-																										WHERE `id_season`  = $temporada AND
-																										      `id_episode` = $episodio");
-	    	$sentencia->execute();
+				$sentencia = $this->db->prepare("UPDATE `episode` SET `id_season`     = ?,
+								                                              `id_episode`    = ?,
+																															`episode_title` = ?,
+																															`episode_desc`  = ?
+																										WHERE `id_season`  = ? AND
+																										      `id_episode` = ?");
+	    	$sentencia->execute( array($temporada,$episodio, $title, $desc, $temporada, $episodio) );
 	    }
 	    catch(PDOException $exception){
 				return $exception->getMessage();

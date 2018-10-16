@@ -21,7 +21,7 @@
 			session_start();
 			session_destroy();
 			header(HOME);
-	   	}
+	  }
 
 		function isLogueado(){
 			session_start();
@@ -46,7 +46,8 @@
 		 	else{
 		 		$this->view->login("No existe el usuario");
 		 	}
-		 }
+
+		}
 
 	} //END CLASS
 
