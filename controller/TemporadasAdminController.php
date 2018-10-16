@@ -4,7 +4,7 @@
 	require_once "./model/TemporadasModel.php";
 	require_once "SecuredController.php";
 
-	class TemporadasAdminController extends SecuredController{
+	class TemporadasAdminController extends SecuredController {
 
 		private $view;
 	  private $model;
@@ -14,8 +14,8 @@
 		function __construct(){
 
 			parent::__construct();
-	    $this->view        = new TemporadasView("Game of Thrones", "temporadasAdmin", "./js/scriptAdmin.js", "oculto", "visible");
-	    $this->model       = new TemporadasModel();
+	    $this->view  = new TemporadasView("Game of Thrones", "temporadasAdmin", "./js/scriptAdmin.js", "oculto", "visible");
+	    $this->model = new TemporadasModel();
 
 		}
 
