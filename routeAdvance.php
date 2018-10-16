@@ -33,7 +33,9 @@
             }
           // }
           // catch (Exception $e){
-            //echo "<h1 style=\"color:red;\">Excepción capturada: " . $e->getMessage() . "</h1></br>";
+          //   // echo "<h1 style=\"color:red;\">Excepción capturada: " . $e->getMessage() . "</h1></br>";
+          //   $controller =  new GotController();
+          //   echo $controller->Home();
           // }
       }
       else{

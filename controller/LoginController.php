@@ -37,6 +37,7 @@
 		 		if(password_verify($pass,$dbUser[0]["user_password"])){
 		 			session_start();
 	        $_SESSION["User"] = $user;
+					$_SESSION['LAST_ACTIVITY'] = time();
 		 		 	header(TEMPADMIN);
 		 		}
 		 		else{
