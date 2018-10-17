@@ -5,9 +5,9 @@
   require_once "controller/TemporadasController.php";
   require_once "controller/TemporadasAdminController.php";
   require_once "controller/LoginController.php";
+  require_once "controller/CasasController.php";
 
-  function parseURL($url)
-  {
+  function parseURL($url){
     $urlExploded = explode('/', $url);
     $arrayReturn[ConfigApp::$ACTION] = $urlExploded[0];
 
@@ -22,15 +22,21 @@
       if(array_key_exists($action,ConfigApp::$ACTIONS)){
           $params = $urlData[ConfigApp::$PARAMS];
           $action = explode('#',ConfigApp::$ACTIONS[$action]);
-          $controller =  new $action[0]();
-          $metodo = $action[1];
-          if(isset($params) &&  $params != null){
+          // try{
+            $controller =  new $action[0]();
+            $metodo = $action[1];
+            if(isset($params) &&  $params != null){
               echo $controller->$metodo($params);
-          }
-          else{
+            }
+            else{
               echo $controller->$metodo();
-          }
-      }else{
+            }
+          // }
+          // catch (Exception $e){
+            //echo "<h1 style=\"color:red;\">Excepción capturada: " . $e->getMessage() . "</h1></br>";
+          // }
+      }
+      else{
         $controller =  new GotController();
         echo $controller->Home();
       }

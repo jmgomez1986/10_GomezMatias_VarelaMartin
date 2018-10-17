@@ -1,13 +1,12 @@
 <?php
 
-    define('TEMPADMIN', 'Location: http://'.$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]). '/temporadasAdmin');
-    define('TEMP', 'Location: http://'.$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]). '/temporadas');
-    define('LOGIN', 'Location: http://'.$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]). '/login');
-    define('LOGOUT', 'Location: http://'.$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]). '/logout');
-    define('HOME', 'Location: http://'.$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]). '/home');
+    define('TEMPADMIN', 'Location: //'.$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]). '/temporadasAdmin');
+    define('TEMP', 'Location: //'.$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]). '/temporadas');
+    define('LOGIN', 'Location: //'.$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]). '/login');
+    define('LOGOUT', 'Location: //'.$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]). '/logout');
+    define('HOME', 'Location: //'.$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]). '/home');
 
-    class ConfigApp
-    {
+    class ConfigApp{
         public static $ACTION = 'action';
         public static $PARAMS = 'params';
         public static $ACTIONS = [
@@ -15,6 +14,7 @@
                                     'home'            => 'GotController#Home',
                                     'map'             => 'GotController#Map',
                                     'casasGOT'        => 'GotController#Casas',
+                                    'casas'           => 'CasasController#Casas',
                                     'temporadas'      => 'TemporadasController#Temporadas',
                                     'temporadasAdmin' => 'TemporadasAdminController#TemporadasAdmin',
                                     'editarT'         => 'TemporadasAdminController#EditarTemporada',
@@ -26,6 +26,9 @@
                                     'eliminarE'       => 'TemporadasAdminController#EliminarEpisodio',
                                     'agregarE'        => 'TemporadasAdminController#AgregarEpisodio',
                                     'guardarAgregarE' => 'TemporadasAdminController#GuardarAgregarEpisodio',
+                                    'agregarT'        => 'TemporadasAdminController#AgregarTemporada',
+                                    'guardarAgregarT' => 'TemporadasAdminController#GuardarAgregarTemporada',
+                                    'eliminarT'       => 'TemporadasAdminController#EliminarTemporada',
                                     'login'           => 'LoginController#login',
                                     'logout'          => 'LoginController#logout',
                                     'verificarLogin'  => 'LoginController#verifyLogin'

@@ -24,12 +24,15 @@
 																								season_begin  date    DEFAULT NULL,
 																								season_end    date    DEFAULT NULL,
 																								PRIMARY KEY(id_season)",
+
 																'episode'    => "id_season    int(11)     NOT NULL,
 																								id_episode    int(11)     NOT NULL,
 																								episode_title varchar(50) DEFAULT NULL,
 																								episode_desc  text,
-																								PRIMARY KEY(id_season,id_episode),
-																								FOREIGN KEY (id_season) REFERENCES season (id_season)",
+																								PRIMARY KEY (id_season,id_episode),
+																								FOREIGN KEY (id_season) REFERENCES season (id_season)
+																								ON DELETE CASCADE ON UPDATE CASCADE",
+
 																'user_admin' => "id_user      int(11)      NOT NULL,
 																								user_name     varchar(15)  DEFAULT NULL,
 																								user_password varchar(256) DEFAULT NULL,
@@ -48,44 +51,45 @@
 				$stmt = $pdo->prepare("SELECT COUNT(SCHEMA_NAME) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '$this->db'");
 				$stmt->execute();
 
-				$resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
-				// var_dump($resultado);
+				$resultado = $stmt->fetchColumn();
 
-				if ( empty($resultado) ){
-					echo "<h1 style='color:red;'>La DB " . $this->db . " ya existe</h1>";
+				if ( $resultado ){
+					//echo "<h1 style='color:red;'>La DB " . $this->db . " ya existe</h1>";
 				}
 				else{
-					$dbh = new PDO("mysql:host=$this->host",
-					$this->root,
-					$this->root_password);
-					$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+					try {
+						$dbh = new PDO("mysql:host=$this->host",
+						$this->root,
+						$this->root_password);
+						$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-					$sentencia = $dbh->prepare("CREATE DATABASE $this->db");
-					$sentencia->execute();
-
-					//or die(print_r($sentencia->errorInfo(), true));
-
-					for ($i=0; $i < count($this->tableNames) ; $i++) {
-
-						$tabName    = $this->tableNames[$i];
-						$valColumns = $this->columns[$this->tableNames[$i]];
-
-						$dbCreate = new PDO('mysql:host='.$this->host.';dbname='.$this->db.';charset=utf8',
-																$this->root,
-																$this->root_password);
-						$dbCreate->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-						$sentencia  = $dbCreate->prepare("CREATE TABLE $tabName ($valColumns)");
+						$sentencia = $dbh->prepare("CREATE DATABASE $this->db");
 						$sentencia->execute();
-					}
 
-					$this->InsertSeason($dbCreate, $this->tableNames[0]);
-					$this->InsertEpisode($dbCreate, $this->tableNames[1]);
-					$this->InsertUser($dbCreate,$this->tableNames[2]);
+						for ($i=0; $i < count($this->tableNames) ; $i++) {
+
+							$tabName    = $this->tableNames[$i];
+							$valColumns = $this->columns[$this->tableNames[$i]];
+
+							$dbCreate = new PDO('mysql:host='.$this->host.';dbname='.$this->db.';charset=utf8',
+																	$this->root,
+																	$this->root_password);
+							$dbCreate->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+							$sentencia  = $dbCreate->prepare("CREATE TABLE $tabName ($valColumns)");
+							$sentencia->execute();
+						}
+
+						$this->InsertSeason($dbCreate, $this->tableNames[0]);
+						$this->InsertEpisode($dbCreate, $this->tableNames[1]);
+						$this->InsertUser($dbCreate,$this->tableNames[2]);
+					}
+					catch (PDOException $e) {
+						die("DB ERROR: ". $e->getMessage());
+					}
 				}
 			}
 			catch (PDOException $e) {
-				echo "PASO POR ACA</br>";
 				die("DB ERROR: ". $e->getMessage());
 			}
 
@@ -179,10 +183,23 @@
 			(7, 4, 'Botines de guerra', 'Jon muestra a Daenerys una cueva llena de vidriagón y unas pinturas rupestres de los Niños del Bosque sobre los Caminantes Blancos. Cersei negocia con el Banco de Hierro. Arya regresa a Invernalia y se reencuentra con sus hermanos. Después de perder la flota de Yara Greyjoy y el ejército y el apoyo económico de Dorne y Altojardín, Daenerys sale a atacar desde el lomo de Drogon a las huestes de los Lannister junto con una horda de salvajes dothrakis dispuestos a matar.'),
 			(7, 5, 'Guardaoriente', 'Daenerys consigue una victoria y acaba con la familia Tarly. Jorah vuelve al servicio de Daenerys. Tyrion se reúne en secreto con Jaime para que convenza a Cersei para luchar contra los Caminantes Blancos. Cersei desvela a Jaime que está embarazada. Jon Nieve y compañía cruzan de nuevo el Muro en busca de un no-muerto para que el resto del continente les crea y luchen. Sam abandona Antigua cansado de ser ignorado.'),
 			(7, 6, 'Más allá del Muro', 'En Invernalia, Sansa y Arya comienzan una disputa debido a las artimañas de Meñique. Sansa descubre las caras de Arya. Jon y compañía se adentran más allá del Muro hasta dar con una horda de Caminantes Blancos, consiguen capturar a un no-muerto pero se ven atrapados por el ejército. Gendry consigue escapar hasta el Muro y manda un aviso de socorro a Daenerys. Thoros de Myr muere congelado tras sufrir una herida. Daenerys acude en su ayuda a pesar de los consejos de Tyrion. El Rey de la Noche arroja una lanza helada que acaba con la vida del dragón Viserion. Daenerys en shock, consigue escapar con todos menos Jon, que es salvado por su tío Benjen que termina sacrificandose por él. Jon herido llega al Muro y jura lealtad a Daenerys. El Rey de la Noche saca el cadáver de Viserion del lago helado y lo resucita como un dragón caminante blanco.'),(7, 7, 'El dragón y el lobo', 'En Desembarco del Rey, Daenerys, Jon, Cersei y sus consejeros se reúnen en Pozo Dragón para el encuentro donde un espectro se va a presentar como prueba. Cersei demanda como condición que Jon permanezca neutral mientras continúe la guerra con Daenerys. Él rechaza la petición por su promesa de servir a Daenerys provocando la retirada de Cersei. Tyrion habla con Cersei y aparentemente la convence de que se comprometa con la alianza. Posteriormente, Cersei le revela a Jaime que ella no tiene intención de enviar sus soldados para ayudar a la lucha de Daenerys y Jon contra los muertos. Su plan, en cambio, es derrotar al bando ganador, contratando a 20 000 mercenarios de la Compañía Dorada. Jaime, dispuesto a cumplir su palabra, la deja para cabalgar al Norte. Theon se gana el respeto de sus hombres para rescatar a su hermana Yara. En Invernalia, Meñique habla con Sansa sobre el amenazador comportamiento de Arya. Sansa convoca un juicio delante de los señores del Norte y del Valle señalando a Meñique en lugar de Arya. Arya lo ejecuta por sus crímenes contra la casa Stark y la casa Arryn. Mientras tanto, Daenerys y Jon tienen relaciones sexuales en el barco hacia Invernalia. En Guardiaoriente, el Rey de la Noche realiza su aparición a lomos de Viserion, el cual es ahora un dragón Caminante Blanco, destruyendo una porción del Muro y permitiendo al Ejército de los Muertos avanzar hacia el sur.')";
+			$episodios .= ",(7, 7, 'El dragón y el lobo', 'En Desembarco del Rey, Daenerys, Jon, Cersei y sus consejeros se reúnen en Pozo Dragón para el encuentro donde un espectro se va a presentar como prueba. Cersei demanda como condición que Jon permanezca neutral mientras continúe la guerra con Daenerys. Él rechaza la petición por su promesa de servir a Daenerys provocando la retirada de Cersei. Tyrion habla con Cersei y aparentemente la convence de que se comprometa con la alianza. Posteriormente, Cersei le revela a Jaime que ella no tiene intención de enviar sus soldados para ayudar a la lucha de Daenerys y Jon contra los muertos. Su plan, en cambio, es derrotar al bando ganador, contratando a 20 000 mercenarios de la Compañía Dorada. Jaime, dispuesto a cumplir su palabra, la deja para cabalgar al Norte. Theon se gana el respeto de sus hombres para rescatar a su hermana Yara. En Invernalia, Meñique habla con Sansa sobre el amenazador comportamiento de Arya. Sansa convoca un juicio delante de los señores del Norte y del Valle señalando a Meñique en lugar de Arya. Arya lo ejecuta por sus crímenes contra la casa Stark y la casa Arryn. Mientras tanto, Daenerys y Jon tienen relaciones sexuales en el barco hacia Invernalia. En Guardiaoriente, el Rey de la Noche realiza su aparición a lomos de Viserion, el cual es ahora un dragón Caminante Blanco, destruyendo una porción del Muro y permitiendo al Ejército de los Muertos avanzar hacia el sur.')";
 
 			try{
 				$sentencia = $db->prepare( "INSERT INTO $tabNam (id_season, id_episode, episode_title, episode_desc)
 				VALUES 	$episodios" );
+				$sentencia->execute( );
+
+				$trigger = "CREATE TRIGGER updateSeasonIns AFTER INSERT ON episode
+				 								FOR EACH ROW BEGIN
+													UPDATE season SET cant_episodes = cant_episodes+1	WHERE id_season = NEW.id_season;
+												END;
+											CREATE TRIGGER updateSeasonDel AFTER DELETE ON episode
+					 							FOR EACH ROW BEGIN
+													UPDATE season SET cant_episodes = cant_episodes-1 WHERE id_season = OLD.id_season;
+												END;";
+
+				$sentencia = $db->prepare( $trigger );
 				$sentencia->execute( );
 
 			}

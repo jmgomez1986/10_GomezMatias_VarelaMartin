@@ -6,16 +6,10 @@
 }
 
 body {
-  /*
-  background: #2c3338;
-  color: #606468;
-  font: 87.5%/1.5em 'Open Sans', sans-serif;
-  */
-  background-image: url("../images/GOTBackLogin.jpg");
-
-  background-repeat: no-repeat; /* Do not repeat the image */
-  background-size: cover; /* Resize the background image to cover the entire container */
-  margin: 0;
+  /* background-image: url("../images/GOTBackLogin.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0; */
 }
 
 input {
@@ -34,13 +28,13 @@ p {
 after { clear: both; }
 
 #login {
-  margin: 50px auto;
-  width: 320px;
+  margin: 7.4% auto;
+  width: 350px;
 }
 
 #login form {
   margin: auto;
-  padding: 22px 22px 22px 22px;
+  padding: 25px 25px 25px 25px;
   width: 100%;
   border-radius: 5px;
   background: #282e33;

@@ -2,40 +2,39 @@
 
   require_once "./model/GotModel.php";
   require_once "./view/GotView.php";
-  require_once "SecuredController.php";
   require_once "LoginController.php";
 
-  class GotController
-  {
+  class GotController{
+    private $model;
     private $view;
     private $link;
-    private $model;
+    private $script;
+    private $claseLogin;
+    private $claseLogout;
 
-    function __construct()
-    {
-      $this->view  = new GotView();
-      $this->model = new GotModel();
+    function __construct(){
+
+      $this->view   = new GotView("Game of Thrones", "temporadas", "", "visible", "oculto" );
+      $this->model  = new GotModel();
 
       if (LoginController::isLogueado()){
-        $this->link = "temporadasAdmin";
+        LoginController::logout();
       }
-      else{
-        $this->link = "temporadas";
-      }
+
     }
 
     function Home(){
-
       $this->model->CreateDB();
-      $this->view->Home($this->link);
+      $this->view->Home();
     }
 
     function Casas(){
-      $this->view->Casas($this->link);
+      $this->view->Casas();
     }
 
     function Map(){
-      $this->view->Map($this->link);
+      $script = "./js/script.js";
+      $this->view->Map($script);
     }
   } //END CLASS
 

@@ -1,8 +1,12 @@
 <?php
 
+/**
+ *
+ */
+
   require_once('libs/Smarty.class.php');
 
-  class LoginView{
+  class CasasView{
 
     private $Smarty;
 
@@ -15,11 +19,14 @@
       $this->Smarty->assign('claseLogout', $claseLogout);
     }
 
-    function login($message = ''){
-      $this->Smarty->assign('Message', $message);
+    function Casas($casa, $columnasMiembrosCasas, $cantCol){
+      $this->Smarty->assign('casa' ,$casa);
+      $this->Smarty->assign('miembros', $columnasMiembrosCasas);
+      $this->Smarty->assign('cantCol', $cantCol);
 
-      $this->Smarty->display('templates/login.tpl');
+      $this->Smarty->display('casa.tpl');
     }
+
   }  //END CLASS
 
-?>
+ ?>
