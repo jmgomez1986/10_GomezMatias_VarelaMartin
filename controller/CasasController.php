@@ -16,11 +16,21 @@
     function __construct(){
 
       $this->model  = new CasasModel();
-      $this->view   = new CasasView("Game of Thrones", "temporadas", "", "visible", "oculto");
 
       if (LoginController::isLogueado()){
-        LoginController::logout();
+        $this->claseLogin= "oculto";
+        $this->claseLogout= "visible";
+        $this->link= "temporadasAdmin";
+        $this->script="";
+
       }
+      else{
+        $this->claseLogin= "visible";
+        $this->claseLogout= "oculto";
+        $this->link= "temporadas";
+        $this->script="";
+      }
+      $this->view   = new CasasView("Game of Thrones", $this->link, $this->script, $this->claseLogin, $this->claseLogout);
 
     }
 

@@ -13,13 +13,22 @@
     private $claseLogout;
 
     function __construct(){
-
-      $this->view   = new GotView("Game of Thrones", "temporadas", "", "visible", "oculto" );
       $this->model  = new GotModel();
 
       if (LoginController::isLogueado()){
-        LoginController::logout();
+        $this->claseLogin= "oculto";
+        $this->claseLogout= "visible";
+        $this->link= "temporadasAdmin";
+        $this->script="";
+
       }
+      else{
+        $this->claseLogin= "visible";
+        $this->claseLogout= "oculto";
+        $this->link= "temporadas";
+        $this->script="";
+      }
+      $this->view   = new GotView("Game of Thrones", $this->link, $this->script, $this->claseLogin, $this->claseLogout );
 
     }
 

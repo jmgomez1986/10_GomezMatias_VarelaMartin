@@ -17,7 +17,7 @@
 			}
 			else{
 				throw new Exception('Sin usuario logueado');
-				// header(LOGIN);
+				//header(LOGIN);
 			}
 		}
 

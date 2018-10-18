@@ -15,12 +15,23 @@
 
     function __construct(){
 
-      $this->view   = new TemporadasView("Game of Thrones", "temporadas", "", "visible", "oculto");
+
       $this->model  = new TemporadasModel();
 
       if (LoginController::isLogueado()){
-        LoginController::logout();
+        $this->claseLogin= "oculto";
+        $this->claseLogout= "visible";
+        $this->link= "temporadasAdmin";
+        $this->script="";
+
       }
+      else{
+        $this->claseLogin= "visible";
+        $this->claseLogout= "oculto";
+        $this->link= "temporadas";
+        $this->script="";
+      }
+      $this->view   = new TemporadasView("Game of Thrones", $this->link, $this->script, $this->claseLogin, $this->claseLogout);
 
     }
 
