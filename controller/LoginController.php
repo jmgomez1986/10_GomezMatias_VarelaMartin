@@ -25,7 +25,7 @@
 
 		function isLogueado(){
 			session_start();
-		 	return isset($_SESSION["User"]);
+		 	return isset($_SESSION['usuario']);
 		}
 
 		function verifyLogin(){
@@ -36,7 +36,7 @@
 		 	if(isset($dbUser)){
 		 		if(password_verify($pass,$dbUser[0]["user_password"])){
 		 			session_start();
-	        $_SESSION["User"] = $user;
+	        $_SESSION['usuario'] = $user;
 		 		 	header(TEMPADMIN);
 		 		}
 		 		else{
@@ -46,9 +46,6 @@
 		 	else{
 		 		$this->view->login("No existe el usuario");
 		 	}
-
 		}
-
 	} //END CLASS
-
 ?>
