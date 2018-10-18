@@ -20,7 +20,6 @@
         $this->claseLogout= "visible";
         $this->link= "temporadasAdmin";
         $this->script="";
-
       }
       else{
         $this->claseLogin= "visible";

@@ -22,18 +22,13 @@
       if(array_key_exists($action,ConfigApp::$ACTIONS)){
           $params = $urlData[ConfigApp::$PARAMS];
           $action = explode('#',ConfigApp::$ACTIONS[$action]);
-          try{
-            $controller =  new $action[0]();
-            $metodo = $action[1];
-            if(isset($params) &&  $params != null){
-              echo $controller->$metodo($params);
-            }
-            else{
-              echo $controller->$metodo();
-            }
+          $controller =  new $action[0]();
+          $metodo = $action[1];
+          if(isset($params) &&  $params != null){
+            echo $controller->$metodo($params);
           }
-          catch (Exception $e){
-            header(LOGIN);
+          else{
+              echo $controller->$metodo();
           }
       }
       else{

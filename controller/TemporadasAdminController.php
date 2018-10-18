@@ -10,16 +10,10 @@
 	  private $model;
 
 		function __construct(){
-			try {
 				parent::__construct();
 
 				$this->view        = new TemporadasView("Game of Thrones", "temporadasAdmin", "./js/scriptAdmin.js", "oculto", "visible");
 				$this->model       = new TemporadasModel();
-			}
-			catch (Exception $e){
-				throw new Exception($e);
-			}
-
 		}
 
 		function TemporadasAdmin(){
