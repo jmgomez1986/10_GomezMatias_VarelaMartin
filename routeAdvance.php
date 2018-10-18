@@ -22,7 +22,7 @@
       if(array_key_exists($action,ConfigApp::$ACTIONS)){
           $params = $urlData[ConfigApp::$PARAMS];
           $action = explode('#',ConfigApp::$ACTIONS[$action]);
-          // try{
+          try{
             $controller =  new $action[0]();
             $metodo = $action[1];
             if(isset($params) &&  $params != null){
@@ -31,12 +31,10 @@
             else{
               echo $controller->$metodo();
             }
-          // }
-          // catch (Exception $e){
-          //   // echo "<h1 style=\"color:red;\">Excepción capturada: " . $e->getMessage() . "</h1></br>";
-          //   $controller =  new GotController();
-          //   echo $controller->Home();
-          // }
+          }
+          catch (Exception $e){
+            header(LOGIN);
+          }
       }
       else{
         $controller =  new GotController();

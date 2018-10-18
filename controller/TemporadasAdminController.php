@@ -8,13 +8,17 @@
 
 		private $view;
 	  private $model;
-		private $error;
 
 		function __construct(){
+			try {
 				parent::__construct();
 
-			$this->view        = new TemporadasView("Game of Thrones", "temporadasAdmin", "./js/scriptAdmin.js", "oculto", "visible");
-			$this->model       = new TemporadasModel();
+				$this->view        = new TemporadasView("Game of Thrones", "temporadasAdmin", "./js/scriptAdmin.js", "oculto", "visible");
+				$this->model       = new TemporadasModel();
+			}
+			catch (Exception $e){
+				throw new Exception($e);
+			}
 
 		}
 
@@ -123,13 +127,11 @@
 
 		function EliminarTemporada($param){
 
-			// if ($this->error !== "error"){
 				$id_temporada = $param[0];
 
 				$this->model->eliminarTemporada($id_temporada);
 
 				header(TEMPADMIN);
-			// }
 
     }
 
