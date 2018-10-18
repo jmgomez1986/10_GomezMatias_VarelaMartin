@@ -12,16 +12,16 @@
 
 		function __construct(){
 
-			// try{
+			try{
 				parent::__construct();
-			// }
-			// catch (Exception $e){
-			// 	$this->error = "error";
-			// 	throw new Exception($e);
-			// }
 
-			$this->view        = new TemporadasView("Game of Thrones", "temporadasAdmin", "./js/scriptAdmin.js", "oculto", "visible");
-			$this->model       = new TemporadasModel();
+				$this->view        = new TemporadasView("Game of Thrones", "temporadasAdmin", "./js/scriptAdmin.js", "oculto", "visible");
+				$this->model       = new TemporadasModel();
+			}
+			catch (Exception $e){
+				$this->error = "error";
+				throw new Exception($e);
+			}
 
 		}
 
