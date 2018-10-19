@@ -18,18 +18,18 @@
       $this->model  = new CasasModel();
 
       if (LoginController::isLogueado()){
-        $this->claseLogin= "oculto";
-        $this->claseLogout= "visible";
-        $this->link= "temporadasAdmin";
-        $this->script="";
-
+        $this->claseLogin  = "oculto";
+        $this->claseLogout = "visible";
+        $this->link        = "temporadasAdmin";
+        $this->script      = "";
       }
       else{
-        $this->claseLogin= "visible";
-        $this->claseLogout= "oculto";
-        $this->link= "temporadas";
-        $this->script="";
+        $this->claseLogin  = "visible";
+        $this->claseLogout = "oculto";
+        $this->link        = "temporadas";
+        $this->script      = "";
       }
+
       $this->view   = new CasasView("Game of Thrones", $this->link, $this->script, $this->claseLogin, $this->claseLogout);
 
     }

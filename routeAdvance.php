@@ -18,18 +18,18 @@
   if(isset($_GET['action'])){
 
       $urlData = parseURL($_GET['action']);
-      $action = $urlData[ConfigApp::$ACTION];
+      $action  = $urlData[ConfigApp::$ACTION];
       if(array_key_exists($action,ConfigApp::$ACTIONS)){
-          $params = $urlData[ConfigApp::$PARAMS];
-          $action = explode('#',ConfigApp::$ACTIONS[$action]);
-          $controller =  new $action[0]();
-          $metodo = $action[1];
-          if(isset($params) &&  $params != null){
-            echo $controller->$metodo($params);
-          }
-          else{
-              echo $controller->$metodo();
-          }
+        $params     = $urlData[ConfigApp::$PARAMS];
+        $action     = explode('#',ConfigApp::$ACTIONS[$action]);
+        $controller =  new $action[0]();
+        $metodo     = $action[1];
+        if(isset($params) &&  $params != null){
+          echo $controller->$metodo($params);
+        }
+        else{
+          echo $controller->$metodo();
+        }
       }
       else{
         $controller =  new GotController();

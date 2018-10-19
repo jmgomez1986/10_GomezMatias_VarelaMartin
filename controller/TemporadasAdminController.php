@@ -11,7 +11,6 @@
 
 		function __construct(){
 				parent::__construct();
-
 				$this->view        = new TemporadasView("Game of Thrones", "temporadasAdmin", "./js/scriptAdmin.js", "oculto", "visible");
 				$this->model       = new TemporadasModel();
 		}

@@ -3,27 +3,31 @@
 	class SecuredController{
 
 		function __construct(){
+			
 			session_start();
+
 			if ( isset($_SESSION['usuario']) ){
 
-				if (  isset($_SESSION['LAST_ACTIVITY'])  && ( time() - $_SESSION['LAST_ACTIVITY'] > 10 ) ){
+				if ( isset($_SESSION['LAST_ACTIVITY'])  && ( time() - $_SESSION['LAST_ACTIVITY'] > 10 ) ){
 					$this->logout();
-					header(LOGIN);
+					header(LOGIN . "/timeout");
 					exit();
-				}else{
-						$_SESSION['LAST_ACTIVITY'] = time(); // actualiza el último instante de actividad
+				}
+				else{
+					$_SESSION['LAST_ACTIVITY'] = time(); // Actualiza el último instante de actividad
 				}
 			}
 			else{
-				header(LOGIN);
+				header(LOGIN . "/userFail");
 				exit();
 			}
 		}
 
 	  function logout(){
-				session_start();
+			session_start();
 	    session_destroy();
 		}
+
 	} //END CLASS
 
 ?>

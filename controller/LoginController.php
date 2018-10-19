@@ -7,14 +7,29 @@
 		private $view;
 		private $model;
 		private $titulo;
+		private $message;
 
 		function __construct(){
-		 	$this->view   = new LoginView("Login", "temporadas", "", "oculto", "oculto");
+
+			$this->view   = new LoginView("Login", "temporadas", "", "oculto", "oculto");
 		 	$this->model  = new UsuarioModel();
+
 		}
 
-		function login(){
-			$this->view->login();
+		function login($params){
+
+			if ( isset($params[0]) ){
+
+				if ( $params[0] == 'timeout' ){
+ 					$this->message = 'Sesion expirada';
+ 				}
+				elseif ( $params[0] == 'userFail' ){
+					$this->message = 'Sesion no iniciada';
+				}
+			}
+
+			$this->view->login($this->message);
+
 		}
 
 		function logout(){
@@ -47,5 +62,7 @@
 		 		$this->view->login("No existe el usuario");
 		 	}
 		}
+
 	} //END CLASS
+	
 ?>

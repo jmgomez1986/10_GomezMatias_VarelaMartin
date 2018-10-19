@@ -45,7 +45,7 @@
             </div>
           </div>
         </div>
-        <form method="post" action="login" class="px-2">
+        <form method="post" action="login/" class="px-2">
           <div class="form-group">
             <button class="{$claseLogin} js-login btn btn-success btn-xs" type="submit">Login</button>
           </div>
