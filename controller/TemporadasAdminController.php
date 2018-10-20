@@ -11,13 +11,13 @@
 
 		function __construct(){
 				parent::__construct();
-				$this->view        = new TemporadasView("Game of Thrones", "temporadasAdmin", "./js/scriptAdmin.js", "oculto", "visible");
+				$this->view        = new TemporadasView("Game of Thrones", "temporadasAdmin", "./js/scriptAdmin.js", "oculto", "visible", true);
 				$this->model       = new TemporadasModel();
 		}
 
 		function TemporadasAdmin(){
 
-	    $temporadasID = $this->model->getTemporadasID();
+	    $temporadasID = $this->model->getTemporadasID(); //Devuelve los Id's de las temporadas para el listado del primer dropdown
 	    $temporadas   = $this->model->getTemporadas();
 	    $episodios    = $this->model->getAllEpisodios();
 	    $this->view->AdminTools($temporadas, $temporadasID, $episodios);

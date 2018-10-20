@@ -7,15 +7,19 @@
   class GotController{
     private $model;
     private $view;
+    private $login;
     private $link;
     private $script;
     private $claseLogin;
     private $claseLogout;
 
     function __construct(){
-      $this->model  = new GotModel();
 
-      if (LoginController::isLogueado()){
+      $this->model  = new GotModel();
+      $this->model->CreateDB();
+      $this->login  = new LoginController();
+
+      if ($this->login->isLogueado()){
         $this->claseLogin  = "oculto";
         $this->claseLogout = "visible";
         $this->link        = "temporadasAdmin";
@@ -33,7 +37,6 @@
     }
 
     function Home(){
-      $this->model->CreateDB();
       $this->view->Home();
     }
 
@@ -45,7 +48,7 @@
       $script = "./js/script.js";
       $this->view->Map($script);
     }
-    
+
   } //END CLASS
 
  ?>

@@ -138,8 +138,8 @@ function loadPage() {
       if (respuesta == true) {
         let url       = 'eliminarE/' + temporadaID + "/" + episodioID + "/";
         let formAdmin = document.querySelector(".formAdminE").action = url;
-        alert("Episodio Eliminado!!!");
-      }else {
+      }
+      else {
         let url       = "temporadasAdmin/";
         let formAdmin = document.querySelector(".formAdminE").action = url;
         alert("Accion cancelada");

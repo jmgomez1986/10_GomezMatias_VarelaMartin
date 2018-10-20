@@ -4,10 +4,10 @@
   require_once "./view/CasasView.php";
   require_once "LoginController.php";
 
-  class CasasController
-  {
+  class CasasController{
     private $model;
     private $view;
+    private $login;
     private $link;
     private $script;
     private $claseLogin;
@@ -15,9 +15,10 @@
 
     function __construct(){
 
+      $this->login  = new LoginController();
       $this->model  = new CasasModel();
 
-      if (LoginController::isLogueado()){
+      if ($this->login->isLogueado()){
         $this->claseLogin  = "oculto";
         $this->claseLogout = "visible";
         $this->link        = "temporadasAdmin";

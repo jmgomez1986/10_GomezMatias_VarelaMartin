@@ -8,6 +8,7 @@
 
     private $view;
     private $model;
+    private $login;
     private $link;
     private $script;
     private $claseLogin;
@@ -15,9 +16,10 @@
 
     function __construct(){
 
+      $this->login  = new LoginController();
       $this->model  = new TemporadasModel();
 
-      if (LoginController::isLogueado()){
+      if ($this->login->isLogueado()){
         $this->claseLogin  = "oculto";
         $this->claseLogout = "visible";
         $this->link        = "temporadasAdmin";
@@ -30,7 +32,7 @@
         $this->script      = "";
       }
 
-      $this->view   = new TemporadasView("Game of Thrones", $this->link, $this->script, $this->claseLogin, $this->claseLogout);
+      $this->view   = new TemporadasView("Game of Thrones", $this->link, $this->script, $this->claseLogin, $this->claseLogout, false);
 
     }
 
