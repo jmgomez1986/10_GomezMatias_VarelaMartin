@@ -63,6 +63,10 @@
 		 	}
 		}
 
+		function Registro(){
+			$this->view->Registro();
+		}
+
 	} //END CLASS
-	
+
 ?>

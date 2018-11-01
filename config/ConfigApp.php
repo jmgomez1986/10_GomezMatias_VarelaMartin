@@ -31,7 +31,8 @@
                                     'eliminarT'       => 'TemporadasAdminController#EliminarTemporada',
                                     'login'           => 'LoginController#login',
                                     'logout'          => 'LoginController#logout',
-                                    'verificarLogin'  => 'LoginController#verifyLogin'
+                                    'verificarLogin'  => 'LoginController#verifyLogin',
+                                    'registro'        => 'LoginController#Registro'
                                 ];
         }
 

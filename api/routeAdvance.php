@@ -1,11 +1,7 @@
 <?php
 
   require_once "config/ConfigApi.php";
-  //require_once "controller/GotController.php";
   require_once "controller/TemporadasApiController.php";
-  //require_once "controller/TemporadasAdminController.php";
-  //require_once "controller/LoginController.php";
-  //require_once "controller/CasasController.php";
 
   function parseURL($url){
     $urlExploded = explode('/', $url);
