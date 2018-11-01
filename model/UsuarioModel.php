@@ -20,10 +20,10 @@
 		}
 
 		function getUser($user){
-	      $sentencia = $this->db->prepare( "select * from user_admin where user_name=?");
+	      $sentencia = $this->db->prepare( "select * from user_info where user_name=?");
 	      $sentencia->execute(array($user));
 	      return $sentencia->fetchAll(PDO::FETCH_ASSOC);
 	  }
 	} //END CLASS
-	
+
 ?>
