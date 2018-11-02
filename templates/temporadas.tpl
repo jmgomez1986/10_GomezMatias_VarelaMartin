@@ -37,6 +37,8 @@
 
     {if $logueado}
       {include file="adminToolsE.tpl"}
+    {else}
+       {include file="filtroCategoria.tpl"}
     {/if}
 
     {include file="episodios.tpl"}

@@ -29,7 +29,7 @@
         $this->claseLogin  = "visible";
         $this->claseLogout = "oculto";
         $this->link        = "temporadas";
-        $this->script      = "";
+        $this->script      = "js/scriptFilter.js";
       }
 
       $this->view   = new TemporadasView("Game of Thrones", $this->link, $this->script, $this->claseLogin, $this->claseLogout, false);
