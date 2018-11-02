@@ -2,7 +2,7 @@
 
   require_once('libs/Smarty.class.php');
 
-  class LoginView{
+  class RegistroView{
 
     private $Smarty;
 
@@ -15,10 +15,9 @@
       $this->Smarty->assign('claseLogout', $claseLogout);
     }
 
-    function login($message = ''){
-      $this->Smarty->assign('Message', $message);
-
-      $this->Smarty->display('templates/login.tpl');
+    function Registro($message=''){
+      $this->Smarty->assign('message', $message);
+      $this->Smarty->display('templates/registro.tpl');
     }
 
   }  //END CLASS
