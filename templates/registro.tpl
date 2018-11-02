@@ -17,7 +17,7 @@
         </div>
         <div class="form-group">
           <span class="fa fa-repeat"></span>
-          <input type="password" name="pass-Confirma" id="password-confirm" placeholder="Confirmar Contraseña" required>
+          <input type="password" name="pass_Confirm" id="pass_confirm" placeholder="Confirmar Contraseña" required>
         </div>
         <input type="submit" value="Registrarse">
       </form>

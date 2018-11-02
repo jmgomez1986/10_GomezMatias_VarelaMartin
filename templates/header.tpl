@@ -56,6 +56,11 @@
             <button class="{$claseLogout} js-logout btn btn-success btn-xs" type="submit">Logout</button>
           </div>
         </form>
+        <form class="px-2" action="registro" method="post">
+          <div class="form-group">
+            <button class="{$claseReg} js-registrar btn btn-success btn-xs" type="submit">Registrarse</button>
+          </div>
+        </form>
       </nav>
     </header>
 
