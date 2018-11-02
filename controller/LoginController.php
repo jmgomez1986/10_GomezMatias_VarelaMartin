@@ -10,10 +10,8 @@
 		private $message;
 
 		function __construct(){
-
 			$this->view   = new LoginView("Login", "temporadas", "", "oculto", "oculto");
 		 	$this->model  = new UsuarioModel();
-
 		}
 
 		function login($params){
@@ -61,10 +59,6 @@
 		 	else{
 		 		$this->view->login("No existe el usuario");
 		 	}
-		}
-
-		function Registro(){
-			$this->view->Registro();
 		}
 
 	} //END CLASS

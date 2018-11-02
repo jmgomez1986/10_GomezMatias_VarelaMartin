@@ -15,7 +15,8 @@
       $this->Smarty->assign('claseLogout', $claseLogout);
     }
 
-    function Registro(){
+    function Registro($message=''){
+      $this->Smarty->assign('message', $message);
       $this->Smarty->display('templates/registro.tpl');
     }
 

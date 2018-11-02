@@ -10,10 +10,8 @@
 		private $message;
 
 		function __construct(){
-
 			$this->view   = new RegistroView("Login", "temporadas", "", "oculto", "oculto");
 		 	$this->model  = new UsuarioModel();
-
 		}
 
 		function Registro(){
@@ -22,14 +20,41 @@
 
     function Registrar(){
       $user           = $_POST["user"];
-      $user           = $_POST["mail"];
+      $mail           = $_POST["email"];
 		 	$pass           = $_POST["pass"];
       $pass_confirm   = $_POST["pass_confirm"];
 
 		 	$dbUser = $this->model->getUser($user);
 
-      header(TEMPO);
+			if (isset($dbUser)){
+				$this->message = "El usuario ya se encuentra registrado";
+				$this->view->Registro($this->message);
+			}
+			else{
+				if ( $pass == $pass_confirm ){
 
+					$passEncrypt = password_hash($pass, PASSWORD_DEFAULT);
+					$user_rol = $dbUser[0]['user_rol'];
+
+					$dbUserRegistrado = $this->model->insertUser($user, $mail, $passEncrypt, $user_rol);
+
+					if (isset($dbUserRegistrado)){
+						session_start();
+						$_SESSION['usuario'] = $user;
+						$_SESSION['rol']     = $user_rol;
+						header(TEMPADMIN);
+					}
+					else{
+						$this->message = "Error interno al realizar el registro, intente nuevamente";
+						$this->view->Registro($this->message);
+					}
+				}
+				else{
+					$this->message = "Las contraseñas no coinciden";
+					$this->view->Registro($this->message);
+				}
+
+			}
 		}
 
 	} //END CLASS

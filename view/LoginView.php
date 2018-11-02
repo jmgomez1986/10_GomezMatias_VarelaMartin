@@ -21,9 +21,6 @@
       $this->Smarty->display('templates/login.tpl');
     }
 
-    function Registro(){
-      $this->Smarty->display('templates/registro.tpl');
-    }
   }  //END CLASS
 
 ?>
