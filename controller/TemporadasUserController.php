@@ -20,7 +20,7 @@
 					$this->script = "./js/scriptAdmin.js";
 				}
 				elseif ( $this->rol == "Limitado" ){
-					$this->script = "./js/scriptFiter.js";
+					$this->script = "./js/scriptFilter.js";
 				}
 
 				$this->view        = new TemporadasView("Game of Thrones", "temporadasUser", $this->script, "oculto", "visible", "oculto", true, $this->rol);
