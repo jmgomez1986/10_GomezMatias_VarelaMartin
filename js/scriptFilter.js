@@ -1,4 +1,5 @@
-"use strict"
+"use strict";
+
 document.addEventListener("DOMContentLoaded", loadPage);
 
 function showElement(objectDom){

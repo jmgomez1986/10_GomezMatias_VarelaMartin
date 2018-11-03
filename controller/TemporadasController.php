@@ -13,26 +13,35 @@
     private $script;
     private $claseLogin;
     private $claseLogout;
+    private $claseReg;
+    private $rol;
 
     function __construct(){
 
       $this->login  = new LoginController();
       $this->model  = new TemporadasModel();
-
-      if ($this->login->isLogueado()){
+      $arrayReg = $this->login->isLogueado();
+      if ( !empty($arraReg) ){
         $this->claseLogin  = "oculto";
         $this->claseLogout = "visible";
-        $this->link        = "temporadasAdmin";
+        $this->claseReg    = "oculto";
+        $this->link        = "temporadasUser";
         $this->script      = "";
+        $this->rol         = $arrayReg['rol'];
+        if ( $this->rol == 'Limitado'){
+          $this->script      = "js/scriptFilter.js";
+        }
       }
       else{
         $this->claseLogin  = "visible";
         $this->claseLogout = "oculto";
+        $this->claseReg    = "visible";
         $this->link        = "temporadas";
-        $this->script      = "js/scriptFilter.js";
+        $this->script      = "";
+        $this->rol         = "";
       }
 
-      $this->view   = new TemporadasView("Game of Thrones", $this->link, $this->script, $this->claseLogin, $this->claseLogout, false);
+      $this->view   = new TemporadasView("Game of Thrones", $this->link, $this->script, $this->claseLogin, $this->claseLogout, $this->claseReg, false, $this->rol);
 
     }
 

@@ -10,7 +10,7 @@
 		private $message;
 
 		function __construct(){
-			$this->view   = new LoginView("Login", "temporadas", "", "oculto", "oculto");
+			$this->view   = new LoginView("Login", "temporadas", "", "oculto", "oculto", "visible");
 		 	$this->model  = new UsuarioModel();
 		}
 
@@ -38,7 +38,14 @@
 
 		function isLogueado(){
 			session_start();
-		 	return isset($_SESSION['usuario']);
+			$register = array();
+			if ( isset($_SESSION['usuario']) ){
+				$register = [ 'logueado' => true,
+			                'rol'      => $_SESSION['rol']
+							    	];
+			}
+
+		 	return $register;
 		}
 
 		function verifyLogin(){
@@ -50,7 +57,8 @@
 		 		if(password_verify($pass,$dbUser[0]["user_password"])){
 		 			session_start();
 	        $_SESSION['usuario'] = $user;
-		 		 	header(TEMPADMIN);
+					$_SESSION['rol']     = $dbUser[0]['user_rol'];
+		 		 	header(TEMPUSER);
 		 		}
 		 		else{
 		 			$this->view->login("Contraseña incorrecta");
