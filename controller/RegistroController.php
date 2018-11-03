@@ -26,7 +26,7 @@
 
 		 	$dbUser = $this->model->getUser($user);
 
-			if (isset($dbUser)){
+			if (!empty($dbUser)){
 				$this->message = "El usuario ya se encuentra registrado";
 				$this->view->Registro($this->message);
 			}
@@ -34,15 +34,16 @@
 				if ( $pass == $pass_confirm ){
 
 					$passEncrypt = password_hash($pass, PASSWORD_DEFAULT);
-					$user_rol = $dbUser[0]['user_rol'];
+					var_dump($dbUser);
+					$user_rol = 'Limitado';
 
-					$dbUserRegistrado = $this->model->insertUser($user, $mail, $passEncrypt, $user_rol);
+					$dbUserRegistrado = $this->model->insertUser($user, $passEncrypt, $mail, $user_rol);
 
 					if (isset($dbUserRegistrado)){
 						session_start();
 						$_SESSION['usuario'] = $user;
 						$_SESSION['rol']     = $user_rol;
-						header(TEMPADMIN);
+						header(TEMPO);
 					}
 					else{
 						$this->message = "Error interno al realizar el registro, intente nuevamente";

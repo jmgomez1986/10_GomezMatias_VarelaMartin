@@ -31,15 +31,15 @@
 	      return $sentencia->fetchAll(PDO::FETCH_ASSOC);
 	  }
 
-		function insertUser($user_name, $user_mail, $user_password, $user_rol){
+		function insertUser($user_name, $user_password, $user_mail, $user_rol){
 			$sentencia = $this->db->prepare("INSERT INTO user_info (user_name, user_password, user_email, user_rol)
 																					VALUES (?,?,?,?)");
-			$sentencia->execute(array($user_name, $user_mail, $user_password, $user_rol));
+			$sentencia->execute(array($user_name, $user_password, $user_mail, $user_rol));
 
-			$last_id = $sentencia->lastInsertId();
+			$last_id = $this->db->lastInsertId();
 
 			$regInsert = $this->getUserID($last_id);
-			
+
 			return $regInsert;
 		}
 

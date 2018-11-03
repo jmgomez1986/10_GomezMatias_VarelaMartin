@@ -16,7 +16,7 @@
     }
 
     function Registro($message=''){
-      $this->Smarty->assign('message', $message);
+      $this->Smarty->assign('Message', $message);
       $this->Smarty->display('templates/registro.tpl');
     }
 
