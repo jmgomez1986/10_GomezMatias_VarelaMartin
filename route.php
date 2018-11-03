@@ -6,6 +6,7 @@
   require_once "controller/TemporadasUserController.php";
   require_once "controller/CasasController.php";
   require_once "controller/RegistroController.php";
+  require_once "controller/ComentariosController.php";
 
   function parseURL($url){
     $urlExploded = explode('/', $url);
