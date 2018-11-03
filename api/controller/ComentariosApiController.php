@@ -2,8 +2,10 @@
  require_once "Api.php";
  require_once "./../model/ComentariosModel.php";
 
- class TemporadasApiController extends Api{
+ class ComentariosApiController extends Api{
+
    private $model;
+
    function __construct(){
      parent::__construct();
      $this->model = new TemporadasModel();
@@ -13,7 +15,7 @@
      if ( !empty($param) ){
        $id_season  = $param[':ID1'];
        $id_episode = $param[':ID2'];
-       $data = $this->model->getEComentario($id_season, $id_episode);
+       $data = $this->model->getComentario($id_season, $id_episode);
      }
      else{
        $data = $this->model->getComentarios();

@@ -46,7 +46,7 @@
 																									id_user      int(11)      NOT NULL,
 																									comment      varchar(256) DEFAULT NULL,
 																									score        int(1)       DEFAULT NULL,
-																									PRIMARY KEY (id_comment, id_season,id_episode,id_user),
+																									PRIMARY KEY (id_comment),
 																									FOREIGN KEY (id_season,id_episode) REFERENCES episode (id_season,id_episode)
 																									ON DELETE CASCADE ON UPDATE CASCADE,
 																									FOREIGN KEY (id_user) REFERENCES user_info (id_user)
