@@ -17,7 +17,7 @@
 			$this->host          = "localhost";
 			$this->root          = "root";
 			$this->root_password = "";
-			$this->tableNames    = ['season', 'episode', 'user_admin'];
+			$this->tableNames    = ['season', 'episode', 'user_admin', 'comments'];
 			$this->db            = "gameofthrones_db";
 			$this->columns 			 = [  'season'     => "id_season    int(11) NOT NULL    AUTO_INCREMENT,
 																								cant_episodes int(11) DEFAULT NULL,
@@ -37,7 +37,18 @@
 																								user_name     varchar(15)  DEFAULT NULL,
 																								user_password varchar(256) DEFAULT NULL,
 																								user_email    varchar(20)  DEFAULT NULL,
-																								PRIMARY KEY(id_user)"
+																								PRIMARY KEY(id_user)",
+
+																'comments' => "id_season    int(11)     NOT NULL,
+																							 id_episode   int(11)     NOT NULL,
+																							 id_user      int(11)      NOT NULL,
+																							 comment      varchar(256) DEFAULT NULL,
+																							 score        int(1)      DEFAULT NULL,
+																							 PRIMARY KEY (id_season,id_episode,id_user),
+																							 FOREIGN KEY (id_season,id_episode) REFERENCES episode (id_season,id_episode)
+																							 ON DELETE CASCADE ON UPDATE CASCADE,
+																							 FOREIGN KEY (id_user) REFERENCES user_admin (id_user)
+																							 ON DELETE CASCADE ON UPDATE CASCADE"
 															];
 	}
 
