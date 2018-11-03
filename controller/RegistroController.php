@@ -10,7 +10,7 @@
 		private $message;
 
 		function __construct(){
-			$this->view   = new RegistroView("Login", "temporadas", "", "oculto", "oculto");
+			$this->view   = new RegistroView("Registro", "temporadas", "", "oculto", "oculto", "oculto");
 		 	$this->model  = new UsuarioModel();
 		}
 
@@ -43,7 +43,7 @@
 						session_start();
 						$_SESSION['usuario'] = $user;
 						$_SESSION['rol']     = $user_rol;
-						header(TEMPO);
+						header(TEMPUSER);
 					}
 					else{
 						$this->message = "Error interno al realizar el registro, intente nuevamente";
