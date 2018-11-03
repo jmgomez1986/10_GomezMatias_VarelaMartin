@@ -20,7 +20,8 @@
       $this->model->CreateDB();
       $this->login  = new LoginController();
 
-      if ( !empty($this->login->isLogueado()) ){
+      $arrayReg = $this->login->isLogueado();
+      if ( (!empty($arrayReg)) && $arrayReg['logueado'] ){
         $this->claseLogin  = "oculto";
         $this->claseLogout = "visible";
         $this->claseReg    = "oculto";

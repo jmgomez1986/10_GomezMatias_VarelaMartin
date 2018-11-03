@@ -12,27 +12,36 @@
     private $claseLogin;
     private $claseLogout;
     private $claseReg;
+    private $logueado;
+    private $rol;
 
     function __construct(){
 
       $this->login  = new LoginController();
 
-      if ( !empty($this->login->isLogueado()) ){
+      $arrayReg = $this->login->isLogueado();
+      if (  (!empty($arrayReg)) && $arrayReg['logueado'] ){
         $this->claseLogin  = "oculto";
         $this->claseLogout = "visible";
         $this->claseReg    = "oculto";
         $this->link        = "temporadasUser";
-        $this->script      = "";
+        $this->logueado    = true;
       }
       else{
         $this->claseLogin  = "visible";
         $this->claseLogout = "oculto";
         $this->claseReg    = "visible";
         $this->link        = "temporadas";
-        $this->script      = "";
+        $this->logueado    = false;
       }
 
-      $this->view   = new ComentariosView("Game of Thrones", $this->link, $this->script, $this->claseLogin, $this->claseLogout, $this->claseReg );
+      if (!empty($arrayReg)){
+        $this->rol = $arrayReg['rol'];
+      }
+
+      $this->script      = "js/main.js";
+
+      $this->view   = new ComentariosView("Game of Thrones", $this->link, $this->script, $this->claseLogin, $this->claseLogout, $this->claseReg, $this->logueado, $this->rol);
 
     }
 

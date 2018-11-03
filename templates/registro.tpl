@@ -1,6 +1,6 @@
 {include file="header.tpl"}
 
-  <div class="container-fluid mt-8">
+  <div class="container-fluid mt-5">
     <div id="login">
       <div class="">
         <p class="errorForm">{$Message}</p>

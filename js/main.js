@@ -12,12 +12,14 @@ fetch('js/templates/comentarios.handlebars')
 
 function getComentarios() {
     let obj = document.querySelector('.contenedor_comentarios');
-    console.log(obj.dataset);
-    /*fetch("api/comentarios/temporada/:ID1/episodio/:ID2")
+    let idTemp = obj.dataset.temp;
+    let idEpis = obj.dataset.epis;
+    let route = "api/comentarios/temporada/" +  idTemp + "/episodio/" + idEpis;
+    fetch(route)
     .then(response => response.json())
     .then(jsonComentarios => {
         mostrarComentarios(jsonComentarios);
-    })*/
+    })
 }
 
 function mostrarComentarios(jsonComentarios) {

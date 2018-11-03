@@ -33,7 +33,7 @@
 
 		function getComentario($temporada, $episodio){
 
-			$sentencia = $this->db->prepare("SELECT * FROM comment WHERE id_season = ? AND
+			$sentencia = $this->db->prepare("SELECT comment.*, user_info.user_name FROM comment, user_info WHERE comment.id_user = user_info.id_user AND id_season = ? AND
 				                                                     			 id_episode = ?");
 			$sentencia->execute( array($temporada, $episodio) );
 			$comentarios = $sentencia->fetchAll(PDO::FETCH_ASSOC);
