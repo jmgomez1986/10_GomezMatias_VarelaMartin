@@ -5,9 +5,9 @@
    protected $data;
 
    function __construct(){
-     $this->data = file_get_contents("php://input");
+     $this->data = file_get_contents("php://input");//agarra el body en RAW
    }
-   
+
    public function json_response($data, $status){
      header("Content-Type: application/json");
      header("HTTP/1.1 " . $status . " " . $this->_requestStatus($status));
@@ -22,5 +22,10 @@
      );
      return ($status[$code])? $status[$code] : $status[500];
    }
+
+   function getJSONData(){
+    return json_decode($this->data);
+  }
+
  }
 ?>

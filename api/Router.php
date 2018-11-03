@@ -1,7 +1,7 @@
 <?php
 
 class Route {
-  
+
     private $url;
     private $verb;
     private $controller;

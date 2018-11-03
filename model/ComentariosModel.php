@@ -16,9 +16,14 @@
 			return new PDO('mysql:host=localhost;'.'dbname=gameofthrones_db;charset=utf8', 'root', '');
 		}
 
-		function getComentarios($id){
-			if(!empty($id)){ $condicion = "$id_comment = $id"; }
-			else { $condicion = 1; }
+		function getComentarios($id = 0){
+
+			if(!empty($id)){
+				$condicion = "id_comment = $id";
+			}
+			else {
+				$condicion = 1;
+			}
 			$sentencia = $this->db->prepare("SELECT * FROM comment WHERE $condicion");
 			$sentencia->execute();
 			$comentarios = $sentencia->fetchAll(PDO::FETCH_ASSOC);
@@ -39,10 +44,10 @@
 		function delComentario($id){
 			try{
 				$comment = $this->GetComentarios($id);
-				if(isset($comment)){
+				if(!empty($comment)){
 					$sentencia = $this->db->prepare("DELETE FROM `comment`
 									                         	WHERE `id_comment` = ?");
-		    	$sentencia->execute(array($id));
+		    	$sentencia->execute(array($comment[0]['id_comment']));
 					return $comment;
 				}
 	    }
@@ -51,11 +56,13 @@
 			}
 		}
 
-		function saveComentario($idCom,$idSes,$idEp,$idU,$com,$score){
+		function saveComentario($idSes,$idEp,$idU,$com,$score){
 			try{
-				$sentencia = $this->db->prepare("INSERT INTO comment (id_comment, id_season, id_episode, id_user,comment,score)
-																						VALUES (?,?,?,?,?,?)");
-				$sentencia->execute( array($idCom, $idSes, $idEp, $idU, $com, $score) );
+				$sentencia = $this->db->prepare("INSERT INTO comment ( id_season, id_episode, id_user,comment,score)
+																						VALUES (?,?,?,?,?)");
+				$sentencia->execute( array($idSes, $idEp, $idU, $com, $score) );
+				$lastId =  $this->db->lastInsertId();
+				return $this->getComentarios($lastId);
 			}
 			catch(PDOException $exception){
 				 return $exception->getMessage();
