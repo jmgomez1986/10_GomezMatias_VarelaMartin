@@ -10,7 +10,7 @@
       {/if}
     {/if}
 
-    <div class="contenidoTemporadasEpisodios" name="top">
+    <div class="contenidoTemporadasEpisodios">
        <table class="tablaTemporadas">
          <thead>
            <tr>
