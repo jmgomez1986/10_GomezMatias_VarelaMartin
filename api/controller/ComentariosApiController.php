@@ -29,6 +29,13 @@
      }
    }
 
+   function delComentario($param = []){
+     if ( !empty($param) ){
+       $id_comment = $param[':ID'];
+       $response = $this->model->delComentario($id_comment);
+     }
+   }
+
  }
 
 ?>
