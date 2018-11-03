@@ -1,13 +1,17 @@
 <?php
+
  class Api {
+
+   protected $data;
+
    function __construct(){
-
+     $this->data = file_get_contents("php://input");
    }
-
+   
    public function json_response($data, $status){
      header("Content-Type: application/json");
      header("HTTP/1.1 " . $status . " " . $this->_requestStatus($status));
-     return json_encode($data);
+     echo json_encode($data);
    }
 
    private function _requestStatus($code){

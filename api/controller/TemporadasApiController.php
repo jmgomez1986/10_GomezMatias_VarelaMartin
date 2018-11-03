@@ -9,15 +9,16 @@
      $this->model = new TemporadasModel();
    }
 
-   function getTemporadas($param = null){
-     if(isset($param)){
-       $id_season = $param[0];
+   function getTemporadas($param = []){
+     if ( !empty($param) ){
+       $id_season = $param[':ID'];
        $data = $this->model->getTemporada($id_season);
      }
      else{
        $data = $this->model->getTemporadas();
      }
-     if(isset($data)){
+
+     if ( !empty($data) ){
        return $this->json_response($data, 200);
      }
      else {
@@ -25,6 +26,25 @@
      }
    }
 
+   function getEpisodio($param = []){
+     if ( !empty($param) ){
+       // var_dump($param);
+       $id_season  = $param[':ID1'];
+       $id_episode = $param[':ID2'];
+       $data = $this->model->getEpisodio($id_season, $id_episode);
+     }
+     else{
+       $data = $this->model->getAllEpisodios();
+     }
+
+     if ( !empty($data) ){
+       return $this->json_response($data, 200);
+     }
+     else {
+       return $this->json_response(null, 404);
+     }
+   }
 
  }
+
 ?>

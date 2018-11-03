@@ -17,28 +17,40 @@
 			$this->host          = "localhost";
 			$this->root          = "root";
 			$this->root_password = "";
-			$this->tableNames    = ['season', 'episode', 'user_info'];
+			$this->tableNames    = ['season', 'episode', 'user_info', 'comment'];
 			$this->db            = "gameofthrones_db";
-			$this->columns 			 = [  'season'     => "id_season    int(11) NOT NULL    AUTO_INCREMENT,
-																								cant_episodes int(11) DEFAULT NULL,
-																								season_begin  date    DEFAULT NULL,
-																								season_end    date    DEFAULT NULL,
-																								PRIMARY KEY(id_season)",
+			$this->columns 			 = [  'season'     => "id_season     int(11) NOT NULL AUTO_INCREMENT,
+																								 cant_episodes int(11) DEFAULT NULL,
+																								 season_begin  date    DEFAULT NULL,
+																								 season_end    date    DEFAULT NULL,
+																								 PRIMARY KEY(id_season)",
 
-																'episode'    => "id_season    int(11)     NOT NULL,
-																								id_episode    int(11)     NOT NULL,
-																								episode_title varchar(50) DEFAULT NULL,
-																								episode_desc  text,
-																								PRIMARY KEY (id_season,id_episode),
-																								FOREIGN KEY (id_season) REFERENCES season (id_season)
-																								ON DELETE CASCADE ON UPDATE CASCADE",
+																'episode'    => "id_season     int(11)     NOT NULL,
+																			    			 id_episode    int(11)     NOT NULL,
+																			    			 episode_title varchar(50) DEFAULT NULL,
+																			    			 episode_desc  text,
+																			    			 PRIMARY KEY (id_season,id_episode),
+																			    			 FOREIGN KEY (id_season) REFERENCES season (id_season)
+																			    			 ON DELETE CASCADE ON UPDATE CASCADE",
 
-															'user_info'   => "id_user       int(11)      NOT NULL,
-																							  user_name     varchar(15)  DEFAULT NULL,
-																							  user_password varchar(256) DEFAULT NULL,
-																							  user_email    varchar(20)  DEFAULT NULL,
-																							  user_rol      varchar(30)  DEFAULT NULL,
-																							  PRIMARY KEY(id_user)"
+																'user_info'   => "id_user       int(11)      NOT NULL,
+																								  user_name     varchar(15)  DEFAULT NULL,
+																								  user_password varchar(256) DEFAULT NULL,
+																								  user_email    varchar(20)  DEFAULT NULL,
+																								  user_rol      varchar(30)  DEFAULT NULL,
+																								  PRIMARY KEY(id_user)",
+
+																'comment'     => "id_comment   int(11)      NOT NULL AUTO_INCREMENT,
+																                  id_season    int(11)      NOT NULL,
+																									id_episode   int(11)      NOT NULL,
+																									id_user      int(11)      NOT NULL,
+																									comment      varchar(256) DEFAULT NULL,
+																									score        int(1)       DEFAULT NULL,
+																									PRIMARY KEY (id_comment, id_season,id_episode,id_user),
+																									FOREIGN KEY (id_season,id_episode) REFERENCES episode (id_season,id_episode)
+																									ON DELETE CASCADE ON UPDATE CASCADE,
+																									FOREIGN KEY (id_user) REFERENCES user_info (id_user)
+																									ON DELETE CASCADE ON UPDATE CASCADE"
 															];
 	}
 
@@ -106,7 +118,7 @@
 								(4, 10, '2014-04-06', '2014-06-15'),
 								(5, 10, '2015-04-12', '2015-06-14'),
 								(6, 10, '2016-04-24', '2016-06-26'),
-								(7, 7, '2017-07-16', '2017-08-27')" );
+								(7, 7,  '2017-07-16', '2017-08-27')" );
 				$sentencia->execute( );
 
 			}
@@ -118,7 +130,7 @@
 
 		function InsertEpisode($db, $tabNam){
 
-			$episodios = "(1, 1, 'Se acerca el invierno', 'El rey Robert Baratheon de Poniente viaja al Norte para ofrecerle a su viejo amigo Eddard \"Ned\" Stark, Guardián del Norte y Señor de Invernalia, el puesto de Mano del Rey. La esposa de Ned, Catelyn, recibe una carta de su hermana Lysa que implica a miembros de la familia Lannister, la familia de la reina Cersei, en el asesinato de su marido Jon Arryn, la anterior Mano del Rey. Bran, uno de los hijos de Ned y Catelyn, escala un muro y descubre 	a la reina Cersei y a su hermano Jaime teniendo relaciones sexuales, Jaime empuja al pequeño Bran esperando que la caída lo mate y así evitar ser delatado por el niño. Mientras tanto, al otro lado del mar Angosto, el príncipe exiliado Viserys Targaryen forja una alianza para recuperar el Trono de Hierro: dará a su hermana Daenerys en matrimonio al salvaje dothraki Khal Drogo a cambio de su ejército. El caballero exiliado Jorah Mormont se unirá a ellos para proteger a Daenerys.'),
+			$episodios = "(1, 1, 'Se acerca el invierno', 'El rey Robert Baratheon de Poniente viaja al Norte para ofrecerle a su viejo amigo Eddard \"Ned\" Stark, Guardián del Norte y Señor de Invernalia, el puesto de Mano del Rey. La esposa de Ned, Catelyn, recibe una carta de su hermana Lysa que implica a miembros de la familia Lannister, la familia de la reina Cersei, en el asesinato de su marido Jon Arryn, la anterior Mano del Rey. Bran, uno de los hijos de Ned y Catelyn, escala un muro y descubre a la reina Cersei y a su hermano Jaime teniendo relaciones sexuales, Jaime empuja al pequeño Bran esperando que la caída lo mate y así evitar ser delatado por el niño. Mientras tanto, al otro lado del mar Angosto, el príncipe exiliado Viserys Targaryen forja una alianza para recuperar el Trono de Hierro: dará a su hermana Daenerys en matrimonio al salvaje dothraki Khal Drogo a cambio de su ejército. El caballero exiliado Jorah Mormont se unirá a ellos para proteger a Daenerys.'),
 			(1, 2, 'El camino real', 'Tras aceptar su nuevo rol como Mano del Rey, Ned parte hacia Desembarco del Rey con sus hijas Sansa y Arya, mientras que el hijo mayor, Robb, se queda al frente de los asuntos de su padre en la ciudad. Jon Nieve, el hijo bastardo de Ned, se dirige al Muro para unirse a la Guardia de la Noche. Tyrion Lannister, el hermano menor de la Reina, decide no ir con el resto de la familia real al sur y acompaña a Jon en su viaje al Muro. Viserys sigue esperando su momento de ganar el Trono de Hierro y Daenerys centra su atención en aprender cómo gustarle a su nuevo esposo, Drogo.'),
 			(1, 3, 'Lord Snow', 'Ned se une al Consejo Privado del Rey en Desembarco del Rey, la capital de los Siete Reinos, y descubre la mala administración que sufre Poniente. Catelyn decide ir de incógnito al sur para alertar a su esposo de los Lannister. Arya inicia su entrenamiento con la espada. Bran despierta tras su caída y no recuerda nada. Jon se entrena para adaptarse a su nueva vida en el Muro. Daenerys comienza a asumir su rol como khaleesi de Drogo y se enfrenta a Viserys.'),
 			(1, 4, 'Tullidos, bastardos y cosas rotas', 'Ned busca pistas para tratar de explicar la muerte de Jon Arryn. Robert celebra un torneo en honor a Ned. Jon toma medidas para proteger a Samwell Tarly, otro recluta de la Guardia de la Noche, de los abusos del resto de sus compañeros. Viserys, frustrado, se enfrenta a su hermana. Sansa sueña con una vida como reina de Joffrey Baratheon, el heredero al trono. Catelyn, de camino a Invernalia, acude a los aliados de su padre para apresar a Tyrion al creerle culpable del intento de asesinato de Bran.'),

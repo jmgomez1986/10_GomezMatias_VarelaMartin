@@ -3,8 +3,7 @@
 /**
  *
  */
-	class TemporadasModel
-	{
+	class TemporadasModel{
 
 		private $db;
 

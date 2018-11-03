@@ -1,11 +1,13 @@
 <?php
 
 class Route {
+  
     private $url;
     private $verb;
     private $controller;
     private $method;
     private $params;
+
     public function __construct($url, $verb, $controller, $method){
         $this->url = $url;
         $this->verb = $verb;
@@ -33,17 +35,17 @@ class Route {
         return true;
     }
     public function run(){
-        $controller = $this->controller;  
+        $controller = $this->controller;
         $method = $this->method;
         $params = $this->params;
-       
+
         (new $controller())->$method($params);
     }
 }
 
 class Router{
     private $routeTable = [];
-    
+
     public function route($url, $verb) {
         //$ruta->url //no compila!
         foreach ($this->routeTable as $route) {
@@ -55,10 +57,10 @@ class Router{
             }
         }
     }
-    
+
     public function addRoute ($url, $verb, $controller, $method) {
         $this->routeTable[] = new Route($url, $verb, $controller, $method);
     }
-    
-    
+
+
 }
