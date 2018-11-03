@@ -33,7 +33,8 @@
                                     'logout'          => 'LoginController#logout',
                                     'verificarLogin'  => 'LoginController#verifyLogin',
                                     'registro'        => 'RegistroController#Registro',
-                                    'Registrar'       => 'RegistroController#Registrar'
+                                    'Registrar'       => 'RegistroController#Registrar',
+                                    'comentarios'     => 'ComentariosController#getComentarios'
                                 ];
         }
 
