@@ -33,7 +33,7 @@
 																			    			 FOREIGN KEY (id_season) REFERENCES season (id_season)
 																			    			 ON DELETE CASCADE ON UPDATE CASCADE",
 
-																'user_info'   => "id_user       int(11)      NOT NULL,
+																'user_info'   => "id_user       int(11)      NOT NULL AUTO_INCREMENT,
 																								  user_name     varchar(15)  DEFAULT NULL,
 																								  user_password varchar(256) DEFAULT NULL,
 																								  user_email    varchar(20)  DEFAULT NULL,
