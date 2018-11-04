@@ -1,10 +1,41 @@
-<h1>{{otra}}</h1>
-<ul class="list-group">
- {{#each comentarios}}
-   {{#if completada}}
-     <li class="list-group-item"><s>{{titulo}} ----- {{descripcion}}</s><a href="borrar/{{id}}">BORRAR</a></li>
-   {{else}}
-     <li class="list-group-item">{{titulo}} ----- {{descripcion}}<a href="borrar/{{id}}">BORRAR</a> | <a href="completada/{{id}}">COMPLETADA| <a href="editar/{{id}}">EDITAR</a></li>
-   {{/if}}
- {{/each}}
-</ul>
+
+
+<div class="container-fluid mb-3">
+
+  {{#if logueado}}
+    {{#if limitado}}
+      <button class="btn btn-primary mb-2">Agregar comentario</button>
+    {{/if}}
+  {{/if}}
+
+  <table class="tablaTemporadas">
+    <thead>
+      <tr>
+        <th class="fondoTh" >Temporada</th>
+        <th class="fondoTh" >Episodio</th>
+        <th class="fondoTh" >Usuario</th>
+        <th class="fondoTh" >Comentario</th>
+        <th class="fondoTh" >Valoracion</th>
+      {{#if admin}}
+        <th class="fondoTh"></th>
+      {{/if}}
+      </tr>
+    </thead>
+    <tbody>
+
+    {{#each comentarios}}
+      <tr>
+        <td class="fondoTd">{{id_season}}</td>
+        <td class="fondoTd">{{id_episode}}</td>
+        <td class="fondoTd">{{user_name}}</td>
+        <td class="fondoTd">{{comment}}</td>
+        <td class="fondoTd">{{score}}</td>
+        {{#if admin}}
+          <td class="fondoTd"><button class="btn btn-primary fa fa-trash"></button></td>
+        {{/if}}
+      </tr>
+    {{/each}}
+
+    </tbody>
+  </table>
+</div>

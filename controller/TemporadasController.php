@@ -20,8 +20,9 @@
 
       $this->login  = new LoginController();
       $this->model  = new TemporadasModel();
+
       $arrayReg = $this->login->isLogueado();
-      if ( !empty($arraReg) ){
+      if (  (!empty($arrayReg)) && $arrayReg['logueado'] ){
         $this->claseLogin  = "oculto";
         $this->claseLogout = "visible";
         $this->claseReg    = "oculto";
