@@ -38,6 +38,9 @@
       if (!empty($arrayReg)){
         $this->rol = $arrayReg['rol'];
       }
+      else {
+        $this->rol = "none"; 
+      }
 
       $this->script      = "js/main.js";
 
