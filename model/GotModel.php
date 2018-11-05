@@ -29,6 +29,7 @@
 																			    			 id_episode    int(11)     NOT NULL,
 																			    			 episode_title varchar(50) DEFAULT NULL,
 																			    			 episode_desc  text,
+																								 imagen        text,
 																			    			 PRIMARY KEY (id_season,id_episode),
 																			    			 FOREIGN KEY (id_season) REFERENCES season (id_season)
 																			    			 ON DELETE CASCADE ON UPDATE CASCADE",
