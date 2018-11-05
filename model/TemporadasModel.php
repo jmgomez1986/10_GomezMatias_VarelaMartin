@@ -36,8 +36,6 @@
 
 		function getEpisodios($id_temporada){
 
-			// $sentencia = $this->db->prepare("SELECT * FROM episode
-			// 	                               	WHERE id_season  = ?");
 			$sentencia = $this->db->prepare("SELECT episode.*, episode_image.path_img
 																				FROM episode
 																				LEFT JOIN episode_image
@@ -48,34 +46,47 @@
 
 			$episodios = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
-			// var_dump($episodios);
-			// die();
-
 			return $episodios;
 		}
 
-		private function formatearEpisodio($episodio){
+		private function formatearEpisodio01($episodio){
 
 			$episodioFormateado = array();
 
-			$episodioFormateado['informacion']['id_season']   = $episodio[0]['id_season'];
-			$episodioFormateado['informacion']['id_episode']  = $episodio[0]['id_episode'];
-			$episodioFormateado['informacion']['titulo']      = $episodio[0]['titulo'];
-			$episodioFormateado['informacion']['descripcion'] = $episodio[0]['descripcion'];
-			$episodioFormateado['imagenes'] = [];
-			foreach ($episodio as $key => $ep) {
+			for ($i=0; $i < count($episodio); $i++) {
+				$episodioFormateado['informacion']['id_season']   = $episodio[$i]['id_season'];
+				$episodioFormateado['informacion']['id_episode']  = $episodio[$i]['id_episode'];
+				$episodioFormateado['informacion']['titulo']      = $episodio[$i]['titulo'];
+				$episodioFormateado['informacion']['descripcion'] = $episodio[$i]['descripcion'];
+				$episodioFormateado['imagenes'] = [];
+				foreach ($episodio as $key => $ep) {
 					array_push($episodioFormateado['imagenes'], $ep['path_img']);
+				}
 			}
-var_dump($episodioFormateado);
-die();
+
 			return $episodioFormateado;
 		}
 
-		function getEpisodio($id_temporada, $id_episodio){
+		private function formatearEpisodio02($episodio, $episodioImagenes){
 
-			// $sentencia = $this->db->prepare("SELECT * FROM episode
-			// 	                               	WHERE id_season  = ? AND
-			// 	                                      id_episode = ?");
+			$episodioFormateado = array();
+
+			for ($i=0; $i < count($episodio); $i++) {
+				$episodioFormateado['id_season']   = $episodio[$i]['id_season'];
+				$episodioFormateado['id_episode']  = $episodio[$i]['id_episode'];
+				$episodioFormateado['titulo']      = $episodio[$i]['titulo'];
+				$episodioFormateado['descripcion'] = $episodio[$i]['descripcion'];
+				$episodioFormateado['imagenes'] = [];
+				foreach ($episodioImagenes as $key => $ep) {
+					array_push($episodioFormateado['imagenes'], $ep['path_img']);
+				}
+			}
+
+			return $episodioFormateado;
+		}
+
+		private function getEpisodioImagenes01($id_temporada, $id_episodio){
+
 			$sentencia = $this->db->prepare("SELECT episode.*, episode_image.path_img
 																				FROM episode
 																				LEFT JOIN episode_image
@@ -83,15 +94,50 @@ die();
 																				       episode.id_episode = episode_image.id_episode )
 																			  WHERE	episode.id_season  = ?   AND
 				                                      episode.id_episode = ?");
+
 			$sentencia->execute( array($id_temporada, $id_episodio) );
 
 			$episodio = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
-			$episodioFormateado = $this->formatearEpisodio($episodio);
+			$episodioFormateado = $this->formatearEpisodio01($episodio);
 
-			// var_dump($episodio);
-			var_dump($episodioFormateado);
+			return $episodioFormateado;
+		}
+
+		private function getEpisodioImagenes02($id_temporada, $id_episodio){
+
+			$sentencia = $this->db->prepare("SELECT *
+																				FROM episode
+																			  WHERE	id_season  = ?   AND
+				                                      id_episode = ?");
+
+			$sentencia->execute( array($id_temporada, $id_episodio) );
+
+			$episodio = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+			$sentencia = $this->db->prepare("SELECT path_img
+																				FROM episode_image
+																				WHERE	id_season  = ?   AND
+																							id_episode = ?");
+
+			$sentencia->execute( array($id_temporada, $id_episodio) );
+
+			$episodioImagenes = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+			$episodioFormateado = $this->formatearEpisodio02($episodio,$episodioImagenes);
+
+			return $episodioFormateado;
+		}
+
+		function getEpisodio($id_temporada, $id_episodio){
+
+			// $episodio = $this->getEpisodioImagenes01($id_temporada, $id_episodio);
+
+			$episodio = $this->getEpisodioImagenes02($id_temporada, $id_episodio);
+
+			var_dump($episodio);
 			die();
+
 			return $episodio;
 		}
 
