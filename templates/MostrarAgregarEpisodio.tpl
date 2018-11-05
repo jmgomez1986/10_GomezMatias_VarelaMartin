@@ -4,7 +4,8 @@
 
     <div class="container  mt-4">
 
-      <form method="post" action="guardarAgregarE" id="confirmationForm">
+      <form method="post" action="guardarAgregarE" id="confirmationForm" enctype="multipart/form-data">
+        
         <input type="hidden" class="form-control" id="idTemp" name="idTemp" value="{$id_temporada}">
 
         <div class="form-group">

@@ -34,7 +34,7 @@
 				if ( $pass == $pass_confirm ){
 
 					$passEncrypt = password_hash($pass, PASSWORD_DEFAULT);
-					$user_rol = 'Limitado';
+					$user_rol    = 'Limitado';
 
 					$dbUserRegistrado = $this->model->insertUser($user, $passEncrypt, $mail, $user_rol);
 

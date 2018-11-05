@@ -8,6 +8,8 @@
              <th class="fondoTh">Episodio N°</th>
              <th class="fondoTh">Titulo</th>
              <th class="fondoTh">Descripcion</th>
+             <th class="fondoTh">Imagenes</th>
+
            </tr>
          </thead>
 
@@ -15,8 +17,9 @@
             {foreach from=$episodios item=episodio}
                <tr class="font-weight-bold">
                  <td class="fondoTd colE5">{$episodio["id_episode"]}</td>
-                 <td class="fondoTd colE10">{$episodio["episode_title"]}</td>
-                 <td class="fondoTd colE40">{$episodio["episode_desc"]}</td>
+                 <td class="fondoTd colE10">{$episodio["titulo"]}</td>
+                 <td class="fondoTd colE40">{$episodio["descripcion"]}</td>
+                 <td class="fondoTd colE40"><img src="{$episodio["imagen"]}" alt="Imagen de Temporada {$episodio["id_season"]}, Episodio {$episodio["id_episode"]}"></td>
                </tr>
             {/foreach}
          </tbody>
