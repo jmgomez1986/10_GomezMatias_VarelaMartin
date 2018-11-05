@@ -54,10 +54,10 @@
 		 	$dbUser = $this->model->getUser($user);
 
 		 	if(isset($dbUser)){
-		 		if(password_verify($pass,$dbUser[0]["user_password"])){
+		 		if(password_verify($pass,$dbUser[0]["password"])){
 		 			session_start();
 	        $_SESSION['usuario'] = $user;
-					$_SESSION['rol']     = $dbUser[0]['user_rol'];
+					$_SESSION['rol']     = $dbUser[0]['rol'];
 		 		 	header(TEMPUSER);
 		 		}
 		 		else{

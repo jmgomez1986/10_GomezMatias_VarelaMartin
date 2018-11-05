@@ -6,7 +6,7 @@
 
     {if $logueado}
       {if $rol == 'Administrador'}
-        {include file="adminToolsE.tpl"}
+        {include file="adminToolsT.tpl"}
       {/if}
     {/if}
 

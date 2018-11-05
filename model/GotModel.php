@@ -17,40 +17,48 @@
 			$this->host          = "localhost";
 			$this->root          = "root";
 			$this->root_password = "";
-			$this->tableNames    = ['season', 'episode', 'user_info', 'comment'];
+			$this->tableNames    = ['season', 'episode', 'user_info', 'comment', 'episode_image'];
 			$this->db            = "gameofthrones_db";
-			$this->columns 			 = [  'season'     => "id_season     int(11) NOT NULL AUTO_INCREMENT,
-																								 cant_episodes int(11) DEFAULT NULL,
-																								 season_begin  date    DEFAULT NULL,
-																								 season_end    date    DEFAULT NULL,
-																								 PRIMARY KEY(id_season)",
+			$this->columns 			 = [  'season'     =>   "id_season     int(11) NOT NULL AUTO_INCREMENT,
+																								   cant_episodes int(11) DEFAULT NULL,
+																								   season_begin  date    DEFAULT NULL,
+																								   season_end    date    DEFAULT NULL,
+																								   PRIMARY KEY(id_season)",
 
-																'episode'    => "id_season     int(11)     NOT NULL,
-																			    			 id_episode    int(11)     NOT NULL,
-																			    			 episode_title varchar(50) DEFAULT NULL,
-																			    			 episode_desc  text,
-																			    			 PRIMARY KEY (id_season,id_episode),
-																			    			 FOREIGN KEY (id_season) REFERENCES season (id_season)
-																			    			 ON DELETE CASCADE ON UPDATE CASCADE",
+																'episode'    =>   "id_season     int(11)     NOT NULL,
+																			    			   id_episode    int(11)     NOT NULL,
+																			    			   titulo        varchar(50) DEFAULT NULL,
+																			    			   descripcion   text,
+																			    			   PRIMARY KEY (id_season,id_episode),
+																			    			   FOREIGN KEY (id_season) REFERENCES season (id_season)
+																			    			   ON DELETE CASCADE ON UPDATE CASCADE",
 
-																'user_info'   => "id_user       int(11)      NOT NULL AUTO_INCREMENT,
-																								  user_name     varchar(15)  DEFAULT NULL,
-																								  user_password varchar(256) DEFAULT NULL,
-																								  user_email    varchar(20)  DEFAULT NULL,
-																								  user_rol      varchar(30)  DEFAULT NULL,
-																								  PRIMARY KEY(id_user)",
+																'user_info'   =>  "id_user       int(11)      NOT NULL AUTO_INCREMENT,
+																								   name          varchar(15)  DEFAULT NULL,
+																								   password      varchar(256) DEFAULT NULL,
+																								   email         varchar(20)  DEFAULT NULL,
+																								   rol           varchar(30)  DEFAULT NULL,
+																								   PRIMARY KEY(id_user)",
 
-																'comment'     => "id_comment   int(11)      NOT NULL AUTO_INCREMENT,
-																                  id_season    int(11)      NOT NULL,
-																									id_episode   int(11)      NOT NULL,
-																									id_user      int(11)      NOT NULL,
-																									comment      varchar(256) DEFAULT NULL,
-																									score        int(1)       DEFAULT NULL,
-																									PRIMARY KEY (id_comment),
-																									FOREIGN KEY (id_season,id_episode) REFERENCES episode (id_season,id_episode)
-																									ON DELETE CASCADE ON UPDATE CASCADE,
-																									FOREIGN KEY (id_user) REFERENCES user_info (id_user)
-																									ON DELETE CASCADE ON UPDATE CASCADE"
+																'comment'     =>  "id_comment   int(11)      NOT NULL AUTO_INCREMENT,
+																                   id_season    int(11)      NOT NULL,
+																								   id_episode   int(11)      NOT NULL,
+																								   id_user      int(11)      NOT NULL,
+																								   comment      varchar(256) DEFAULT NULL,
+																								   score        int(1)       DEFAULT NULL,
+																								   PRIMARY KEY (id_comment),
+																								   FOREIGN KEY (id_season,id_episode) REFERENCES episode (id_season,id_episode)
+																								   ON DELETE CASCADE ON UPDATE CASCADE,
+																								   FOREIGN KEY (id_user) REFERENCES user_info (id_user)
+																								   ON DELETE CASCADE ON UPDATE CASCADE",
+
+																'episode_image' => "id_image    int(11)     NOT NULL AUTO_INCREMENT,
+																									  id_season   int(11)     NOT NULL,
+																									  id_episode  int(11)     NOT NULL,
+																									  path_img    varchar(50) DEFAULT NULL,
+																										PRIMARY KEY (id_image),
+																										FOREIGN KEY (id_season,id_episode) REFERENCES episode (id_season,id_episode)
+																										ON DELETE CASCADE ON UPDATE CASCADE"
 															];
 	}
 
@@ -200,7 +208,7 @@
 			$episodios .= "(7, 7, 'El dragón y el lobo', 'En Desembarco del Rey, Daenerys, Jon, Cersei y sus consejeros se reúnen en Pozo Dragón para el encuentro donde un espectro se va a presentar como prueba. Cersei demanda como condición que Jon permanezca neutral mientras continúe la guerra con Daenerys. Él rechaza la petición por su promesa de servir a Daenerys provocando la retirada de Cersei. Tyrion habla con Cersei y aparentemente la convence de que se comprometa con la alianza. Posteriormente, Cersei le revela a Jaime que ella no tiene intención de enviar sus soldados para ayudar a la lucha de Daenerys y Jon contra los muertos. Su plan, en cambio, es derrotar al bando ganador, contratando a 20 000 mercenarios de la Compañía Dorada. Jaime, dispuesto a cumplir su palabra, la deja para cabalgar al Norte. Theon se gana el respeto de sus hombres para rescatar a su hermana Yara. En Invernalia, Meñique habla con Sansa sobre el amenazador comportamiento de Arya. Sansa convoca un juicio delante de los señores del Norte y del Valle señalando a Meñique en lugar de Arya. Arya lo ejecuta por sus crímenes contra la casa Stark y la casa Arryn. Mientras tanto, Daenerys y Jon tienen relaciones sexuales en el barco hacia Invernalia. En Guardiaoriente, el Rey de la Noche realiza su aparición a lomos de Viserion, el cual es ahora un dragón Caminante Blanco, destruyendo una porción del Muro y permitiendo al Ejército de los Muertos avanzar hacia el sur.')";
 
 			try{
-				$sentencia = $db->prepare( "INSERT INTO $tabNam (id_season, id_episode, episode_title, episode_desc)
+				$sentencia = $db->prepare( "INSERT INTO $tabNam (id_season, id_episode, titulo, descripcion)
 				VALUES 	$episodios" );
 				$sentencia->execute( );
 
@@ -225,7 +233,7 @@
 
 		function InsertUser($db, $tabNam){
 			try{
-				$sentencia = $db->prepare( "INSERT INTO $tabNam (id_user, user_name, user_password, user_email, user_rol)
+				$sentencia = $db->prepare( "INSERT INTO $tabNam (id_user, name, password, email, rol)
 																			VALUES (?,?,?,?,?)" );
 				$sentencia->execute( array(1, 'jmga', '$2y$10$3Hj1Dqrg9BgHot88WQZcLu43bBYAvuwuQ1U.kcmfEiDWBHJnlC392',
 																		'jmgametal@gmail.com', 'Administrador') );

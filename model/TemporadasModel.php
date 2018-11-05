@@ -36,20 +36,35 @@
 
 		function getEpisodios($id_temporada){
 
-			$sentencia = $this->db->prepare("SELECT * FROM episode WHERE id_season = ?");
-			$sentencia->execute( array($id_temporada) );
+			$sentencia = $this->db->prepare("SELECT * FROM episode
+				                               	WHERE id_season  = ?");
+			// $sentencia = $this->db->prepare("SELECT episode.*, episode_image.path_img FROM episode, episode_image
+			// 	                               	WHERE episode.id_season  = episode_image.id_season  AND
+			// 																	      episode.id_episode = episode_image.id_episode AND
+			// 																				episode.id_season  = ?");
+      $sentencia->execute( array($id_temporada) );
+
 			$episodios = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
 			return $episodios;
 		}
 
-		function getEpisodio($temporada, $episodio){
+		function getEpisodio($id_temporada, $id_episodio){
 
-			$sentencia = $this->db->prepare("SELECT * FROM episode WHERE id_season = ? AND
-				                                                     			id_episode = ?");
-			$sentencia->execute( array($temporada, $episodio) );
+			$sentencia = $this->db->prepare("SELECT * FROM episode
+				                               	WHERE id_season  = ? AND
+				                                      id_episode = ?");
+			// $sentencia = $this->db->prepare("SELECT episode.*, episode_image.path_img FROM episode, episode_image
+			// 	                               	WHERE episode.id_season  = episode_image.id_season  AND
+			// 																	      episode.id_episode = episode_image.id_episode AND
+			// 																				episode.id_season  = ?                        AND
+			// 	                                      episode.id_episode = ?");
+			$sentencia->execute( array($id_temporada, $id_episodio) );
+
 			$episodio = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
+			var_dump($episodio);
+			die();
 			return $episodio;
 		}
 
@@ -83,12 +98,60 @@
 			}
 		}
 
-		function insertEpisodio($idSeason, $idEpisode, $episodeTitle, $episodeDesc){
+		function getEpisodioImg($id_image){
+
+			$sentencia = $this->db->prepare("SELECT * FROM episode_image WHERE id_image = ?");
+			$sentencia->execute( array($id_image) );
+			$imagenes = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+			return $episodio;
+
+		}
+
+		private function subirImagen($imagen){
+	        $destino_final = 'images/episodes/' . uniqid() . '.jpg';
+	        move_uploaded_file($imagen, $destino_final);
+	        return $destino_final;
+	    }
+
+		private	function insertImg($idSeason, $idEpisode, $path){
 
 			try{
-				$sentencia = $this->db->prepare( "INSERT INTO episode (id_season, id_episode, episode_title, episode_desc)
+				$sentencia = $this->db->prepare( "INSERT INTO episode_image (id_season, id_episode,	path_img)
+																						VALUES (?,?,?)" );
+				$sentencia->execute( array($idSeason, $idEpisode, $path) );
+
+				$last_id = $this->db->lastInsertId();
+
+				$regInsert = $this->getEpisodioImg($last_id);
+
+				return $regInsert;
+			}
+
+			catch(PDOException $exception){
+				return $exception->getMessage();
+			}
+
+		}
+
+		function insertEpisodio($idSeason, $idEpisode, $episodeTitle, $episodeDesc, $tempPath){
+
+			try{
+
+				$sentencia = $this->db->prepare( "INSERT INTO episode (id_season, id_episode, titulo, descripcion)
 																						VALUES (?,?,?,?)" );
 				$sentencia->execute( array($idSeason, $idEpisode, $episodeTitle, $episodeDesc) );
+
+				$lastId =  $this->db->lastInsertId();
+
+				/////////////// Subir e insertar imagen ///////////////
+				$path = $this->subirImagen($tempPath);
+
+				$sqlImg = $this->insertImg($idSeason, $idEpisode, $path);
+				// var_dump($sqlImg);
+				// die();
+				///////////////////////////////////////////////////////
+		    return $this->getEpisodio($idSeason, $idEpisode);
 			}
 			catch(PDOException $exception){
 				 return $exception->getMessage();
@@ -111,17 +174,20 @@
 			}
 		}
 
-		function setEpisodio($temporada,$episodio,$title,$desc){
-			$db = $this->connectToDB();
+		function setEpisodio($temporada, $episodio, $title, $desc, $tempPath){
 
 			try{
+				$path = $this->subirImagen($tempPath);
+
 				$sentencia = $this->db->prepare("UPDATE `episode` SET `id_season`     = ?,
 								                                              `id_episode`    = ?,
-																															`episode_title` = ?,
-																															`episode_desc`  = ?
+																															`titulo`        = ?,
+																															`descripcion`   = ?,
+																															`imagen`        = ?
 																										WHERE `id_season`  = ? AND
 																										      `id_episode` = ?");
-	    	$sentencia->execute( array($temporada,$episodio, $title, $desc, $temporada, $episodio) );
+
+	    	$sentencia->execute( array($temporada, $episodio, $title, $desc, $path, $temporada, $episodio) );
 	    }
 	    catch(PDOException $exception){
 				return $exception->getMessage();
