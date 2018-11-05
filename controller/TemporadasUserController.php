@@ -98,7 +98,8 @@
         $episodio = $this->model->getEpisodio($id_temporada,$id_episodio);
 
         if (empty($episodio)){
-          $this->model->insertEpisodio($id_temporada, $id_episodio, $titulo, $descripcion);
+					$rutaTempImagenes = $_FILES['imagenes']['tmp_name'];
+          $episodio = $this->model->insertEpisodio($id_temporada, $id_episodio, $titulo, $descripcion, $rutaTempImagenes[0]);
           header(TEMPUSER);
         }
 				else{

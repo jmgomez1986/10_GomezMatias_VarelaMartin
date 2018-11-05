@@ -25,6 +25,11 @@
           <textarea name="descE" class="form-control" rows="5" id="descE" form="confirmationForm">{$valoresEpisodio[3]}</textarea>
         </div>
 
+        <div class="form-group">
+          <label class="text-white font-weight-bold" for="imagen">Agregar imágenes</label>
+          <input type="file" id="imagenes" name="imagenes[]">
+        </div>
+
         <button type="submit" class="btn btn-primary mb-4 mt-2">Agregar Episodio</button>
       </form>
     </div>

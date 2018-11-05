@@ -83,12 +83,25 @@
 			}
 		}
 
-		function insertEpisodio($idSeason, $idEpisode, $episodeTitle, $episodeDesc){
+		private function subirImagen($imagen){
+	        $destino_final = 'images/episodes' . uniqid() . '.jpg';
+	        //echo "destino_final: ".$destino_final;
+	        move_uploaded_file($imagen, $destino_final);
+	        return $destino_final;
+	    }
+
+
+		function insertEpisodio($idSeason, $idEpisode, $episodeTitle, $episodeDesc,$tempPath){
 
 			try{
-				$sentencia = $this->db->prepare( "INSERT INTO episode (id_season, id_episode, episode_title, episode_desc)
-																						VALUES (?,?,?,?)" );
-				$sentencia->execute( array($idSeason, $idEpisode, $episodeTitle, $episodeDesc) );
+				$path = $this->subirImagen($tempPath);
+
+				$sentencia = $this->db->prepare( "INSERT INTO episode (id_season, id_episode, episode_title, episode_desc, imagen)
+																						VALUES (?,?,?,?,?)" );
+				$sentencia->execute( array($idSeason, $idEpisode, $episodeTitle, $episodeDesc, $path) );
+
+				$lastId =  $this->db->lastInsertId();
+		    return $this->getEpisodio($idSeason, $idEpisode);
 			}
 			catch(PDOException $exception){
 				 return $exception->getMessage();
