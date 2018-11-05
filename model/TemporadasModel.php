@@ -36,34 +36,61 @@
 
 		function getEpisodios($id_temporada){
 
-			$sentencia = $this->db->prepare("SELECT * FROM episode
-				                               	WHERE id_season  = ?");
-			// $sentencia = $this->db->prepare("SELECT episode.*, episode_image.path_img FROM episode, episode_image
-			// 	                               	WHERE episode.id_season  = episode_image.id_season  AND
-			// 																	      episode.id_episode = episode_image.id_episode AND
-			// 																				episode.id_season  = ?");
+			// $sentencia = $this->db->prepare("SELECT * FROM episode
+			// 	                               	WHERE id_season  = ?");
+			$sentencia = $this->db->prepare("SELECT episode.*, episode_image.path_img
+																				FROM episode
+																				LEFT JOIN episode_image
+																					ON ( episode.id_season  = episode_image.id_season AND
+																					     episode.id_episode = episode_image.id_episode )
+																			  WHERE	episode.id_season  = ?");
       $sentencia->execute( array($id_temporada) );
 
 			$episodios = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
+			// var_dump($episodios);
+			// die();
+
 			return $episodios;
+		}
+
+		private function formatearEpisodio($episodio){
+
+			$episodioFormateado = array();
+
+			$episodioFormateado['informacion']['id_season']   = $episodio[0]['id_season'];
+			$episodioFormateado['informacion']['id_episode']  = $episodio[0]['id_episode'];
+			$episodioFormateado['informacion']['titulo']      = $episodio[0]['titulo'];
+			$episodioFormateado['informacion']['descripcion'] = $episodio[0]['descripcion'];
+			$episodioFormateado['imagenes'] = [];
+			foreach ($episodio as $key => $ep) {
+					array_push($episodioFormateado['imagenes'], $ep['path_img']);
+			}
+var_dump($episodioFormateado);
+die();
+			return $episodioFormateado;
 		}
 
 		function getEpisodio($id_temporada, $id_episodio){
 
-			$sentencia = $this->db->prepare("SELECT * FROM episode
-				                               	WHERE id_season  = ? AND
-				                                      id_episode = ?");
-			// $sentencia = $this->db->prepare("SELECT episode.*, episode_image.path_img FROM episode, episode_image
-			// 	                               	WHERE episode.id_season  = episode_image.id_season  AND
-			// 																	      episode.id_episode = episode_image.id_episode AND
-			// 																				episode.id_season  = ?                        AND
-			// 	                                      episode.id_episode = ?");
+			// $sentencia = $this->db->prepare("SELECT * FROM episode
+			// 	                               	WHERE id_season  = ? AND
+			// 	                                      id_episode = ?");
+			$sentencia = $this->db->prepare("SELECT episode.*, episode_image.path_img
+																				FROM episode
+																				LEFT JOIN episode_image
+																					ON ( episode.id_season  = episode_image.id_season  AND
+																				       episode.id_episode = episode_image.id_episode )
+																			  WHERE	episode.id_season  = ?   AND
+				                                      episode.id_episode = ?");
 			$sentencia->execute( array($id_temporada, $id_episodio) );
 
 			$episodio = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
-			var_dump($episodio);
+			$episodioFormateado = $this->formatearEpisodio($episodio);
+
+			// var_dump($episodio);
+			var_dump($episodioFormateado);
 			die();
 			return $episodio;
 		}
@@ -104,7 +131,7 @@
 			$sentencia->execute( array($id_image) );
 			$imagenes = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
-			return $episodio;
+			return $imagenes;
 
 		}
 
