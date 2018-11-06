@@ -19,7 +19,7 @@
                  <td class="fondoTd colE5">{$episodio["id_episode"]}</td>
                  <td class="fondoTd colE10">{$episodio["titulo"]}</td>
                  <td class="fondoTd colE40">{$episodio["descripcion"]}</td>
-                 <td class="fondoTd colE40"><img src="{$episodio["imagen"]}" alt="Imagen de Temporada {$episodio["id_season"]}, Episodio {$episodio["id_episode"]}"></td>
+                 <td class="fondoTd colE40"><img src="{$episodio["path_img"]}" alt="Imagen de Temporada {$episodio["id_season"]}, Episodio {$episodio["id_episode"]}"></td>
                </tr>
             {/foreach}
          </tbody>
