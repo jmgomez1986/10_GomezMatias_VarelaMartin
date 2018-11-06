@@ -14,7 +14,7 @@
              <tr class="font-weight-bold">
                <td class="fondoTd js-ocultar">{$episodio["id_season"]}</td>
                <td class="fondoTd"><a href="temporadaE/{$episodio["id_season"]}/episodio/{$episodio["id_episode"]}" target= "_self">{$episodio["id_episode"]}</td>
-               <td class="fondoTd">{$episodio["episode_title"]}</td>
+               <td class="fondoTd">{$episodio["titulo"]}</td>
              </tr>
           {/foreach}
        </tbody>
