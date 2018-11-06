@@ -1,39 +1,43 @@
-
-
 <div class="container-fluid mb-3">
 
   {{#if logueado}}
-    {{#if limitado}}
+    {{#if_eq rol "Limitado"}}
       <button class="btn btn-primary mb-2">Agregar comentario</button>
-    {{/if}}
+    {{/if_eq}}
   {{/if}}
 
   <table class="tablaTemporadas">
+
     <thead>
       <tr>
-        <th class="fondoTh" >Temporada</th>
-        <th class="fondoTh" >Episodio</th>
-        <th class="fondoTh" >Usuario</th>
-        <th class="fondoTh" >Comentario</th>
-        <th class="fondoTh" >Valoracion</th>
-      {{#if admin}}
-        <th class="fondoTh"></th>
-      {{/if}}
+        <th class="fondoTh">Temporada</th>
+        <th class="fondoTh">Episodio</th>
+        <th class="fondoTh">Usuario</th>
+        <th class="fondoTh">Comentario</th>
+        <th class="fondoTh">Valoracion</th>
+        {{#if logueado}}
+          {{#if_eq rol "Administrador"}}
+            <th class="fondoTh"></th>
+          {{/if_eq}}
+        {{/if}}
       </tr>
     </thead>
+
     <tbody>
 
       {{#each comentarios}}
-      <tr>
-        <td class="fondoTd">{{id_season}}</td>
-        <td class="fondoTd">{{id_episode}}</td>
-        <td class="fondoTd">{{user_name}}</td>
-        <td class="fondoTd">{{comment}}</td>
-        <td class="fondoTd">{{score}}</td>
-      {{#if admin}}
-        <td class="fondoTd"><button class="btn btn-primary fa fa-trash"></button></td>
-      {{/if}}
-      </tr>
+        <tr>
+          <td class="fondoTd">{{id_season}}</td>
+          <td class="fondoTd">{{id_episode}}</td>
+          <td class="fondoTd">{{user_name}}</td>
+          <td class="fondoTd">{{comment}}</td>
+          <td class="fondoTd">{{score}}</td>
+          {{#if ../logueado}}
+            {{#if_eq ../rol "Administrador"}}
+              <td class="fondoTd"><button class="btn btn-primary fa fa-trash"></button></td>
+            {{/if_eq}}
+          {{/if}}
+        </tr>
       {{/each}}
 
     </tbody>

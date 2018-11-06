@@ -69,7 +69,9 @@
       $titulo       = $_POST["tituloForm"];
       $descripcion  = $_POST["descripcion"];
 
-      $this->model->setEpisodio($id_temporada, $id_episodio, $titulo, $descripcion);
+			$rutaTempImagenes = $_FILES['imagenes']['tmp_name'];
+
+      $this->model->setEpisodio($id_temporada, $id_episodio, $titulo, $descripcion, $rutaTempImagenes[0]);
 
       header(TEMPUSER);
     }
@@ -98,7 +100,9 @@
         $episodio = $this->model->getEpisodio($id_temporada,$id_episodio);
 
         if (empty($episodio)){
-          $this->model->insertEpisodio($id_temporada, $id_episodio, $titulo, $descripcion);
+					//var_dump($_FILES) . "</br>";
+					$rutaTempImagenes = $_FILES['imagenes']['tmp_name'];
+					$episodio = $this->model->insertEpisodio($id_temporada, $id_episodio, $titulo, $descripcion, $rutaTempImagenes[0]);
           header(TEMPUSER);
         }
 				else{

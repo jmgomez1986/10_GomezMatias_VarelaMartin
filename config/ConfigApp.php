@@ -22,7 +22,7 @@
                                     'temporada'       => 'TemporadasController#Episodios',
                                     'editarE'         => 'TemporadasUserController#EditarEpisodio',
                                     'temporadaE'      => 'TemporadasController#Episodio',
-                                    'guardarEditarE'  => 'TemporadasAdminController#GuardarEditarEpisodio',
+                                    'guardarEditarE'  => 'TemporadasUserController#GuardarEditarEpisodio',
                                     'eliminarE'       => 'TemporadasUserController#EliminarEpisodio',
                                     'agregarE'        => 'TemporadasUserController#AgregarEpisodio',
                                     'guardarAgregarE' => 'TemporadasUserController#GuardarAgregarEpisodio',

@@ -13,7 +13,7 @@
         <select class="js-eleccionE input-lg">
           <option name="0" selected>Episodios...</option>
             {foreach from=$episodios item=episodio}
-              <option value="{$episodio["id_season"]}" name="{$episodio["id_episode"]}">Episodio N° {$episodio["id_episode"]} - {$episodio["episode_title"]}</option>
+              <option value="{$episodio["id_season"]}" name="{$episodio["id_episode"]}">Episodio N° {$episodio["id_episode"]} - {$episodio["titulo"]}</option>
             {/foreach}
         </select>
       </div>
