@@ -20,10 +20,37 @@
 		}
 
 		function getUser($user){
-	      $sentencia = $this->db->prepare( "select * from user_info where name=?");
+	      $sentencia = $this->db->prepare( "SELECT * FROM user_info WHERE name=?");
 	      $sentencia->execute(array($user));
 	      return $sentencia->fetchAll(PDO::FETCH_ASSOC);
 	  }
+
+		function getUserID($userID){
+	      $sentencia = $this->db->prepare( "SELECT * FROM user_info WHERE id_user=?");
+	      $sentencia->execute(array($userID));
+	      return $sentencia->fetchAll(PDO::FETCH_ASSOC);
+	  }
+
+		function insertUser($user_name, $user_password, $user_mail, $user_rol){
+
+			try{
+				$sentencia = $this->db->prepare("INSERT INTO user_info (name, password, email, rol)
+				VALUES (?,?,?,?)");
+				$sentencia->execute(array($user_name, $user_password, $user_mail, $user_rol));
+
+				$last_id = $this->db->lastInsertId();
+
+				$regInsert = $this->getUserID($last_id);
+
+				return $regInsert;
+			}
+
+			catch(PDOException $exception){
+				return $exception->getMessage();
+			}
+
+		}
+
 	} //END CLASS
 
 ?>

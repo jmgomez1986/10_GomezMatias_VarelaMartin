@@ -4,18 +4,30 @@
 	require_once "./model/TemporadasModel.php";
 	require_once "SecuredController.php";
 
-	class TemporadasAdminController extends SecuredController {
+	class TemporadasUserController extends SecuredController {
 
+		private $login;
+		private $rol;
+		private $script;
 		private $view;
 	  private $model;
 
 		function __construct(){
 				parent::__construct();
-				$this->view        = new TemporadasView("Game of Thrones", "temporadasAdmin", "./js/scriptAdmin.js", "oculto", "visible", true);
+
+				$this->rol         = $_SESSION['rol'];
+				if ( $this->rol == "Administrador" ){
+					$this->script = "./js/scriptAdmin.js";
+				}
+				elseif ( $this->rol == "Limitado" ){
+					$this->script = "./js/scriptFilter.js";
+				}
+
+				$this->view        = new TemporadasView("Game of Thrones", "temporadasUser", $this->script, "oculto", "visible", "oculto", true, $this->rol);
 				$this->model       = new TemporadasModel();
 		}
 
-		function TemporadasAdmin(){
+		function TemporadasUser(){
 
 	    $temporadasID = $this->model->getTemporadasID(); //Devuelve los Id's de las temporadas para el listado del primer dropdown
 	    $temporadas   = $this->model->getTemporadas();
@@ -40,7 +52,7 @@
 
 	    $this->model->setTemporada($id_emporada, $cantEpisodios, $comienzoTemporada, $finTemporada);
 
-	    header(TEMPADMIN);
+	    header(TEMPUSER);
 	  }
 
 	  function EditarEpisodio($param){
@@ -57,9 +69,11 @@
       $titulo       = $_POST["tituloForm"];
       $descripcion  = $_POST["descripcion"];
 
-      $this->model->setEpisodio($id_temporada, $id_episodio, $titulo, $descripcion);
+			$rutaTempImagenes = $_FILES['imagenes']['tmp_name'];
 
-      header(TEMPADMIN);
+      $this->model->setEpisodio($id_temporada, $id_episodio, $titulo, $descripcion, $rutaTempImagenes[0]);
+
+      header(TEMPUSER);
     }
 
      function EliminarEpisodio($param){
@@ -68,7 +82,7 @@
 
       $this->model->eliminarEpisodio($id_temporada, $id_episodio);
 
-      header(TEMPADMIN);
+      header(TEMPUSER);
     }
 
     function AgregarEpisodio($param){
@@ -86,8 +100,10 @@
         $episodio = $this->model->getEpisodio($id_temporada,$id_episodio);
 
         if (empty($episodio)){
-          $this->model->insertEpisodio($id_temporada, $id_episodio, $titulo, $descripcion);
-          header(TEMPADMIN);
+					//var_dump($_FILES) . "</br>";
+					$rutaTempImagenes = $_FILES['imagenes']['tmp_name'];
+					$episodio = $this->model->insertEpisodio($id_temporada, $id_episodio, $titulo, $descripcion, $rutaTempImagenes[0]);
+          header(TEMPUSER);
         }
 				else{
 					$valoresEpisodio = [$id_temporada, 	$id_episodio, $titulo, 	$descripcion ];
@@ -110,7 +126,7 @@
 				$temporada = $this->model->getTemporada($id_temporada);
 				if (empty($temporada)){
            $this->model->insertTemporada($id_temporada, $cant_epis, $comienzo, $fin);
-					 header(TEMPADMIN);
+					 header(TEMPUSER);
 				}
 				else {
 					$valoresTemporada = [$id_temporada, 	$cant_epis, $comienzo, 	$fin ];
@@ -124,7 +140,7 @@
 
 				$this->model->eliminarTemporada($id_temporada);
 
-				header(TEMPADMIN);
+				header(TEMPUSER);
 
     }
 

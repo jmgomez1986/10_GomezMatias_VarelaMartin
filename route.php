@@ -3,9 +3,10 @@
   require_once "config/ConfigApp.php";
   require_once "controller/GotController.php";
   require_once "controller/TemporadasController.php";
-  require_once "controller/TemporadasAdminController.php";
-  require_once "controller/LoginController.php";
+  require_once "controller/TemporadasUserController.php";
   require_once "controller/CasasController.php";
+  require_once "controller/RegistroController.php";
+  require_once "controller/ComentariosController.php";
 
   function parseURL($url){
     $urlExploded = explode('/', $url);

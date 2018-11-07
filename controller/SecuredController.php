@@ -3,12 +3,12 @@
 	class SecuredController{
 
 		function __construct(){
-			
+
 			session_start();
 
 			if ( isset($_SESSION['usuario']) ){
 
-				if ( isset($_SESSION['LAST_ACTIVITY'])  && ( time() - $_SESSION['LAST_ACTIVITY'] > 10 ) ){
+				if ( isset($_SESSION['LAST_ACTIVITY'])  && ( time() - $_SESSION['LAST_ACTIVITY'] > 100000000000 ) ){
 					$this->logout();
 					header(LOGIN . "/timeout");
 					exit();

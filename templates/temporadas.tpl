@@ -5,7 +5,9 @@
     </div>
 
     {if $logueado}
-      {include file="adminToolsT.tpl"}
+      {if $rol == 'Administrador'}
+        {include file="adminToolsT.tpl"}
+      {/if}
     {/if}
 
     <div class="contenidoTemporadasEpisodios" name="top">
@@ -36,9 +38,11 @@
      </div>
 
     {if $logueado}
-      {include file="adminToolsE.tpl"}
-    {else}
-       {include file="filtroCategoria.tpl"}
+      {if $rol == 'Administrador'}
+        {include file="adminToolsE.tpl"}
+      {else}
+        {include file="filtroCategoria.tpl"}
+      {/if}
     {/if}
 
     {include file="episodios.tpl"}

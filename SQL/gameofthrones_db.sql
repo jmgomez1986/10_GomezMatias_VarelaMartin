@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-10-2018 a las 23:19:15
--- Versión del servidor: 10.1.35-MariaDB
--- Versión de PHP: 7.2.9
+-- Tiempo de generación: 05-11-2018 a las 17:44:17
+-- Versión del servidor: 10.1.34-MariaDB
+-- Versión de PHP: 7.2.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,22 +25,48 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `comment`
+--
+
+CREATE TABLE `comment` (
+  `id_comment` int(11) NOT NULL,
+  `id_season` int(11) NOT NULL,
+  `id_episode` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `comment` varchar(256) DEFAULT NULL,
+  `score` int(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `comment`
+--
+
+INSERT INTO `comment` (`id_comment`, `id_season`, `id_episode`, `id_user`, `comment`, `score`) VALUES
+(1, 1, 1, 1, 'Test Comentario - 01', 4),
+(2, 1, 1, 1, 'Test Comentario - 02', 4),
+(3, 1, 1, 2, 'Test Comentario - 03', 4),
+(4, 1, 1, 3, 'Test Comentario - 04', 4),
+(5, 1, 1, 3, 'Test Comentario - 04', 5);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `episode`
 --
 
 CREATE TABLE `episode` (
   `id_season` int(11) NOT NULL,
   `id_episode` int(11) NOT NULL,
-  `episode_title` varchar(50) DEFAULT NULL,
-  `episode_desc` text
+  `titulo` varchar(50) DEFAULT NULL,
+  `descripcion` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `episode`
 --
 
-INSERT INTO `episode` (`id_season`, `id_episode`, `episode_title`, `episode_desc`) VALUES
-(1, 1, 'Se acerca el invierno', 'El rey Robert Baratheon de Poniente viaja al Norte para ofrecerle a su viejo amigo Eddard \"Ned\" Stark, Guardián del Norte y Señor de Invernalia, el puesto de Mano del Rey. La esposa de Ned, Catelyn, recibe una carta de su hermana Lysa que implica a miembros de la familia Lannister, la familia de la reina Cersei, en el asesinato de su marido Jon Arryn, la anterior Mano del Rey. Bran, uno de los hijos de Ned y Catelyn, escala un muro y descubre 	a la reina Cersei y a su hermano Jaime teniendo relaciones sexuales, Jaime empuja al pequeño Bran esperando que la caída lo mate y así evitar ser delatado por el niño. Mientras tanto, al otro lado del mar Angosto, el príncipe exiliado Viserys Targaryen forja una alianza para recuperar el Trono de Hierro: dará a su hermana Daenerys en matrimonio al salvaje dothraki Khal Drogo a cambio de su ejército. El caballero exiliado Jorah Mormont se unirá a ellos para proteger a Daenerys.'),
+INSERT INTO `episode` (`id_season`, `id_episode`, `titulo`, `descripcion`) VALUES
+(1, 1, 'Se acerca el invierno', 'El rey Robert Baratheon de Poniente viaja al Norte para ofrecerle a su viejo amigo Eddard \"Ned\" Stark, Guardián del Norte y Señor de Invernalia, el puesto de Mano del Rey. La esposa de Ned, Catelyn, recibe una carta de su hermana Lysa que implica a miembros de la familia Lannister, la familia de la reina Cersei, en el asesinato de su marido Jon Arryn, la anterior Mano del Rey. Bran, uno de los hijos de Ned y Catelyn, escala un muro y descubre a la reina Cersei y a su hermano Jaime teniendo relaciones sexuales, Jaime empuja al pequeño Bran esperando que la caída lo mate y así evitar ser delatado por el niño. Mientras tanto, al otro lado del mar Angosto, el príncipe exiliado Viserys Targaryen forja una alianza para recuperar el Trono de Hierro: dará a su hermana Daenerys en matrimonio al salvaje dothraki Khal Drogo a cambio de su ejército. El caballero exiliado Jorah Mormont se unirá a ellos para proteger a Daenerys.'),
 (1, 2, 'El camino real', 'Tras aceptar su nuevo rol como Mano del Rey, Ned parte hacia Desembarco del Rey con sus hijas Sansa y Arya, mientras que el hijo mayor, Robb, se queda al frente de los asuntos de su padre en la ciudad. Jon Nieve, el hijo bastardo de Ned, se dirige al Muro para unirse a la Guardia de la Noche. Tyrion Lannister, el hermano menor de la Reina, decide no ir con el resto de la familia real al sur y acompaña a Jon en su viaje al Muro. Viserys sigue esperando su momento de ganar el Trono de Hierro y Daenerys centra su atención en aprender cómo gustarle a su nuevo esposo, Drogo.'),
 (1, 3, 'Lord Snow', 'Ned se une al Consejo Privado del Rey en Desembarco del Rey, la capital de los Siete Reinos, y descubre la mala administración que sufre Poniente. Catelyn decide ir de incógnito al sur para alertar a su esposo de los Lannister. Arya inicia su entrenamiento con la espada. Bran despierta tras su caída y no recuerda nada. Jon se entrena para adaptarse a su nueva vida en el Muro. Daenerys comienza a asumir su rol como khaleesi de Drogo y se enfrenta a Viserys.'),
 (1, 4, 'Tullidos, bastardos y cosas rotas', 'Ned busca pistas para tratar de explicar la muerte de Jon Arryn. Robert celebra un torneo en honor a Ned. Jon toma medidas para proteger a Samwell Tarly, otro recluta de la Guardia de la Noche, de los abusos del resto de sus compañeros. Viserys, frustrado, se enfrenta a su hermana. Sansa sueña con una vida como reina de Joffrey Baratheon, el heredero al trono. Catelyn, de camino a Invernalia, acude a los aliados de su padre para apresar a Tyrion al creerle culpable del intento de asesinato de Bran.'),
@@ -50,6 +76,7 @@ INSERT INTO `episode` (`id_season`, `id_episode`, `episode_title`, `episode_desc
 (1, 8, 'Por el lado de la punta', 'Robb convoca a los abanderados de su padre para ir en su rescate. Sansa suplica a Joffrey para salvar la vida de Ned. Jon y la Guardia de la Noche se preparan para enfrentarse a un antiguo enemigo del otro lado del Muro. El ejército de Drogo marcha al oeste en dirección hacia los Siete Reinos.'),
 (1, 9, 'Baelor', 'Los familias Stark y Lannister se preparan para combatir entre ellos. Tyrion se alía a los clanes salvajes y los convence de combatir para los Lannister, mientras que Robb y Catelyn negocian para obtener la ayuda de Lord Walder Frey. Con Drogo moribundo debido una herida infectada, Daenerys utiliza la magia de una maegi para salvarle la vida. El maestre Aemon revela a Jon su parentesco con los Targaryen y el precio de la lealtad, ya que éste está preocupado por los eventos que no conciernen al Muro. En un último intento para salvarse y a sus hijas, Ned confiesa falsamente su conspiración y declara a Joffrey como el legítimo heredero al Trono de Hierro.'),
 (1, 10, 'Tyron muestra el pedazo', 'Tyron muestra la foca muerta que tiene entre las piernas, sorprendiendo a todos los presentes'),
+(1, 11, 'Test Upload Image', 'test'),
 (2, 1, 'El norte no olvida', 'Mientras Robb Stark y su ejército del Norte continúan en guerra contra los Lannister, Tyrion llega a Desembarco del Rey para aconsejar Joffrey y moderar los excesos del joven rey. En la isla de Rocadragón, Stannis Baratheon planea de una invasión para reclamar el trono de su difunto hermano, aliándose con Melisandre, una extraña sacerdotisa que rinde culto a un dios extraño. Al otro lado del mar, Daenerys, sus tres jóvenes dragones y su khalasar caminata a través del desierto en busca de aliados, o agua. En el Norte, Bran preside un Invernalia, mientras que más allá del Muro, Jon Nieve y la Guardia de la Noche deben lidiar con una salvaje.'),
 (2, 2, 'Las tierras de la noche', 'A raíz de una purga sangrienta en la capital, Tyrion castiga Cersei por alejar a los súbditos del Rey. En el camino hacia el norte, Arya comparte un secreto con Gendry. Por su parte, después de nueve años como prisionero de los Stark, Theon Greyjoy se reúne con su padre Balon, que quiere restaurar el antiguo reino de las Islas del Hierro. Davos convence a Salladhor Saan, un pirata, para unir fuerzas con Stannis y Melisandre de cara a una invasión naval de Desembarco del Rey.'),
 (2, 3, 'Lo que está muerto no puede morir', 'En la Fortaleza Roja, Tyrion planea tres alianzas a través de la promesa de matrimonio. Mientras, Catelyn trata de forjar una alianza a través de su propio casamiento. Pero el rey Renly, su nueva esposa Margaery y su hermano Loras Tyrell tienen otros planes. En Invernalia, Luwin intenta descifrar los sueños de Bran.'),
@@ -105,7 +132,8 @@ INSERT INTO `episode` (`id_season`, `id_episode`, `episode_title`, `episode_desc
 (7, 3, 'La justicia de la reina', 'Jon Nieve conoce a Daenerys en Rocadragón. Euron entra triunfal en Desembarco del Rey y entrega a las rehenes Ellaria y Tyene Arena ante Cersei. Jorah es curado de psoriagrís. Cersei se cobra su venganza por la muerte de Myrcella. Los Inmaculados atacan Roca Casterly, aunque las fuerzas de los Lannister han abandonado en su mayoría el castillo para capturar Altojardín, que lleva a la muerte de Olenna Tyrell, no sin antes confesar ante Jaime que mató a Joffrey.'),
 (7, 4, 'Botines de guerra', 'Jon muestra a Daenerys una cueva llena de vidriagón y unas pinturas rupestres de los Niños del Bosque sobre los Caminantes Blancos. Cersei negocia con el Banco de Hierro. Arya regresa a Invernalia y se reencuentra con sus hermanos. Después de perder la flota de Yara Greyjoy y el ejército y el apoyo económico de Dorne y Altojardín, Daenerys sale a atacar desde el lomo de Drogon a las huestes de los Lannister junto con una horda de salvajes dothrakis dispuestos a matar.'),
 (7, 5, 'Guardaoriente', 'Daenerys consigue una victoria y acaba con la familia Tarly. Jorah vuelve al servicio de Daenerys. Tyrion se reúne en secreto con Jaime para que convenza a Cersei para luchar contra los Caminantes Blancos. Cersei desvela a Jaime que está embarazada. Jon Nieve y compañía cruzan de nuevo el Muro en busca de un no-muerto para que el resto del continente les crea y luchen. Sam abandona Antigua cansado de ser ignorado.'),
-(7, 6, 'Más allá del Muro', 'En Invernalia, Sansa y Arya comienzan una disputa debido a las artimañas de Meñique. Sansa descubre las caras de Arya. Jon y compañía se adentran más allá del Muro hasta dar con una horda de Caminantes Blancos, consiguen capturar a un no-muerto pero se ven atrapados por el ejército. Gendry consigue escapar hasta el Muro y manda un aviso de socorro a Daenerys. Thoros de Myr muere congelado tras sufrir una herida. Daenerys acude en su ayuda a pesar de los consejos de Tyrion. El Rey de la Noche arroja una lanza helada que acaba con la vida del dragón Viserion. Daenerys en shock, consigue escapar con todos menos Jon, que es salvado por su tío Benjen que termina sacrificandose por él. Jon herido llega al Muro y jura lealtad a Daenerys. El Rey de la Noche saca el cadáver de Viserion del lago helado y lo resucita como un dragón caminante blanco.');
+(7, 6, 'Más allá del Muro', 'En Invernalia, Sansa y Arya comienzan una disputa debido a las artimañas de Meñique. Sansa descubre las caras de Arya. Jon y compañía se adentran más allá del Muro hasta dar con una horda de Caminantes Blancos, consiguen capturar a un no-muerto pero se ven atrapados por el ejército. Gendry consigue escapar hasta el Muro y manda un aviso de socorro a Daenerys. Thoros de Myr muere congelado tras sufrir una herida. Daenerys acude en su ayuda a pesar de los consejos de Tyrion. El Rey de la Noche arroja una lanza helada que acaba con la vida del dragón Viserion. Daenerys en shock, consigue escapar con todos menos Jon, que es salvado por su tío Benjen que termina sacrificandose por él. Jon herido llega al Muro y jura lealtad a Daenerys. El Rey de la Noche saca el cadáver de Viserion del lago helado y lo resucita como un dragón caminante blanco.'),
+(7, 7, 'El dragón y el lobo', 'En Desembarco del Rey, Daenerys, Jon, Cersei y sus consejeros se reúnen en Pozo Dragón para el encuentro donde un espectro se va a presentar como prueba. Cersei demanda como condición que Jon permanezca neutral mientras continúe la guerra con Daenerys. Él rechaza la petición por su promesa de servir a Daenerys provocando la retirada de Cersei. Tyrion habla con Cersei y aparentemente la convence de que se comprometa con la alianza. Posteriormente, Cersei le revela a Jaime que ella no tiene intención de enviar sus soldados para ayudar a la lucha de Daenerys y Jon contra los muertos. Su plan, en cambio, es derrotar al bando ganador, contratando a 20 000 mercenarios de la Compañía Dorada. Jaime, dispuesto a cumplir su palabra, la deja para cabalgar al Norte. Theon se gana el respeto de sus hombres para rescatar a su hermana Yara. En Invernalia, Meñique habla con Sansa sobre el amenazador comportamiento de Arya. Sansa convoca un juicio delante de los señores del Norte y del Valle señalando a Meñique en lugar de Arya. Arya lo ejecuta por sus crímenes contra la casa Stark y la casa Arryn. Mientras tanto, Daenerys y Jon tienen relaciones sexuales en el barco hacia Invernalia. En Guardiaoriente, el Rey de la Noche realiza su aparición a lomos de Viserion, el cual es ahora un dragón Caminante Blanco, destruyendo una porción del Muro y permitiendo al Ejército de los Muertos avanzar hacia el sur.');
 
 --
 -- Disparadores `episode`
@@ -126,6 +154,26 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `episode_image`
+--
+
+CREATE TABLE `episode_image` (
+  `id_image` int(11) NOT NULL,
+  `id_season` int(11) NOT NULL,
+  `id_episode` int(11) NOT NULL,
+  `path_img` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `episode_image`
+--
+
+INSERT INTO `episode_image` (`id_image`, `id_season`, `id_episode`, `path_img`) VALUES
+(4, 1, 11, 'images/episodes/5be069ca69fb7.jpg');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `season`
 --
 
@@ -141,7 +189,7 @@ CREATE TABLE `season` (
 --
 
 INSERT INTO `season` (`id_season`, `cant_episodes`, `season_begin`, `season_end`) VALUES
-(1, 10, '2011-04-17', '2011-06-09'),
+(1, 11, '2011-04-17', '2011-06-09'),
 (2, 10, '2012-04-01', '2012-06-03'),
 (3, 10, '2013-03-31', '2013-06-09'),
 (4, 10, '2014-04-06', '2014-06-15'),
@@ -152,26 +200,37 @@ INSERT INTO `season` (`id_season`, `cant_episodes`, `season_begin`, `season_end`
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `user_admin`
+-- Estructura de tabla para la tabla `user_info`
 --
 
-CREATE TABLE `user_admin` (
+CREATE TABLE `user_info` (
   `id_user` int(11) NOT NULL,
-  `user_name` varchar(15) DEFAULT NULL,
-  `user_password` varchar(256) DEFAULT NULL,
-  `user_email` varchar(20) DEFAULT NULL
+  `name` varchar(15) DEFAULT NULL,
+  `password` varchar(256) DEFAULT NULL,
+  `email` varchar(20) DEFAULT NULL,
+  `rol` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `user_admin`
+-- Volcado de datos para la tabla `user_info`
 --
 
-INSERT INTO `user_admin` (`id_user`, `user_name`, `user_password`, `user_email`) VALUES
-(1, 'jmga', '$2y$10$3Hj1Dqrg9BgHot88WQZcLu43bBYAvuwuQ1U.kcmfEiDWBHJnlC392', 'jmgametal@gmail.com');
+INSERT INTO `user_info` (`id_user`, `name`, `password`, `email`, `rol`) VALUES
+(1, 'jmga', '$2y$10$3Hj1Dqrg9BgHot88WQZcLu43bBYAvuwuQ1U.kcmfEiDWBHJnlC392', 'jmgametal@gmail.com', 'Administrador'),
+(2, 'martin', '$2y$10$THq5zgyhayZYSihAsfrm4eYpebwzaBm709G0dwCdU5nuKqcnVmDvG', 'martin', 'Limitado'),
+(3, 'matias', '$2y$10$EoZRCz2IyQj0iSQKVqT0KOZ4OUqhd5Xk8ltnieKHhuezqtIeuBL4a', 'matias', 'Limitado');
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `comment`
+--
+ALTER TABLE `comment`
+  ADD PRIMARY KEY (`id_comment`),
+  ADD KEY `id_season` (`id_season`,`id_episode`),
+  ADD KEY `id_user` (`id_user`);
 
 --
 -- Indices de la tabla `episode`
@@ -180,20 +239,39 @@ ALTER TABLE `episode`
   ADD PRIMARY KEY (`id_season`,`id_episode`);
 
 --
+-- Indices de la tabla `episode_image`
+--
+ALTER TABLE `episode_image`
+  ADD PRIMARY KEY (`id_image`),
+  ADD KEY `id_season` (`id_season`,`id_episode`);
+
+--
 -- Indices de la tabla `season`
 --
 ALTER TABLE `season`
   ADD PRIMARY KEY (`id_season`);
 
 --
--- Indices de la tabla `user_admin`
+-- Indices de la tabla `user_info`
 --
-ALTER TABLE `user_admin`
+ALTER TABLE `user_info`
   ADD PRIMARY KEY (`id_user`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `comment`
+--
+ALTER TABLE `comment`
+  MODIFY `id_comment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT de la tabla `episode_image`
+--
+ALTER TABLE `episode_image`
+  MODIFY `id_image` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `season`
@@ -202,14 +280,33 @@ ALTER TABLE `season`
   MODIFY `id_season` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
+-- AUTO_INCREMENT de la tabla `user_info`
+--
+ALTER TABLE `user_info`
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `comment`
+--
+ALTER TABLE `comment`
+  ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`id_season`,`id_episode`) REFERENCES `episode` (`id_season`, `id_episode`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user_info` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `episode`
 --
 ALTER TABLE `episode`
   ADD CONSTRAINT `episode_ibfk_1` FOREIGN KEY (`id_season`) REFERENCES `season` (`id_season`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `episode_image`
+--
+ALTER TABLE `episode_image`
+  ADD CONSTRAINT `episode_image_ibfk_1` FOREIGN KEY (`id_season`,`id_episode`) REFERENCES `episode` (`id_season`, `id_episode`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
