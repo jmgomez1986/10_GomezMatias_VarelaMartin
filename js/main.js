@@ -14,7 +14,7 @@ function loadPage() {
         getComentarios();
     });
 
-   saveComentarios(); 
+   saveComentarios();
 }
 
 function getComentarios() {
@@ -41,7 +41,7 @@ function getComentarios() {
         .then(jsonComentarios => {
             mostrarComentarios(jsonComentarios,logueado,rol,idEpis,idTemp);
         })
-    }    
+    }
 }
 
 function mostrarComentarios(jsonComentarios,logueado,rol,idEpis,idTemp) {
@@ -76,14 +76,14 @@ function saveComentarios(){
         btnAddComment.addEventListener("click", function(){
             let idUser  = document.querySelector('.idUser').value;
             let idTemp  = document.querySelector('.idTemp').value;
-            let idEpis  = document.querySelector('.idEpis').value; 
-            let comment = document.querySelector('.comment').value; 
-            let score   = document.querySelector('.score').value;   
+            let idEpis  = document.querySelector('.idEpis').value;
+            let comment = document.querySelector('.comment').value;
+            let score   = document.querySelector('.score').value;
 
-            // console.log(idUser); 
-            // console.log(idTemp); 
+            // console.log(idUser);
+            // console.log(idTemp);
             // console.log(idEpis);
-            // console.log(comment); 
+            // console.log(comment);
 
             let data = {
                         "id_season" : idTemp,
@@ -103,23 +103,25 @@ let url = 'api/comentarios';
             "Content-Type": "application/json"
         },
         "body"   : JSON.stringify(data) //se debe serializar (stringify) la informacion (el "data:" de ida es de tipo string)
-    })//.then( function(response) {
-  //       // console.log(response);
-  //       if (!response.ok) {
+    }).then( function(response) {
+        // console.log(response);
+        if (!response.ok) {
 
-  //       } else
-  //           return response.json()
-  //     }).then(function(json) {
+        } else
+            return response.json()
+      }).then(function(json) {
+        let urlPrev = document.referrer;
+        window.location.replace(urlPrev);
 
-
-  //     }).catch(function(e){
-  //           let cartelError = container.querySelector(".js-displayError");
-  //           showElement(cartelError);
-  //           cartelError.innerHTML = "Error de Conexión";
-  //           console.log(e)
-  //         }
-  //       );            
+      }).catch(function(e){
+            let cartelError = container.querySelector(".js-displayError");
+            showElement(cartelError);
+            cartelError.innerHTML = "Error de Conexión";
+            console.log(e)
+          }
+        );
         });
+
     }
 
 }
