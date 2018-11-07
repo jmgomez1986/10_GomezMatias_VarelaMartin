@@ -56,9 +56,9 @@
 
     function agregarComentario(){
       $id_temporada = $_POST["idTemp"];
-      $id_episodio = $_POST["idEpis"];
-      $id_user = $this->login->getUser();
-      $this->view->addComment($id_temporada,$id_episodio,$id_user,$this->script);
+      $id_episodio  = $_POST["idEpis"];
+      $id_user      = $this->login->getUser();
+      $this->view->addComment($id_temporada, $id_episodio, $id_user, $this->script);
     }
 
     function saveComment(){

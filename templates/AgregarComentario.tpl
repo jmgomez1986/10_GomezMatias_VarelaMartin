@@ -10,7 +10,7 @@
 
         <div class="form-group">
           <label class="text-white font-weight-bold" for="tituloForm">Temporada Nº</label>
-          <input enabled type="number" class="form-control" id="idEp" name="idEp" value="{$id_temporada}">
+          <input enabled type="number" class="form-control" id="idTemp" name="idTemp" value="{$id_temporada}">
         </div>
 
         <div class="form-group">
