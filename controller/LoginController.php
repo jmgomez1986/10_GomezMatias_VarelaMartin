@@ -80,6 +80,10 @@
 			}
 		}
 
+		function getUserID($user_name){
+			return $this->model->getUser($user_name);
+		}		
+
 	} //END CLASS
 
 ?>

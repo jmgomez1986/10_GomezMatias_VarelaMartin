@@ -2,7 +2,7 @@
 
   {if $logueado}
     {if $rol eq "Limitado"}
-      <form class="formAddComment" method="post">
+      <form class="formComment" method="post">
         <button class="btn btn-primary mb-2 js-addComment">Agregar comentario</button>
         <input type="hidden" class="form-control" name="idTemp" value="{$id_temporada}">
         <input type="hidden" class="form-control" name="idEpis" value="{$id_episodio}">
