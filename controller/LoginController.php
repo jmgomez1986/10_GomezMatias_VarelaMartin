@@ -69,6 +69,17 @@
 		 	}
 		}
 
+		function getUser(){
+			//session_start();
+			if ( isset($_SESSION['usuario']) && ($_SESSION['usuario'] != '')){
+				$user = $_SESSION['usuario'];
+				return $user;
+			}
+			else {
+				return null;
+			}
+		}
+
 	} //END CLASS
 
 ?>

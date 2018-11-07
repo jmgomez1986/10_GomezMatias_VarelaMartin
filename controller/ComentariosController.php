@@ -39,7 +39,7 @@
         $this->rol = $arrayReg['rol'];
       }
       else {
-        $this->rol = "none"; 
+        $this->rol = "none";
       }
 
       $this->script      = "js/main.js";
@@ -52,6 +52,17 @@
       $id_temporada = $params[1];
       $id_episodio  = $params[3];
       $this->view->getComentarios($id_temporada, $id_episodio);
+    }
+
+    function agregarComentario(){
+      $id_temporada = $_POST["idTemp"];
+      $id_episodio = $_POST["idEpis"];
+      $id_user = $this->login->getUser();
+      $this->view->addComment($id_temporada,$id_episodio,$id_user,$this->script);
+    }
+
+    function saveComment(){
+
     }
 
   } //END CLASS

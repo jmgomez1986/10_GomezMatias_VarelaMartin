@@ -10,6 +10,10 @@ fetch('js/templates/comentarios.handlebars')
     getComentarios();
 });
 
+let btnAddCom = document.querySelector(".js-addComment").addEventListener('click', function(){
+  let url       = "agregarComentario/";
+  let formAdmin = document.querySelector(".formAddComment").action = url;
+});
 
 function getComentarios() {
 
@@ -24,15 +28,17 @@ function getComentarios() {
     fetch(route)
     .then(response => response.json())
     .then(jsonComentarios => {
-        mostrarComentarios(jsonComentarios,logueado,rol);
+        mostrarComentarios(jsonComentarios,logueado,rol,idEpis,idTemp);
     })
 }
 
-function mostrarComentarios(jsonComentarios,logueado,rol) {
+function mostrarComentarios(jsonComentarios,logueado,rol,idEpis,idTemp) {
     let context = { // como el assign de smarty
         comentarios: jsonComentarios,
         logueado   : logueado,
-        rol        : rol
+        rol        : rol,
+        idEpis     : idEpis,
+        idTemp     : idTemp
     }
 
     Handlebars.registerHelper('if_eq', function(a, b, opts) {

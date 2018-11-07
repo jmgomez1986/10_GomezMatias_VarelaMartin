@@ -34,7 +34,9 @@
                                     'verificarLogin'  => 'LoginController#verifyLogin',
                                     'registro'        => 'RegistroController#Registro',
                                     'Registrar'       => 'RegistroController#Registrar',
-                                    'comentarios'     => 'ComentariosController#getComentarios'
+                                    'comentarios'     => 'ComentariosController#getComentarios',
+                                    'agregarComentario' => 'ComentariosController#agregarComentario',
+                                    'guardarComentario' => 'ComentariosController#saveComment'
                                 ];
         }
 
