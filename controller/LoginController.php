@@ -7,14 +7,27 @@
 		private $view;
 		private $model;
 		private $titulo;
+		private $message;
 
 		function __construct(){
-		 	$this->view   = new LoginView("Login", "temporadas", "", "oculto", "oculto");
+			$this->view   = new LoginView("Login", "temporadas", "", "oculto", "oculto", "visible");
 		 	$this->model  = new UsuarioModel();
 		}
 
-		function login(){
-			$this->view->login();
+		function login($params){
+
+			if ( isset($params[0]) ){
+
+				if ( $params[0] == 'timeout' ){
+ 					$this->message = 'Sesion expirada';
+ 				}
+				elseif ( $params[0] == 'userFail' ){
+					$this->message = 'Sesion no iniciada';
+				}
+			}
+
+			$this->view->login($this->message);
+
 		}
 
 		function logout(){
@@ -25,7 +38,14 @@
 
 		function isLogueado(){
 			session_start();
-		 	return isset($_SESSION["User"]);
+			$register = array();
+			if ( isset($_SESSION['usuario']) ){
+				$register = [ 'logueado' => true,
+			                'rol'      => $_SESSION['rol']
+							    	];
+			}
+
+		 	return $register;
 		}
 
 		function verifyLogin(){
@@ -34,10 +54,11 @@
 		 	$dbUser = $this->model->getUser($user);
 
 		 	if(isset($dbUser)){
-		 		if(password_verify($pass,$dbUser[0]["user_password"])){
+		 		if(password_verify($pass,$dbUser[0]["password"])){
 		 			session_start();
-	        $_SESSION["User"] = $user;
-		 		 	header(TEMPADMIN);
+	        $_SESSION['usuario'] = $user;
+					$_SESSION['rol']     = $dbUser[0]['rol'];
+		 		 	header(TEMPUSER);
 		 		}
 		 		else{
 		 			$this->view->login("Contraseña incorrecta");
@@ -46,7 +67,6 @@
 		 	else{
 		 		$this->view->login("No existe el usuario");
 		 	}
-
 		}
 
 	} //END CLASS

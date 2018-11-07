@@ -1,28 +1,32 @@
-<?php
+	<?php
 
 	class SecuredController{
 
 		function __construct(){
-	    session_start();
-	    if ( isset($_SESSION["User"]) ){
-				 //echo "<h1 style=\"color:red;\">" . $_SESSION["User"] . "</h1></br>";
-	      if ( ( isset($_SESSION['LAST_ACTIVITY']) ) && ( time() - $_SESSION['LAST_ACTIVITY'] > 10 ) ){
-	        	$this->logout();
-						header(TEMP);
-						// throw new Exception('Sin tiempo de actividad');
-					}
-      	$_SESSION['LAST_ACTIVITY'] = time(); // actualiza el último instante de actividad
+
+			session_start();
+
+			if ( isset($_SESSION['usuario']) ){
+
+				if ( isset($_SESSION['LAST_ACTIVITY'])  && ( time() - $_SESSION['LAST_ACTIVITY'] > 100000000000 ) ){
+					$this->logout();
+					header(LOGIN . "/timeout");
+					exit();
+				}
+				else{
+					$_SESSION['LAST_ACTIVITY'] = time(); // Actualiza el último instante de actividad
+				}
 			}
 			else{
-				// header(LOGIN);
-				// throw new Exception('Sin usuario logueado');
-		  }
-	  }
+				header(LOGIN . "/userFail");
+				exit();
+			}
+		}
 
 	  function logout(){
-	    session_start();
+			session_start();
 	    session_destroy();
-	  }
+		}
 
 	} //END CLASS
 

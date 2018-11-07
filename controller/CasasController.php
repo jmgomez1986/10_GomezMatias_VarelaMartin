@@ -4,10 +4,10 @@
   require_once "./view/CasasView.php";
   require_once "LoginController.php";
 
-  class CasasController
-  {
+  class CasasController{
     private $model;
     private $view;
+    private $login;
     private $link;
     private $script;
     private $claseLogin;
@@ -15,12 +15,24 @@
 
     function __construct(){
 
+      $this->login  = new LoginController();
       $this->model  = new CasasModel();
-      $this->view   = new CasasView("Game of Thrones", "temporadas", "", "visible", "oculto");
 
-      if (LoginController::isLogueado()){
-        LoginController::logout();
+      $arrayReg = $this->login->isLogueado();
+      if ( $arrayReg['logueado'] ){
+        $this->claseLogin  = "oculto";
+        $this->claseLogout = "visible";
+        $this->link        = "temporadasAdmin";
+        $this->script      = "";
       }
+      else{
+        $this->claseLogin  = "visible";
+        $this->claseLogout = "oculto";
+        $this->link        = "temporadas";
+        $this->script      = "";
+      }
+
+      $this->view   = new CasasView("Game of Thrones", $this->link, $this->script, $this->claseLogin, $this->claseLogout);
 
     }
 

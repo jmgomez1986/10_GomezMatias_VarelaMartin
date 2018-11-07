@@ -8,19 +8,41 @@
 
     private $view;
     private $model;
+    private $login;
     private $link;
     private $script;
     private $claseLogin;
     private $claseLogout;
+    private $claseReg;
+    private $rol;
 
     function __construct(){
 
-      $this->view   = new TemporadasView("Game of Thrones", "temporadas", "", "visible", "oculto");
+      $this->login  = new LoginController();
       $this->model  = new TemporadasModel();
 
-      if (LoginController::isLogueado()){
-        LoginController::logout();
+      $arrayReg = $this->login->isLogueado();
+      if (  (!empty($arrayReg)) && $arrayReg['logueado'] ){
+        $this->claseLogin  = "oculto";
+        $this->claseLogout = "visible";
+        $this->claseReg    = "oculto";
+        $this->link        = "temporadasUser";
+        $this->script      = "";
+        $this->rol         = $arrayReg['rol'];
+        if ( $this->rol == 'Limitado'){
+          $this->script      = "js/scriptFilter.js";
+        }
       }
+      else{
+        $this->claseLogin  = "visible";
+        $this->claseLogout = "oculto";
+        $this->claseReg    = "visible";
+        $this->link        = "temporadas";
+        $this->script      = "";
+        $this->rol         = "";
+      }
+
+      $this->view   = new TemporadasView("Game of Thrones", $this->link, $this->script, $this->claseLogin, $this->claseLogout, $this->claseReg, false, $this->rol);
 
     }
 

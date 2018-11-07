@@ -55,11 +55,9 @@ function loadPage() {
     else{
 
       let respuesta = confirm("¿Seguro que desea eliminar la temporada " + temporadaID + "?????");
-      //let respuesta = true;
       if (respuesta == true) {
           let url       = 'eliminarT/' + temporadaID + "/";
           let formAdmin = document.querySelector(".formAdmin").action = url;
-          alert("Temporada Eliminada!!!");
       }
       else{
         let url       = "temporadasAdmin/";
@@ -140,8 +138,8 @@ function loadPage() {
       if (respuesta == true) {
         let url       = 'eliminarE/' + temporadaID + "/" + episodioID + "/";
         let formAdmin = document.querySelector(".formAdminE").action = url;
-        alert("Episodio Eliminado!!!");
-      }else {
+      }
+      else {
         let url       = "temporadasAdmin/";
         let formAdmin = document.querySelector(".formAdminE").action = url;
         alert("Accion cancelada");

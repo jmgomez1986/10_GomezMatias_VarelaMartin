@@ -1,10 +1,10 @@
 <?php
 
-    define('TEMPADMIN', 'Location: //'.$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]). '/temporadasAdmin');
-    define('TEMP', 'Location: //'.$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]). '/temporadas');
-    define('LOGIN', 'Location: //'.$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]). '/login');
-    define('LOGOUT', 'Location: //'.$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]). '/logout');
-    define('HOME', 'Location: //'.$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]). '/home');
+    define('TEMPUSER', 'Location: //'.$_SERVER["SERVER_NAME"]. ":". $_SERVER['SERVER_PORT'] . dirname($_SERVER["PHP_SELF"]). '/temporadasUser');
+    define('TEMPO', 'Location: //'.$_SERVER["SERVER_NAME"]. ":". $_SERVER['SERVER_PORT'] . dirname($_SERVER["PHP_SELF"]). '/temporadas');
+    define('LOGIN', 'Location: //'.$_SERVER["SERVER_NAME"]. ":". $_SERVER['SERVER_PORT'] . dirname($_SERVER["PHP_SELF"]). '/login');
+    define('LOGOUT', 'Location: //'.$_SERVER["SERVER_NAME"]. ":". $_SERVER['SERVER_PORT'] . dirname($_SERVER["PHP_SELF"]). '/logout');
+    define('HOME', 'Location: //'.$_SERVER["SERVER_NAME"]. ":". $_SERVER['SERVER_PORT'] . dirname($_SERVER["PHP_SELF"]). '/home');
 
     class ConfigApp{
         public static $ACTION = 'action';
@@ -16,22 +16,25 @@
                                     'casasGOT'        => 'GotController#Casas',
                                     'casas'           => 'CasasController#Casas',
                                     'temporadas'      => 'TemporadasController#Temporadas',
-                                    'temporadasAdmin' => 'TemporadasAdminController#TemporadasAdmin',
-                                    'editarT'         => 'TemporadasAdminController#EditarTemporada',
-                                    'guardarEditarT'  => 'TemporadasAdminController#GuardarEditarTemporada',
+                                    'temporadasUser'  => 'TemporadasUserController#TemporadasUser',
+                                    'editarT'         => 'TemporadasUserController#EditarTemporada',
+                                    'guardarEditarT'  => 'TemporadasUserController#GuardarEditarTemporada',
                                     'temporada'       => 'TemporadasController#Episodios',
-                                    'editarE'         => 'TemporadasAdminController#EditarEpisodio',
+                                    'editarE'         => 'TemporadasUserController#EditarEpisodio',
                                     'temporadaE'      => 'TemporadasController#Episodio',
-                                    'guardarEditarE'  => 'TemporadasAdminController#GuardarEditarEpisodio',
-                                    'eliminarE'       => 'TemporadasAdminController#EliminarEpisodio',
-                                    'agregarE'        => 'TemporadasAdminController#AgregarEpisodio',
-                                    'guardarAgregarE' => 'TemporadasAdminController#GuardarAgregarEpisodio',
-                                    'agregarT'        => 'TemporadasAdminController#AgregarTemporada',
-                                    'guardarAgregarT' => 'TemporadasAdminController#GuardarAgregarTemporada',
-                                    'eliminarT'       => 'TemporadasAdminController#EliminarTemporada',
+                                    'guardarEditarE'  => 'TemporadasUserController#GuardarEditarEpisodio',
+                                    'eliminarE'       => 'TemporadasUserController#EliminarEpisodio',
+                                    'agregarE'        => 'TemporadasUserController#AgregarEpisodio',
+                                    'guardarAgregarE' => 'TemporadasUserController#GuardarAgregarEpisodio',
+                                    'agregarT'        => 'TemporadasUserController#AgregarTemporada',
+                                    'guardarAgregarT' => 'TemporadasUserController#GuardarAgregarTemporada',
+                                    'eliminarT'       => 'TemporadasUserController#EliminarTemporada',
                                     'login'           => 'LoginController#login',
                                     'logout'          => 'LoginController#logout',
-                                    'verificarLogin'  => 'LoginController#verifyLogin'
+                                    'verificarLogin'  => 'LoginController#verifyLogin',
+                                    'registro'        => 'RegistroController#Registro',
+                                    'Registrar'       => 'RegistroController#Registrar',
+                                    'comentarios'     => 'ComentariosController#getComentarios'
                                 ];
         }
 

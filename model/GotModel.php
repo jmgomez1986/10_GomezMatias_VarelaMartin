@@ -17,27 +17,48 @@
 			$this->host          = "localhost";
 			$this->root          = "root";
 			$this->root_password = "";
-			$this->tableNames    = ['season', 'episode', 'user_admin'];
+			$this->tableNames    = ['season', 'episode', 'user_info', 'comment', 'episode_image'];
 			$this->db            = "gameofthrones_db";
-			$this->columns 			 = [  'season'     => "id_season    int(11) NOT NULL    AUTO_INCREMENT,
-																								cant_episodes int(11) DEFAULT NULL,
-																								season_begin  date    DEFAULT NULL,
-																								season_end    date    DEFAULT NULL,
-																								PRIMARY KEY(id_season)",
+			$this->columns 			 = [  'season'     =>   "id_season     int(11) NOT NULL AUTO_INCREMENT,
+																								   cant_episodes int(11) DEFAULT NULL,
+																								   season_begin  date    DEFAULT NULL,
+																								   season_end    date    DEFAULT NULL,
+																								   PRIMARY KEY(id_season)",
 
-																'episode'    => "id_season    int(11)     NOT NULL,
-																								id_episode    int(11)     NOT NULL,
-																								episode_title varchar(50) DEFAULT NULL,
-																								episode_desc  text,
-																								PRIMARY KEY (id_season,id_episode),
-																								FOREIGN KEY (id_season) REFERENCES season (id_season)
-																								ON DELETE CASCADE ON UPDATE CASCADE",
+																'episode'    =>   "id_season     int(11)     NOT NULL,
+																			    			   id_episode    int(11)     NOT NULL,
+																			    			   titulo        varchar(50) DEFAULT NULL,
+																			    			   descripcion   text,
+																			    			   PRIMARY KEY (id_season,id_episode),
+																			    			   FOREIGN KEY (id_season) REFERENCES season (id_season)
+																			    			   ON DELETE CASCADE ON UPDATE CASCADE",
 
-																'user_admin' => "id_user      int(11)      NOT NULL,
-																								user_name     varchar(15)  DEFAULT NULL,
-																								user_password varchar(256) DEFAULT NULL,
-																								user_email    varchar(20)  DEFAULT NULL,
-																								PRIMARY KEY(id_user)"
+																'user_info'   =>  "id_user       int(11)      NOT NULL AUTO_INCREMENT,
+																								   name          varchar(15)  DEFAULT NULL,
+																								   password      varchar(256) DEFAULT NULL,
+																								   email         varchar(20)  DEFAULT NULL,
+																								   rol           varchar(30)  DEFAULT NULL,
+																								   PRIMARY KEY(id_user)",
+
+																'comment'     =>  "id_comment   int(11)      NOT NULL AUTO_INCREMENT,
+																                   id_season    int(11)      NOT NULL,
+																								   id_episode   int(11)      NOT NULL,
+																								   id_user      int(11)      NOT NULL,
+																								   comment      varchar(256) DEFAULT NULL,
+																								   score        int(1)       DEFAULT NULL,
+																								   PRIMARY KEY (id_comment),
+																								   FOREIGN KEY (id_season,id_episode) REFERENCES episode (id_season,id_episode)
+																								   ON DELETE CASCADE ON UPDATE CASCADE,
+																								   FOREIGN KEY (id_user) REFERENCES user_info (id_user)
+																								   ON DELETE CASCADE ON UPDATE CASCADE",
+
+																'episode_image' => "id_image    int(11)     NOT NULL AUTO_INCREMENT,
+																									  id_season   int(11)     NOT NULL,
+																									  id_episode  int(11)     NOT NULL,
+																									  path_img    varchar(50) DEFAULT NULL,
+																										PRIMARY KEY (id_image),
+																										FOREIGN KEY (id_season,id_episode) REFERENCES episode (id_season,id_episode)
+																										ON DELETE CASCADE ON UPDATE CASCADE"
 															];
 	}
 
@@ -105,7 +126,7 @@
 								(4, 10, '2014-04-06', '2014-06-15'),
 								(5, 10, '2015-04-12', '2015-06-14'),
 								(6, 10, '2016-04-24', '2016-06-26'),
-								(7, 7, '2017-07-16', '2017-08-27')" );
+								(7, 7,  '2017-07-16', '2017-08-27')" );
 				$sentencia->execute( );
 
 			}
@@ -117,7 +138,7 @@
 
 		function InsertEpisode($db, $tabNam){
 
-			$episodios = "(1, 1, 'Se acerca el enano', 'El rey Robert Baratheon de Poniente viaja al Norte para ofrecerle a su viejo amigo Eddard \"Ned\" Stark, Guardián del Norte y Señor de Invernalia, el puesto de Mano del Rey. La esposa de Ned, Catelyn, recibe una carta de su hermana Lysa que implica a miembros de la familia Lannister, la familia de la reina Cersei, en el asesinato de su marido Jon Arryn, la anterior Mano del Rey. Bran, uno de los hijos de Ned y Catelyn, escala un muro y descubre 	a la reina Cersei y a su hermano Jaime teniendo relaciones sexuales, Jaime empuja al pequeño Bran esperando que la caída lo mate y así evitar ser delatado por el niño. Mientras tanto, al otro lado del mar Angosto, el príncipe exiliado Viserys Targaryen forja una alianza para recuperar el Trono de Hierro: dará a su hermana Daenerys en matrimonio al salvaje dothraki Khal Drogo a cambio de su ejército. El caballero exiliado Jorah Mormont se unirá a ellos para proteger a Daenerys.'),
+			$episodios = "(1, 1, 'Se acerca el invierno', 'El rey Robert Baratheon de Poniente viaja al Norte para ofrecerle a su viejo amigo Eddard \"Ned\" Stark, Guardián del Norte y Señor de Invernalia, el puesto de Mano del Rey. La esposa de Ned, Catelyn, recibe una carta de su hermana Lysa que implica a miembros de la familia Lannister, la familia de la reina Cersei, en el asesinato de su marido Jon Arryn, la anterior Mano del Rey. Bran, uno de los hijos de Ned y Catelyn, escala un muro y descubre a la reina Cersei y a su hermano Jaime teniendo relaciones sexuales, Jaime empuja al pequeño Bran esperando que la caída lo mate y así evitar ser delatado por el niño. Mientras tanto, al otro lado del mar Angosto, el príncipe exiliado Viserys Targaryen forja una alianza para recuperar el Trono de Hierro: dará a su hermana Daenerys en matrimonio al salvaje dothraki Khal Drogo a cambio de su ejército. El caballero exiliado Jorah Mormont se unirá a ellos para proteger a Daenerys.'),
 			(1, 2, 'El camino real', 'Tras aceptar su nuevo rol como Mano del Rey, Ned parte hacia Desembarco del Rey con sus hijas Sansa y Arya, mientras que el hijo mayor, Robb, se queda al frente de los asuntos de su padre en la ciudad. Jon Nieve, el hijo bastardo de Ned, se dirige al Muro para unirse a la Guardia de la Noche. Tyrion Lannister, el hermano menor de la Reina, decide no ir con el resto de la familia real al sur y acompaña a Jon en su viaje al Muro. Viserys sigue esperando su momento de ganar el Trono de Hierro y Daenerys centra su atención en aprender cómo gustarle a su nuevo esposo, Drogo.'),
 			(1, 3, 'Lord Snow', 'Ned se une al Consejo Privado del Rey en Desembarco del Rey, la capital de los Siete Reinos, y descubre la mala administración que sufre Poniente. Catelyn decide ir de incógnito al sur para alertar a su esposo de los Lannister. Arya inicia su entrenamiento con la espada. Bran despierta tras su caída y no recuerda nada. Jon se entrena para adaptarse a su nueva vida en el Muro. Daenerys comienza a asumir su rol como khaleesi de Drogo y se enfrenta a Viserys.'),
 			(1, 4, 'Tullidos, bastardos y cosas rotas', 'Ned busca pistas para tratar de explicar la muerte de Jon Arryn. Robert celebra un torneo en honor a Ned. Jon toma medidas para proteger a Samwell Tarly, otro recluta de la Guardia de la Noche, de los abusos del resto de sus compañeros. Viserys, frustrado, se enfrenta a su hermana. Sansa sueña con una vida como reina de Joffrey Baratheon, el heredero al trono. Catelyn, de camino a Invernalia, acude a los aliados de su padre para apresar a Tyrion al creerle culpable del intento de asesinato de Bran.'),
@@ -126,7 +147,8 @@
 			(1, 7, 'Ganas o mueres', 'Ned se enfrenta a Cersei por la muerte de Jon Arryn. Robert, herido de muerte, nombra a Ned regente hasta que su hijo Joffrey sea mayor de edad. Ned pide ayuda a Meñique para asegurar la cooperación de la Guardia de la Ciudad en caso de que los Lannister no colaboren y revela que Joffrey no es hijo de Robert, sino de Jaime, lo que convierte a Stannis Baratheon, hermano mayor de Robert, en el verdadero heredero. No obstante, Petyr Baelish, amigo de los Stark, traiciona a Ned y éste es apresado y sus hombres asesinados. Jon toma los votos de la Guardia de la Noche. Drogo convoca a su ejército para invadir Poniente tras descubrir que Robert conspiraba para envenenar a Daenerys.'),
 			(1, 8, 'Por el lado de la punta', 'Robb convoca a los abanderados de su padre para ir en su rescate. Sansa suplica a Joffrey para salvar la vida de Ned. Jon y la Guardia de la Noche se preparan para enfrentarse a un antiguo enemigo del otro lado del Muro. El ejército de Drogo marcha al oeste en dirección hacia los Siete Reinos.'),
 			(1, 9, 'Baelor', 'Los familias Stark y Lannister se preparan para combatir entre ellos. Tyrion se alía a los clanes salvajes y los convence de combatir para los Lannister, mientras que Robb y Catelyn negocian para obtener la ayuda de Lord Walder Frey. Con Drogo moribundo debido una herida infectada, Daenerys utiliza la magia de una maegi para salvarle la vida. El maestre Aemon revela a Jon su parentesco con los Targaryen y el precio de la lealtad, ya que éste está preocupado por los eventos que no conciernen al Muro. En un último intento para salvarse y a sus hijas, Ned confiesa falsamente su conspiración y declara a Joffrey como el legítimo heredero al Trono de Hierro.'),
-			(1, 10, 'Tyron muestra el pedazo', 'Tyron muestra la foca muerta que tiene entre las piernas, sorprendiendo a todos los presentes'),
+			(1, 10, 'Fuego y sangre', 'Tras la ejecución de Ned, los norteños proclaman a Robb como su rey. Con Jaime capturado por los Stark, Lord Tywin Lannister asigna a su hijo Tyrion como Mano del Rey para mantener a Joffrey y Cersei bajo control. Jon abandona su puesto en el Muro para vengar a su padre, pero sus amigos lo persiguen y lo convencen para quedarse. La Guardia de la Noche parte a una expedición más allá del Muro. El hijo nonato de Daenerys muere y Drogo se encuentra en estado
+			vegetativo debido a la magia de la maegi traidora. Incapaz de soportar la ruina de su marido, Daenerys termina con su vida y prepara una pira funeraria en la que quema a la maegi viva junto con el cuerpo de Drogo y sus tres huevos de dragón. Además, ella misma entra en la pira y cuando esta se apaga Daenerys se eleva, sana y salva, flanqueada por tres dragones recién nacidos.'),
 			(2, 1, 'El norte no olvida', 'Mientras Robb Stark y su ejército del Norte continúan en guerra contra los Lannister, Tyrion llega a Desembarco del Rey para aconsejar Joffrey y moderar los excesos del joven rey. En la isla de Rocadragón, Stannis Baratheon planea de una invasión para reclamar el trono de su difunto hermano, aliándose con Melisandre, una extraña sacerdotisa que rinde culto a un dios extraño. Al otro lado del mar, Daenerys, sus tres jóvenes dragones y su khalasar caminata a través del desierto en busca de aliados, o agua. En el Norte, Bran preside un Invernalia, mientras que más allá del Muro, Jon Nieve y la Guardia de la Noche deben lidiar con una salvaje.'),
 			(2, 2, 'Las tierras de la noche', 'A raíz de una purga sangrienta en la capital, Tyrion castiga Cersei por alejar a los súbditos del Rey. En el camino hacia el norte, Arya comparte un secreto con Gendry. Por su parte, después de nueve años como prisionero de los Stark, Theon Greyjoy se reúne con su padre Balon, que quiere restaurar el antiguo reino de las Islas del Hierro. Davos convence a Salladhor Saan, un pirata, para unir fuerzas con Stannis y Melisandre de cara a una invasión naval de Desembarco del Rey.'),
 			(2, 3, 'Lo que está muerto no puede morir', 'En la Fortaleza Roja, Tyrion planea tres alianzas a través de la promesa de matrimonio. Mientras, Catelyn trata de forjar una alianza a través de su propio casamiento. Pero el rey Renly, su nueva esposa Margaery y su hermano Loras Tyrell tienen otros planes. En Invernalia, Luwin intenta descifrar los sueños de Bran.'),
@@ -182,11 +204,12 @@
 			(7, 3, 'La justicia de la reina', 'Jon Nieve conoce a Daenerys en Rocadragón. Euron entra triunfal en Desembarco del Rey y entrega a las rehenes Ellaria y Tyene Arena ante Cersei. Jorah es curado de psoriagrís. Cersei se cobra su venganza por la muerte de Myrcella. Los Inmaculados atacan Roca Casterly, aunque las fuerzas de los Lannister han abandonado en su mayoría el castillo para capturar Altojardín, que lleva a la muerte de Olenna Tyrell, no sin antes confesar ante Jaime que mató a Joffrey.'),
 			(7, 4, 'Botines de guerra', 'Jon muestra a Daenerys una cueva llena de vidriagón y unas pinturas rupestres de los Niños del Bosque sobre los Caminantes Blancos. Cersei negocia con el Banco de Hierro. Arya regresa a Invernalia y se reencuentra con sus hermanos. Después de perder la flota de Yara Greyjoy y el ejército y el apoyo económico de Dorne y Altojardín, Daenerys sale a atacar desde el lomo de Drogon a las huestes de los Lannister junto con una horda de salvajes dothrakis dispuestos a matar.'),
 			(7, 5, 'Guardaoriente', 'Daenerys consigue una victoria y acaba con la familia Tarly. Jorah vuelve al servicio de Daenerys. Tyrion se reúne en secreto con Jaime para que convenza a Cersei para luchar contra los Caminantes Blancos. Cersei desvela a Jaime que está embarazada. Jon Nieve y compañía cruzan de nuevo el Muro en busca de un no-muerto para que el resto del continente les crea y luchen. Sam abandona Antigua cansado de ser ignorado.'),
-			(7, 6, 'Más allá del Muro', 'En Invernalia, Sansa y Arya comienzan una disputa debido a las artimañas de Meñique. Sansa descubre las caras de Arya. Jon y compañía se adentran más allá del Muro hasta dar con una horda de Caminantes Blancos, consiguen capturar a un no-muerto pero se ven atrapados por el ejército. Gendry consigue escapar hasta el Muro y manda un aviso de socorro a Daenerys. Thoros de Myr muere congelado tras sufrir una herida. Daenerys acude en su ayuda a pesar de los consejos de Tyrion. El Rey de la Noche arroja una lanza helada que acaba con la vida del dragón Viserion. Daenerys en shock, consigue escapar con todos menos Jon, que es salvado por su tío Benjen que termina sacrificandose por él. Jon herido llega al Muro y jura lealtad a Daenerys. El Rey de la Noche saca el cadáver de Viserion del lago helado y lo resucita como un dragón caminante blanco.'),(7, 7, 'El dragón y el lobo', 'En Desembarco del Rey, Daenerys, Jon, Cersei y sus consejeros se reúnen en Pozo Dragón para el encuentro donde un espectro se va a presentar como prueba. Cersei demanda como condición que Jon permanezca neutral mientras continúe la guerra con Daenerys. Él rechaza la petición por su promesa de servir a Daenerys provocando la retirada de Cersei. Tyrion habla con Cersei y aparentemente la convence de que se comprometa con la alianza. Posteriormente, Cersei le revela a Jaime que ella no tiene intención de enviar sus soldados para ayudar a la lucha de Daenerys y Jon contra los muertos. Su plan, en cambio, es derrotar al bando ganador, contratando a 20 000 mercenarios de la Compañía Dorada. Jaime, dispuesto a cumplir su palabra, la deja para cabalgar al Norte. Theon se gana el respeto de sus hombres para rescatar a su hermana Yara. En Invernalia, Meñique habla con Sansa sobre el amenazador comportamiento de Arya. Sansa convoca un juicio delante de los señores del Norte y del Valle señalando a Meñique en lugar de Arya. Arya lo ejecuta por sus crímenes contra la casa Stark y la casa Arryn. Mientras tanto, Daenerys y Jon tienen relaciones sexuales en el barco hacia Invernalia. En Guardiaoriente, el Rey de la Noche realiza su aparición a lomos de Viserion, el cual es ahora un dragón Caminante Blanco, destruyendo una porción del Muro y permitiendo al Ejército de los Muertos avanzar hacia el sur.')";
-			$episodios .= ",(7, 7, 'El dragón y el lobo', 'En Desembarco del Rey, Daenerys, Jon, Cersei y sus consejeros se reúnen en Pozo Dragón para el encuentro donde un espectro se va a presentar como prueba. Cersei demanda como condición que Jon permanezca neutral mientras continúe la guerra con Daenerys. Él rechaza la petición por su promesa de servir a Daenerys provocando la retirada de Cersei. Tyrion habla con Cersei y aparentemente la convence de que se comprometa con la alianza. Posteriormente, Cersei le revela a Jaime que ella no tiene intención de enviar sus soldados para ayudar a la lucha de Daenerys y Jon contra los muertos. Su plan, en cambio, es derrotar al bando ganador, contratando a 20 000 mercenarios de la Compañía Dorada. Jaime, dispuesto a cumplir su palabra, la deja para cabalgar al Norte. Theon se gana el respeto de sus hombres para rescatar a su hermana Yara. En Invernalia, Meñique habla con Sansa sobre el amenazador comportamiento de Arya. Sansa convoca un juicio delante de los señores del Norte y del Valle señalando a Meñique en lugar de Arya. Arya lo ejecuta por sus crímenes contra la casa Stark y la casa Arryn. Mientras tanto, Daenerys y Jon tienen relaciones sexuales en el barco hacia Invernalia. En Guardiaoriente, el Rey de la Noche realiza su aparición a lomos de Viserion, el cual es ahora un dragón Caminante Blanco, destruyendo una porción del Muro y permitiendo al Ejército de los Muertos avanzar hacia el sur.')";
+			(7, 6, 'Más allá del Muro', 'En Invernalia, Sansa y Arya comienzan una disputa debido a las artimañas de Meñique. Sansa descubre las caras de Arya. Jon y compañía se adentran más allá del Muro hasta dar con una horda de Caminantes Blancos, consiguen capturar a un no-muerto pero se ven atrapados por el ejército. Gendry consigue escapar hasta el Muro y manda un aviso de socorro a Daenerys. Thoros de Myr muere congelado tras sufrir una herida. Daenerys acude en su ayuda a pesar de los consejos de Tyrion. El Rey de la Noche arroja una lanza helada que acaba con la vida del dragón Viserion. Daenerys en shock, consigue escapar con todos menos Jon, que es salvado por su tío Benjen que termina sacrificandose por él. Jon herido llega al Muro y jura lealtad a Daenerys. El Rey de la Noche saca el cadáver de Viserion del lago helado y lo resucita como un dragón caminante blanco.'),";
+
+			$episodios .= "(7, 7, 'El dragón y el lobo', 'En Desembarco del Rey, Daenerys, Jon, Cersei y sus consejeros se reúnen en Pozo Dragón para el encuentro donde un espectro se va a presentar como prueba. Cersei demanda como condición que Jon permanezca neutral mientras continúe la guerra con Daenerys. Él rechaza la petición por su promesa de servir a Daenerys provocando la retirada de Cersei. Tyrion habla con Cersei y aparentemente la convence de que se comprometa con la alianza. Posteriormente, Cersei le revela a Jaime que ella no tiene intención de enviar sus soldados para ayudar a la lucha de Daenerys y Jon contra los muertos. Su plan, en cambio, es derrotar al bando ganador, contratando a 20 000 mercenarios de la Compañía Dorada. Jaime, dispuesto a cumplir su palabra, la deja para cabalgar al Norte. Theon se gana el respeto de sus hombres para rescatar a su hermana Yara. En Invernalia, Meñique habla con Sansa sobre el amenazador comportamiento de Arya. Sansa convoca un juicio delante de los señores del Norte y del Valle señalando a Meñique en lugar de Arya. Arya lo ejecuta por sus crímenes contra la casa Stark y la casa Arryn. Mientras tanto, Daenerys y Jon tienen relaciones sexuales en el barco hacia Invernalia. En Guardiaoriente, el Rey de la Noche realiza su aparición a lomos de Viserion, el cual es ahora un dragón Caminante Blanco, destruyendo una porción del Muro y permitiendo al Ejército de los Muertos avanzar hacia el sur.')";
 
 			try{
-				$sentencia = $db->prepare( "INSERT INTO $tabNam (id_season, id_episode, episode_title, episode_desc)
+				$sentencia = $db->prepare( "INSERT INTO $tabNam (id_season, id_episode, titulo, descripcion)
 				VALUES 	$episodios" );
 				$sentencia->execute( );
 
@@ -211,10 +234,10 @@
 
 		function InsertUser($db, $tabNam){
 			try{
-				$sentencia = $db->prepare( "INSERT INTO $tabNam (id_user, user_name, user_password, user_email)
-																			VALUES (?,?,?,?)" );
+				$sentencia = $db->prepare( "INSERT INTO $tabNam (id_user, name, password, email, rol)
+																			VALUES (?,?,?,?,?)" );
 				$sentencia->execute( array(1, 'jmga', '$2y$10$3Hj1Dqrg9BgHot88WQZcLu43bBYAvuwuQ1U.kcmfEiDWBHJnlC392',
-																		'jmgametal@gmail.com') );
+																		'jmgametal@gmail.com', 'Administrador') );
 
 			}
 			catch(PDOException $exception){
@@ -223,6 +246,5 @@
 		}
 
 	}
-
 
 ?>

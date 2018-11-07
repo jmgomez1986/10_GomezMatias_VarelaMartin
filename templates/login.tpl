@@ -1,6 +1,6 @@
 {include file="header.tpl"}
 
-			<div class="container-fluid mt-8">
+			<div class="container-fluid mt-5">
 				<div id="login">
 						<form name='form-login' method="post" action="verificarLogin">
 							<span class="fontawesome-user"></span>
