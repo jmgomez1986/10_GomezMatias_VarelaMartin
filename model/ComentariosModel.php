@@ -31,12 +31,19 @@
 			return $comentarios;
 		}
 
-		function getComentario($temporada, $episodio){
+		function getComentario($temporada, $episodio, $sortCriterio=''){
 
+			if ( $sortCriterio != '' ){
+				$sort = $sortCriterio;	
+			}else{
+				$sort = 'ASC';
+			}
+			
 			$sentencia = $this->db->prepare("SELECT comment.*, user_info.name FROM comment, user_info
 																				WHERE comment.id_user    = user_info.id_user AND
 																							comment.id_season  = ?                 AND
-				                                      comment.id_episode = ?");
+				                                      comment.id_episode = ?
+				                                      ORDER BY score $sort");
 			$sentencia->execute( array($temporada, $episodio) );
 			$comentarios = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 

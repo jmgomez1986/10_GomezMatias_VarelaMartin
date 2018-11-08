@@ -2,9 +2,9 @@
 
     <h1 class="titulo">Agregar comentario</h1>
 
-    <div class="container  mt-4">
+    <div class="container mt-4">
 
-      <form class="formAddComment" id="confirmationForm" method="post" action="" >
+      <form class="formAddComment" id="confirmationForm" method="post" action="comentarios/temporada/{$id_temporada}/episodio/{$id_episodio}" >
 
         <input type="hidden" class="form-control idUser" id="idUser" name="idUser" value="{$id_user}">
 

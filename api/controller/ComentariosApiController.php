@@ -13,11 +13,16 @@
 
    function getComentarios($param = []){
      if ( !empty($param) ){
-       $id_season  = $param[':ID1'];
-       $id_episode = $param[':ID2'];
-       //echo $id_season;
-       //echo $id_episode;
-       $data = $this->model->getComentario($id_season, $id_episode);
+       $id_season    = $param[':ID1'];
+       $id_episode   = $param[':ID2'];
+       if ( isset($_GET['Sort']) ){
+
+       $sortCriterio = $_GET['Sort'];
+       }else{
+        $sortCriterio = '';
+       }
+
+       $data = $this->model->getComentario($id_season, $id_episode, $sortCriterio);
      }
      else{
        $data = $this->model->getComentarios();

@@ -15,6 +15,7 @@ function loadPage() {
     });
 
    saveComentarios();
+   sortComentario();
 }
 
 function getComentarios() {
@@ -39,7 +40,7 @@ function getComentarios() {
         fetch(route)
         .then(response => response.json())
         .then(jsonComentarios => {
-            mostrarComentarios(jsonComentarios,logueado,rol,idEpis,idTemp);
+            mostrarComentarios(jsonComentarios, logueado, rol, idEpis, idTemp);
         })
     }
 }
@@ -107,9 +108,10 @@ function saveComentarios(){
             }).then(function(json) {
                 // let urlPrev = document.referrer;
                 // window.location.replace(urlPrev);
-                let urlComments = "comentarios/temporada/" +  idTemp + "/episodio/" + idEpis;
-                console.log(urlComments);
-                let form = document.querySelector(".formAddComment").action = urlComments;
+                // let urlComments = 'comentarios/temporada/' + idTemp + '/episodio/' + idEpis;
+                // console.log(urlComments);
+                // alert("TEST Redirect");
+                // let form = document.querySelector(".formAddComment").action = urlComments;
 
             }).catch(function(e){
                 let cartelError = container.querySelector(".js-displayError");
@@ -118,12 +120,46 @@ function saveComentarios(){
                 console.log(e)
             });
           }else{
-            let error = document.querySelector(".errorForm");
-            error.innerHTML = "El valor para el puntaje debe ser etre 0 y 5";
-          }
+                let error = document.querySelector(".errorForm");
+                error.innerHTML = "El valor para el puntaje debe ser etre 0 y 5";
+            }
 
       });
 
   }
+}
 
+function sortComentario(){
+
+  let btnSortComment = document.querySelector('.js-sortComment');
+  let criterio;
+
+  if ( btnSortComment != null ){
+
+    btnSortComment.addEventListener("click", function(){
+
+        let obj = document.querySelector('.contenedor_comentarios');
+        let idTemp   = obj.dataset.temp;
+        let idEpis   = obj.dataset.epis;
+
+        let criterioAsc = document.querySelector(".radSortAsc");
+        let criterioDes = document.querySelector(".radSortDes");
+
+        // console.log(criterioAsc);
+
+        if ( criterioAsc.checked ){
+            criterio = 'ASC';
+        }else if ( criterioDes.checked ){
+            criterio = 'DESC';      
+        }
+
+        let urlSortComments = 'api/comentarios/temporada/' + idTemp + '/episodio/' + idEpis + '?sort=' + criterio;
+        // console.log(urlComments);
+        // alert(urlComments);
+        //let form = document.querySelector(".formComment").action = urlComments;
+        
+        getComentarios();
+    });
+
+  }
 }
