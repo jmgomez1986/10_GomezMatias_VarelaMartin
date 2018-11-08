@@ -22,7 +22,7 @@
       $this->Smarty->assign('rol', $rol);
     }
 
-    function getComentarios($id_temporada, $id_episodio){
+    function getComentarios($id_temporada='', $id_episodio=''){
       $this->Smarty->assign('id_temporada', $id_temporada);
       $this->Smarty->assign('id_episodio', $id_episodio);
 

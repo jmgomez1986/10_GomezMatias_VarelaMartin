@@ -28,6 +28,7 @@ function getComentarios(){
 function fetchGetComentario(url){
 
   let obj = document.querySelector('.contenedor_comentarios');
+  let route;
 
   if (obj != null ){
     let idTemp   = obj.dataset.temp;
@@ -35,10 +36,13 @@ function fetchGetComentario(url){
     let logueado = obj.dataset.logueado;
     let rol      = obj.dataset.rol;
 
-    let route = url.replace("{idTemp}", idTemp);
-    route = route.replace("{idEpis}", idEpis);
+    if ( idTemp && idEpis && logueado && rol ){
+      route = url.replace("{idTemp}", idTemp);
+      route = route.replace("{idEpis}", idEpis);
+    }else{
+      route = "api/comentarios";
+    }
 
-    console.log(route);
     alert("URL: " + route);
 
     if ( logueado && rol == "Limitado" ){
