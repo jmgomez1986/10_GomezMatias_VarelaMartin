@@ -18,31 +18,43 @@ function loadPage() {
    sortComentario();
 }
 
-function getComentarios() {
+function getComentarios(){
 
-    let obj = document.querySelector('.contenedor_comentarios');
+  let url = "api/comentarios/temporada/" +  "{idTemp}" + "/episodio/" + "{idEpis}";
 
-    if (obj != null ){
-        let idTemp   = obj.dataset.temp;
-        let idEpis   = obj.dataset.epis;
-        let logueado = obj.dataset.logueado;
-        let rol      = obj.dataset.rol;
+  fetchGetComentario(url);
+}
 
-        let route = "api/comentarios/temporada/" +  idTemp + "/episodio/" + idEpis;
+function fetchGetComentario(url){
 
-        if ( logueado && rol == "Limitado" ){
-            let btnAddCom = document.querySelector(".js-addComment").addEventListener('click', function(){
-              let url       = "agregarComentario/";
-              let formAdmin = document.querySelector(".formComment").action = url;
-            });
-        }
+  let obj = document.querySelector('.contenedor_comentarios');
 
-        fetch(route)
-        .then(response => response.json())
-        .then(jsonComentarios => {
-            mostrarComentarios(jsonComentarios, logueado, rol, idEpis, idTemp);
-        })
+  if (obj != null ){
+    let idTemp   = obj.dataset.temp;
+    let idEpis   = obj.dataset.epis;
+    let logueado = obj.dataset.logueado;
+    let rol      = obj.dataset.rol;
+
+    let route = url.replace("{idTemp}", idTemp);
+    route = route.replace("{idEpis}", idEpis);
+
+    console.log(route);
+    alert("URL: " + route);
+
+    if ( logueado && rol == "Limitado" ){
+      let btnAddCom = document.querySelector(".js-addComment").addEventListener('click', function(){
+        let url       = "agregarComentario/";
+        let formAdmin = document.querySelector(".formComment").action = url;
+      });
     }
+
+    fetch(route)
+    .then(response => response.json())
+    .then(jsonComentarios => {
+      mostrarComentarios(jsonComentarios, logueado, rol, idEpis, idTemp);
+    })
+  }
+
 }
 
 function mostrarComentarios(jsonComentarios,logueado,rol,idEpis,idTemp) {
@@ -145,20 +157,15 @@ function sortComentario(){
         let criterioAsc = document.querySelector(".radSortAsc");
         let criterioDes = document.querySelector(".radSortDes");
 
-        // console.log(criterioAsc);
-
         if ( criterioAsc.checked ){
             criterio = 'ASC';
         }else if ( criterioDes.checked ){
-            criterio = 'DESC';      
+            criterio = 'DESC';
         }
 
-        let urlSortComments = 'api/comentarios/temporada/' + idTemp + '/episodio/' + idEpis + '?sort=' + criterio;
-        // console.log(urlComments);
-        // alert(urlComments);
-        //let form = document.querySelector(".formComment").action = urlComments;
-        
-        getComentarios();
+        let urlSortComments = 'api/comentarios/temporada/' + "{idTemp}" + '/episodio/' + "{idEpis}" + '?Sort=' + criterio;
+
+        fetchGetComentario(urlSortComments);
     });
 
   }
