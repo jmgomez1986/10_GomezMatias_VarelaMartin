@@ -19,7 +19,7 @@ function loadPage() {
 
 function getComentarios() {
 
-    let obj      = document.querySelector('.contenedor_comentarios');
+    let obj = document.querySelector('.contenedor_comentarios');
 
     if (obj != null ){
         let idTemp   = obj.dataset.temp;
@@ -53,8 +53,6 @@ function mostrarComentarios(jsonComentarios,logueado,rol,idEpis,idTemp) {
         idTemp     : idTemp
     }
 
-    console.log(jsonComentarios);
-
     Handlebars.registerHelper('if_eq', function(a, b, opts) {
         if(a == b) // Or === depending on your needs
             return opts.fn(this);
@@ -69,59 +67,63 @@ function mostrarComentarios(jsonComentarios,logueado,rol,idEpis,idTemp) {
 
 function saveComentarios(){
 
-    let btnAddComment = document.querySelector('.js-submitAddComment');
+  let btnAddComment = document.querySelector('.js-submitAddComment');
 
-    if ( btnAddComment != null ){
+  if ( btnAddComment != null ){
 
-        btnAddComment.addEventListener("click", function(){
-            let idUser  = document.querySelector('.idUser').value;
-            let idTemp  = document.querySelector('.idTemp').value;
-            let idEpis  = document.querySelector('.idEpis').value;
-            let comment = document.querySelector('.comment').value;
-            let score   = document.querySelector('.score').value;
+      btnAddComment.addEventListener("click", function(){
 
-            // console.log(idUser);
-            // console.log(idTemp);
-            // console.log(idEpis);
-            // console.log(comment);
+          let idUser  = document.querySelector('.idUser').value;
+          let idTemp  = document.querySelector('.idTemp').value;
+          let idEpis  = document.querySelector('.idEpis').value;
+          let comment = document.querySelector('.comment').value;
+          let score   = document.querySelector('.score').value;
+
+          if ( score <= 5 ){
 
             let data = {
-                        "id_season" : idTemp,
-                        "id_episode": idEpis,
-                        "id_user"   : idUser,
-                        "comment"   : comment,
-                        "score"     : score
-                       };
+              "id_season" : idTemp,
+              "id_episode": idEpis,
+              "id_user"   : idUser,
+              "comment"   : comment,
+              "score"     : score
+            };
 
-            console.log(data);
-let url = 'api/comentarios';
+            let url = 'api/comentarios';
 
-  fetch(url, {
-        "method" : "POST",
-        "mode"   : "cors", //Con esto se hace menos estricta la politica de seguridad de algunos navegadores
-        "headers": {
-            "Content-Type": "application/json"
-        },
-        "body"   : JSON.stringify(data) //se debe serializar (stringify) la informacion (el "data:" de ida es de tipo string)
-    }).then( function(response) {
-        // console.log(response);
-        if (!response.ok) {
+            fetch(url, {
+              "method" : "POST",
+              "mode"   : "cors", //Con esto se hace menos estricta la politica de seguridad de algunos navegadores
+              "headers": {
+                            "Content-Type": "application/json"
+                          },
+              "body"   : JSON.stringify(data) //se debe serializar (stringify) la informacion (el "data:" de ida es de tipo string)
+            }).then( function(response) {
+                // console.log(response);
+                if (!response.ok) {
 
-        } else
-            return response.json()
-      }).then(function(json) {
-        let urlPrev = document.referrer;
-        window.location.replace(urlPrev);
+                } else
+                return response.json()
+            }).then(function(json) {
+                // let urlPrev = document.referrer;
+                // window.location.replace(urlPrev);
+                let urlComments = "comentarios/temporada/" +  idTemp + "/episodio/" + idEpis;
+                console.log(urlComments);
+                let form = document.querySelector(".formAddComment").action = urlComments;
 
-      }).catch(function(e){
-            let cartelError = container.querySelector(".js-displayError");
-            showElement(cartelError);
-            cartelError.innerHTML = "Error de Conexión";
-            console.log(e)
+            }).catch(function(e){
+                let cartelError = container.querySelector(".js-displayError");
+                showElement(cartelError);
+                cartelError.innerHTML = "Error de Conexión";
+                console.log(e)
+            });
+          }else{
+            let error = document.querySelector(".errorForm");
+            error.innerHTML = "El valor para el puntaje debe ser etre 0 y 5";
           }
-        );
-        });
 
-    }
+      });
+
+  }
 
 }
