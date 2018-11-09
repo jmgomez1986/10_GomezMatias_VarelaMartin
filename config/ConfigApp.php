@@ -35,7 +35,7 @@
                                     'registro'          => 'RegistroController#Registro',
                                     'Registrar'         => 'RegistroController#Registrar',
                                     'comentarios'       => 'ComentariosController#getComentarios',
-                                    'agregarComentario' => 'ComentariosController#agregarComentario',
+                                    'agregarComentario' => 'ComentariosController#agregarComentarioForm',
                                     'guardarComentario' => 'ComentariosController#saveComment'
                                 ];
         }

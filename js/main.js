@@ -95,6 +95,12 @@ function saveComentarios(){
           let idEpis  = document.querySelector('.idEpis').value;
           let comment = document.querySelector('.comment').value;
           let score   = document.querySelector('.score').value;
+          let captchaResult = document.querySelector('.verifyCaptcha').value;
+
+          console.log(captchaResult);
+          alert("lala");
+
+          // guardarComentario
 
           if ( score <= 5 ){
 

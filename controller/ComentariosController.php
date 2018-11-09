@@ -63,18 +63,68 @@
       $this->view->getComentarios($id_temporada, $id_episodio);
     }
 
-    function agregarComentario(){
+    function agregarComentarioForm($params=[]){
+
       if ( isset($_POST["idTemp"]) && isset($_POST["idEpis"]) ){
         $id_temporada = $_POST["idTemp"];
         $id_episodio  = $_POST["idEpis"];
+      }else{
+        $id_temporada = $params[0];
+        $id_episodio  = $params[1];
+        // var_dump($params);
+        // die();
       }
-
       $user_name    = $this->login->getUser();
       $id_user      = $this->login->getUserID($user_name);
       $this->view->addComment($id_temporada, $id_episodio, $id_user[0]['id_user'], $this->script);
     }
 
-    function saveComment(){
+    function saveComment($params=[]){
+
+      $recaptcha = $_POST["g-recaptcha-response"];
+      $url = 'https://www.google.com/recaptcha/api/siteverify';
+      $data = http_build_query( array( 'secret'   => '6Lf9l3kUAAAAAHvx3L_UPaWJf0EyaDKwS-SxiFxe',
+                                       'response' => $recaptcha,
+                                       'remoteip' => $_SERVER['REMOTE_ADDR']
+                                     )
+                              );
+      $options = array(
+        'http' =>
+        array(
+            'method'  => 'POST',
+            'header'  => 'Content-type: application/x-www-form-urlencoded',
+            'content' => $data
+        )
+      );
+      $context = stream_context_create($options);
+      $verify = file_get_contents($url, false, $context);
+      $captcha_success = json_decode($verify);
+
+      // var_dump($captcha_success);
+      // die();
+      // var_dump($_POST);
+      // die();
+      if ( isset($_POST["idTemp"]) && isset($_POST["idEpis"]) ){
+        $id_temporada = $_POST["idTemp"];
+        $id_episodio  = $_POST["idEpis"];
+      }
+      if ( $captcha_success->success ){
+          $url = '/comentarios/temporada/'.$id_temporada.'/'.'episodio/'.$id_episodio;
+          header('Location: //'.$_SERVER["SERVER_NAME"]. ":". $_SERVER['SERVER_PORT'] . dirname($_SERVER["PHP_SELF"]). $url);
+      }else{
+        // var_dump($captcha_success);
+        // die();
+        $user_name    = $this->login->getUser();
+        $id_user      = $this->login->getUserID($user_name);
+        $url = 'agregarComentario/'.$id_temporada.'/'.$id_episodio;
+        $urlAgregar = 'Location: //'.$_SERVER["SERVER_NAME"]. ":". $_SERVER['SERVER_PORT'] . dirname($_SERVER["PHP_SELF"]). '/'.$url;
+        // var_dump($params);
+        // die();
+        // var_dump($urlAgregar);
+        // die();
+        header($urlAgregar);
+      }
+
 
     }
 

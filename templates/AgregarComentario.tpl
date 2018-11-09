@@ -4,35 +4,38 @@
 
     <div class="container mt-4">
 
-      <form class="formAddComment" id="confirmationForm" method="post" action="comentarios/temporada/{$id_temporada}/episodio/{$id_episodio}" >
+      <form class="formAddComment" id="confirmationForm" method="post" action="" >
 
         <input type="hidden" class="form-control idUser" id="idUser" name="idUser" value="{$id_user}">
 
         <div class="form-group">
-          <label class="text-white font-weight-bold" for="tituloForm">Temporada Nº</label>
-          <input disabled type="number" class="form-control idTemp" id="idTemp" name="idTemp" value="{$id_temporada}">
+          <label class="text-white font-weight-bold" for="idTemp">Temporada Nº</label>
+          <input type="number" class="form-control idTemp" id="idTemp" name="idTemp" value="{$id_temporada}">
         </div>
 
         <div class="form-group">
-          <label class="text-white font-weight-bold" for="tituloForm">Episodio Nº</label>
-          <input disabled type="number" class="form-control idEpis" name="idEpis" value="{$id_episodio}">
+          <label class="text-white font-weight-bold" for="idEpis">Episodio Nº</label>
+          <input type="number" class="form-control idEpis" id="idEpis" name="idEpis" value="{$id_episodio}">
         </div>
 
         <div class="form-group">
-          <label class=" text-white font-weight-bold" for="descForm">Comentario:</label>
+          <label class=" text-white font-weight-bold" for="comment">Comentario</label>
           <textarea name="comment" class="form-control comment" rows="5" id="comment" form="confirmationForm"></textarea>
         </div>
 
         <div class="form-group">
-          <label class="text-white font-weight-bold" for="tituloForm">Puntaje</label>
-          <input enabled type="number" class="form-control score" name="score" min="0" max="5">
+          <label class="text-white font-weight-bold" for="score">Puntaje</label>
+          <input enabled type="number" class="form-control score" id="score" name="score" min="0" max="5">
         </div>
 
         <div class="">
           <p class="errorForm"></p>
         </div>
 
-        <button type="submit" class="btn btn-primary mb-4 mt-2 js-submitAddComment">Agregar comentario</button>
+        <div class="g-recaptcha" data-sitekey="6Lf9l3kUAAAAAMtoVTGhrcnEkmj1s_kxLhM36yXC"></div>
+
+        <button type="button" class="btn btn-primary mb-4 mt-2 js-submitAddComment">Agregar comentario</button>
+
       </form>
     </div>
 
