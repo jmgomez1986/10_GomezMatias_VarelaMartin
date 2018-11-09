@@ -28,5 +28,9 @@
         <button class="js-age btn btn-success btn-sm" type="submit">Agregar</button>
       </div>
 
+      <div class="px-2">
+        <button class="js-eli btn btn-success btn-sm" type="submit">Eliminar Imagenes</button>
+      </div>
+
     </div>
   </form>

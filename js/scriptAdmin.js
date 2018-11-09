@@ -165,4 +165,25 @@ function loadPage() {
 
   });
 
+  let btnEliminarImagenesEpisodio = document.querySelector(".js-eli").addEventListener('click', function(){
+    let eleccionTemp = document.querySelector(".js-eleccionTE");
+    let indexT       = eleccionTemp.selectedIndex;
+    let temporada    = eleccionTemp.value;
+    let temporadaID  = eleccionTemp.options[indexT].getAttribute("name");
+
+    let eleccionEp   = document.querySelector(".js-eleccionE");
+    let episodio     = eleccionEp.value;
+    let indexE       = eleccionEp.selectedIndex;
+    let episodioID   = eleccionEp.options[indexE].getAttribute("name");
+
+    if ( ( temporadaID === "0" ) || ( episodioID === "0" ) ){
+        alert("Elija una temporada y un episodio");
+    }
+    else{
+        let url       = 'MostrarImagenes/' + temporadaID + "/" + episodioID + "/";
+        let formAdmin = document.querySelector(".formAdminE").action = url;
+    }
+
+  });
+
 }

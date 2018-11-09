@@ -96,6 +96,20 @@
       $this->Smarty->display('templates/MostrarAgregarTemporada.tpl');
     }
 
+    function MostrarImagenesEpisodio($titulo, $imagenes, $id_temporada, $id_episodio){
+
+      $this->Smarty->assign('titulo', $titulo);
+      $this->Smarty->assign('imagenes', $imagenes);
+      $this->Smarty->assign('id_season', $id_temporada);
+      $this->Smarty->assign('id_episode', $id_episodio);
+      $this->Smarty->assign('script', '');
+      // var_dump($imagenes);
+      // die();
+
+      $this->Smarty->display('templates/MostrarImagenesEpisodio.tpl');
+
+    }
+
   } //END CLASS
 
  ?>

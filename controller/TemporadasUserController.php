@@ -149,7 +149,7 @@
 				$valoresTemporada = [$id_temporada, 	$cant_epis, $comienzo, 	$fin ];
 				$this->view->MostrarAgregarTemporada('Agregar temporada', $valoresTemporada);
 			}
-			
+
 		}
 
 		function EliminarTemporada($param){
@@ -160,6 +160,36 @@
 
 			header(TEMPUSER);
 
+		}
+
+		function MostrarImagenes($params=[]){
+
+			$id_temporada = $params[0];
+			$id_episodio  = $params[1];
+
+			$imagenes = $this->model->getImagenes($id_temporada, $id_episodio);
+			$this->view->MostrarImagenesEpisodio('Imagenes del episodio', $imagenes, $id_temporada, $id_episodio );
+
+		}
+
+		function EliminarImagen($params=[])		{
+			$id_temporada   = $params[0];
+			$id_episodio    = $params[1];
+			$id_images      = $_POST["ID"];
+			$id_imagesDEL   = ['id_image' => [] ];
+			// var_dump($id_images);
+			// die();
+			// var_dump($params);
+			// die();
+			foreach ($id_images as $key => $id_image) {
+				// var_dump($id_comentario);
+				// array_push( $id_imagesDEL['id_image'], $id_image );
+
+				$this->model->eliminarImagenEpisodio($id_image);
+
+			}
+
+			header(TEMPUSER);
 		}
 
 	} // ENDCLASS

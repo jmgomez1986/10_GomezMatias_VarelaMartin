@@ -71,16 +71,16 @@
 
 		private function getEpisodioImagenes($id_temporada, $id_episodio=NULL){
 
+			$parameters = array();
+
 			//Se arma la condicion
 			if ( isset($id_episodio)){
 				$condicion  = 'id_season=? AND id_episode=?';
-				$parameters = array();
 				array_push($parameters, $id_temporada);
 				array_push($parameters, $id_episodio);
 			}
 			else{
 				$condicion  = 'id_season=?';
-				$parameters = array();
 				array_push($parameters, $id_temporada);
 			}
 
@@ -94,19 +94,28 @@
 				$episodio = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
 				//Se obtienen los datos de las imagenes
-				$sentencia = $this->db->prepare("SELECT *
-					FROM episode_image
-					WHERE	$condicion");
+				$episodioImagenes = $this->getImagenes($id_temporada, $id_episodio);
 
-					$sentencia->execute( $parameters );
 
-					$episodioImagenes = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+				//Se unen los dos resultados
+				$episodioFormateado = $this->formatearEpisodio($episodio, $episodioImagenes);
 
-					//Se unen los dos resultados
-					$episodioFormateado = $this->formatearEpisodio($episodio, $episodioImagenes);
+				return $episodioFormateado;
+		}
 
-					return $episodioFormateado;
-				}
+		function getImagenes($id_season, $id_episode){
+
+			$sentencia = $this->db->prepare("SELECT *
+																					FROM episode_image
+																					WHERE	id_season=? AND
+																								id_episode=?");
+
+			$sentencia->execute( array($id_season, $id_episode) );
+
+			$episodioImagenes = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+			return $episodioImagenes;
+		}
 
 		function getTemporadas(){
 
@@ -165,6 +174,27 @@
 
 		}
 
+		function eliminarImagenEpisodio($id_image){
+
+			try{
+				$imagen = $this->getEpisodioImg($id_image);
+
+				if ( !empty($imagen) ){
+					$sentencia = $this->db->prepare("DELETE FROM `episode_image`
+																							WHERE `id_image` = ?");
+					$sentencia->execute( array($id_image) );
+					// var_dump($imagen);
+					// die();
+					unlink( $imagen['path_img'] );
+				}
+
+			}
+
+			catch(PDOException $exception){
+				return $exception->getMessage();
+			}
+		}
+
 		function insertEpisodio($idSeason, $idEpisode, $episodeTitle, $episodeDesc, $pathImg){
 
 			try{
@@ -177,12 +207,9 @@
 				/////////////// Subir e insertar imagen ///////////////
 				if ( !empty($pathImg) ){
 					foreach ($pathImg as $key => $tempPath) {
-						// var_dump($tempPath);
-						// echo "</br></<br>";
 						$path   = $this->subirImagen($tempPath);
 						$sqlImg = $this->insertImg($idSeason, $idEpisode, $path);
 					}
-					// die();
 				}
 				///////////////////////////////////////////////////////
 
@@ -242,58 +269,59 @@
 					}
 				}
 
-						function eliminarEpisodio($idSeason, $idEpisode){
+		function eliminarEpisodio($idSeason, $idEpisode){
 
-							try{
-								$sentencia = $this->db->prepare("DELETE FROM `episode`
-									WHERE `id_season` = ? AND
-									`id_episode`= ?");
-									$sentencia->execute( array($idSeason, $idEpisode) );
-								}
+			try{
+				$sentencia = $this->db->prepare("DELETE FROM `episode`
+																						WHERE `id_season` = ? AND
+																									`id_episode`= ?");
+				$sentencia->execute( array($idSeason, $idEpisode) );
+			}
 
-								catch(PDOException	 $exception){
-									return $exception->getMessage();
-								}
-							}
+			catch(PDOException	 $exception){
+				return $exception->getMessage();
+			}
+		}
 
-							function eliminarTemporada($idSeason){
+		function eliminarTemporada($idSeason){
 
-								try{
-									$sentencia = $this->db->prepare("DELETE FROM `season`
-										WHERE `id_season` = ? ");
-										$sentencia->execute( array($idSeason) );
-									}
+			try{
+				$sentencia = $this->db->prepare("DELETE FROM `season`
+																						WHERE `id_season` = ? ");
+				$sentencia->execute( array($idSeason) );
+			}
 
-									catch(PDOException $exception){
-										return $exception->getMessage();
-									}
-								}
+			catch(PDOException $exception){
+				return $exception->getMessage();
+			}
 
-								/***********************************/
-								/*********** AdminTools ***********/
-								/***********************************/
+		}
 
-								//Metodo usado para el listado de temporadas en dropdown de administrador
-								function getTemporadasID(){
+		/***********************************/
+		/************ AdminTools ***********/
+		/***********************************/
 
-									$sentencia = $this->db->prepare("SELECT `id_season` FROM `season`
-										GROUP BY `id_season`");
-										$sentencia->execute( );
-										$temporadas = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+		//Metodo usado para el listado de temporadas en dropdown de administrador
+		function getTemporadasID(){
 
-										return $temporadas;
-									}
+			$sentencia = $this->db->prepare("SELECT `id_season` FROM `season`
+																					GROUP BY `id_season`");
+			$sentencia->execute( );
+			$temporadas = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
-									//Metodo usado para el listado de episodios en dropdown de administrador
-									function getAllEpisodios(){
+			return $temporadas;
+		}
 
-										$sentencia = $this->db->prepare("SELECT * FROM episode");
-										$sentencia->execute();
-										$episodios = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+		//Metodo usado para el listado de episodios en dropdown de administrador
+		function getAllEpisodios(){
 
-										return $episodios;
-									}
+			$sentencia = $this->db->prepare("SELECT * FROM episode");
+			$sentencia->execute();
+			$episodios = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
-								} //END CLASS
+			return $episodios;
+		}
+
+	} //END CLASS
 
 ?>

@@ -36,7 +36,9 @@
                                     'Registrar'         => 'RegistroController#Registrar',
                                     'comentarios'       => 'ComentariosController#getComentarios',
                                     'agregarComentario' => 'ComentariosController#agregarComentarioForm',
-                                    'validarCaptcha'    => 'ComentariosController#validarCaptcha'
+                                    'validarCaptcha'    => 'ComentariosController#validarCaptcha',
+                                    'MostrarImagenes'   => 'TemporadasUserController#MostrarImagenes',
+                                    'EliminarImagen'    => 'TemporadasUserController#EliminarImagen'
                                 ];
         }
 
