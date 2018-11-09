@@ -20,7 +20,7 @@
 
         <div class="form-group">
           <label class="text-white font-weight-bold" for="imagen">Agregar imágenes</label>
-          <input type="file" id="imagenes" name="imagenes[]">
+          <input type="file" id="imagenes" name="imagenes[]" multiple>
         </div>
 
         <button type="submit" class="btn btn-primary mt-4 mb-5">Editar Episodio</button>

@@ -16,27 +16,37 @@
 			return new PDO('mysql:host=localhost;'.'dbname=gameofthrones_db;charset=utf8', 'root', '');
 		}
 
-		function getComentarios($id = 0){
+		function getComentarios($id = []){
 
 			if(!empty($id)){
-				$condicion = "id_comment = $id";
+				$condicion = "id_comment = ?";
 			}
 			else {
 				$condicion = 1;
 			}
+
 			$sentencia = $this->db->prepare("SELECT * FROM comment WHERE $condicion");
-			$sentencia->execute();
+			$sentencia->execute(  );
 			$comentarios = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
 			return $comentarios;
 		}
 
-		function getComentario($temporada, $episodio){
+		function getComentario($temporada, $episodio, $sortCriterio=''){
+
+			if ( $sortCriterio != '' ){
+        $column = 'score';
+				$sort   = $sortCriterio;
+			}else{
+				$column = 'id_comment';
+				$sort   = 'ASC';
+			}
 
 			$sentencia = $this->db->prepare("SELECT comment.*, user_info.name FROM comment, user_info
 																				WHERE comment.id_user    = user_info.id_user AND
 																							comment.id_season  = ?                 AND
-				                                      comment.id_episode = ?");
+				                                      comment.id_episode = ?
+				                                      ORDER BY $column $sort");
 			$sentencia->execute( array($temporada, $episodio) );
 			$comentarios = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 

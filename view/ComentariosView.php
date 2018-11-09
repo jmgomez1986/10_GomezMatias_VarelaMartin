@@ -22,12 +22,21 @@
       $this->Smarty->assign('rol', $rol);
     }
 
-    function getComentarios($id_temporada, $id_episodio){
+    function getComentarios($id_temporada='', $id_episodio=''){
       $this->Smarty->assign('id_temporada', $id_temporada);
       $this->Smarty->assign('id_episodio', $id_episodio);
 
       $this->Smarty->display('templates/comentarios.tpl');
     }
+
+    function addComment($id_temporada,$id_episodio,$id_user,$script){
+      $this->Smarty->assign('id_temporada', $id_temporada);
+      $this->Smarty->assign('id_episodio', $id_episodio);
+      $this->Smarty->assign('id_user', $id_user);
+      $this->Smarty->assign('script', $script);
+      $this->Smarty->display('templates/AgregarComentario.tpl');
+    }
+
 
   }  //END CLASS
 

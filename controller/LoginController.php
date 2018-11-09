@@ -69,6 +69,21 @@
 		 	}
 		}
 
+		function getUser(){
+			//session_start();
+			if ( isset($_SESSION['usuario']) && ($_SESSION['usuario'] != '')){
+				$user = $_SESSION['usuario'];
+				return $user;
+			}
+			else {
+				return null;
+			}
+		}
+
+		function getUserID($user_name){
+			return $this->model->getUser($user_name);
+		}		
+
 	} //END CLASS
 
 ?>

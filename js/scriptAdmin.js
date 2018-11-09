@@ -31,14 +31,14 @@ function loadPage() {
       alert("Elija una temporada");
     }
     else{
-      let url       = 'editarT/' + temporadaID + "/";
+      let url       = 'editarT/' + temporadaID + '/';
       let formAdmin = document.querySelector(".formAdmin").action = url;
     }
 
   });
 
   let btnAgregarTemp = document.querySelector(".js-agt").addEventListener('click',function(){
-    let url = 'agregarT' + "/";
+    let url = 'agregarT' + '/';
     let formAdmin = document.querySelector(".formAdmin").action = url;
   })
 
@@ -56,11 +56,11 @@ function loadPage() {
 
       let respuesta = confirm("¿Seguro que desea eliminar la temporada " + temporadaID + "?????");
       if (respuesta == true) {
-          let url       = 'eliminarT/' + temporadaID + "/";
+          let url       = 'eliminarT/' + temporadaID + '/';
           let formAdmin = document.querySelector(".formAdmin").action = url;
       }
       else{
-        let url       = "temporadasAdmin/";
+        let url       = 'temporadasAdmin/';
         let formAdmin = document.querySelector(".formAdmin").action = url;
         alert("Accion cancelada");
       }

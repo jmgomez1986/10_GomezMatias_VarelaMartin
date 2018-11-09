@@ -39,7 +39,7 @@
         $this->rol = $arrayReg['rol'];
       }
       else {
-        $this->rol = "none"; 
+        $this->rol = "none";
       }
 
       $this->script      = "js/main.js";
@@ -48,10 +48,34 @@
 
     }
 
-    function getComentarios($params){
-      $id_temporada = $params[1];
-      $id_episodio  = $params[3];
+    function getComentarios($params=[]){
+
+      $id_temporada = '';
+      $id_episodio  = '';
+
+      if ( !empty($params) ){
+        if (isset($params[1]) && isset($params[3]) ){
+          $id_temporada = $params[1];
+          $id_episodio  = $params[3];
+        }
+      }
+
       $this->view->getComentarios($id_temporada, $id_episodio);
+    }
+
+    function agregarComentario(){
+      if ( isset($_POST["idTemp"]) && isset($_POST["idEpis"]) ){
+        $id_temporada = $_POST["idTemp"];
+        $id_episodio  = $_POST["idEpis"];
+      }
+
+      $user_name    = $this->login->getUser();
+      $id_user      = $this->login->getUserID($user_name);
+      $this->view->addComment($id_temporada, $id_episodio, $id_user[0]['id_user'], $this->script);
+    }
+
+    function saveComment(){
+
     }
 
   } //END CLASS
