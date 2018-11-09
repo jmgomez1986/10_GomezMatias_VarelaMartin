@@ -22,14 +22,14 @@
         $sortCriterio = '';
        }
 
-       $data = $this->model->getComentario($id_season, $id_episode, $sortCriterio);
+       $this->data = $this->model->getComentario($id_season, $id_episode, $sortCriterio);
      }
      else{
-       $data = $this->model->getComentarios();
+       $this->data = $this->model->getComentarios();
      }
 
-     if ( !empty($data) ){
-       return $this->json_response($data, 200);
+     if ( !empty($this->data) ){
+       return $this->json_response($this->data, 200);
      }
      else {
        return $this->json_response(null, 404);

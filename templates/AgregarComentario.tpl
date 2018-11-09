@@ -7,6 +7,7 @@
       <form class="formAddComment" id="confirmationForm" method="post" action="" >
 
         <input type="hidden" class="form-control idUser" id="idUser" name="idUser" value="{$id_user}">
+        <input type="hidden" class="form-control verifyCaptcha" id="verifyCaptcha" name="idUser" value="{$verifyCaptcha}">
 
         <div class="form-group">
           <label class="text-white font-weight-bold" for="idTemp">Temporada Nº</label>
@@ -33,8 +34,8 @@
         </div>
 
         <div class="g-recaptcha" data-sitekey="6Lf9l3kUAAAAAMtoVTGhrcnEkmj1s_kxLhM36yXC"></div>
-
-        <button type="button" class="btn btn-primary mb-4 mt-2 js-submitAddComment">Agregar comentario</button>
+        <!-- <input class="btn btn-primary m-2" type="submit" value="Agregar comentario"> -->
+        <button type="submit" class="btn btn-primary mb-4 mt-2 js-submitAddComment">Agregar comentario</button>
 
       </form>
     </div>

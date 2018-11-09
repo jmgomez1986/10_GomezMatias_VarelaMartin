@@ -43,8 +43,6 @@ function fetchGetComentario(url){
       route = "api/comentarios";
     }
 
-    alert("URL: " + route);
-
     if ( logueado && rol == "Limitado" ){
       let btnAddCom = document.querySelector(".js-addComment").addEventListener('click', function(){
         let url       = "agregarComentario/";
@@ -95,59 +93,75 @@ function saveComentarios(){
           let idEpis  = document.querySelector('.idEpis').value;
           let comment = document.querySelector('.comment').value;
           let score   = document.querySelector('.score').value;
-          let captchaResult = document.querySelector('.verifyCaptcha').value;
+          let captchaResult;
 
-          console.log(captchaResult);
-          alert("lala");
+          $(".formAddComment").on("submit", function(event) {
 
-          // guardarComentario
+              event.preventDefault();
+              let serializedData = $(this).serialize();
+              $.post('controller/verifyCaptcha.php', serializedData,
+                            function(response) {
+                              captchaResult = response;
+                              postComment(captchaResult, idTemp, idEpis, idUser, comment, score);
+                        }
+                      );
+              }
+          );
 
-          if ( score <= 5 ){
+        });
+      }
+    }
 
-            let data = {
-              "id_season" : idTemp,
-              "id_episode": idEpis,
-              "id_user"   : idUser,
-              "comment"   : comment,
-              "score"     : score
-            };
+function postComment(captchaResult, idTemp, idEpis, idUser, comment, score){
 
-            let url = 'api/comentarios';
+  if ( captchaResult === 'OK'){
 
-            fetch(url, {
-              "method" : "POST",
-              "mode"   : "cors", //Con esto se hace menos estricta la politica de seguridad de algunos navegadores
-              "headers": {
-                            "Content-Type": "application/json"
-                          },
-              "body"   : JSON.stringify(data) //se debe serializar (stringify) la informacion (el "data:" de ida es de tipo string)
-            }).then( function(response) {
-                // console.log(response);
-                if (!response.ok) {
+    if ( score <= 5 ){
 
-                } else
-                return response.json()
-            }).then(function(json) {
-                // let urlPrev = document.referrer;
-                // window.location.replace(urlPrev);
-                // let urlComments = 'comentarios/temporada/' + idTemp + '/episodio/' + idEpis;
-                // console.log(urlComments);
-                // alert("TEST Redirect");
-                // let form = document.querySelector(".formAddComment").action = urlComments;
+      let data = {
+        "id_season" : idTemp,
+        "id_episode": idEpis,
+        "id_user"   : idUser,
+        "comment"   : comment,
+        "score"     : score
+      };
 
-            }).catch(function(e){
-                let cartelError = container.querySelector(".js-displayError");
-                showElement(cartelError);
-                cartelError.innerHTML = "Error de Conexión";
-                console.log(e)
-            });
-          }else{
-                let error = document.querySelector(".errorForm");
-                error.innerHTML = "El valor para el puntaje debe ser etre 0 y 5";
-            }
+      let url = 'api/comentarios';
 
+      fetch(url, {
+        "method" : "POST",
+        "mode"   : "cors", //Con esto se hace menos estricta la politica de seguridad de algunos navegadores
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body"   : JSON.stringify(data) //se debe serializar (stringify) la informacion (el "data:" de ida es de tipo string)
+      }).then( function(response) {
+        console.log(response);
+        if (!response.ok) {
+
+        }else{
+          let urlComments = 'comentarios/temporada/' + idTemp + '/episodio/' + idEpis;
+          let form = document.querySelector(".formAddComment");
+          form.action = urlComments;
+          form.submit();
+
+          return response.json();
+        }
+      }).then(function(json) {
+          // console.log(json.information);
+
+      }).catch(function(e){
+        let error = document.querySelector(".errorForm");
+        error.innerHTML = "Error de Conexión";
+        console.log(e)
       });
-
+    }else{
+      let error = document.querySelector(".errorForm");
+      error.innerHTML = "El valor para el puntaje debe ser etre 0 y 5";
+    }
+  }else{
+    let error = document.querySelector(".errorForm");
+    error.innerHTML = "Valide la CAPTCHA para continuar";
   }
 }
 

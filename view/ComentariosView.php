@@ -10,7 +10,7 @@
 
     private $Smarty;
 
-    function __construct($titulo, $link, $script, $claseLogin, $claseLogout,$claseReg,$logueado,$rol){
+    function __construct($titulo, $link, $script, $claseLogin, $claseLogout, $claseReg, $logueado, $rol){
       $this->Smarty = new Smarty();
       $this->Smarty->assign('titulo', $titulo);
       $this->Smarty->assign('link', $link);
@@ -29,11 +29,12 @@
       $this->Smarty->display('templates/comentarios.tpl');
     }
 
-    function addComment($id_temporada, $id_episodio, $id_user, $script){
+    function addComment($id_temporada, $id_episodio, $id_user, $script, $verifyCaptcha){
       $this->Smarty->assign('id_temporada', $id_temporada);
       $this->Smarty->assign('id_episodio', $id_episodio);
       $this->Smarty->assign('id_user', $id_user);
       $this->Smarty->assign('script', $script);
+      $this->Smarty->assign('verifyCaptcha', $verifyCaptcha);
       $this->Smarty->display('templates/AgregarComentario.tpl');
     }
 
