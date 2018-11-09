@@ -10,12 +10,12 @@
 
         <div class="form-group">
           <label class="text-white font-weight-bold" for="idTemp">Temporada Nº</label>
-          <input type="number" class="form-control idTemp" id="idTemp" name="idTemp" value="{$id_temporada}">
+          <input disabled type="number" class="form-control idTemp" id="idTemp" name="idTemp" value="{$id_temporada}">
         </div>
 
         <div class="form-group">
           <label class="text-white font-weight-bold" for="idEpis">Episodio Nº</label>
-          <input type="number" class="form-control idEpis" id="idEpis" name="idEpis" value="{$id_episodio}">
+          <input disabled type="number" class="form-control idEpis" id="idEpis" name="idEpis" value="{$id_episodio}">
         </div>
 
         <div class="form-group">
