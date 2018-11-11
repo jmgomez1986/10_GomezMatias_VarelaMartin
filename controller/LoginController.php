@@ -10,7 +10,7 @@
 		private $message;
 
 		function __construct(){
-			$this->view   = new LoginView("Login", "temporadas", "", "oculto", "oculto", "visible");
+			$this->view   = new LoginView("Login", "temporadas", "", "oculto", "oculto", "visible", "oculto");
 		 	$this->model  = new UsuarioModel();
 		}
 

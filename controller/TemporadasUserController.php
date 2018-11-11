@@ -8,6 +8,7 @@
 
 		private $rol;
 		private $script;
+		private $claseAdminUser;
 		private $view;
 	  private $model;
 
@@ -16,13 +17,15 @@
 
 				$this->rol         = $_SESSION['rol'];
 				if ( $this->rol == "Administrador" ){
-					$this->script = "./js/scriptAdmin.js";
+					$this->script         = "./js/scriptAdmin.js";
+					$this->claseAdminUser = "visible";
 				}
 				elseif ( $this->rol == "Limitado" ){
-					$this->script = "./js/scriptFilter.js";
+					$this->script         = "./js/scriptFilter.js";
+					$this->claseAdminUser = "oculto";
 				}
 
-				$this->view        = new TemporadasView("Game of Thrones", "temporadasUser", $this->script, "oculto", "visible", "oculto", true, $this->rol);
+				$this->view        = new TemporadasView("Game of Thrones", "temporadasUser", $this->script, "oculto", "visible", "oculto", $this->claseAdminUser, true, $this->rol);
 				$this->model       = new TemporadasModel();
 		}
 

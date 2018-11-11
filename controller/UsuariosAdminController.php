@@ -22,7 +22,7 @@
 					exit();
 				}
 
-				$this->view        = new UsuarioView("Game of Thrones", "temporadasUser", $this->script, "oculto", "visible", "oculto", true, $this->rol);
+				$this->view        = new UsuarioView("Game of Thrones", "temporadasUser", $this->script, "oculto", "visible", "oculto", "visible", true, $this->rol);
 				$this->model       = new UsuarioModel();
 		}
 

@@ -1,4 +1,4 @@
-<?php
+ <?php
   require_once "./view/TemporadasView.php";
   require_once "./model/TemporadasModel.php";
   require_once "LoginController.php";
@@ -14,6 +14,7 @@
     private $claseLogin;
     private $claseLogout;
     private $claseReg;
+    private $claseAdminUser;
     private $rol;
 
     function __construct(){
@@ -31,18 +32,22 @@
         $this->rol         = $arrayReg['rol'];
         if ( $this->rol == 'Limitado'){
           $this->script      = "js/scriptFilter.js";
-        }
+          $this->claseAdminUser = "oculto";
+        }elseif ( $arrayReg['rol'] == "Administrador"){
+            $this->claseAdminUser = "visible";
+          }
       }
       else{
-        $this->claseLogin  = "visible";
-        $this->claseLogout = "oculto";
-        $this->claseReg    = "visible";
-        $this->link        = "temporadas";
-        $this->script      = "";
-        $this->rol         = "";
+        $this->claseLogin     = "visible";
+        $this->claseLogout    = "oculto";
+        $this->claseReg       = "visible";
+        $this->claseAdminUser = "oculto";
+        $this->link           = "temporadas";
+        $this->script         = "";
+        $this->rol            = "";
       }
 
-      $this->view   = new TemporadasView("Game of Thrones", $this->link, $this->script, $this->claseLogin, $this->claseLogout, $this->claseReg, false, $this->rol);
+      $this->view   = new TemporadasView("Game of Thrones", $this->link, $this->script, $this->claseLogin, $this->claseLogout, $this->claseReg, $this->claseAdminUser, false, $this->rol);
 
     }
 

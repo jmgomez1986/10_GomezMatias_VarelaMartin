@@ -12,6 +12,8 @@
     private $script;
     private $claseLogin;
     private $claseLogout;
+    private $claseReg;
+    private $claseAdminUser;
 
     function __construct(){
 
@@ -20,19 +22,27 @@
 
       $arrayReg = $this->login->isLogueado();
       if ( $arrayReg['logueado'] ){
-        $this->claseLogin  = "oculto";
-        $this->claseLogout = "visible";
-        $this->link        = "temporadasAdmin";
-        $this->script      = "";
+        $this->claseLogin     = "oculto";
+        $this->claseLogout    = "visible";
+        $this->claseReg       = "oculto";
+        if ( $arrayReg['rol'] == "Administrador"){
+          $this->claseAdminUser = "visible";
+        }else{
+          $this->claseAdminUser = "oculto";
+        }
+        $this->link           = "temporadasAdmin";
+        $this->script         = "";
       }
       else{
-        $this->claseLogin  = "visible";
-        $this->claseLogout = "oculto";
-        $this->link        = "temporadas";
-        $this->script      = "";
+        $this->claseLogin     = "visible";
+        $this->claseLogout    = "oculto";
+        $this->claseReg       = "visible";
+        $this->claseAdminUser = "oculto";
+        $this->link           = "temporadas";
+        $this->script         = "";
       }
 
-      $this->view   = new CasasView("Game of Thrones", $this->link, $this->script, $this->claseLogin, $this->claseLogout);
+      $this->view   = new CasasView("Game of Thrones", $this->link, $this->script, $this->claseLogin, $this->claseLogout, $this->claseReg, $this->claseAdminUser);
 
     }
 
