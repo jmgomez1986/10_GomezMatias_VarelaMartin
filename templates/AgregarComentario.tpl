@@ -4,11 +4,8 @@
 
     <div class="container mt-4">
 
-<<<<<<< HEAD
       <form class="formAddComment" id="confirmationForm" method="post" action="" >
-=======
-      <form class="formAddComment" id="confirmationForm" method="post" >
->>>>>>> martin
+
 
         <input type="hidden" class="form-control idUser" id="idUser" name="idUser" value="{$id_user}">
 
