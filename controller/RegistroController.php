@@ -10,7 +10,7 @@
 		private $message;
 
 		function __construct(){
-			$this->view   = new RegistroView("Registro", "temporadas", "", "oculto", "oculto", "oculto");
+			$this->view   = new RegistroView("Registro", "temporadas", "", "oculto", "oculto", "oculto", "oculto");
 		 	$this->model  = new UsuarioModel();
 		}
 
