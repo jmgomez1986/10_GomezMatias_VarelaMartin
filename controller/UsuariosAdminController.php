@@ -17,6 +17,9 @@
 				$this->rol         = $_SESSION['rol'];
 				if ( $this->rol == "Administrador" ){
 					$this->script = "";
+				}else{
+					header(LOGIN."/userFail");
+					exit();
 				}
 
 				$this->view        = new UsuarioView("Game of Thrones", "temporadasUser", $this->script, "oculto", "visible", "oculto", true, $this->rol);

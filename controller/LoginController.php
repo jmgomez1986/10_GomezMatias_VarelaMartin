@@ -53,7 +53,7 @@
 		 	$pass   = $_POST["pass"];
 		 	$dbUser = $this->model->getUser($user);
 
-		 	if(isset($dbUser)){
+		 	if(!empty($dbUser)){
 		 		if(password_verify($pass,$dbUser[0]["password"])){
 		 			session_start();
 	        $_SESSION['usuario'] = $user;
