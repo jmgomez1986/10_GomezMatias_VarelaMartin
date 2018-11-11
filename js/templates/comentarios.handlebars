@@ -1,11 +1,4 @@
 <div class="container-fluid mb-3">
-
-  {{#if logueado}}
-    {{#if_eq rol "Limitado"}}
-      <button class="btn btn-primary mb-2">Agregar comentario</button>
-    {{/if_eq}}
-  {{/if}}
-
   <table class="tablaTemporadas">
 
     <thead>
@@ -29,7 +22,7 @@
         <tr>
           <td class="fondoTd">{{id_season}}</td>
           <td class="fondoTd">{{id_episode}}</td>
-          <td class="fondoTd">{{user_name}}</td>
+          <td class="fondoTd">{{name}}</td>
           <td class="fondoTd">{{comment}}</td>
           <td class="fondoTd">{{score}}</td>
           {{#if ../logueado}}

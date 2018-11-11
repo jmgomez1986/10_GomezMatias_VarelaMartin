@@ -9,8 +9,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/Bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="./css/style.css">
 		<link rel="stylesheet" type="text/css" href="./css/login.css">
@@ -20,6 +21,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700">
 
+    <script src='https://www.google.com/recaptcha/api.js'></script>
   </head>
 
   <body>
@@ -48,17 +50,22 @@
         </div>
         <form method="post" action="login/" class="px-2">
           <div class="form-group">
-            <button class="{$claseLogin} js-login btn btn-success btn-xs" type="submit">Login</button>
+            <button class="{$claseLogin} js-login btn btn-success btn-s" type="submit">Login</button>
           </div>
         </form>
         <form method="post" action="logout" class="px-2">
           <div class="form-group">
-            <button class="{$claseLogout} js-logout btn btn-success btn-xs" type="submit">Logout</button>
+            <button class="{$claseLogout} js-logout btn btn-success btn-s" type="submit">Logout</button>
           </div>
         </form>
         <form class="px-2" action="registro" method="post">
           <div class="form-group">
-            <button class="{$claseReg} js-registrar btn btn-success btn-xs" type="submit">Registrarse</button>
+            <button class="{$claseReg} js-registrar btn btn-success btn-s" type="submit">Registrarse</button>
+          </div>
+        </form>
+        <form class="px-2" action="Usuarios" method="post">
+          <div class="form-group">
+            <button class="{$claseAdminUser} js-registrar btn btn-success btn-xs" type="submit">Administrar usuarios</button>
           </div>
         </form>
       </nav>

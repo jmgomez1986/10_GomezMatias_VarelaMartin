@@ -31,14 +31,14 @@ function loadPage() {
       alert("Elija una temporada");
     }
     else{
-      let url       = 'editarT/' + temporadaID + "/";
+      let url       = 'editarT/' + temporadaID + '/';
       let formAdmin = document.querySelector(".formAdmin").action = url;
     }
 
   });
 
   let btnAgregarTemp = document.querySelector(".js-agt").addEventListener('click',function(){
-    let url = 'agregarT' + "/";
+    let url = 'agregarT' + '/';
     let formAdmin = document.querySelector(".formAdmin").action = url;
   })
 
@@ -56,11 +56,11 @@ function loadPage() {
 
       let respuesta = confirm("¿Seguro que desea eliminar la temporada " + temporadaID + "?????");
       if (respuesta == true) {
-          let url       = 'eliminarT/' + temporadaID + "/";
+          let url       = 'eliminarT/' + temporadaID + '/';
           let formAdmin = document.querySelector(".formAdmin").action = url;
       }
       else{
-        let url       = "temporadasAdmin/";
+        let url       = 'temporadasAdmin/';
         let formAdmin = document.querySelector(".formAdmin").action = url;
         alert("Accion cancelada");
       }
@@ -161,6 +161,27 @@ function loadPage() {
       let url       = 'agregarE/' + temporadaID + "/";
 
       let formAdmin = document.querySelector(".formAdminE").action = url;
+    }
+
+  });
+
+  let btnEliminarImagenesEpisodio = document.querySelector(".js-eli").addEventListener('click', function(){
+    let eleccionTemp = document.querySelector(".js-eleccionTE");
+    let indexT       = eleccionTemp.selectedIndex;
+    let temporada    = eleccionTemp.value;
+    let temporadaID  = eleccionTemp.options[indexT].getAttribute("name");
+
+    let eleccionEp   = document.querySelector(".js-eleccionE");
+    let episodio     = eleccionEp.value;
+    let indexE       = eleccionEp.selectedIndex;
+    let episodioID   = eleccionEp.options[indexE].getAttribute("name");
+
+    if ( ( temporadaID === "0" ) || ( episodioID === "0" ) ){
+        alert("Elija una temporada y un episodio");
+    }
+    else{
+        let url       = 'MostrarImagenes/' + temporadaID + "/" + episodioID + "/";
+        let formAdmin = document.querySelector(".formAdminE").action = url;
     }
 
   });

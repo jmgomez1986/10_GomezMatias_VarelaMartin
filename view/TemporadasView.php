@@ -10,7 +10,7 @@
 
     private $Smarty;
 
-    function __construct($titulo, $link, $script, $claseLogin, $claseLogout, $claseReg, $logueado, $rol){
+    function __construct($titulo, $link, $script, $claseLogin, $claseLogout, $claseReg, $claseAdminUser, $logueado, $rol){
       $this->Smarty = new Smarty();
       $this->Smarty->assign('titulo', $titulo);
       $this->Smarty->assign('link', $link);
@@ -18,6 +18,7 @@
       $this->Smarty->assign('claseLogin', $claseLogin);
       $this->Smarty->assign('claseLogout', $claseLogout);
       $this->Smarty->assign('claseReg', $claseReg);
+      $this->Smarty->assign('claseAdminUser', $claseAdminUser);
       $this->Smarty->assign('logueado', $logueado);
       $this->Smarty->assign('rol', $rol);
     }
@@ -94,6 +95,20 @@
       $this->Smarty->assign('valoresTemporada', $valoresTemporada);
 
       $this->Smarty->display('templates/MostrarAgregarTemporada.tpl');
+    }
+
+    function MostrarImagenesEpisodio($titulo, $imagenes, $id_temporada, $id_episodio){
+
+      $this->Smarty->assign('titulo', $titulo);
+      $this->Smarty->assign('imagenes', $imagenes);
+      $this->Smarty->assign('id_season', $id_temporada);
+      $this->Smarty->assign('id_episode', $id_episodio);
+      $this->Smarty->assign('script', '');
+      // var_dump($imagenes);
+      // die();
+
+      $this->Smarty->display('templates/MostrarImagenesEpisodio.tpl');
+
     }
 
   } //END CLASS

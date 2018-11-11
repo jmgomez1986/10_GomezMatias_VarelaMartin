@@ -6,11 +6,11 @@
 
   require_once('libs/Smarty.class.php');
 
-  class CasasView{
+  class UsuarioView{
 
     private $Smarty;
 
-    function __construct($titulo, $link, $script, $claseLogin, $claseLogout, $claseReg, $claseAdminUser){
+    function __construct($titulo, $link, $script, $claseLogin, $claseLogout, $claseReg, $claseAdminUser, $logueado, $rol){
       $this->Smarty = new Smarty();
       $this->Smarty->assign('titulo', $titulo);
       $this->Smarty->assign('link', $link);
@@ -19,16 +19,16 @@
       $this->Smarty->assign('claseLogout', $claseLogout);
       $this->Smarty->assign('claseReg', $claseReg);
       $this->Smarty->assign('claseAdminUser', $claseAdminUser);
+      $this->Smarty->assign('logueado', $logueado);
+      $this->Smarty->assign('rol', $rol);
     }
 
-    function Casas($casa, $columnasMiembrosCasas, $cantCol){
-      $this->Smarty->assign('casa' ,$casa);
-      $this->Smarty->assign('miembros', $columnasMiembrosCasas);
-      $this->Smarty->assign('cantCol', $cantCol);
+    function MostrarUsuarios($usuarios){
+      $this->Smarty->assign('usuarios',$usuarios);
 
-      $this->Smarty->display('casa.tpl');
+      $this->Smarty->display('templates/usuarios.tpl');
     }
 
-  }  //END CLASS
+  } //END CLASS
 
  ?>

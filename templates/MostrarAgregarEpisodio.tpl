@@ -5,7 +5,7 @@
     <div class="container  mt-4">
 
       <form method="post" action="guardarAgregarE" id="confirmationForm" enctype="multipart/form-data">
-        
+
         <input type="hidden" class="form-control" id="idTemp" name="idTemp" value="{$id_temporada}">
 
         <div class="form-group">
@@ -27,8 +27,8 @@
         </div>
 
         <div class="form-group">
-          <label class="text-white font-weight-bold" for="imagen">Agregar imágenes</label>
-          <input type="file" id="imagenes" name="imagenes[]">
+          <label class="text-white font-weight-bold" for="imagenes">Agregar imágenes</label>
+          <input type="file" class="form-control-file" id="imagenes" name="imagenes[]" multiple>
         </div>
 
         <button type="submit" class="btn btn-primary mb-4 mt-2">Agregar Episodio</button>

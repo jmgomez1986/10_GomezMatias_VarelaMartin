@@ -10,11 +10,11 @@
 		private $message;
 
 		function __construct(){
-			$this->view   = new LoginView("Login", "temporadas", "", "oculto", "oculto", "visible");
+			$this->view   = new LoginView("Login", "temporadas", "", "oculto", "oculto", "visible", "oculto");
 		 	$this->model  = new UsuarioModel();
 		}
 
-		function login($params){
+		function login($params=[]){
 
 			if ( isset($params[0]) ){
 
@@ -53,7 +53,7 @@
 		 	$pass   = $_POST["pass"];
 		 	$dbUser = $this->model->getUser($user);
 
-		 	if(isset($dbUser)){
+		 	if(!empty($dbUser)){
 		 		if(password_verify($pass,$dbUser[0]["password"])){
 		 			session_start();
 	        $_SESSION['usuario'] = $user;
@@ -67,6 +67,21 @@
 		 	else{
 		 		$this->view->login("No existe el usuario");
 		 	}
+		}
+
+		function getUser(){
+			//session_start();
+			if ( isset($_SESSION['usuario']) && ($_SESSION['usuario'] != '')){
+				$user = $_SESSION['usuario'];
+				return $user;
+			}
+			else {
+				return null;
+			}
+		}
+
+		function getUserID($user_name){
+			return $this->model->getUser($user_name);
 		}
 
 	} //END CLASS

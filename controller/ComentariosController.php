@@ -12,6 +12,7 @@
     private $claseLogin;
     private $claseLogout;
     private $claseReg;
+    private $claseAdminUser;
     private $logueado;
     private $rol;
 
@@ -24,34 +25,64 @@
         $this->claseLogin  = "oculto";
         $this->claseLogout = "visible";
         $this->claseReg    = "oculto";
+        if ( $arrayReg['rol'] == "Administrador"){
+          $this->claseAdminUser = "visible";
+        }else{
+          $this->claseAdminUser = "oculto";
+        }
         $this->link        = "temporadasUser";
         $this->logueado    = true;
+        $this->rol         = $arrayReg['rol'];
       }
       else{
-        $this->claseLogin  = "visible";
-        $this->claseLogout = "oculto";
-        $this->claseReg    = "visible";
-        $this->link        = "temporadas";
-        $this->logueado    = false;
-      }
-
-      if (!empty($arrayReg)){
-        $this->rol = $arrayReg['rol'];
-      }
-      else {
-        $this->rol = "none"; 
+        $this->claseLogin     = "visible";
+        $this->claseLogout    = "oculto";
+        $this->claseReg       = "visible";
+        $this->claseAdminUser = "oculto";
+        $this->link           = "temporadas";
+        $this->logueado       = false;
+        $this->rol = "";
       }
 
       $this->script      = "js/main.js";
 
-      $this->view   = new ComentariosView("Game of Thrones", $this->link, $this->script, $this->claseLogin, $this->claseLogout, $this->claseReg, $this->logueado, $this->rol);
+      $this->view   = new ComentariosView("Game of Thrones", $this->link, $this->script, $this->claseLogin, $this->claseLogout, $this->claseReg, $this->claseAdminUser, $this->logueado, $this->rol);
 
     }
 
-    function getComentarios($params){
-      $id_temporada = $params[1];
-      $id_episodio  = $params[3];
+    function getComentarios($params=[]){
+
+      $id_temporada = '';
+      $id_episodio  = '';
+
+      if ( !empty($params) ){
+        if (isset($params[1]) && isset($params[3]) ){
+          $id_temporada = $params[1];
+          $id_episodio  = $params[3];
+        }
+      }
+
       $this->view->getComentarios($id_temporada, $id_episodio);
+    }
+
+    function agregarComentarioForm($params=[]){
+
+      // if ( $this->logueado && $this->rol == "Limitado"){
+
+        if ( isset($_POST["idTemp"]) && isset($_POST["idEpis"]) ){
+          $id_temporada  = $_POST["idTemp"];
+          $id_episodio   = $_POST["idEpis"];
+
+          $user_name     = $this->login->getUser();
+          $id_user       = $this->login->getUserID($user_name);
+
+          $this->view->addComment($id_temporada, $id_episodio, $id_user[0]['id_user'], $this->script);
+        }
+      // }else{
+      //   $this->login->logout();
+      //   header(LOGIN);
+      // }
+
     }
 
   } //END CLASS

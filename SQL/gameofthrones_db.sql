@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-11-2018 a las 17:44:17
+-- Tiempo de generación: 07-11-2018 a las 01:36:35
 -- Versión del servidor: 10.1.34-MariaDB
 -- Versión de PHP: 7.2.8
 
@@ -75,7 +75,7 @@ INSERT INTO `episode` (`id_season`, `id_episode`, `titulo`, `descripcion`) VALUE
 (1, 7, 'Ganas o mueres', 'Ned se enfrenta a Cersei por la muerte de Jon Arryn. Robert, herido de muerte, nombra a Ned regente hasta que su hijo Joffrey sea mayor de edad. Ned pide ayuda a Meñique para asegurar la cooperación de la Guardia de la Ciudad en caso de que los Lannister no colaboren y revela que Joffrey no es hijo de Robert, sino de Jaime, lo que convierte a Stannis Baratheon, hermano mayor de Robert, en el verdadero heredero. No obstante, Petyr Baelish, amigo de los Stark, traiciona a Ned y éste es apresado y sus hombres asesinados. Jon toma los votos de la Guardia de la Noche. Drogo convoca a su ejército para invadir Poniente tras descubrir que Robert conspiraba para envenenar a Daenerys.'),
 (1, 8, 'Por el lado de la punta', 'Robb convoca a los abanderados de su padre para ir en su rescate. Sansa suplica a Joffrey para salvar la vida de Ned. Jon y la Guardia de la Noche se preparan para enfrentarse a un antiguo enemigo del otro lado del Muro. El ejército de Drogo marcha al oeste en dirección hacia los Siete Reinos.'),
 (1, 9, 'Baelor', 'Los familias Stark y Lannister se preparan para combatir entre ellos. Tyrion se alía a los clanes salvajes y los convence de combatir para los Lannister, mientras que Robb y Catelyn negocian para obtener la ayuda de Lord Walder Frey. Con Drogo moribundo debido una herida infectada, Daenerys utiliza la magia de una maegi para salvarle la vida. El maestre Aemon revela a Jon su parentesco con los Targaryen y el precio de la lealtad, ya que éste está preocupado por los eventos que no conciernen al Muro. En un último intento para salvarse y a sus hijas, Ned confiesa falsamente su conspiración y declara a Joffrey como el legítimo heredero al Trono de Hierro.'),
-(1, 10, 'Tyron muestra el pedazo', 'Tyron muestra la foca muerta que tiene entre las piernas, sorprendiendo a todos los presentes'),
+(1, 10, 'Fuego y sangre', 'Tras la ejecución de Ned, los norteños proclaman a Robb como su rey. Con Jaime capturado por los Stark, Lord Tywin Lannister asigna a su hijo Tyrion como Mano del Rey para mantener a Joffrey y Cersei bajo control. Jon abandona su puesto en el Muro para vengar a su padre, pero sus amigos lo persiguen y lo convencen para quedarse. La Guardia de la Noche parte a una expedición más allá del Muro. El hijo nonato de Daenerys muere y Drogo se encuentra en estado vegetativo debido a la magia de la maegi traidora. Incapaz de soportar la ruina de su marido, Daenerys termina con su vida y prepara una pira funeraria en la que quema a la maegi viva junto con el cuerpo de Drogo y sus tres huevos de dragón. Además, ella misma entra en la pira y cuando esta se apaga Daenerys se eleva, sana y salva, flanqueada por tres dragones recién nacidos.'),
 (1, 11, 'Test Upload Image', 'test'),
 (2, 1, 'El norte no olvida', 'Mientras Robb Stark y su ejército del Norte continúan en guerra contra los Lannister, Tyrion llega a Desembarco del Rey para aconsejar Joffrey y moderar los excesos del joven rey. En la isla de Rocadragón, Stannis Baratheon planea de una invasión para reclamar el trono de su difunto hermano, aliándose con Melisandre, una extraña sacerdotisa que rinde culto a un dios extraño. Al otro lado del mar, Daenerys, sus tres jóvenes dragones y su khalasar caminata a través del desierto en busca de aliados, o agua. En el Norte, Bran preside un Invernalia, mientras que más allá del Muro, Jon Nieve y la Guardia de la Noche deben lidiar con una salvaje.'),
 (2, 2, 'Las tierras de la noche', 'A raíz de una purga sangrienta en la capital, Tyrion castiga Cersei por alejar a los súbditos del Rey. En el camino hacia el norte, Arya comparte un secreto con Gendry. Por su parte, después de nueve años como prisionero de los Stark, Theon Greyjoy se reúne con su padre Balon, que quiere restaurar el antiguo reino de las Islas del Hierro. Davos convence a Salladhor Saan, un pirata, para unir fuerzas con Stannis y Melisandre de cara a una invasión naval de Desembarco del Rey.'),
@@ -169,7 +169,19 @@ CREATE TABLE `episode_image` (
 --
 
 INSERT INTO `episode_image` (`id_image`, `id_season`, `id_episode`, `path_img`) VALUES
-(4, 1, 11, 'images/episodes/5be069ca69fb7.jpg');
+(4, 1, 1, 'images/episodes/5be069ca69fb7.jpg'),
+(5, 1, 1, 'images/episodes/5be099364681e.jpg'),
+(6, 1, 10, 'images/episodes/5be21a819da13.jpg'),
+(9, 1, 1, 'images/episodes/5be229e444be0.jpg'),
+(10, 1, 1, 'images/episodes/5be229efe9803.jpg'),
+(11, 1, 1, 'images/episodes/5be229fb2a54f.jpg'),
+(12, 1, 1, 'images/episodes/5be22bad534ee.jpg'),
+(13, 1, 2, 'images/episodes/5be22ebc67537.jpg'),
+(14, 1, 2, 'images/episodes/5be22ebc6873e.jpg'),
+(15, 1, 2, 'images/episodes/5be22ebc69d17.jpg'),
+(16, 1, 11, 'images/episodes/5be233679fe3e.jpg'),
+(17, 1, 11, 'images/episodes/5be23367a1586.jpg'),
+(18, 1, 11, 'images/episodes/5be23367a2c3e.jpg');
 
 -- --------------------------------------------------------
 
@@ -265,13 +277,13 @@ ALTER TABLE `user_info`
 -- AUTO_INCREMENT de la tabla `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id_comment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_comment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `episode_image`
 --
 ALTER TABLE `episode_image`
-  MODIFY `id_image` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_image` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `season`
