@@ -1,8 +1,5 @@
 <?php
 
-if ( isset($_POST["idTemp"]) && isset($_POST["idEpis"]) ){
-
-
   $recaptcha = $_POST["g-recaptcha-response"];
   $url = 'https://www.google.com/recaptcha/api/siteverify';
   $data = http_build_query( array( 'secret'   => '6Lf9l3kUAAAAAHvx3L_UPaWJf0EyaDKwS-SxiFxe',
@@ -27,6 +24,5 @@ if ( isset($_POST["idTemp"]) && isset($_POST["idEpis"]) ){
   }else{
     echo 'NOK';
   }
-}
 
 ?>

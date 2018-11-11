@@ -46,7 +46,7 @@
 
       $this->script      = "js/main.js";
 
-      $this->view   = new ComentariosView("Game of Thrones", $this->link, $this->script, $this->claseLogin, $this->claseLogout, $this->claseReg, $this->claseReg, $this->claseAdminUser, $this->logueado, $this->rol);
+      $this->view   = new ComentariosView("Game of Thrones", $this->link, $this->script, $this->claseLogin, $this->claseLogout, $this->claseReg, $this->claseAdminUser, $this->logueado, $this->rol);
 
     }
 
@@ -67,9 +67,8 @@
 
     function agregarComentarioForm($params=[]){
 
-      if ( $this->logueado && $this->rol == "Limitado"){
-        // var_dump($_POST);
-        // die();
+      // if ( $this->logueado && $this->rol == "Limitado"){
+
         if ( isset($_POST["idTemp"]) && isset($_POST["idEpis"]) ){
           $id_temporada  = $_POST["idTemp"];
           $id_episodio   = $_POST["idEpis"];
@@ -78,13 +77,11 @@
           $id_user       = $this->login->getUserID($user_name);
 
           $this->view->addComment($id_temporada, $id_episodio, $id_user[0]['id_user'], $this->script);
-        }else{
-          header(TEMPUSER);
         }
-      }else{
-        $this->login->logout();
-        // header(LOGIN);
-      }
+      // }else{
+      //   $this->login->logout();
+      //   header(LOGIN);
+      // }
 
     }
 

@@ -14,14 +14,6 @@ function loadPage() {
         getComentarios();
     });
 
-    // if ( logueado && rol == "Limitado" ){
-      let btnAddCom = document.querySelector(".js-addComment").addEventListener('click', function(){
-        let url       = "agregarComentario/";
-        let formAdmin = document.querySelector(".formComment").action = url;
-        formAdmin.submit();
-      });
-    // }
-
    saveComentarios();
    sortComentario();
 }
@@ -51,7 +43,12 @@ function fetchGetComentario(url){
       route = "api/comentarios";
     }
 
-
+    if ( logueado && rol == "Limitado" ){
+      let btnAddCom = document.querySelector(".js-addComment").addEventListener('click', function(){
+        let url       = "agregarComentario/";
+        let formAdmin = document.querySelector(".formComment").action = url;
+      });
+    }
 
     fetch(route)
     .then(response => response.json())
@@ -86,7 +83,7 @@ function mostrarComentarios(jsonComentarios,logueado,rol,idEpis,idTemp) {
 function saveComentarios(){
 
   let btnAddComment = document.querySelector('.js-submitAddComment');
-  console.log(btnAddComment);
+
   if ( btnAddComment != null ){
 
       btnAddComment.addEventListener("click", function(){
