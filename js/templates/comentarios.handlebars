@@ -19,7 +19,7 @@
     <tbody>
 
       {{#each comentarios}}
-        <tr>
+        <tr data-id={{id_comment}}>
           <td class="fondoTd">{{id_season}}</td>
           <td class="fondoTd">{{id_episode}}</td>
           <td class="fondoTd">{{name}}</td>
@@ -27,7 +27,7 @@
           <td class="fondoTd">{{score}}</td>
           {{#if ../logueado}}
             {{#if_eq ../rol "Administrador"}}
-              <td class="fondoTd"><button class="btn btn-primary fa fa-trash"></button></td>
+              <td class="fondoTd"><button class="btn btn-primary fa fa-trash js-eliminar"></button></td>
             {{/if_eq}}
           {{/if}}
         </tr>

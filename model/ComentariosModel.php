@@ -16,17 +16,20 @@
 			return new PDO('mysql:host=localhost;'.'dbname=gameofthrones_db;charset=utf8', 'root', '');
 		}
 
-		function getComentarios($id = []){
+		function getComentarios($id = ""){
 
-			if(!empty($id)){
+			if(isset($id)){
 				$condicion = "id_comment = ?";
+				$param=[$id];
+
 			}
 			else {
 				$condicion = 1;
+				$param=[];
 			}
 
 			$sentencia = $this->db->prepare("SELECT * FROM comment WHERE $condicion");
-			$sentencia->execute(  );
+			$sentencia->execute( $param );
 			$comentarios = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
 			return $comentarios;
@@ -55,11 +58,11 @@
 
 		function delComentario($id){
 			try{
-				$comment = $this->GetComentarios($id);
+				$comment = $this->getComentarios($id);
 				if(!empty($comment)){
 					$sentencia = $this->db->prepare("DELETE FROM `comment`
 									                         	WHERE `id_comment` = ?");
-		    	$sentencia->execute(array($comment[0]['id_comment']));
+		    	$sentencia->execute(array($id));
 					return $comment;
 				}
 	    }
