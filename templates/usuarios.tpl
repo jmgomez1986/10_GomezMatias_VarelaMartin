@@ -58,7 +58,7 @@
               {/if}
               <td class="fondoTd colE5">
                 <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="{$usuario["id_user"]}" name="{$usuario["id_user"]}" value="{$usuario["id_user"]}">
+                  <input type="checkbox" class="custom-control-input" id="{$usuario["id_user"]}" name="DEL" value="{$usuario["id_user"]}">
                   <label class="custom-control-label mb-3" for="{$usuario["id_user"]}"></label>
                 </div>
               </td>

@@ -80,7 +80,7 @@
 				if ( !empty($usuario) ){
 					$sentencia = $this->db->prepare("DELETE FROM `user_info`
 																							WHERE `id_user` = ?");
-					$sentencia->execute( array($usuario) );
+					$sentencia->execute( array($id_usuario) );
 				}
 			}
 
