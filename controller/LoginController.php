@@ -14,7 +14,7 @@
 		 	$this->model  = new UsuarioModel();
 		}
 
-		function login($params){
+		function login($params=[]){
 
 			if ( isset($params[0]) ){
 
@@ -82,7 +82,7 @@
 
 		function getUserID($user_name){
 			return $this->model->getUser($user_name);
-		}		
+		}
 
 	} //END CLASS
 

@@ -6,7 +6,6 @@
 
 	class TemporadasUserController extends SecuredController {
 
-		private $login;
 		private $rol;
 		private $script;
 		private $view;
@@ -38,11 +37,15 @@
 
 	  function EditarTemporada($param){
 
+			if ( $this->rol == "Administrador"){
 	      $id_temporada = $param[0];
 
 	      $Temporada = $this->model->GetTemporada($id_temporada);
 	      $this->view->MostrarEditarTemporada("Editar Temporada", $Temporada[0]);
-
+			}else{
+				$this->logout();
+				header(LOGIN . "/userFail");
+			}
 	  }
 
 	  function GuardarEditarTemporada(){
@@ -60,13 +63,18 @@
 
 	  function EditarEpisodio($param){
 
+			if ( $this->rol == "Administrador"){
 	      $id_temporada = $param[0];
 	      $id_episodio  = $param[1];
 
 	      $episodio = $this->model->getEpisodio($id_temporada, $id_episodio);
 	      $this->view->MostrarEditarEpisodio('Editar episodio', $episodio[0]);
+			}else{
+				$this->logout();
+				header(LOGIN . "/userFail");
+			}
 
-	    }
+	  }
 
     function GuardarEditarEpisodio(){
 
@@ -177,16 +185,8 @@
 			$id_episodio    = $params[1];
 			$id_images      = $_POST["ID"];
 			$id_imagesDEL   = ['id_image' => [] ];
-			// var_dump($id_images);
-			// die();
-			// var_dump($params);
-			// die();
 			foreach ($id_images as $key => $id_image) {
-				// var_dump($id_comentario);
-				// array_push( $id_imagesDEL['id_image'], $id_image );
-
 				$this->model->eliminarImagenEpisodio($id_image);
-
 			}
 
 			header(TEMPUSER);

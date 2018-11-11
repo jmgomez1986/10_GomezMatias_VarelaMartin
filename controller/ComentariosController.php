@@ -65,22 +65,23 @@
 
     function agregarComentarioForm($params=[]){
 
-      if ( isset($_POST["idTemp"]) && isset($_POST["idEpis"]) ){
-        $id_temporada  = $_POST["idTemp"];
-        $id_episodio   = $_POST["idEpis"];
-        if ( isset($_POST["verifyCaptcha"]) ){
-          $verifyCaptcha = $_POST["verifyCaptcha"];
+      if ( $this->logueado && $this->rol == "Limitado"){
+        if ( isset($_POST["idTemp"]) && isset($_POST["idEpis"]) ){
+          $id_temporada  = $_POST["idTemp"];
+          $id_episodio   = $_POST["idEpis"];
+
+          $user_name     = $this->login->getUser();
+          $id_user       = $this->login->getUserID($user_name);
+
+          $this->view->addComment($id_temporada, $id_episodio, $id_user[0]['id_user'], $this->script, $verifyCaptcha);
         }else{
-          $verifyCaptcha = '';
+          header(TEMPUSER);
         }
       }else{
-
+        $this->login->logout();
+        // header(LOGIN);
       }
 
-      $user_name    = $this->login->getUser();
-      $id_user      = $this->login->getUserID($user_name);
-
-      $this->view->addComment($id_temporada, $id_episodio, $id_user[0]['id_user'], $this->script, $verifyCaptcha);
     }
 
   } //END CLASS

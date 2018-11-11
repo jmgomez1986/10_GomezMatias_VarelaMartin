@@ -14,13 +14,13 @@
        <table class="tablaTemporadas">
          <thead>
            <tr>
-             <th class="fondoTh" rowspan="2">Temporada</th>
-             <th class="fondoTh" rowspan="2">Episodios</th>
-             <th class="fondoTh" colspan="2">Emisión original</th>
+             <th class="fondoTh align-middle text-center" rowspan="2">Temporada</th>
+             <th class="fondoTh align-middle text-center" rowspan="2">Episodios</th>
+             <th class="fondoTh align-middle text-center" colspan="2">Emisión original</th>
            </tr>
            <tr>
-             <th class="fondoTh">Inicio</th>
-             <th class="fondoTh">Final</th>
+             <th class="fondoTh align-middle text-center">Inicio</th>
+             <th class="fondoTh align-middle text-center">Final</th>
            </tr>
          </thead>
 

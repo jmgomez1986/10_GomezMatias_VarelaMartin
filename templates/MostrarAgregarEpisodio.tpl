@@ -28,7 +28,7 @@
 
         <div class="form-group">
           <label class="text-white font-weight-bold" for="imagenes">Agregar imágenes</label>
-          <input type="file" id="imagenes" name="imagenes[]" multiple>
+          <input type="file" class="form-control-file" id="imagenes" name="imagenes[]" multiple>
         </div>
 
         <button type="submit" class="btn btn-primary mb-4 mt-2">Agregar Episodio</button>
