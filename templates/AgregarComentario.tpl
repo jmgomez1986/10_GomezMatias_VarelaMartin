@@ -4,7 +4,7 @@
 
     <div class="container mt-4">
 
-      <form class="formAddComment" id="confirmationForm" method="post" action="comentarios/temporada/{$id_temporada}/episodio/{$id_episodio}" >
+      <form class="formAddComment" id="confirmationForm" method="post" >
 
         <input type="hidden" class="form-control idUser" id="idUser" name="idUser" value="{$id_user}">
 
@@ -32,7 +32,7 @@
           <p class="errorForm"></p>
         </div>
 
-        <button type="submit" class="btn btn-primary mb-4 mt-2 js-submitAddComment">Agregar comentario</button>
+        <button type="button" class="btn btn-primary mb-4 mt-2 js-submitAddComment">Agregar comentario</button>
       </form>
     </div>
 

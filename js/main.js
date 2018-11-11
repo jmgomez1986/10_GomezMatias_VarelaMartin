@@ -16,6 +16,7 @@ function loadPage() {
 
    saveComentarios();
    sortComentario();
+
 }
 
 function getComentarios(){
@@ -43,8 +44,6 @@ function fetchGetComentario(url){
       route = "api/comentarios";
     }
 
-    alert("URL: " + route);
-
     if ( logueado && rol == "Limitado" ){
       let btnAddCom = document.querySelector(".js-addComment").addEventListener('click', function(){
         let url       = "agregarComentario/";
@@ -56,6 +55,7 @@ function fetchGetComentario(url){
     .then(response => response.json())
     .then(jsonComentarios => {
       mostrarComentarios(jsonComentarios, logueado, rol, idEpis, idTemp);
+      eliminarComentario();
     })
   }
 
@@ -122,12 +122,13 @@ function saveComentarios(){
                 } else
                 return response.json()
             }).then(function(json) {
+              console.log(json);
                 // let urlPrev = document.referrer;
                 // window.location.replace(urlPrev);
                 // let urlComments = 'comentarios/temporada/' + idTemp + '/episodio/' + idEpis;
                 // console.log(urlComments);
                 // alert("TEST Redirect");
-                // let form = document.querySelector(".formAddComment").action = urlComments;
+                //let form = document.querySelector(".formAddComment").action = urlComments;
 
             }).catch(function(e){
                 let cartelError = container.querySelector(".js-displayError");
@@ -171,6 +172,40 @@ function sortComentario(){
 
         fetchGetComentario(urlSortComments);
     });
-
   }
+}
+
+function eliminarComentario(){
+let btnEliminar = document.querySelectorAll('.js-eliminar').forEach(btn => btn.addEventListener('click',function(){
+  // console.log('jorge');
+    let row = (btn.parentNode).parentNode;
+    let id = row.dataset.id;
+    let url = 'api/comentarios/' + id;
+
+    fetch(url, {
+        "method" : "DELETE",
+        "mode"   : "cors", //Con esto se hace menos estricta la politica de seguridad de algunos navegadores
+        "headers": {
+            "Content-Type": "application/json"
+          }
+    }).then(function(response) {
+          // console.log(response);
+          if (!response.ok) {
+              //showElement(elem);
+              let elem = document.querySelector(".errorForm");
+              elem.innerHTML =  "Error " + response.status;
+          } else {
+
+              row.remove();
+          }
+        }).catch (function(e) {
+            let elem = document.querySelector(".errorForm");
+            //showElement(elem);
+            elem.innerHTML = "Error de Conexión";
+            console.log(e);
+          })
+
+  }));
+
+
 }

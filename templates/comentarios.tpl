@@ -2,6 +2,8 @@
 
   {if $logueado}
     {if $rol eq "Limitado"}
+
+      <div class="errorForm"></div>
       <form class="formComment" method="post" action="">
 
         <div class="form-group">
@@ -28,7 +30,7 @@
             </div>
             <button type="button" class="btn btn-primary m-2 js-sortComment">Aplicar Orden</button>
           </div>
-          
+
         </div>
 
       </form>
