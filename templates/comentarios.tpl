@@ -38,7 +38,9 @@
   {/if}
 
   <div class="container-fluid mt-5 contenedor_comentarios" data-temp="{$id_temporada}" data-epis="{$id_episodio}" data-logueado="{$logueado}" data-rol="{$rol}">
+    <div class="js-displayError text-center font-weight-bold alert alert-danger d-none" role="alert">
 
+    </div>
   </div>
 
 {include file="footer.tpl"}

@@ -37,7 +37,7 @@ function fetchGetComentario(url){
     let logueado = obj.dataset.logueado;
     let rol      = obj.dataset.rol;
 
-    if ( idTemp && idEpis && logueado && rol ){
+    if ( idTemp && idEpis ){
       route = url.replace("{idTemp}", idTemp);
       route = route.replace("{idEpis}", idEpis);
     }else{
@@ -51,12 +51,26 @@ function fetchGetComentario(url){
       });
     }
 
-    fetch(route)
-    .then(response => response.json())
-    .then(jsonComentarios => {
-      mostrarComentarios(jsonComentarios, logueado, rol, idEpis, idTemp);
-      eliminarComentario();
-    })
+    fetch(route).then(function(response){
+          if ( !response.ok){
+            console.log(response.json());
+            let elem = document.querySelector(".js-displayError");
+            elem.classList.remove("d-none");
+            elem.innerHTML =  "El episodio elegido no posee comentarios ";
+          }else{
+            return response.json();
+          }
+    }).then(function(jsonComentarios){
+          // console.log(jsonComentarios);
+          if ( jsonComentarios != null ){
+            mostrarComentarios(jsonComentarios, logueado, rol, idEpis, idTemp);
+            eliminarComentario();
+          }
+    }).catch(function(e){
+          let elem = documment.querySelector(".js-displayError");
+          elem.innerHTML = "Error de Conexión";
+          console.log(e);
+    });
   }
 
 }
