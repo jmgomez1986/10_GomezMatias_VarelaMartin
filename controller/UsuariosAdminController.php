@@ -3,6 +3,7 @@
 	require_once "./view/UsuarioView.php";
 	require_once "./model/UsuarioModel.php";
 	require_once "SecuredController.php";
+	require_once "LoginController.php";
 
 	class UsuariosAdminController extends SecuredController {
 
@@ -10,6 +11,7 @@
 		private $script;
 		private $view;
 	  private $model;
+		private $login;
 
 		function __construct(){
 				parent::__construct();
@@ -22,6 +24,7 @@
 					exit();
 				}
 
+				$this->login 			 = new LoginController();
 				$this->view        = new UsuarioView("Game of Thrones", "temporadasUser", $this->script, "oculto", "visible", "oculto", "visible", true, $this->rol);
 				$this->model       = new UsuarioModel();
 		}
@@ -29,7 +32,8 @@
 		function GetUsuarios(){
 
 	    $usuarios = $this->model->getUsers();
-	    $this->view->MostrarUsuarios($usuarios);
+			$user = $this->login->getUser();
+	    $this->view->MostrarUsuarios($usuarios, $user);
 
 	  }
 

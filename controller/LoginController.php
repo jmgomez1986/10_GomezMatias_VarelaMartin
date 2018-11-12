@@ -51,22 +51,26 @@
 		function verifyLogin(){
 			$user   = $_POST["user"];
 		 	$pass   = $_POST["pass"];
-		 	$dbUser = $this->model->getUser($user);
+			if(isset($_POST["user"]) && isset($_POST["pass"])){
+				$dbUser = $this->model->getUser($user);
+				if(!empty($dbUser)){
+			 		if(password_verify($pass,$dbUser[0]["password"])){
+			 			session_start();
+		        $_SESSION['usuario'] = $user;
+						$_SESSION['rol']     = $dbUser[0]['rol'];
+			 		 	header(TEMPUSER);
+			 		}
+			 		else{
+			 			$this->view->login("Contraseña incorrecta");
+			 		}
+			 	}
+			 	else{
+			 		$this->view->login("No existe el usuario");
+			 	}
+			}
 
-		 	if(!empty($dbUser)){
-		 		if(password_verify($pass,$dbUser[0]["password"])){
-		 			session_start();
-	        $_SESSION['usuario'] = $user;
-					$_SESSION['rol']     = $dbUser[0]['rol'];
-		 		 	header(TEMPUSER);
-		 		}
-		 		else{
-		 			$this->view->login("Contraseña incorrecta");
-		 		}
-		 	}
-		 	else{
-		 		$this->view->login("No existe el usuario");
-		 	}
+
+
 		}
 
 		function getUser(){

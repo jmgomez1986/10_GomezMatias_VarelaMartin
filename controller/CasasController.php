@@ -47,13 +47,13 @@
     }
 
     function Casas($param){
-      $casaNombre  = $param[0];
-
-      $casa = $this->model->getCasa($casaNombre);
-      $columnasMiembrosCasas = array_chunk($casa['miembros'],8,true);
-      $cantCol               = count($columnasMiembrosCasas);
-      $this->view->Casas($casa, $columnasMiembrosCasas, $cantCol);
-
+      if(isset($param)){
+        $casaNombre  = $param[0];
+        $casa = $this->model->getCasa($casaNombre);
+        $columnasMiembrosCasas = array_chunk($casa['miembros'],8,true);
+        $cantCol               = count($columnasMiembrosCasas);
+        $this->view->Casas($casa, $columnasMiembrosCasas, $cantCol);
+      }
     }
 
   } //END CLASS

@@ -24,36 +24,42 @@
 		 	$pass           = $_POST["pass"];
       $pass_confirm   = $_POST["pass_confirm"];
 
-		 	$dbUser = $this->model->getUser($user);
+			if (isset($_POST["user"]) && isset($_POST["email"]) && isset($_POST["pass"]) && isset($_POST["pass_confirm"])){
 
-			if (!empty($dbUser)){
-				$this->message = "El usuario ya se encuentra registrado";
-				$this->view->Registro($this->message);
-			}
-			else{
-				if ( $pass == $pass_confirm ){
+				$dbUser = $this->model->getUser($user);
 
-					$passEncrypt = password_hash($pass, PASSWORD_DEFAULT);
-					$user_rol    = 'Limitado';
+				if (!empty($dbUser)){
+					$this->message = "El usuario ya se encuentra registrado";
+					$this->view->Registro($this->message);
+				}
+				else{
+					if ( $pass == $pass_confirm ){
 
-					$dbUserRegistrado = $this->model->insertUser($user, $passEncrypt, $mail, $user_rol);
+						$passEncrypt = password_hash($pass, PASSWORD_DEFAULT);
+						$user_rol    = 'Limitado';
 
-					if (isset($dbUserRegistrado)){
-						session_start();
-						$_SESSION['usuario'] = $user;
-						$_SESSION['rol']     = $user_rol;
-						header(TEMPUSER);
+						$dbUserRegistrado = $this->model->insertUser($user, $passEncrypt, $mail, $user_rol);
+
+						if (isset($dbUserRegistrado)){
+							session_start();
+							$_SESSION['usuario'] = $user;
+							$_SESSION['rol']     = $user_rol;
+							header(TEMPUSER);
+						}
+						else{
+							$this->message = "Error interno al realizar el registro, intente nuevamente";
+							$this->view->Registro($this->message);
+						}
 					}
 					else{
-						$this->message = "Error interno al realizar el registro, intente nuevamente";
+						$this->message = "Las contraseñas no coinciden";
 						$this->view->Registro($this->message);
 					}
 				}
-				else{
-					$this->message = "Las contraseñas no coinciden";
-					$this->view->Registro($this->message);
-				}
-
+			}
+			else{
+				$this->message = "Datos faltantes";
+				$this->view->Registro($this->message);
 			}
 		}
 

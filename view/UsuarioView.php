@@ -23,9 +23,9 @@
       $this->Smarty->assign('rol', $rol);
     }
 
-    function MostrarUsuarios($usuarios){
+    function MostrarUsuarios($usuarios, $user){
       $this->Smarty->assign('usuarios',$usuarios);
-
+      $this->Smarty->assign('usrReg',$user);
       $this->Smarty->display('templates/usuarios.tpl');
     }
 

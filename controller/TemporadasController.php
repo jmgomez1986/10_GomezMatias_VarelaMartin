@@ -60,19 +60,25 @@
 
     //Devolver los episodios de una temporada dada
     function Episodios($param){
-      $id_temporada = $param[0];
+      if (!empty($param)){
+        $id_temporada = $param[0];
 
-			$episodios = $this->model->getEpisodios($id_temporada);
-      $this->view->MostrarEpisodios($episodios);
+  			$episodios = $this->model->getEpisodios($id_temporada);
+        $this->view->MostrarEpisodios($episodios);
+      }
+
     }
 
     //Devuelve un episodio dado de una temporada dada
     function Episodio($param){
-      $id_temporada = $param[0];
-      $id_episodio  = $param[2];
+      if (!empty($param)){
+        $id_temporada = $param[0];
+        $id_episodio  = $param[2];
 
-			$episodio = $this->model->getEpisodio($id_temporada,$id_episodio);
-      $this->view->MostrarEpisodio($episodio);
+  			$episodio = $this->model->getEpisodio($id_temporada,$id_episodio);
+        $this->view->MostrarEpisodio($episodio);
+      }
+
     }
 
   } //END CLASS

@@ -185,11 +185,12 @@
 					$sentencia->execute( array($id_image) );
 					// var_dump($imagen);
 					// die();
-					unlink( $imagen['path_img'] );
+					$path = "./" . $imagen[0]['path_img'];
+					if(file_exists($path)){
+						unlink($path);
+					}
 				}
-
 			}
-
 			catch(PDOException $exception){
 				return $exception->getMessage();
 			}

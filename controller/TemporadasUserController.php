@@ -6,11 +6,11 @@
 
 	class TemporadasUserController extends SecuredController {
 
-		private $rol;
-		private $script;
-		private $claseAdminUser;
-		private $view;
-	  private $model;
+		private $rol = null;
+		private $script = null;
+		private $claseAdminUser = null;
+		private $view = null;
+	  private $model = null;
 
 		function __construct(){
 				parent::__construct();
@@ -83,7 +83,7 @@
 
       $id_temporada = $_POST["idTemp"];
       $id_episodio  = $_POST["idEpis"];
-      $titulo       = $_POST["tituloForm"];
+      $titulo       = $_POST["titulo"];
       $descripcion  = $_POST["descripcion"];
 
 			$rutaTempImagenes = $_FILES['imagenes']['tmp_name'];
