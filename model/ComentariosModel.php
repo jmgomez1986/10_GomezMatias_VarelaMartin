@@ -18,18 +18,20 @@
 
 		function getComentarios($id = ""){
 
+			$parameter = array();
+
 			if(isset($id)){
 				$condicion = "id_comment = ?";
-				$param=[$id];
+				array_push($parameters, $id);
 
 			}
 			else {
-				$condicion = 1;
-				$param=[];
+				$condicion  = 1;
+				$parameters = [];
 			}
 
 			$sentencia = $this->db->prepare("SELECT * FROM comment WHERE $condicion");
-			$sentencia->execute( $param );
+			$sentencia->execute( $parameters );
 			$comentarios = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
 			return $comentarios;

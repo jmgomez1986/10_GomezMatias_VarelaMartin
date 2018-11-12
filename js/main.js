@@ -208,6 +208,23 @@ function sortComentario(){
         fetchGetComentario(urlSortComments);
     });
   }
+
+  let btnResetSort = document.querySelector('.js-resetSort');
+
+  if ( btnResetSort != null ){
+
+    btnResetSort.addEventListener("click", function(){
+
+        let obj = document.querySelector('.contenedor_comentarios');
+        let idTemp   = obj.dataset.temp;
+        let idEpis   = obj.dataset.epis;
+
+        let urlSortComments = 'api/comentarios/temporada/' + "{idTemp}" + '/episodio/' + "{idEpis}";
+
+        fetchGetComentario(urlSortComments);
+    });
+  }
+
 }
 
 function eliminarComentario(){
