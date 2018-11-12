@@ -56,7 +56,15 @@
 				return $episodios;
 		}
 
-		private function getImagenes($parameters, $condicion){
+		function getImagenes($parameters=[], $condicion='', $id_temporada='', $id_episodio=''){
+
+			if ( isset($id_temporada) && isset($id_episodio) && empty($parameters)){
+				$parameters = array();
+				$condicion  = 'id_season=? AND id_episode=?';
+				array_push($parameters, $id_temporada);
+				array_push($parameters, $id_episodio);
+			}
+
 
 			$sentencia = $this->db->prepare("SELECT *
 																					FROM episode_image
@@ -92,7 +100,7 @@
 			}
 
 			//Se obtienen los datos de las imagenes
-			$episodiosImagenes = $this->getImagenes($parameters, $condicion);
+			$episodiosImagenes = $this->getImagenes($parameters, $condicion, '', '');
 			if ( !empty($episodios) ){
 				array_push($resultEpisodiosImagenes, $episodiosImagenes);
 			}

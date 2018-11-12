@@ -21,7 +21,7 @@
                 <td class="fondoTd colE40 align-middle text-justify">{$episodio["descripcion"]}</td>
                 <td class="fondoTd colE40">
                 {foreach from=$episodio["imagenes"] item=imagen}
-                  <img class="episodioImg rounded  m-1" src="{$imagen}" alt="Imagen de Temporada {$episodio["id_season"]}, Episodio {$episodio["id_episode"]}">
+                  <img class="episodioImg rounded m-1" src="{$imagen}" alt="Imagen de Temporada {$episodio["id_season"]}, Episodio {$episodio["id_episode"]}">
                 {/foreach}
                 </td>
               </tr>

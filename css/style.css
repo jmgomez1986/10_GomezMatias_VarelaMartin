@@ -178,10 +178,14 @@ body{
   width: 40%;
 }
 
-.episodioImg{
+.episodioImg, .episodioElimImg{
   width:100%;
   max-width:40%;
   border: 4px solid rgb(170, 160, 117);
+}
+
+.episodioElimImg{
+  max-width:300px;
 }
 
 .clearfix{
