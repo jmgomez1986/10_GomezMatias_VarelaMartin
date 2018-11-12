@@ -6,7 +6,6 @@
 
       <form class="formAddComment" id="confirmationForm" method="post" action="" >
 
-
         <input type="hidden" class="form-control idUser" id="idUser" name="idUser" value="{$id_user}">
 
         <div class="form-group">
@@ -33,14 +32,10 @@
           <p class="errorForm"></p>
         </div>
 
-<<<<<<< HEAD
         <div class="g-recaptcha" data-sitekey="6Lf9l3kUAAAAAMtoVTGhrcnEkmj1s_kxLhM36yXC"></div>
         <!-- <input class="btn btn-primary m-2" type="submit" value="Agregar comentario"> -->
         <button type="submit" class="btn btn-primary mb-4 mt-2 js-submitAddComment">Agregar comentario</button>
 
-=======
-        <button type="button" class="btn btn-primary mb-4 mt-2 js-submitAddComment">Agregar comentario</button>
->>>>>>> martin
       </form>
     </div>
 
