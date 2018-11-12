@@ -16,19 +16,15 @@
          <tbody>
             {foreach from=$episodios item=episodio}
               <tr class="font-weight-bold">
-                 <td class="fondoTd colE5 align-middle">{$episodio["id_episode"]}</td>
-                 <td class="fondoTd colE10 align-middle">{$episodio["titulo"]}</td>
-                 <td class="fondoTd colE40 align-middle text-justify">{$episodio["descripcion"]}</td>
-                 <td class="fondoTd colE40">
-                  <div class="contenidoImg">
-                    {foreach from=$episodio["imagenes"] item=imagen}
-                      <div class="">
-                        <img class="episodioImg img-fluid rounded float-left m-1 d-block" src="{$imagen}" alt="Imagen de Temporada {$episodio["id_season"]}, Episodio {$episodio["id_episode"]}">
-                      </div>
-                    {/foreach}
-                  </div>
+                <td class="fondoTd colE10 align-middle">{$episodio["id_episode"]}</td>
+                <td class="fondoTd colE10 align-middle">{$episodio["titulo"]}</td>
+                <td class="fondoTd colE40 align-middle text-justify">{$episodio["descripcion"]}</td>
+                <td class="fondoTd colE40">
+                {foreach from=$episodio["imagenes"] item=imagen}
+                  <img class="episodioImg rounded  m-1" src="{$imagen}" alt="Imagen de Temporada {$episodio["id_season"]}, Episodio {$episodio["id_episode"]}">
+                {/foreach}
                 </td>
-               </tr>
+              </tr>
             {/foreach}
          </tbody>
        </table>

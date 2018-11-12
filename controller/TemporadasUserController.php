@@ -67,11 +67,12 @@
 	  function EditarEpisodio($param){
 
 			if ( $this->rol == "Administrador"){
-	      $id_temporada = $param[0];
-	      $id_episodio  = $param[1];
+	      $id_season = $param[0];
+	      $id_episode  = $param[1];
 
-	      $episodio = $this->model->getEpisodio($id_temporada, $id_episodio);
-	      $this->view->MostrarEditarEpisodio('Editar episodio', $episodio[0]);
+	      $episodio = $this->model->getEpisodioImagenes($id_season, $id_episode);
+
+	      $this->view->MostrarEditarEpisodio('Editar episodio', $episodio[0][0]);
 			}else{
 				$this->logout();
 				header(LOGIN . "/userFail");
@@ -120,10 +121,11 @@
 			$titulo       = $_POST["tituloE"];
 			$descripcion  = $_POST["descE"];
 
-			$episodio = $this->model->getEpisodio($id_temporada,$id_episodio);
-
+			$episodio = $this->model->getEpisodioImagenes($id_temporada, $id_episodio);
+			// var_dump($episodio);
+			// die();
 			//Si el resultado esta vacio, es porque el episodio a agregar no existe. asique todo OK
-			if (empty($episodio)){
+			if (empty($episodio[0])){
 				$rutaTempImagenes = $_FILES['imagenes']['tmp_name'];
 				$episodio = $this->model->insertEpisodio($id_temporada, $id_episodio, $titulo, $descripcion, $rutaTempImagenes);
 				header(TEMPUSER);

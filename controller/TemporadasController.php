@@ -51,6 +51,35 @@
 
     }
 
+    private function formatearEpisodio($episodio, $episodioImagenes){
+
+      $episodioFormateado = array();
+      $arregloEpisodio    = array();
+
+      for ($i=0; $i < count($episodio); $i++) {
+        $arregloEpisodio['id_season']   = $episodio[$i]['id_season'];
+        $arregloEpisodio['id_episode']  = $episodio[$i]['id_episode'];
+        $arregloEpisodio['titulo']      = $episodio[$i]['titulo'];
+        $arregloEpisodio['descripcion'] = $episodio[$i]['descripcion'];
+        $arregloEpisodio['imagenes'] = [];
+        for ($j=0; $j < count($episodioImagenes); $j++) {
+          if ( $episodioImagenes[$j]['id_season']  == $episodio[$i]['id_season'] &&
+          $episodioImagenes[$j]['id_episode'] == $episodio[$i]['id_episode'] ){
+
+            $path = $episodioImagenes[$j]['path_img'];
+            if ( file_exists("./".$path) ){
+              array_push($arregloEpisodio['imagenes'], $path );
+            }
+          }
+        }
+        array_push($episodioFormateado, $arregloEpisodio);
+        $arregloEpisodio['imagenes'] = [];
+        unset($arregloEpisodio);
+      }
+
+      return $episodioFormateado;
+    }
+
     //Devuelve todas las temporadas de la DB y todos los episodios de la DB
     function Temporadas(){
       $temporadas = $this->model->getTemporadas();
@@ -61,18 +90,17 @@
     //Devolver los episodios de una temporada dada
     function Episodios($param){
       $id_temporada = $param[0];
+      if ( isset($param[2]) ){
+        $id_episodio  = $param[2];
+      }else{
+        $id_episodio = NULL;
+      }
 
-			$episodios = $this->model->getEpisodios($id_temporada);
+			$episodiosImagenes = $this->model->getEpisodioImagenes($id_temporada, $id_episodio);
+      //Se unen los dos resultados
+      $episodios = $this->formatearEpisodio($episodiosImagenes[0], $episodiosImagenes[1]);
+
       $this->view->MostrarEpisodios($episodios);
-    }
-
-    //Devuelve un episodio dado de una temporada dada
-    function Episodio($param){
-      $id_temporada = $param[0];
-      $id_episodio  = $param[2];
-
-			$episodio = $this->model->getEpisodio($id_temporada,$id_episodio);
-      $this->view->MostrarEpisodio($episodio);
     }
 
   } //END CLASS
