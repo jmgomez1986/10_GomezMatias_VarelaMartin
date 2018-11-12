@@ -11,7 +11,8 @@
     $options = array(
             'http' => array (
                 'method' => 'POST',
-                'content' => http_build_query($data)
+                'content' => http_build_query($data),
+                'header' => 'Content-Type: application/x-www-form-urlencoded'
             )
         );
 
