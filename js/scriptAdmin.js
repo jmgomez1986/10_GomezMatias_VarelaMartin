@@ -20,170 +20,175 @@ function loadPage() {
 /*********** ABM de Temporadas **********/
 /****************************************/
 
-  let btnEditarTemporada = document.querySelector(".js-edt").addEventListener('click', function(){
-    let eleccionTemp = document.querySelector(".js-eleccionT");
-    let temporada    = eleccionTemp.value;
+  let formAdminTemp = document.querySelector(".formAdmin");
+  if ( formAdminTemp != null ){
+    let btnEditarTemporada = document.querySelector(".js-edt").addEventListener('click', function(){
+      let eleccionTemp = document.querySelector(".js-eleccionT");
+      let temporada    = eleccionTemp.value;
 
-    let indexT       = eleccionTemp.selectedIndex;
-    let temporadaID  = eleccionTemp.options[indexT].getAttribute("name");
+      let indexT       = eleccionTemp.selectedIndex;
+      let temporadaID  = eleccionTemp.options[indexT].getAttribute("name");
 
-    if ( temporadaID === "0" ){
-      alert("Elija una temporada");
-    }
-    else{
-      let url       = 'editarT/' + temporadaID + '/';
-      let formAdmin = document.querySelector(".formAdmin").action = url;
-    }
-
-  });
-
-  let btnAgregarTemp = document.querySelector(".js-agt").addEventListener('click',function(){
-    let url = 'agregarT' + '/';
-    let formAdmin = document.querySelector(".formAdmin").action = url;
-  })
-
-  let btnEliminarTemp = document.querySelector(".js-elt").addEventListener('click',function(){
-    let eleccionTemp = document.querySelector(".js-eleccionT");
-    let temporada    = eleccionTemp.value;
-
-    let indexT       = eleccionTemp.selectedIndex;
-    let temporadaID  = eleccionTemp.options[indexT].getAttribute("name");
-
-    if ( temporadaID === "0" ){
-      alert("Elija una temporada");
-    }
-    else{
-
-      let respuesta = confirm("¿Seguro que desea eliminar la temporada " + temporadaID + "?????");
-      if (respuesta == true) {
-          let url       = 'eliminarT/' + temporadaID + '/';
-          let formAdmin = document.querySelector(".formAdmin").action = url;
+      if ( temporadaID === "0" ){
+        alert("Elija una temporada");
       }
       else{
-        let url       = 'temporadasAdmin/';
-        let formAdmin = document.querySelector(".formAdmin").action = url;
-        alert("Accion cancelada");
+        let url       = 'editarT/' + temporadaID + '/';
+        formAdminTemp.action = url;
       }
-    }
-  })
+
+    });
+
+    let btnAgregarTemp = document.querySelector(".js-agt").addEventListener('click',function(){
+      let url = 'agregarT' + '/';
+      formAdminTemp.action = url;
+    })
+
+    let btnEliminarTemp = document.querySelector(".js-elt").addEventListener('click',function(){
+      let eleccionTemp = document.querySelector(".js-eleccionT");
+      let temporada    = eleccionTemp.value;
+
+      let indexT       = eleccionTemp.selectedIndex;
+      let temporadaID  = eleccionTemp.options[indexT].getAttribute("name");
+
+      if ( temporadaID === "0" ){
+        alert("Elija una temporada");
+      }
+      else{
+
+        let respuesta = confirm("¿Seguro que desea eliminar la temporada " + temporadaID + "?????");
+        if (respuesta == true) {
+          let url       = 'eliminarT/' + temporadaID + '/';
+          formAdminTemp.action = url;
+        }
+        else{
+          let url       = 'temporadasUser/';
+          formAdminTemp.action = url;
+          alert("Accion cancelada");
+        }
+      }
+    })
+  }
+
 
 /**************************************/
 /********** ABM de Episodios **********/
 /**************************************/
+  let formAdminEpis = document.querySelector(".formAdminE");
+  if ( formAdminEpis != null ){
+    //Opcion elegida de la lista desplegable de Temporadas para filtrar la lista desplegable de episodios
+    let eleccionDropdownTemp = document.querySelector(".js-eleccionTE");
 
-  //Opcion elegida de la lista desplegable de Temporadas para filtrar la lista desplegable de episodios
-  let eleccionDropdownTemp = document.querySelector(".js-eleccionTE");
+    eleccionDropdownTemp.addEventListener('click', function(){
+      //Lista desplegable de Episodios
+      let dropdownEp = document.querySelectorAll(".js-eleccionE");
 
-  eleccionDropdownTemp.addEventListener('click', function(){
-    //Lista desplegable de Episodios
-    let dropdownEp = document.querySelectorAll(".js-eleccionE");
+      dropdownEp.forEach(function(ep){
 
-    dropdownEp.forEach(function(ep){
-
-       for (let i = 0; i < ep.options.length; i++) {
-         if ( eleccionDropdownTemp.value == '0' ){
-           showElement(ep.options[i]);
+        for (let i = 0; i < ep.options.length; i++) {
+          if ( eleccionDropdownTemp.value == '0' ){
+            showElement(ep.options[i]);
+          }
+          else if (ep.options[i].value != eleccionDropdownTemp.value ) {
+            hideElement(ep.options[i]);
+          }
+          else {
+            showElement(ep.options[i]);
+          }
         }
-        else if (ep.options[i].value != eleccionDropdownTemp.value ) {
-          hideElement(ep.options[i]);
-        }
-        else {
-          showElement(ep.options[i]);
-        }
-      }
+      });
+
     });
 
-  });
+    let btnEditarEpisodio = document.querySelector(".js-ede").addEventListener('click', function(){
+      let eleccionTemp = document.querySelector(".js-eleccionTE");
+      let temporada    = eleccionTemp.value;
+      let indexT       = eleccionTemp.selectedIndex;
+      let temporadaID  = eleccionTemp.options[indexT].getAttribute("name");
 
-  let btnEditarEpisodio = document.querySelector(".js-ede").addEventListener('click', function(){
-    let eleccionTemp = document.querySelector(".js-eleccionTE");
-    let temporada    = eleccionTemp.value;
-    let indexT       = eleccionTemp.selectedIndex;
-    let temporadaID  = eleccionTemp.options[indexT].getAttribute("name");
+      let eleccionEp   = document.querySelector(".js-eleccionE");
+      let episodio     = eleccionEp.value;
+      let indexE       = eleccionEp.selectedIndex;
+      let episodioID   = eleccionEp.options[indexE].getAttribute("name");
 
-    let eleccionEp   = document.querySelector(".js-eleccionE");
-    let episodio     = eleccionEp.value;
-    let indexE       = eleccionEp.selectedIndex;
-    let episodioID   = eleccionEp.options[indexE].getAttribute("name");
-
-    if ( ( temporadaID === "0" ) || ( episodioID === "0" ) ){
-      alert("Elija una temporada y un episodio");
-    }
-    else{
-      let url       = 'editarE/' + temporadaID + "/" + episodioID + "/";
-
-      let formAdmin = document.querySelector(".formAdminE").action = url;
-    }
-
-  });
-
-  let btnEliminarEpisodio = document.querySelector(".js-ele").addEventListener('click', function(){
-    let answer;
-    let eleccionTemp = document.querySelector(".js-eleccionTE");
-    let indexT       = eleccionTemp.selectedIndex;
-    let temporada    = eleccionTemp.value;
-    let temporadaID  = eleccionTemp.options[indexT].getAttribute("name");
-
-    let eleccionEp   = document.querySelector(".js-eleccionE");
-    let episodio     = eleccionEp.value;
-    let indexE       = eleccionEp.selectedIndex;
-    let episodioID   = eleccionEp.options[indexE].getAttribute("name");
-
-    if ( ( temporadaID === "0" ) || ( episodioID === "0" ) ){
+      if ( ( temporadaID === "0" ) || ( episodioID === "0" ) ){
         alert("Elija una temporada y un episodio");
-    }
-    else{
-
-      let respuesta = confirm("¿Seguro que desea eliminar el episodio " + episodioID + " de la temporada " + temporadaID + "?????");
-      if (respuesta == true) {
-        let url       = 'eliminarE/' + temporadaID + "/" + episodioID + "/";
-        let formAdmin = document.querySelector(".formAdminE").action = url;
       }
-      else {
-        let url       = "temporadasAdmin/";
-        let formAdmin = document.querySelector(".formAdminE").action = url;
-        alert("Accion cancelada");
+      else{
+        let url = 'editarE/' + temporadaID + "/" + episodioID + "/";
+        formAdminEpis.action = url;
       }
-    }
 
-  });
+    });
 
-  let btnAgregarEpisodio = document.querySelector(".js-age").addEventListener('click', function(){
-    let eleccionTemp = document.querySelector(".js-eleccionTE");
-    let temporada    = eleccionTemp.value;
-    let indexT       = eleccionTemp.selectedIndex;
-    let temporadaID  = eleccionTemp.options[indexT].getAttribute("name");
+    let btnEliminarEpisodio = document.querySelector(".js-ele").addEventListener('click', function(){
+      let answer;
+      let eleccionTemp = document.querySelector(".js-eleccionTE");
+      let indexT       = eleccionTemp.selectedIndex;
+      let temporada    = eleccionTemp.value;
+      let temporadaID  = eleccionTemp.options[indexT].getAttribute("name");
 
-    if ( ( temporadaID === "0" ) ){
-      alert("Elija una temporada");
-    }
-    else{
-      let url       = 'agregarE/' + temporadaID + "/";
+      let eleccionEp   = document.querySelector(".js-eleccionE");
+      let episodio     = eleccionEp.value;
+      let indexE       = eleccionEp.selectedIndex;
+      let episodioID   = eleccionEp.options[indexE].getAttribute("name");
 
-      let formAdmin = document.querySelector(".formAdminE").action = url;
-    }
-
-  });
-
-  let btnEliminarImagenesEpisodio = document.querySelector(".js-eli").addEventListener('click', function(){
-    let eleccionTemp = document.querySelector(".js-eleccionTE");
-    let indexT       = eleccionTemp.selectedIndex;
-    let temporada    = eleccionTemp.value;
-    let temporadaID  = eleccionTemp.options[indexT].getAttribute("name");
-
-    let eleccionEp   = document.querySelector(".js-eleccionE");
-    let episodio     = eleccionEp.value;
-    let indexE       = eleccionEp.selectedIndex;
-    let episodioID   = eleccionEp.options[indexE].getAttribute("name");
-
-    if ( ( temporadaID === "0" ) || ( episodioID === "0" ) ){
+      if ( ( temporadaID === "0" ) || ( episodioID === "0" ) ){
         alert("Elija una temporada y un episodio");
-    }
-    else{
-        let url       = 'MostrarImagenes/' + temporadaID + "/" + episodioID + "/";
-        let formAdmin = document.querySelector(".formAdminE").action = url;
-    }
+      }
+      else{
 
-  });
+        let respuesta = confirm("¿Seguro que desea eliminar el episodio " + episodioID + " de la temporada " + temporadaID + "?????");
+        if (respuesta == true) {
+          let url       = 'eliminarE/' + temporadaID + "/" + episodioID + "/";
+          formAdminEpis.action = url;
+        }
+        else {
+          let url = "temporadasUser/";
+          formAdminEpis.action = url;
+          alert("Accion cancelada");
+        }
+      }
+
+    });
+
+    let btnAgregarEpisodio = document.querySelector(".js-age").addEventListener('click', function(){
+      let eleccionTemp = document.querySelector(".js-eleccionTE");
+      let temporada    = eleccionTemp.value;
+      let indexT       = eleccionTemp.selectedIndex;
+      let temporadaID  = eleccionTemp.options[indexT].getAttribute("name");
+
+      if ( ( temporadaID === "0" ) ){
+        alert("Elija una temporada");
+      }
+      else{
+        let url = 'agregarE/' + temporadaID + "/";
+        formAdminEpis.action = url;
+      }
+
+    });
+
+    let btnEliminarImagenesEpisodio = document.querySelector(".js-eli").addEventListener('click', function(){
+      let eleccionTemp = document.querySelector(".js-eleccionTE");
+      let indexT       = eleccionTemp.selectedIndex;
+      let temporada    = eleccionTemp.value;
+      let temporadaID  = eleccionTemp.options[indexT].getAttribute("name");
+
+      let eleccionEp   = document.querySelector(".js-eleccionE");
+      let episodio     = eleccionEp.value;
+      let indexE       = eleccionEp.selectedIndex;
+      let episodioID   = eleccionEp.options[indexE].getAttribute("name");
+
+      if ( ( temporadaID === "0" ) || ( episodioID === "0" ) ){
+        alert("Elija una temporada y un episodio");
+      }
+      else{
+        let url = 'MostrarImagenes/' + temporadaID + "/" + episodioID + "/";
+        formAdminEpis.action = url;
+      }
+
+    });
+
+  }
 
 }
