@@ -20,9 +20,18 @@
                 <td class="fondoTd colE10 align-middle">{$episodio["titulo"]}</td>
                 <td class="fondoTd colE40 align-middle text-justify">{$episodio["descripcion"]}</td>
                 <td class="fondoTd colE40">
-                {foreach from=$episodio["imagenes"] item=imagen}
-                  <img class="episodioImg rounded  m-1" src="{$imagen}" alt="Imagen de Temporada {$episodio["id_season"]}, Episodio {$episodio["id_episode"]}">
-                {/foreach}
+                  {if $episodio["imagenes"]}
+                    {foreach from=$episodio["imagenes"] item=imagen}
+                      <img class="episodioImg rounded m-1" src="{$imagen}" alt="Imagen de Temporada {$episodio["id_season"]}, Episodio {$episodio["id_episode"]}">
+                    {/foreach}
+                    {if $rol == "Administrador"}
+                      <form class="" action="MostrarImagenes/{$episodio["id_season"]}/{$episodio["id_episode"]}" method="post">
+                        <div class="mt-3">
+                          <button class="js-eli btn btn-success btn-sm" type="submit">Eliminar Imagenes</button>
+                        </div>
+                      </form>
+                    {/if}
+                  {/if}
                 </td>
               </tr>
             {/foreach}

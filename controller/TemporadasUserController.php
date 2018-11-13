@@ -38,18 +38,18 @@
 
 	  }
 
-	  function EditarTemporada($param){
+		function EditarTemporada($param){
 
 			if ( $this->rol == "Administrador"){
-	      $id_temporada = $param[0];
+				$id_temporada = $param[0];
 
-	      $Temporada = $this->model->GetTemporada($id_temporada);
-	      $this->view->MostrarEditarTemporada("Editar Temporada", $Temporada[0]);
+				$Temporada = $this->model->GetTemporada($id_temporada);
+				$this->view->MostrarEditarTemporada("Editar Temporada", $Temporada[0]);
 			}else{
 				$this->logout();
 				header(LOGIN . "/userFail");
 			}
-	  }
+		}
 
 	  function GuardarEditarTemporada(){
 
@@ -64,21 +64,21 @@
 
 	  }
 
-	  function EditarEpisodio($param){
+		function EditarEpisodio($param){
 
 			if ( $this->rol == "Administrador"){
-	      $id_season = $param[0];
-	      $id_episode  = $param[1];
+				$id_season   = $param[0];
+				$id_episode  = $param[1];
 
-	      $episodio = $this->model->getEpisodioImagenes($id_season, $id_episode);
+				$episodio = $this->model->getEpisodioImagenes($id_season, $id_episode);
 
-	      $this->view->MostrarEditarEpisodio('Editar episodio', $episodio[0][0]);
+				$this->view->MostrarEditarEpisodio('Editar episodio', $episodio[0][0]);
 			}else{
 				$this->logout();
 				header(LOGIN . "/userFail");
 			}
 
-	  }
+		}
 
     function GuardarEditarEpisodio(){
 
@@ -180,12 +180,12 @@
 			$id_temporada = $params[0];
 			$id_episodio  = $params[1];
 
-			$imagenes = $this->model->getImagenes($id_temporada, $id_episodio);
+			$imagenes = $this->model->getImagenes([], '', $id_temporada, $id_episodio);
 			$this->view->MostrarImagenesEpisodio('Imagenes del episodio', $imagenes, $id_temporada, $id_episodio );
 
 		}
 
-		function EliminarImagen($params=[])		{
+		function EliminarImagen($params=[]){
 			$id_temporada   = $params[0];
 			$id_episodio    = $params[1];
 			$id_images      = $_POST["ID"];

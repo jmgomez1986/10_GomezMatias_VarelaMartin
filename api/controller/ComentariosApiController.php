@@ -16,8 +16,7 @@
        $id_season    = $param[':ID1'];
        $id_episode   = $param[':ID2'];
        if ( isset($_GET['Sort']) ){
-
-       $sortCriterio = $_GET['Sort'];
+         $sortCriterio = $_GET['Sort'];
        }else{
         $sortCriterio = '';
        }
@@ -32,7 +31,7 @@
        return $this->json_response($this->data, 200);
      }
      else {
-       return $this->json_response(null, 404);
+       return $this->json_response("Episodio no encontrado", 404);
      }
    }
 

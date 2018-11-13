@@ -16,19 +16,22 @@
         </div>
 
         <div class="form-group form-check">
+          <div class="form-row mt-3">
+            <div class="formRadio">
+              <!-- Default checked -->
+              <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" class="custom-control-input radSortAsc" id="radSortAsc" name="radSort" checked="checked">
+                <label class="custom-control-label text-white" for="radSortAsc">Orden Ascendente</label>
+              </div>
 
-          <div class="formRadio">
-            <!-- Default checked -->
-            <div class="custom-control custom-radio custom-control-inline">
-              <input type="radio" class="custom-control-input radSortAsc" id="radSortAsc" name="radSort" checked="checked">
-              <label class="custom-control-label text-white" for="radSortAsc">Orden Ascendente</label>
-            </div>
+              <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" class="custom-control-input radSortDes" id="radSortDes" name="radSort">
+                <label class="custom-control-label text-white" for="radSortDes">Orden Descendente</label>
+              </div>
 
-            <div class="custom-control custom-radio custom-control-inline">
-              <input type="radio" class="custom-control-input radSortDes" id="radSortDes" name="radSort">
-              <label class="custom-control-label text-white" for="radSortDes">Orden Descendente</label>
+              <button type="button" class="btn btn-primary btn-sm m-2 js-sortComment">Aplicar Orden</button>
+              <button type="button" class="btn btn-primary btn-sm m-2 js-resetSort">Resetear orden</button>
             </div>
-            <button type="button" class="btn btn-primary m-2 js-sortComment">Aplicar Orden</button>
           </div>
 
         </div>
@@ -38,7 +41,9 @@
   {/if}
 
   <div class="container-fluid mt-5 contenedor_comentarios" data-temp="{$id_temporada}" data-epis="{$id_episodio}" data-logueado="{$logueado}" data-rol="{$rol}">
+    <div class="js-displayError text-center font-weight-bold alert alert-danger d-none" role="alert">
 
+    </div>
   </div>
 
 {include file="footer.tpl"}

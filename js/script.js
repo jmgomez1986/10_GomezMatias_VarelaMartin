@@ -9,6 +9,6 @@ function loadPage() {
     contImgMapa.addEventListener('click', function(){
         contImgMapa.firstElementChild.classList.toggle('mapaZoom');
         contImgMapa.classList.toggle('contenedorMapaZoom');
-    }
+    });
   }
 }

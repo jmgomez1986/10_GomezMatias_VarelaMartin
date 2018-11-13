@@ -56,7 +56,15 @@
 				return $episodios;
 		}
 
-		private function getImagenes($parameters, $condicion){
+		public function getImagenes($parameters=[], $condicion='', $id_temporada='', $id_episodio=''){
+
+			if ( isset($id_temporada) && isset($id_episodio) && empty($parameters)){
+				$parameters = array();
+				$condicion  = 'id_season=? AND id_episode=?';
+				array_push($parameters, $id_temporada);
+				array_push($parameters, $id_episodio);
+			}
+
 
 			$sentencia = $this->db->prepare("SELECT *
 																					FROM episode_image
@@ -69,7 +77,7 @@
 			return $episodioImagenes;
 		}
 
-		function getEpisodioImagenes($id_temporada, $id_episodio=NULL){
+		public function getEpisodioImagenes($id_temporada, $id_episodio=NULL){
 
 			$parameters = array();
 			$resultEpisodiosImagenes = array();
@@ -92,7 +100,7 @@
 			}
 
 			//Se obtienen los datos de las imagenes
-			$episodiosImagenes = $this->getImagenes($parameters, $condicion);
+			$episodiosImagenes = $this->getImagenes($parameters, $condicion, '', '');
 			if ( !empty($episodios) ){
 				array_push($resultEpisodiosImagenes, $episodiosImagenes);
 			}
@@ -101,7 +109,7 @@
 
 		}
 
-		function getTemporadas(){
+		public function getTemporadas(){
 
 			$sentencia = $this->db->prepare("SELECT * FROM season");
 			$sentencia->execute();
@@ -111,7 +119,7 @@
 
 		}
 
-		function getTemporada($id_temporada){
+		public function getTemporada($id_temporada){
 
 			$sentencia = $this->db->prepare("SELECT * FROM season WHERE id_season = ?");
 			$sentencia->execute( array($id_temporada) );
@@ -121,7 +129,7 @@
 
 		}
 
-		function insertTemporada($idSeason, $canEpisodes, $seasonBegin, $seasonEnd){
+		public function insertTemporada($idSeason, $canEpisodes, $seasonBegin, $seasonEnd){
 
 			try{
 				$sentencia = $this->db->prepare("INSERT INTO season (id_season, cant_episodes, season_begin, season_end)
@@ -134,7 +142,7 @@
 
 		}
 
-		function getEpisodioImg($id_image){
+		public function getEpisodioImg($id_image){
 
 			$sentencia = $this->db->prepare("SELECT * FROM episode_image WHERE id_image = ?");
 			$sentencia->execute( array($id_image) );
@@ -144,7 +152,7 @@
 
 		}
 
-		function eliminarImagenEpisodio($id_image){
+		public function eliminarImagenEpisodio($id_image){
 
 			try{
 				$imagen = $this->getEpisodioImg($id_image);
@@ -166,7 +174,7 @@
 			}
 		}
 
-		function insertEpisodio($id_season, $id_episode, $episodeTitle, $episodeDesc, $pathImg){
+		public function insertEpisodio($id_season, $id_episode, $episodeTitle, $episodeDesc, $pathImg){
 
 			try{
 				$sentencia = $this->db->prepare( "INSERT INTO episode (id_season, id_episode, titulo, descripcion)
@@ -193,7 +201,7 @@
 			}
 		}
 
-		function setTemporada($idSeason, $cantEpis, $fechaC, $fechaF){
+		public function setTemporada($idSeason, $cantEpis, $fechaC, $fechaF){
 
 					try{
 						$sentencia = $this->db->prepare("UPDATE `season`
@@ -210,7 +218,7 @@
 						}
 					}
 
-		function setEpisodio($idSeason, $idEpisode, $title, $desc, $pathImg){
+		public function setEpisodio($idSeason, $idEpisode, $title, $desc, $pathImg){
 
 				try{
 					$sentencia = $this->db->prepare("UPDATE `episode` SET `id_season`     = ?,
@@ -239,7 +247,7 @@
 					}
 				}
 
-		function eliminarEpisodio($idSeason, $idEpisode){
+		public function eliminarEpisodio($idSeason, $idEpisode){
 
 			try{
 				$sentencia = $this->db->prepare("DELETE FROM `episode`
@@ -253,7 +261,7 @@
 			}
 		}
 
-		function eliminarTemporada($idSeason){
+		public function eliminarTemporada($idSeason){
 
 			try{
 				$sentencia = $this->db->prepare("DELETE FROM `season`
@@ -272,7 +280,7 @@
 		/***********************************/
 
 		//Metodo usado para el listado de temporadas en dropdown de administrador
-		function getTemporadasID(){
+		public function getTemporadasID(){
 
 			$sentencia = $this->db->prepare("SELECT `id_season` FROM `season`
 																					GROUP BY `id_season`");
@@ -283,7 +291,7 @@
 		}
 
 		//Metodo usado para el listado de episodios en dropdown de administrador
-		function getAllEpisodios(){
+		public function getAllEpisodios(){
 
 			$sentencia = $this->db->prepare("SELECT * FROM episode");
 			$sentencia->execute();
