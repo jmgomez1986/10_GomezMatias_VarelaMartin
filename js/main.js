@@ -61,10 +61,14 @@ function fetchGetComentario(url){
             return response.json();
           }
     }).then(function(jsonComentarios){
-          // console.log(jsonComentarios);
-          if ( jsonComentarios != null ){
+          console.log(jsonComentarios);
+          if ( jsonComentarios.length > 0 ){
             mostrarComentarios(jsonComentarios, logueado, rol, idEpis, idTemp);
             eliminarComentario();
+          }else{
+            let elem = document.querySelector(".js-displayError");
+            elem.classList.remove("d-none");
+            elem.innerHTML =  "El episodio elegido no posee comentarios ";
           }
     }).catch(function(e){
           let elem = documment.querySelector(".js-displayError");
@@ -115,9 +119,10 @@ function saveComentarios(){
 
               event.preventDefault();
               let serializedData = $(this).serialize();
-              $.post('controller/verifyCaptcha.php', serializedData,
+              $.post('validarCaptcha', serializedData,
                             function(response) {
                               captchaResult = response;
+                              console.log(captchaResult);
                               postComment(captchaResult, idTemp, idEpis, idUser, comment, score);
                         }
                       );
@@ -130,7 +135,7 @@ function saveComentarios(){
 
 function postComment(captchaResult, idTemp, idEpis, idUser, comment, score){
 
-  if ( captchaResult === 'OK'){
+  if ( captchaResult === ' 	OK'){
 
     if ( score <= 5 ){
 

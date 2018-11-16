@@ -31,7 +31,7 @@
        return $this->json_response($this->data, 200);
      }
      else {
-       return $this->json_response("Episodio no encontrado", 404);
+       return $this->json_response([], 200);
      }
    }
 

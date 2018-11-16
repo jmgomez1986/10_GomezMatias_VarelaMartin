@@ -65,7 +65,6 @@
 				array_push($parameters, $id_episodio);
 			}
 
-
 			$sentencia = $this->db->prepare("SELECT *
 																					FROM episode_image
 																					WHERE	$condicion");
@@ -95,17 +94,8 @@
 
 			//Se obtienen los datos del episodio
 			$episodios = $this->getEpisodios($parameters, $condicion);
-			if ( !empty($episodios) ){
-				array_push($resultEpisodiosImagenes, $episodios);
-			}
 
-			//Se obtienen los datos de las imagenes
-			$episodiosImagenes = $this->getImagenes($parameters, $condicion, '', '');
-			if ( !empty($episodios) ){
-				array_push($resultEpisodiosImagenes, $episodiosImagenes);
-			}
-
-			return $resultEpisodiosImagenes;
+			return $episodios;
 
 		}
 

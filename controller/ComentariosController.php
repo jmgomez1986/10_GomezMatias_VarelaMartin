@@ -50,7 +50,7 @@
 
     }
 
-    function getComentarios($params=[]){
+    public function getComentarios($params=[]){
 
       $id_temporada = '';
       $id_episodio  = '';
@@ -65,9 +65,7 @@
       $this->view->getComentarios($id_temporada, $id_episodio);
     }
 
-    function agregarComentarioForm($params=[]){
-
-      // if ( $this->logueado && $this->rol == "Limitado"){
+    public function agregarComentarioForm($params=[]){
 
         if ( isset($_POST["idTemp"]) && isset($_POST["idEpis"]) ){
           $id_temporada  = $_POST["idTemp"];
@@ -78,11 +76,35 @@
 
           $this->view->addComment($id_temporada, $id_episodio, $id_user[0]['id_user'], $this->script);
         }
-      // }else{
-      //   $this->login->logout();
-      //   header(LOGIN);
-      // }
 
+    }
+
+    public function validarCaptcha(){
+      $recaptcha = $_POST["g-recaptcha-response"];
+      $url = 'https://www.google.com/recaptcha/api/siteverify';
+
+      $data = array(
+            'secret' => '6Lf9l3kUAAAAAHvx3L_UPaWJf0EyaDKwS-SxiFxe',
+            'response' => $recaptcha
+        );
+
+        $options = array(
+                'http' => array (
+                    'method' => 'POST',
+                    'content' => http_build_query($data),
+                    'header' => 'Content-Type: application/x-www-form-urlencoded'
+                )
+            );
+
+            $context  = stream_context_create($options);
+            $verify = file_get_contents($url, false, $context);
+            $captcha_success = json_decode($verify);
+
+      if ( $captcha_success->success ){
+        return "OK";
+      }else{
+        return 'NOK';
+      }
     }
 
   } //END CLASS

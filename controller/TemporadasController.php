@@ -51,35 +51,6 @@
 
     }
 
-    private function formatearEpisodio($episodio, $episodioImagenes){
-
-      $episodioFormateado = array();
-      $arregloEpisodio    = array();
-
-      for ($i=0; $i < count($episodio); $i++) {
-        $arregloEpisodio['id_season']   = $episodio[$i]['id_season'];
-        $arregloEpisodio['id_episode']  = $episodio[$i]['id_episode'];
-        $arregloEpisodio['titulo']      = $episodio[$i]['titulo'];
-        $arregloEpisodio['descripcion'] = $episodio[$i]['descripcion'];
-        $arregloEpisodio['imagenes'] = [];
-        for ($j=0; $j < count($episodioImagenes); $j++) {
-          if ( $episodioImagenes[$j]['id_season']  == $episodio[$i]['id_season'] &&
-          $episodioImagenes[$j]['id_episode'] == $episodio[$i]['id_episode'] ){
-
-            $path = $episodioImagenes[$j]['path_img'];
-            if ( file_exists("./".$path) ){
-              array_push($arregloEpisodio['imagenes'], $path );
-            }
-          }
-        }
-        array_push($episodioFormateado, $arregloEpisodio);
-        $arregloEpisodio['imagenes'] = [];
-        unset($arregloEpisodio);
-      }
-
-      return $episodioFormateado;
-    }
-
     //Devuelve todas las temporadas de la DB y todos los episodios de la DB
     function Temporadas(){
       $temporadas = $this->model->getTemporadas();
@@ -96,9 +67,11 @@
         $id_episodio = NULL;
       }
 
-			$episodiosImagenes = $this->model->getEpisodioImagenes($id_temporada, $id_episodio);
-      //Se unen los dos resultados
-      $episodios = $this->formatearEpisodio($episodiosImagenes[0], $episodiosImagenes[1]);
+			$episodios = $this->model->getEpisodioImagenes($id_temporada, $id_episodio);
+
+      for ($i=0; $i < count($episodios); $i++) {
+        $episodios[$i]['imagenes'] = $this->model->getImagenes([], '', $episodios[$i]['id_season'], $episodios[$i]['id_episode']);
+      }
 
       $this->view->MostrarEpisodios($episodios);
     }
