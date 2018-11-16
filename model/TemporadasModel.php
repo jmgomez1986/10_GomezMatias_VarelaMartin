@@ -80,32 +80,32 @@
 		public function getEpisodioImagenes($id_temporada, $id_episodio=NULL){
 
 			$parameters = array();
-			$resultEpisodiosImagenes = array();
 
 			//Se arma la condicion
-			if ( isset($id_episodio)){
-				$condicion  = 'id_season=? AND id_episode=?';
+			if ( isset($id_episodio) ){
+				$condicion  = 'episode.id_season=? AND episode.id_episode=?';
 				array_push($parameters, $id_temporada);
 				array_push($parameters, $id_episodio);
 			}
 			else{
-				$condicion  = 'id_season=?';
+				$condicion  = 'episode.id_season=?';
 				array_push($parameters, $id_temporada);
 			}
 
-			//Se obtienen los datos del episodio
-			$episodios = $this->getEpisodios($parameters, $condicion);
-			if ( !empty($episodios) ){
-				array_push($resultEpisodiosImagenes, $episodios);
-			}
+			// var_dump($condicion);
+			// var_dump($parameters);
+   //    		die();			
 
-			//Se obtienen los datos de las imagenes
-			$episodiosImagenes = $this->getImagenes($parameters, $condicion, '', '');
-			if ( !empty($episodios) ){
-				array_push($resultEpisodiosImagenes, $episodiosImagenes);
-			}
-
-			return $resultEpisodiosImagenes;
+			$sentencia = $this->db->prepare("SELECT episode.*, episode_image.path_img
+												FROM episode
+												LEFT JOIN episode_image
+													ON ( episode.id_season  = episode_image.id_season  AND
+														 episode.id_episode = episode_image.id_episode )
+												WHERE $condicion");
+			$sentencia->execute( $parameters );
+			$episodio = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+		
+			return $episodio;
 
 		}
 

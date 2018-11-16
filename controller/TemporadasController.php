@@ -51,44 +51,74 @@
 
     }
 
-    private function formatearEpisodio($episodio, $episodioImagenes){
+    private function formatearEpisodio($episodio){
 
       $episodioFormateado = array();
-      $arregloEpisodio    = array();
+      $arrayTMP           = array();
+
+      // var_dump($episodio);
+      // die();
+
+      $id_temporada = $episodio[0]['id_season'];
+      $id_episodio  = $episodio[0]['id_episode'];
 
       for ($i=0; $i < count($episodio); $i++) {
-        $arregloEpisodio['id_season']   = $episodio[$i]['id_season'];
-        $arregloEpisodio['id_episode']  = $episodio[$i]['id_episode'];
-        $arregloEpisodio['titulo']      = $episodio[$i]['titulo'];
-        $arregloEpisodio['descripcion'] = $episodio[$i]['descripcion'];
-        $arregloEpisodio['imagenes'] = [];
-        for ($j=0; $j < count($episodioImagenes); $j++) {
-          if ( $episodioImagenes[$j]['id_season']  == $episodio[$i]['id_season'] &&
-          $episodioImagenes[$j]['id_episode'] == $episodio[$i]['id_episode'] ){
-
-            $path = $episodioImagenes[$j]['path_img'];
-            if ( file_exists("./".$path) ){
-              array_push($arregloEpisodio['imagenes'], $path );
+        if ( $id_temporada == $episodio[$i]['id_season'] && $id_episodio  == $episodio[$i]['id_episode'] ){
+          $episodioFormateado['informacion']['id_season']   = $episodio[$i]['id_season'];
+          $episodioFormateado['informacion']['id_episode']  = $episodio[$i]['id_episode'];
+          $episodioFormateado['informacion']['titulo']      = $episodio[$i]['titulo'];
+          $episodioFormateado['informacion']['descripcion'] = $episodio[$i]['descripcion'];
+          $episodioFormateado['imagenes'] = [];
+          foreach ($episodio as $key => $ep) {
+            if ( $id_temporada == $ep['id_season'] && $id_episodio  == $ep['id_episode'] ){
+            if ( file_exists("./".$ep['path_img'] ) ){
+              array_push($episodioFormateado['imagenes'], $ep['path_img']);
             }
           }
+          }
+
+        }else{
+          array_push($arrayTMP, $episodioFormateado);
+          $episodioFormateado = [];
+          unset($episodioFormateado['imagenes']);
+
+          $id_temporada = $episodio[$i]['id_season'];
+          $id_episodio  = $episodio[$i]['id_episode'];
+          
+          $episodioFormateado['informacion']['id_season']   = $episodio[$i]['id_season'];
+          $episodioFormateado['informacion']['id_episode']  = $episodio[$i]['id_episode'];
+          $episodioFormateado['informacion']['titulo']      = $episodio[$i]['titulo'];
+          $episodioFormateado['informacion']['descripcion'] = $episodio[$i]['descripcion'];
+          $episodioFormateado['imagenes'] = [];
+          foreach ($episodio as $key => $ep) {
+            if ( $id_temporada == $ep['id_season'] && $id_episodio  == $ep['id_episode'] ){
+            if ( file_exists("./".$ep['path_img']) ){
+              array_push($episodioFormateado['imagenes'], $ep['path_img'] );
+            }
+          }
+          }
+          array_push($arrayTMP, $episodioFormateado);
+          $episodioFormateado = [];
+          $episodioFormateado['imagenes'] = [];    
         }
-        array_push($episodioFormateado, $arregloEpisodio);
-        $arregloEpisodio['imagenes'] = [];
-        unset($arregloEpisodio);
+
       }
+
+      var_dump($arrayTMP);
+      die();
 
       return $episodioFormateado;
     }
 
     //Devuelve todas las temporadas de la DB y todos los episodios de la DB
-    function Temporadas(){
+    public function Temporadas(){
       $temporadas = $this->model->getTemporadas();
       $episodios  = $this->model->getAllEpisodios();
       $this->view->MostrarTemporadas($temporadas, $episodios);
     }
 
     //Devolver los episodios de una temporada dada
-    function Episodios($param){
+    public function Episodios($param){
       $id_temporada = $param[0];
       if ( isset($param[2]) ){
         $id_episodio  = $param[2];
@@ -96,10 +126,16 @@
         $id_episodio = NULL;
       }
 
-			$episodiosImagenes = $this->model->getEpisodioImagenes($id_temporada, $id_episodio);
-      //Se unen los dos resultados
-      $episodios = $this->formatearEpisodio($episodiosImagenes[0], $episodiosImagenes[1]);
+      // var_dump($param);
+      // die();
 
+			$episodiosImagenes = $this->model->getEpisodioImagenes($id_temporada, $id_episodio);
+      // var_dump($episodiosImagenes);
+      // die();
+      //Se unen los dos resultados
+      $episodios = $this->formatearEpisodio($episodiosImagenes);
+      var_dump($episodios);
+      die();
       $this->view->MostrarEpisodios($episodios);
     }
 

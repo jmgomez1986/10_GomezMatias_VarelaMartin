@@ -72,7 +72,7 @@
 
 				$episodio = $this->model->getEpisodioImagenes($id_season, $id_episode);
 
-				$this->view->MostrarEditarEpisodio('Editar episodio', $episodio[0][0]);
+				$this->view->MostrarEditarEpisodio('Editar episodio', $episodio[0]);
 			}else{
 				$this->logout();
 				header(LOGIN . "/userFail");
