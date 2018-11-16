@@ -24,7 +24,7 @@
     <script src='https://www.google.com/recaptcha/api.js'></script>
   </head>
 
-  <body>
+  <body  class="d-flex flex-column">
 
     <header>
       <nav class="navbar navbar-expand-sm navbar-light bg-dark text-white">
@@ -71,4 +71,4 @@
       </nav>
     </header>
 
-    <div class="container-fluid">
+    <div class="container-fluid flex-grow-1">

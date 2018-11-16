@@ -2,7 +2,7 @@
 
      <div class="contenidoTemporadasEpisodios">
 
-       <table class="tablaTemporadas table">
+       <table class="tablaTemporadas table table-striped">
 
          <thead>
            <tr>

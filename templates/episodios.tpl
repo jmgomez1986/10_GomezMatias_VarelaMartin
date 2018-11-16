@@ -1,6 +1,6 @@
    <div class="contenidoTemporadasEpisodios" name="top">
 
-     <table class="tablaTemporadas table">
+     <table class="tablaTemporadas table table-striped">
        <thead>
          <tr>
            <th class="fondoTh">Temporada N°</th>

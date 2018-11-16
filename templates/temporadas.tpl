@@ -11,7 +11,7 @@
     {/if}
 
     <div class="contenidoTemporadasEpisodios">
-       <table class="tablaTemporadas">
+       <table class="tablaTemporadas table table-striped">
          <thead>
            <tr>
              <th class="fondoTh align-middle text-center" rowspan="2">Temporada</th>
