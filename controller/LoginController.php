@@ -3,18 +3,19 @@
 	require_once  "./view/LoginView.php";
 	require_once "./model/UsuarioModel.php";
 
-	class LoginController {
+	class LoginController{
+
 		private $view;
 		private $model;
 		private $titulo;
 		private $message;
 
-		function __construct(){
+		public function __construct(){
 			$this->view   = new LoginView("Login", "temporadas", "", "oculto", "oculto", "visible", "oculto");
 		 	$this->model  = new UsuarioModel();
 		}
 
-		function login($params=[]){
+		public function login($params=[]){
 
 			if ( isset($params[0]) ){
 
@@ -30,13 +31,13 @@
 
 		}
 
-		function logout(){
+		public function logout(){
 			session_start();
 			session_destroy();
 			header(HOME);
 	  }
 
-		function isLogueado(){
+		public function isLogueado(){
 			session_start();
 			$register = array();
 			if ( isset($_SESSION['usuario']) ){
@@ -48,7 +49,7 @@
 		 	return $register;
 		}
 
-		function verifyLogin(){
+		public function verifyLogin(){
 			$user   = $_POST["user"];
 		 	$pass   = $_POST["pass"];
 			if(isset($_POST["user"]) && isset($_POST["pass"])){
@@ -73,8 +74,8 @@
 
 		}
 
-		function getUser(){
-			//session_start();
+		public function getUser(){
+
 			if ( isset($_SESSION['usuario']) && ($_SESSION['usuario'] != '')){
 				$user = $_SESSION['usuario'];
 				return $user;
@@ -82,12 +83,11 @@
 			else {
 				return null;
 			}
+
 		}
 
-		function getUserID($user_name){
+		public function getUserID($user_name){
 			return $this->model->getUser($user_name);
 		}
 
-	} //END CLASS
-
-?>
+	} //ENDCLASS

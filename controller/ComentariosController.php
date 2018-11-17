@@ -16,7 +16,7 @@
     private $logueado;
     private $rol;
 
-    function __construct(){
+    public function __construct(){
 
       $this->login  = new LoginController();
 
@@ -107,6 +107,4 @@
       }
     }
 
-  } //END CLASS
-
- ?>
+  } //ENDCLASS

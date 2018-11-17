@@ -8,7 +8,7 @@
 
 		private $db;
 
-		function __construct(){
+		public function __construct(){
 			$this->db = $this->ConnectToDB();
 			$this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		}
@@ -306,6 +306,4 @@
 			return $episodios;
 		}
 
-	} //END CLASS
-
-?>
+	} //ENDCLASS

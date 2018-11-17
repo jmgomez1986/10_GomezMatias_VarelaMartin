@@ -7,7 +7,7 @@
 
 		private $casas;
 
-		function __construct(){
+		public function __construct(){
 
 			$this->casas 			 = [  'casa_arryn'     => ['titulo'      => "CASA ARRYN",
 																									 'subtitulo'   => "TAN ALTO COMO EL HONOR",
@@ -82,14 +82,12 @@
 																																	 ]
 																								 ]
 														];
-	}
+		}
 
-		function getCasa($casaNombre){
+		public function getCasa($casaNombre){
 
 			return $this->casas[$casaNombre];
 
 		}
 
-	} // END CLASS
-
-?>
+	} // ENDCLASS

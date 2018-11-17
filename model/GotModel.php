@@ -12,7 +12,7 @@
 		private $tableNames;
 		private $columns;
 
-		function __construct(){
+		public function __construct(){
 
 			$this->host          = "localhost";
 			$this->root          = "root";
@@ -60,9 +60,9 @@
 																										FOREIGN KEY (id_season,id_episode) REFERENCES episode (id_season,id_episode)
 																										ON DELETE CASCADE ON UPDATE CASCADE"
 															];
-	}
+		}
 
-		function CreateDB(){
+		public function CreateDB(){
 
 			try {
 
@@ -116,7 +116,7 @@
 
 		}
 
-		function InsertSeason($db, $tabNam){
+		public function InsertSeason($db, $tabNam){
 
 			try{
 				$sentencia = $db->prepare("INSERT INTO $tabNam (id_season, cant_episodes, season_begin, season_end)
@@ -136,7 +136,7 @@
 
 		}
 
-		function InsertEpisode($db, $tabNam){
+		public function InsertEpisode($db, $tabNam){
 
 			$episodios = "(1, 1, 'Se acerca el invierno', 'El rey Robert Baratheon de Poniente viaja al Norte para ofrecerle a su viejo amigo Eddard \"Ned\" Stark, Guardián del Norte y Señor de Invernalia, el puesto de Mano del Rey. La esposa de Ned, Catelyn, recibe una carta de su hermana Lysa que implica a miembros de la familia Lannister, la familia de la reina Cersei, en el asesinato de su marido Jon Arryn, la anterior Mano del Rey. Bran, uno de los hijos de Ned y Catelyn, escala un muro y descubre a la reina Cersei y a su hermano Jaime teniendo relaciones sexuales, Jaime empuja al pequeño Bran esperando que la caída lo mate y así evitar ser delatado por el niño. Mientras tanto, al otro lado del mar Angosto, el príncipe exiliado Viserys Targaryen forja una alianza para recuperar el Trono de Hierro: dará a su hermana Daenerys en matrimonio al salvaje dothraki Khal Drogo a cambio de su ejército. El caballero exiliado Jorah Mormont se unirá a ellos para proteger a Daenerys.'),
 			(1, 2, 'El camino real', 'Tras aceptar su nuevo rol como Mano del Rey, Ned parte hacia Desembarco del Rey con sus hijas Sansa y Arya, mientras que el hijo mayor, Robb, se queda al frente de los asuntos de su padre en la ciudad. Jon Nieve, el hijo bastardo de Ned, se dirige al Muro para unirse a la Guardia de la Noche. Tyrion Lannister, el hermano menor de la Reina, decide no ir con el resto de la familia real al sur y acompaña a Jon en su viaje al Muro. Viserys sigue esperando su momento de ganar el Trono de Hierro y Daenerys centra su atención en aprender cómo gustarle a su nuevo esposo, Drogo.'),
@@ -232,7 +232,7 @@
 
 		}
 
-		function InsertUser($db, $tabNam){
+		public function InsertUser($db, $tabNam){
 			try{
 				$sentencia = $db->prepare( "INSERT INTO $tabNam (id_user, name, password, email, rol)
 																			VALUES (?,?,?,?,?)" );
@@ -245,6 +245,4 @@
 			}
 		}
 
-	}
-
-?>
+	} //END CLASS

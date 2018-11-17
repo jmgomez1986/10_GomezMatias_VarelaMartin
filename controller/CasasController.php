@@ -5,6 +5,7 @@
   require_once "LoginController.php";
 
   class CasasController{
+
     private $model;
     private $view;
     private $login;
@@ -15,7 +16,7 @@
     private $claseReg;
     private $claseAdminUser;
 
-    function __construct(){
+    public function __construct(){
 
       $this->login  = new LoginController();
       $this->model  = new CasasModel();
@@ -46,7 +47,7 @@
 
     }
 
-    function Casas($param){
+    public function Casas($param){
       if(isset($param)){
         $casaNombre  = $param[0];
         $casa = $this->model->getCasa($casaNombre);
@@ -56,6 +57,4 @@
       }
     }
 
-  } //END CLASS
-
- ?>
+  } //ENDCLASS

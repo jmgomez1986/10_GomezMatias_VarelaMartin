@@ -12,7 +12,7 @@
 		private $view = null;
 	  private $model = null;
 
-		function __construct(){
+		public function __construct(){
 				parent::__construct();
 
 				$this->rol         = $_SESSION['rol'];
@@ -29,7 +29,7 @@
 				$this->model       = new TemporadasModel();
 		}
 
-		function TemporadasUser(){
+		public function TemporadasUser(){
 
 	    $temporadasID = $this->model->getTemporadasID(); //Devuelve los Id's de las temporadas para el listado del primer dropdown
 	    $temporadas   = $this->model->getTemporadas();
@@ -38,7 +38,7 @@
 
 	  }
 
-		function EditarTemporada($param){
+		public function EditarTemporada($param){
 
 			if ( $this->rol == "Administrador"){
 				$id_temporada = $param[0];
@@ -51,7 +51,7 @@
 			}
 		}
 
-	  function GuardarEditarTemporada(){
+	  public function GuardarEditarTemporada(){
 
 	    $id_emporada        = $_POST["idForm"];
 	    $cantEpisodios      = $_POST["cantEpForm"];
@@ -64,7 +64,7 @@
 
 	  }
 
-		function EditarEpisodio($param){
+		public function EditarEpisodio($param){
 
 			if ( $this->rol == "Administrador"){
 				$id_season   = $param[0];
@@ -80,7 +80,7 @@
 
 		}
 
-    function GuardarEditarEpisodio(){
+    public function GuardarEditarEpisodio(){
 
       $id_temporada = $_POST["idTemp"];
       $id_episodio  = $_POST["idEpis"];
@@ -95,7 +95,7 @@
 
     }
 
-    function EliminarEpisodio($param){
+    public function EliminarEpisodio($param){
 
       $id_temporada = $param[0];
       $id_episodio  = $param[1];
@@ -106,7 +106,7 @@
 
     }
 
-		function AgregarEpisodio($param){
+		public function AgregarEpisodio($param){
 
 			$id_temporada    = $param[0];
 			$valoresEpisodio = array();
@@ -114,7 +114,7 @@
 
 		}
 
-		function GuardarAgregarEpisodio(){
+		public function GuardarAgregarEpisodio(){
 
 			$id_temporada = $_POST["idTemp"];
 			$id_episodio  = $_POST["idEp"];
@@ -137,7 +137,7 @@
 
 		}
 
-		function agregarTemporada(){
+		public function agregarTemporada(){
 
 			$valoresTemporada = array();
 
@@ -145,7 +145,7 @@
 
 		}
 
-		function GuardarAgregarTemporada(){
+		public function GuardarAgregarTemporada(){
 
 			$id_temporada = $_POST["idTemp"];
 			$cant_epis    = $_POST["cantEp"];
@@ -164,7 +164,7 @@
 
 		}
 
-		function EliminarTemporada($param){
+		public function EliminarTemporada($param){
 
 			$id_temporada = $param[0];
 
@@ -174,7 +174,7 @@
 
 		}
 
-		function MostrarImagenes($params=[]){
+		public function MostrarImagenes($params=[]){
 
 			$id_temporada = $params[0];
 			$id_episodio  = $params[1];
@@ -184,7 +184,7 @@
 
 		}
 
-		function EliminarImagen($params=[]){
+		public function EliminarImagen($params=[]){
 			$id_temporada   = $params[0];
 			$id_episodio    = $params[1];
 			$id_images      = $_POST["ID"];
@@ -197,5 +197,3 @@
 		}
 
 	} // ENDCLASS
-
-?>

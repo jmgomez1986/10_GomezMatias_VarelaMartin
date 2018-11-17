@@ -4,7 +4,7 @@
 
 		private $db;
 
-		function __construct(){
+		public function __construct(){
 			$this->db = $this->connectToDB();
 		}
 
@@ -19,25 +19,25 @@
 			return $db;
 		}
 
-		function getUser($user){
+		public function getUser($user){
 	      $sentencia = $this->db->prepare( "SELECT * FROM user_info WHERE name=?");
 	      $sentencia->execute( array($user) );
 	      return $sentencia->fetchAll(PDO::FETCH_ASSOC);
 	  }
 
-		function getUsers(){
+		public function getUsers(){
 				$sentencia = $this->db->prepare( "SELECT * FROM user_info");
 				$sentencia->execute();
 				return $sentencia->fetchAll(PDO::FETCH_ASSOC);
 		}
 
-		function getUserID($userID){
+		public function getUserID($userID){
 	      $sentencia = $this->db->prepare( "SELECT * FROM user_info WHERE id_user=?");
 	      $sentencia->execute(array($userID));
 	      return $sentencia->fetchAll(PDO::FETCH_ASSOC);
 	  }
 
-		function insertUser($user_name, $user_password, $user_mail, $user_rol){
+		public function insertUser($user_name, $user_password, $user_mail, $user_rol){
 
 			try{
 				$sentencia = $this->db->prepare("INSERT INTO user_info (name, password, email, rol)
@@ -57,7 +57,7 @@
 
 		}
 
-		function setUsers($id_usuario, $usuario_rol){
+		public function setUsers($id_usuario, $usuario_rol){
 
 				try{
 					$usuario = $this->getUserID($id_usuario);
@@ -73,7 +73,7 @@
 
 		}
 
-		function delUsers($id_usuario){
+		public function delUsers($id_usuario){
 
 			try{
 				$usuario = $this->getUserID($id_usuario);
@@ -91,5 +91,3 @@
 		}
 
 	} //END CLASS
-
-?>

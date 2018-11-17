@@ -9,16 +9,16 @@
 		private $titulo;
 		private $message;
 
-		function __construct(){
+		public function __construct(){
 			$this->view   = new RegistroView("Registro", "temporadas", "", "oculto", "oculto", "oculto", "oculto");
 		 	$this->model  = new UsuarioModel();
 		}
 
-		function Registro(){
+		public function Registro(){
 			$this->view->Registro();
 		}
 
-    function Registrar(){
+    public function Registrar(){
       $user           = $_POST["user"];
       $mail           = $_POST["email"];
 		 	$pass           = $_POST["pass"];
@@ -63,6 +63,4 @@
 			}
 		}
 
-	} //END CLASS
-
-?>
+	} //ENDCLASS

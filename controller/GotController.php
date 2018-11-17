@@ -5,6 +5,7 @@
   require_once "LoginController.php";
 
   class GotController{
+
     private $model;
     private $view;
     private $login;
@@ -15,7 +16,7 @@
     private $claseReg;
     private $claseAdminUser;
 
-    function __construct(){
+    public function __construct(){
 
       $this->model  = new GotModel();
       $this->model->CreateDB();
@@ -47,19 +48,17 @@
 
     }
 
-    function Home(){
+    public function Home(){
       $this->view->Home();
     }
 
-    function Casas(){
+    public function Casas(){
       $this->view->Casas();
     }
 
-    function Map(){
+    public function Map(){
       $script = "./js/script.js";
       $this->view->Map($script);
     }
 
-  } //END CLASS
-
- ?>
+  } //ENDCLASS

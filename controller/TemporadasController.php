@@ -52,14 +52,14 @@
     }
 
     //Devuelve todas las temporadas de la DB y todos los episodios de la DB
-    function Temporadas(){
+    public function Temporadas(){
       $temporadas = $this->model->getTemporadas();
       $episodios  = $this->model->getAllEpisodios();
       $this->view->MostrarTemporadas($temporadas, $episodios);
     }
 
     //Devolver los episodios de una temporada dada
-    function Episodios($param){
+    public function Episodios($param){
       $arrayImagenes = array();
 
       $id_temporada = $param[0];
@@ -91,6 +91,4 @@
       $this->view->MostrarEpisodios($episodios);
     }
 
-  } //END CLASS
-
- ?>
+  } //ENDCLASS

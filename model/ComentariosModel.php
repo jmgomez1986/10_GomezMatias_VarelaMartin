@@ -7,7 +7,7 @@
 
 		private $db;
 
-		function __construct(){
+		public function __construct(){
 			$this->db = $this->ConnectToDB();
 			$this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		}
@@ -16,7 +16,7 @@
 			return new PDO('mysql:host=localhost;'.'dbname=gameofthrones_db;charset=utf8', 'root', '');
 		}
 
-		function getComentarios($id = ""){
+		public function getComentarios($id = ""){
 
 			$parameter = array();
 
@@ -37,7 +37,7 @@
 			return $comentarios;
 		}
 
-		function getComentario($temporada, $episodio, $sortCriterio=''){
+		public public function getComentario($temporada, $episodio, $sortCriterio=''){
 
 			if ( $sortCriterio != '' ){
         $column = 'score';
@@ -58,7 +58,7 @@
 			return $comentarios ;
 		}
 
-		function delComentario($id){
+		public function delComentario($id){
 			try{
 				$comment = $this->getComentarios($id);
 				if(!empty($comment)){
@@ -73,7 +73,7 @@
 			}
 		}
 
-		function saveComentario($idSes,$idEp,$idU,$com,$score){
+		public function saveComentario($idSes,$idEp,$idU,$com,$score){
 			try{
 				$sentencia = $this->db->prepare("INSERT INTO comment ( id_season, id_episode, id_user,comment,score)
 																						VALUES (?,?,?,?,?)");
@@ -86,7 +86,7 @@
 			}
 		}
 
-		function editComentario($idCom,$idSes,$idEp,$idU,$com,$score){
+		public function editComentario($idCom,$idSes,$idEp,$idU,$com,$score){
 			try{
 				$sentencia = $this->db->prepare("UPDATE `comment`
 																						SET `id_comment` = ?,
@@ -104,5 +104,3 @@
 		}
 
 	} //END CLASS
-
-?>

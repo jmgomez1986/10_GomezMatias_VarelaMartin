@@ -13,7 +13,7 @@
 	  private $model;
 		private $login;
 
-		function __construct(){
+		public function __construct(){
 				parent::__construct();
 
 				$this->rol         = $_SESSION['rol'];
@@ -29,7 +29,7 @@
 				$this->model       = new UsuarioModel();
 		}
 
-		function GetUsuarios(){
+		public function GetUsuarios(){
 
 	    $usuarios = $this->model->getUsers();
 			$user = $this->login->getUser();
@@ -37,7 +37,7 @@
 
 	  }
 
-		function GuardarAdminUsuarios(){
+		public function GuardarAdminUsuarios(){
 
 			$usuariosPOST   = array();
 			$id_usuariosMOD = [];
@@ -88,5 +88,3 @@
 		}
 
 	} // ENDCLASS
-
-?>

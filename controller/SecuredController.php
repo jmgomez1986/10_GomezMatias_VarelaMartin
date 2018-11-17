@@ -2,7 +2,7 @@
 
 	class SecuredController{
 
-		function __construct(){
+		public function __construct(){
 
 			session_start();
 
@@ -23,11 +23,11 @@
 			}
 		}
 
-	  function logout(){
+		public function logout(){
+
 			session_start();
-	    session_destroy();
+			session_destroy();
+
 		}
 
-	} //END CLASS
-
-?>
+	} //ENDCLASS
