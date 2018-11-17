@@ -55,7 +55,7 @@
       $id_temporada = '';
       $id_episodio  = '';
 
-      if ( !empty($params) ){
+      if (isset($params)  && (!empty($params)) ){
         if (isset($params[1]) && isset($params[3]) ){
           $id_temporada = $params[1];
           $id_episodio  = $params[3];
