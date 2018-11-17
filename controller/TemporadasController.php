@@ -61,34 +61,34 @@
     //Devolver los episodios de una temporada dada
     public function Episodios($param){
       $arrayImagenes = array();
+      if(isset($param) && (!empty($param))){
+        $id_temporada = $param[0];
+        if ( isset($param[2]) ){
+          $id_episodio  = $param[2];
+        }else{
+          $id_episodio = NULL;
+        }
 
-      $id_temporada = $param[0];
-      if ( isset($param[2]) ){
-        $id_episodio  = $param[2];
-      }else{
-        $id_episodio = NULL;
-      }
-
-			$episodios = $this->model->getEpisodioImagenes($id_temporada, $id_episodio);
-
-      for ($i=0; $i < count($episodios); $i++) {
-        $imagenes = $this->model->getImagenes($episodios[$i]['id_season'], $episodios[$i]['id_episode']);
-        if ( !empty($imagenes) ){
-          for ($j=0; $j <count($imagenes); $j++) {
-            if ( file_exists("./".$imagenes[$j]['path_img'])){
-              array_push($arrayImagenes, $imagenes[$j]['path_img']);
+        $episodios = $this->model->getEpisodioImagenes($id_temporada, $id_episodio);
+        for ($i=0; $i < count($episodios); $i++) {
+          $imagenes = $this->model->getImagenes($episodios[$i]['id_season'], $episodios[$i]['id_episode']);
+          if ( !empty($imagenes) ){
+            for ($j=0; $j <count($imagenes); $j++) {
+              if ( file_exists("./".$imagenes[$j]['path_img'])){
+                array_push($arrayImagenes, $imagenes[$j]['path_img']);
+              }
             }
           }
+          if ( !empty($arrayImagenes) ){
+            $episodios[$i]['imagenes'] = $arrayImagenes;
+          }else{
+            $episodios[$i]['imagenes'] = [];
+          }
+          $arrayImagenes = [];
         }
-        if ( !empty($arrayImagenes) ){
-          $episodios[$i]['imagenes'] = $arrayImagenes;
-        }else{
-          $episodios[$i]['imagenes'] = [];
-        }
-        $arrayImagenes = [];
-      }
 
-      $this->view->MostrarEpisodios($episodios);
-    }
+        $this->view->MostrarEpisodios($episodios);
+      }
+    }//fin Episodios()
 
   } //ENDCLASS

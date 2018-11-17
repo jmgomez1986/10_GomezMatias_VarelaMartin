@@ -18,13 +18,21 @@
 			$this->view->Registro();
 		}
 
+<<<<<<< HEAD
     public function Registrar(){
       $user           = $_POST["user"];
       $mail           = $_POST["email"];
 		 	$pass           = $_POST["pass"];
       $pass_confirm   = $_POST["pass_confirm"];
 
+=======
+    function Registrar(){
+>>>>>>> 741a9cf3ffe720f474d4339102aa002c1ff8f35a
 			if (isset($_POST["user"]) && isset($_POST["email"]) && isset($_POST["pass"]) && isset($_POST["pass_confirm"])){
+				$user           = $_POST["user"];
+	      $mail           = $_POST["email"];
+			 	$pass           = $_POST["pass"];
+	      $pass_confirm   = $_POST["pass_confirm"];
 
 				$dbUser = $this->model->getUser($user);
 
