@@ -48,7 +48,7 @@
     }
 
     public function Casas($param){
-      if(isset($param)){
+      if( isset($param) && !empty($param) ){
         $casaNombre  = $param[0];
         $casa = $this->model->getCasa($casaNombre);
         $columnasMiembrosCasas = array_chunk($casa['miembros'],8,true);
