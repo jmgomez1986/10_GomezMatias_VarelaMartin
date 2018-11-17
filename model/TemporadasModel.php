@@ -141,17 +141,25 @@
 
 		}
 
+		public function getImagen($id_season, $id_episode){
+
+			$sentencia = $this->db->prepare("SELECT * FROM episode_image WHERE id_season = ? AND id_episode=?");
+			$sentencia->execute( array($id_season, $id_episode) );
+			$imagenes = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+			return $imagenes;
+
+		}
+
 		public function eliminarImagenEpisodio($id_image){
 
 			try{
 				$imagen = $this->getEpisodioImg($id_image);
-
 				if ( !empty($imagen) ){
 					$sentencia = $this->db->prepare("DELETE FROM `episode_image`
 																							WHERE `id_image` = ?");
 					$sentencia->execute( array($id_image) );
-					// var_dump($imagen);
-					// die();
+
 					$path = "./" . $imagen[0]['path_img'];
 					if(file_exists($path)){
 						unlink($path);
@@ -227,8 +235,7 @@
 						}
 						///////////////////////////////////////////////////////
 						// $episodio[0]['imagenes'] = $this->getEpisodioImagenes($id_season, $id_episode);
-						// var_dump($episodio);
-						// die();
+
 						// return $episodio[0];
 					}
 
@@ -240,6 +247,15 @@
 		public function eliminarEpisodio($id_season, $id_episode){
 
 			try{
+				$episodio = $this->getEpisodioImagenes($id_season, $id_episode);
+
+				for ($i=0; $i < count($episodio); $i++) {
+					$imagenesEpisodio = $this->getImagen($episodio[$i]['id_season'], $episodio[$i]['id_episode']);
+					for ($j=0; $j < count($imagenesEpisodio); $j++) {
+						$imgElim = $this->eliminarImagenEpisodio($imagenesEpisodio[$j]['id_image']);
+					}
+				}
+
 				$sentencia = $this->db->prepare("DELETE FROM `episode`
 																						WHERE `id_season` = ? AND
 																									`id_episode`= ?");
