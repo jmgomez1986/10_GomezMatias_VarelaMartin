@@ -23,12 +23,12 @@
 			return $destino_final;
 		}
 
-		private	function insertImg($idSeason, $idEpisode, $path){
+		private	function insertImg($id_season, $id_episode, $path){
 
 			try{
 				$sentencia = $this->db->prepare( "INSERT INTO episode_image (id_season, id_episode,	path_img)
 				VALUES (?,?,?)" );
-				$sentencia->execute( array($idSeason, $idEpisode, $path) );
+				$sentencia->execute( array($id_season, $id_episode, $path) );
 
 				$last_id = $this->db->lastInsertId();
 
@@ -56,13 +56,13 @@
 				return $episodios;
 		}
 
-		public function getImagenes($parameters=[], $condicion='', $id_temporada='', $id_episodio=''){
+		public function getImagenes($id_season='', $id_episode=''){
 
-			if ( isset($id_temporada) && isset($id_episodio) && empty($parameters)){
+			if ( isset($id_season) && isset($id_episode) ){
 				$parameters = array();
 				$condicion  = 'id_season=? AND id_episode=?';
-				array_push($parameters, $id_temporada);
-				array_push($parameters, $id_episodio);
+				array_push($parameters, $id_season);
+				array_push($parameters, $id_episode);
 			}
 
 			$sentencia = $this->db->prepare("SELECT *
@@ -76,20 +76,19 @@
 			return $episodioImagenes;
 		}
 
-		public function getEpisodioImagenes($id_temporada, $id_episodio=NULL){
+		public function getEpisodioImagenes($id_season, $id_episode=NULL){
 
 			$parameters = array();
-			$resultEpisodiosImagenes = array();
 
 			//Se arma la condicion
-			if ( isset($id_episodio)){
+			if ( isset($id_episode)){
 				$condicion  = 'id_season=? AND id_episode=?';
-				array_push($parameters, $id_temporada);
-				array_push($parameters, $id_episodio);
+				array_push($parameters, $id_season);
+				array_push($parameters, $id_episode);
 			}
 			else{
 				$condicion  = 'id_season=?';
-				array_push($parameters, $id_temporada);
+				array_push($parameters, $id_season);
 			}
 
 			//Se obtienen los datos del episodio
@@ -109,22 +108,22 @@
 
 		}
 
-		public function getTemporada($id_temporada){
+		public function getTemporada($id_season){
 
 			$sentencia = $this->db->prepare("SELECT * FROM season WHERE id_season = ?");
-			$sentencia->execute( array($id_temporada) );
+			$sentencia->execute( array($id_season) );
 			$temporada = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
 			return $temporada;
 
 		}
 
-		public function insertTemporada($idSeason, $canEpisodes, $seasonBegin, $seasonEnd){
+		public function insertTemporada($id_season, $canEpisodes, $seasonBegin, $seasonEnd){
 
 			try{
 				$sentencia = $this->db->prepare("INSERT INTO season (id_season, cant_episodes, season_begin, season_end)
 				VALUES (?,?,?,?)");
-				$sentencia->execute( array($idSeason, $canEpisodes, $seasonBegin, $seasonEnd) );
+				$sentencia->execute( array($id_season, $canEpisodes, $seasonBegin, $seasonEnd) );
 			}
 			catch(PDOException $exception){
 				return $exception->getMessage();
@@ -191,7 +190,7 @@
 			}
 		}
 
-		public function setTemporada($idSeason, $cantEpis, $fechaC, $fechaF){
+		public function setTemporada($id_season, $cantEpis, $fechaC, $fechaF){
 
 					try{
 						$sentencia = $this->db->prepare("UPDATE `season`
@@ -200,7 +199,7 @@
 							`season_begin` = ?,
 							`season_end`   = ?
 							WHERE id_season = ?");
-							$sentencia->execute( array($idSeason, $cantEpis, $fechaC, $fechaF, $idSeason) );
+							$sentencia->execute( array($id_season, $cantEpis, $fechaC, $fechaF, $id_season) );
 						}
 
 						catch(PDOException $exception){
@@ -208,7 +207,7 @@
 						}
 					}
 
-		public function setEpisodio($idSeason, $idEpisode, $title, $desc, $pathImg){
+		public function setEpisodio($id_season, $id_episode, $title, $desc, $pathImg){
 
 				try{
 					$sentencia = $this->db->prepare("UPDATE `episode` SET `id_season`     = ?,
@@ -217,19 +216,20 @@
 						`descripcion`   = ?
 						WHERE `id_season`  = ? AND
 						`id_episode` = ?");
-						$sentencia->execute( array($idSeason, $idEpisode, $title, $desc, $idSeason, $idEpisode) );
+						$sentencia->execute( array($id_season, $id_episode, $title, $desc, $id_season, $id_episode) );
 
 						/////////////// Subir e insertar imagen ///////////////
 						if ( !empty($pathImg) ){
 							foreach ($pathImg as $key => $tempPath) {
 								$path   = $this->subirImagen($tempPath);
-								$sqlImg = $this->insertImg($idSeason, $idEpisode, $path);
+								$sqlImg = $this->insertImg($id_season, $id_episode, $path);
 							}
 						}
 						///////////////////////////////////////////////////////
-						$episodio = $this->getEpisodioImagenes($id_season, $id_episode);
-
-						return $episodio[0][0];
+						// $episodio[0]['imagenes'] = $this->getEpisodioImagenes($id_season, $id_episode);
+						// var_dump($episodio);
+						// die();
+						// return $episodio[0];
 					}
 
 					catch(PDOException $exception){
@@ -237,13 +237,13 @@
 					}
 				}
 
-		public function eliminarEpisodio($idSeason, $idEpisode){
+		public function eliminarEpisodio($id_season, $id_episode){
 
 			try{
 				$sentencia = $this->db->prepare("DELETE FROM `episode`
 																						WHERE `id_season` = ? AND
 																									`id_episode`= ?");
-				$sentencia->execute( array($idSeason, $idEpisode) );
+				$sentencia->execute( array($id_season, $id_episode) );
 			}
 
 			catch(PDOException	 $exception){
@@ -251,12 +251,12 @@
 			}
 		}
 
-		public function eliminarTemporada($idSeason){
+		public function eliminarTemporada($id_season){
 
 			try{
 				$sentencia = $this->db->prepare("DELETE FROM `season`
 																						WHERE `id_season` = ? ");
-				$sentencia->execute( array($idSeason) );
+				$sentencia->execute( array($id_season) );
 			}
 
 			catch(PDOException $exception){

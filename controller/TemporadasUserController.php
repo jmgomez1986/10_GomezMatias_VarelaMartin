@@ -72,7 +72,7 @@
 
 				$episodio = $this->model->getEpisodioImagenes($id_season, $id_episode);
 
-				$this->view->MostrarEditarEpisodio('Editar episodio', $episodio[0][0]);
+				$this->view->MostrarEditarEpisodio('Editar episodio', $episodio[0]);
 			}else{
 				$this->logout();
 				header(LOGIN . "/userFail");
@@ -122,8 +122,7 @@
 			$descripcion  = $_POST["descE"];
 
 			$episodio = $this->model->getEpisodioImagenes($id_temporada, $id_episodio);
-			// var_dump($episodio);
-			// die();
+
 			//Si el resultado esta vacio, es porque el episodio a agregar no existe. asique todo OK
 			if (empty($episodio[0])){
 				$rutaTempImagenes = $_FILES['imagenes']['tmp_name'];
@@ -180,7 +179,7 @@
 			$id_temporada = $params[0];
 			$id_episodio  = $params[1];
 
-			$imagenes = $this->model->getImagenes([], '', $id_temporada, $id_episodio);
+			$imagenes = $this->model->getImagenes($id_temporada, $id_episodio);
 			$this->view->MostrarImagenesEpisodio('Imagenes del episodio', $imagenes, $id_temporada, $id_episodio );
 
 		}

@@ -60,6 +60,8 @@
 
     //Devolver los episodios de una temporada dada
     function Episodios($param){
+      $arrayImagenes = array();
+
       $id_temporada = $param[0];
       if ( isset($param[2]) ){
         $id_episodio  = $param[2];
@@ -70,7 +72,20 @@
 			$episodios = $this->model->getEpisodioImagenes($id_temporada, $id_episodio);
 
       for ($i=0; $i < count($episodios); $i++) {
-        $episodios[$i]['imagenes'] = $this->model->getImagenes([], '', $episodios[$i]['id_season'], $episodios[$i]['id_episode']);
+        $imagenes = $this->model->getImagenes($episodios[$i]['id_season'], $episodios[$i]['id_episode']);
+        if ( !empty($imagenes) ){
+          for ($j=0; $j <count($imagenes); $j++) {
+            if ( file_exists("./".$imagenes[$j]['path_img'])){
+              array_push($arrayImagenes, $imagenes[$j]['path_img']);
+            }
+          }
+        }
+        if ( !empty($arrayImagenes) ){
+          $episodios[$i]['imagenes'] = $arrayImagenes;
+        }else{
+          $episodios[$i]['imagenes'] = [];
+        }
+        $arrayImagenes = [];
       }
 
       $this->view->MostrarEpisodios($episodios);

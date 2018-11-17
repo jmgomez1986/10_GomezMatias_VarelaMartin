@@ -22,7 +22,7 @@
                 <td class="fondoTd colE40">
                   {if $episodio["imagenes"]}
                     {foreach from=$episodio["imagenes"] item=imagen}
-                      <img class="episodioImg rounded m-1" src="{$imagen["path_img"]}" alt="Imagen de Temporada {$episodio["id_season"]}, Episodio {$episodio["id_episode"]}">
+                      <img class="episodioImg rounded m-1" src="{$imagen}" alt="Imagen de Temporada {$episodio["id_season"]}, Episodio {$episodio["id_episode"]}">
                     {/foreach}
                     {if $rol == "Administrador"}
                       <form class="" action="MostrarImagenes/{$episodio["id_season"]}/{$episodio["id_episode"]}" method="post">
