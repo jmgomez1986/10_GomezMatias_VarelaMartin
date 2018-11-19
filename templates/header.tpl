@@ -63,7 +63,7 @@
             <button class="{$claseReg} js-registrar btn btn-success btn-s" type="submit">Registrarse</button>
           </div>
         </form>
-        <form class="px-2" action="Usuarios" method="post">
+        <form class="px-2" action="usuarios" method="post">
           <div class="form-group">
             <button class="{$claseAdminUser} js-registrar btn btn-success btn-xs" type="submit">Administrar usuarios</button>
           </div>
