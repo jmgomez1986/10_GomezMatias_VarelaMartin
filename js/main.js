@@ -9,8 +9,14 @@ function loadPage()
   fetch('js/templates/comentarios.handlebars')
   .then(response => response.text())
   .then(template => {
+      let load = document.querySelector('.js-loading');
+      load.classList.remove('d-none');
+      load.innerHTML = 'Loading...';
+
       templateComentarios = Handlebars.compile(template); // compila y prepara el template
-      getComentarios();
+      let timer = setTimeout(function () {
+        getComentarios();
+      }, 2000);
     });
 
   saveComentarios();
@@ -42,7 +48,8 @@ function fetchGetComentario(url)
     }
 
     if (logueado && rol == 'Limitado') {
-      let btnAddCom = document.querySelector('.js-addComment').addEventListener('click', function () {
+      let btnAddCom = document.querySelector('.js-addComment')
+      .addEventListener('click', function () {
         let url       = 'agregarComentario/';
         let formAdmin = document.querySelector('.formComment').action = url;
       });
@@ -78,11 +85,11 @@ function fetchGetComentario(url)
 function mostrarComentarios(jsonComentarios, logueado, rol, idEpis, idTemp)
 {
   let context = { // como el assign de smarty
-        comentarios: jsonComentarios,
-        logueado: logueado,
-        rol: rol,
-        idEpis: idEpis,
-        idTemp: idTemp,
+        "comentarios": jsonComentarios,
+        "logueado": logueado,
+        "rol": rol,
+        "idEpis": idEpis,
+        "idTemp": idTemp,
       };
 
   Handlebars.registerHelper('if_eq', function (a, b, opts) {
@@ -151,11 +158,11 @@ function postComment(captchaResult, idTemp, idEpis, idUser, comment, score)
 
       fetch(url, {
         "method": "POST",
-        "mode": "cors", //Con esto se hace menos estricta la politica de seguridad de algunos navegadores
+        "mode": "cors",
         "headers": {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        "body": JSON.stringify(data) //se debe serializar (stringify) la informacion (el "data:" de ida es de tipo string)
+        "body": JSON.stringify(data), //se debe serializar (stringify) la informacion (el 'data:' de ida es de tipo string)
       }).then(function (response) {
         console.log(response);
         if (!response.ok) {
@@ -234,28 +241,29 @@ function sortComentario()
 function eliminarComentario()
 {
 
-  let btnEliminar = document.querySelectorAll('.js-eliminar').forEach(btn => btn.addEventListener('click', function () {
+  let btnEliminar = document.querySelectorAll('.js-eliminar')
+  .forEach(btn => btn.addEventListener('click', function () {
       let row = (btn.parentNode).parentNode;
       let id = row.dataset.id;
       let url = 'api/comentarios/' + id;
 
       fetch(url, {
-        "method" : "DELETE",
-        "mode"   : "cors", //Con esto se hace menos estricta la politica de seguridad de algunos navegadores
-        "headers": {
-            "Content-Type": "application/json"
-         }
+        'method' : 'DELETE',
+        'mode'   : 'cors', //Con esto se hace menos estricta la politica de seguridad de algunos navegadores
+        'headers': {
+            'Content-Type': 'application/json'
+          },
       }).then(function (response) {
           if (!response.ok) {
-              let elem = document.querySelector('.errorForm');
-              elem.innerHTML = 'Error ' + response.status;
+            let elem = document.querySelector('.errorForm');
+            elem.innerHTML = 'Error ' + response.status;
           } else {
             row.remove();
           }
-        }).catch (function(e) {
+        }).catch(function (e) {
             let elem = document.querySelector('.errorForm');
             elem.innerHTML = 'Error de Conexión';
             console.log(e);
-          })
-  }));
+          });
+    }));
 }
