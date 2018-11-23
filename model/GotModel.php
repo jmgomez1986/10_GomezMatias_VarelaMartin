@@ -1,8 +1,9 @@
 <?php //namespace TpWebII;
 
+require_once "config/ConfigApp.php";
+
 class GotModel
 {
-
     private $host;
     private $root;
     private $root_password;
@@ -13,11 +14,11 @@ class GotModel
     public function __construct()
     {
 
-        $this->host          = "localhost";
-        $this->root          = "root";
-        $this->root_password = "";
+        $this->host          = ConfigApp::$host;
+        $this->root          = ConfigApp::$DBuser;
+        $this->root_password = ConfigApp::$DBpass;
         $this->tableNames    = ['season', 'episode', 'user_info', 'comment', 'episode_image'];
-        $this->db            = "gameofthrones_db";
+        $this->db            = ConfigApp::$DBname;
         $this->columns       = ['season'     =>   "id_season     int(11) NOT NULL AUTO_INCREMENT,
       																					   cant_episodes int(11) DEFAULT NULL,
       																					   season_begin  date    DEFAULT NULL,
@@ -63,7 +64,6 @@ class GotModel
 
     public function createDB()
     {
-
         try {
             $pdo = new  PDO('mysql:host='.$this->host.';dbname=INFORMATION_SCHEMA;charset=utf8', $this->root, $this->root_password);
             $stmt = $pdo->prepare("SELECT COUNT(SCHEMA_NAME) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '$this->db'");
@@ -120,7 +120,6 @@ class GotModel
 
     public function insertEpisode($db, $tabNam)
     {
-
         $episodios = "(1, 1, 'Se acerca el invierno', 'El rey Robert Baratheon de Poniente viaja al Norte para ofrecerle a su viejo amigo Eddard \"Ned\" Stark, Guardián del Norte y Señor de Invernalia, el puesto de Mano del Rey. La esposa de Ned, Catelyn, recibe una carta de su hermana Lysa que implica a miembros de la familia Lannister, la familia de la reina Cersei, en el asesinato de su marido Jon Arryn, la anterior Mano del Rey. Bran, uno de los hijos de Ned y Catelyn, escala un muro y descubre a la reina Cersei y a su hermano Jaime teniendo relaciones sexuales, Jaime empuja al pequeño Bran esperando que la caída lo mate y así evitar ser delatado por el niño. Mientras tanto, al otro lado del mar Angosto, el príncipe exiliado Viserys Targaryen forja una alianza para recuperar el Trono de Hierro: dará a su hermana Daenerys en matrimonio al salvaje dothraki Khal Drogo a cambio de su ejército. El caballero exiliado Jorah Mormont se unirá a ellos para proteger a Daenerys.'),
         (1, 2, 'El camino real', 'Tras aceptar su nuevo rol como Mano del Rey, Ned parte hacia Desembarco del Rey con sus hijas Sansa y Arya, mientras que el hijo mayor, Robb, se queda al frente de los asuntos de su padre en la ciudad. Jon Nieve, el hijo bastardo de Ned, se dirige al Muro para unirse a la Guardia de la Noche. Tyrion Lannister, el hermano menor de la Reina, decide no ir con el resto de la familia real al sur y acompaña a Jon en su viaje al Muro. Viserys sigue esperando su momento de ganar el Trono de Hierro y Daenerys centra su atención en aprender cómo gustarle a su nuevo esposo, Drogo.'),
         (1, 3, 'Lord Snow', 'Ned se une al Consejo Privado del Rey en Desembarco del Rey, la capital de los Siete Reinos, y descubre la mala administración que sufre Poniente. Catelyn decide ir de incógnito al sur para alertar a su esposo de los Lannister. Arya inicia su entrenamiento con la espada. Bran despierta tras su caída y no recuerda nada. Jon se entrena para adaptarse a su nueva vida en el Muro. Daenerys comienza a asumir su rol como khaleesi de Drogo y se enfrenta a Viserys.'),

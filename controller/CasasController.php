@@ -21,7 +21,7 @@ class CasasController
         $this->login  = new LoginController();
         $this->model  = new CasasModel();
         $arrayReg = $this->login->isLogueado();
-        if ($arrayReg['logueado']) {
+        if (!empty($arrayReg) && $arrayReg['logueado']) {
             $this->claseLogin     = "oculto";
             $this->claseLogout    = "visible";
             $this->claseReg       = "oculto";
@@ -30,7 +30,7 @@ class CasasController
             } else {
                 $this->claseAdminUser = "oculto";
             }
-            $this->link           = "temporadasAdmin";
+            $this->link           = "temporadasUser";
             $this->script         = "";
         } else {
             $this->claseLogin     = "visible";

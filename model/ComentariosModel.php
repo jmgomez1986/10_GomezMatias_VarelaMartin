@@ -1,8 +1,9 @@
 <?php
 
+require_once "config/ConfigApp.php";
+
 class TemporadasModel
 {
-
     private $db;
 
     public function __construct()
@@ -13,7 +14,7 @@ class TemporadasModel
 
     private function connectToDB()
     {
-         return new PDO('mysql:host=localhost;'.'dbname=gameofthrones_db;charset=utf8', 'root', '');
+         return new PDO('mysql:host='.ConfigApp::$host.';dbname='.ConfigApp::$DBname.';charset=utf8', ConfigApp::$DBuser, ConfigApp::$DBpass);
     }
 
     public function getComentarios($id = "")

@@ -1,5 +1,7 @@
 <?php
 
+require_once "config/ConfigApp.php";
+
 class UsuarioModel
 {
     private $db;
@@ -11,7 +13,7 @@ class UsuarioModel
 
     private function connectToDB()
     {
-        $db = new PDO('mysql:host=localhost;'.'dbname=gameofthrones_db;charset=utf8', 'root', '');
+        $db = new PDO('mysql:host='.ConfigApp::$host.';dbname='.ConfigApp::$DBname.';charset=utf8', ConfigApp::$DBuser, ConfigApp::$DBpass);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $db;
     }
@@ -45,7 +47,6 @@ class UsuarioModel
 
     public function insertUser($user_name, $user_password, $user_mail, $user_rol)
     {
-
         try {
             $sentencia = $this->db->prepare("INSERT INTO user_info (name, password, email, rol)
 																							VALUES (?,?,?,?)");
@@ -63,7 +64,6 @@ class UsuarioModel
 
     public function setUsers($id_usuario, $usuario_rol)
     {
-
         try {
             $usuario = $this->getUserID($id_usuario);
             $sentencia = $this->db->prepare("UPDATE `user_info`
@@ -77,7 +77,6 @@ class UsuarioModel
 
     public function delUsers($id_usuario)
     {
-
         try {
             $usuario = $this->getUserID($id_usuario);
             if (!empty($usuario)) {

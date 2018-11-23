@@ -25,7 +25,7 @@
                       <img class="episodioImg rounded m-1" src="{$imagen}" alt="Imagen de Temporada {$episodio["id_season"]}, Episodio {$episodio["id_episode"]}">
                     {/foreach}
                     {if $rol == "Administrador"}
-                      <form class="" action="MostrarImagenes/{$episodio["id_season"]}/{$episodio["id_episode"]}" method="post">
+                      <form class="" action="mostrarImagenes/{$episodio["id_season"]}/{$episodio["id_episode"]}" method="post">
                         <div class="mt-3">
                           <button class="js-eli btn btn-success btn-sm" type="submit">Eliminar Imagenes</button>
                         </div>

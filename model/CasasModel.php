@@ -1,6 +1,6 @@
 <?php
 
-class CasasMode
+class CasasModel
 {
 
     private $casas;

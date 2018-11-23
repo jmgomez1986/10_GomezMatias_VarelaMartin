@@ -1,5 +1,7 @@
 <?php
 
+require_once "config/ConfigApp.php";
+
 class TemporadasModel
 {
     private $db;
@@ -12,12 +14,18 @@ class TemporadasModel
 
     private function connectToDB()
     {
-        return new PDO('mysql:host=localhost;'.'dbname=gameofthrones_db;charset=utf8', 'root', '');
+        return new PDO('mysql:host='.ConfigApp::$host.';dbname='.ConfigApp::$DBname.';charset=utf8', ConfigApp::$DBuser, ConfigApp::$DBpass);
     }
 
     private function subirImagen($imagen)
     {
+        //Si la carpeta no existe, la creamos
+        if (!file_exists('images/episodes/')) {
+            mkdir('images/episodes/', 0777, true);
+        }
+        //Se arma el path completo de la imagen a subir
         $destino_final = 'images/episodes/' . uniqid() . '.jpg';
+        //Se sube la imagen
         move_uploaded_file($imagen, $destino_final);
         return $destino_final;
     }
@@ -208,7 +216,6 @@ class TemporadasModel
             ///////////////////////////////////////////////////////
             // $episodio[0]['imagenes'] = $this->getEpisodioImagenes($id_season, $id_episode);
             // return $episodio[0];
-            return $exception->getMessage();
         } catch (PDOException $exception) {
             return $exception->getMessage();
         }
