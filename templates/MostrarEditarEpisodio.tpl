@@ -10,7 +10,7 @@
 
         <div class="form-group">
           <label class="text-white font-weight-bold" for="tituloForm">Título</label>
-          <input type="text" class="form-control" id="idEpis" name="tituloForm" value="{$episodio["titulo"]}">
+          <input type="text" class="form-control" id="idEpis" name="titulo" value="{$episodio["titulo"]}">
         </div>
 
         <div class="form-group">

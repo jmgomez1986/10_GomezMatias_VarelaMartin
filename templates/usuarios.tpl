@@ -1,6 +1,6 @@
 {include file="header.tpl"}
 
-    <form class="" action="GuardarAdminUsuarios" method="post">
+    <form class="" action="guardarAdminUsuarios" method="post">
 
       <div class="contenidoTemporadasEpisodios">
 
@@ -74,7 +74,7 @@
               <td class="fondoTd colE5">
                 <div class="custom-control custom-checkbox">
                   {if $usuario["name"] == $usrReg}
-                    <input type="checkbox" class="custom-control-input" id="{$usuario["id_user"]}" name="DEL" value="{$usuario["id_user"]}">
+                    <input disabled type="checkbox" class="custom-control-input" id="{$usuario["id_user"]}" name="DEL" value="{$usuario["id_user"]}">
                   {else}
                     <input type="checkbox" class="custom-control-input" id="{$usuario["id_user"]}" name="DEL" value="{$usuario["id_user"]}">
                   {/if}

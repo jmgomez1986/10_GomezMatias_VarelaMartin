@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-11-2018 a las 01:36:35
--- Versión del servidor: 10.1.34-MariaDB
--- Versión de PHP: 7.2.8
+-- Tiempo de generación: 23-11-2018 a las 23:23:48
+-- Versión del servidor: 10.1.36-MariaDB
+-- Versión de PHP: 7.2.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -42,11 +42,12 @@ CREATE TABLE `comment` (
 --
 
 INSERT INTO `comment` (`id_comment`, `id_season`, `id_episode`, `id_user`, `comment`, `score`) VALUES
-(1, 1, 1, 1, 'Test Comentario - 01', 4),
-(2, 1, 1, 1, 'Test Comentario - 02', 4),
-(3, 1, 1, 2, 'Test Comentario - 03', 4),
-(4, 1, 1, 3, 'Test Comentario - 04', 4),
-(5, 1, 1, 3, 'Test Comentario - 04', 5);
+(1, 1, 1, 2, 'Test Comentario - 01', 4),
+(6, 1, 1, 2, 'estoy cansado de la puta captcha', 5),
+(7, 1, 1, 2, 'test SETTIMEOUT', 5),
+(8, 1, 1, 2, 'load', 5),
+(9, 1, 1, 2, 'loadPageTimer', 5),
+(10, 1, 1, 2, 'test SETTIMEOUT', 5);
 
 -- --------------------------------------------------------
 
@@ -75,8 +76,7 @@ INSERT INTO `episode` (`id_season`, `id_episode`, `titulo`, `descripcion`) VALUE
 (1, 7, 'Ganas o mueres', 'Ned se enfrenta a Cersei por la muerte de Jon Arryn. Robert, herido de muerte, nombra a Ned regente hasta que su hijo Joffrey sea mayor de edad. Ned pide ayuda a Meñique para asegurar la cooperación de la Guardia de la Ciudad en caso de que los Lannister no colaboren y revela que Joffrey no es hijo de Robert, sino de Jaime, lo que convierte a Stannis Baratheon, hermano mayor de Robert, en el verdadero heredero. No obstante, Petyr Baelish, amigo de los Stark, traiciona a Ned y éste es apresado y sus hombres asesinados. Jon toma los votos de la Guardia de la Noche. Drogo convoca a su ejército para invadir Poniente tras descubrir que Robert conspiraba para envenenar a Daenerys.'),
 (1, 8, 'Por el lado de la punta', 'Robb convoca a los abanderados de su padre para ir en su rescate. Sansa suplica a Joffrey para salvar la vida de Ned. Jon y la Guardia de la Noche se preparan para enfrentarse a un antiguo enemigo del otro lado del Muro. El ejército de Drogo marcha al oeste en dirección hacia los Siete Reinos.'),
 (1, 9, 'Baelor', 'Los familias Stark y Lannister se preparan para combatir entre ellos. Tyrion se alía a los clanes salvajes y los convence de combatir para los Lannister, mientras que Robb y Catelyn negocian para obtener la ayuda de Lord Walder Frey. Con Drogo moribundo debido una herida infectada, Daenerys utiliza la magia de una maegi para salvarle la vida. El maestre Aemon revela a Jon su parentesco con los Targaryen y el precio de la lealtad, ya que éste está preocupado por los eventos que no conciernen al Muro. En un último intento para salvarse y a sus hijas, Ned confiesa falsamente su conspiración y declara a Joffrey como el legítimo heredero al Trono de Hierro.'),
-(1, 10, 'Fuego y sangre', 'Tras la ejecución de Ned, los norteños proclaman a Robb como su rey. Con Jaime capturado por los Stark, Lord Tywin Lannister asigna a su hijo Tyrion como Mano del Rey para mantener a Joffrey y Cersei bajo control. Jon abandona su puesto en el Muro para vengar a su padre, pero sus amigos lo persiguen y lo convencen para quedarse. La Guardia de la Noche parte a una expedición más allá del Muro. El hijo nonato de Daenerys muere y Drogo se encuentra en estado vegetativo debido a la magia de la maegi traidora. Incapaz de soportar la ruina de su marido, Daenerys termina con su vida y prepara una pira funeraria en la que quema a la maegi viva junto con el cuerpo de Drogo y sus tres huevos de dragón. Además, ella misma entra en la pira y cuando esta se apaga Daenerys se eleva, sana y salva, flanqueada por tres dragones recién nacidos.'),
-(1, 11, 'Test Upload Image', 'test'),
+(1, 10, 'Fuego y sangre', 'Tras la ejecución de Ned, los norteños proclaman a Robb como su rey. Con Jaime capturado por los Stark, Lord Tywin Lannister asigna a su hijo Tyrion como Mano del Rey para mantener a Joffrey y Cersei bajo control. Jon abandona su puesto en el Muro para vengar a su padre, pero sus amigos lo persiguen y lo convencen para quedarse. La Guardia de la Noche parte a una expedición más allá del Muro. El hijo nonato de Daenerys muere y Drogo se encuentra en estado\r\n			vegetativo debido a la magia de la maegi traidora. Incapaz de soportar la ruina de su marido, Daenerys termina con su vida y prepara una pira funeraria en la que quema a la maegi viva junto con el cuerpo de Drogo y sus tres huevos de dragón. Además, ella misma entra en la pira y cuando esta se apaga Daenerys se eleva, sana y salva, flanqueada por tres dragones recién nacidos.'),
 (2, 1, 'El norte no olvida', 'Mientras Robb Stark y su ejército del Norte continúan en guerra contra los Lannister, Tyrion llega a Desembarco del Rey para aconsejar Joffrey y moderar los excesos del joven rey. En la isla de Rocadragón, Stannis Baratheon planea de una invasión para reclamar el trono de su difunto hermano, aliándose con Melisandre, una extraña sacerdotisa que rinde culto a un dios extraño. Al otro lado del mar, Daenerys, sus tres jóvenes dragones y su khalasar caminata a través del desierto en busca de aliados, o agua. En el Norte, Bran preside un Invernalia, mientras que más allá del Muro, Jon Nieve y la Guardia de la Noche deben lidiar con una salvaje.'),
 (2, 2, 'Las tierras de la noche', 'A raíz de una purga sangrienta en la capital, Tyrion castiga Cersei por alejar a los súbditos del Rey. En el camino hacia el norte, Arya comparte un secreto con Gendry. Por su parte, después de nueve años como prisionero de los Stark, Theon Greyjoy se reúne con su padre Balon, que quiere restaurar el antiguo reino de las Islas del Hierro. Davos convence a Salladhor Saan, un pirata, para unir fuerzas con Stannis y Melisandre de cara a una invasión naval de Desembarco del Rey.'),
 (2, 3, 'Lo que está muerto no puede morir', 'En la Fortaleza Roja, Tyrion planea tres alianzas a través de la promesa de matrimonio. Mientras, Catelyn trata de forjar una alianza a través de su propio casamiento. Pero el rey Renly, su nueva esposa Margaery y su hermano Loras Tyrell tienen otros planes. En Invernalia, Luwin intenta descifrar los sueños de Bran.'),
@@ -161,27 +161,8 @@ CREATE TABLE `episode_image` (
   `id_image` int(11) NOT NULL,
   `id_season` int(11) NOT NULL,
   `id_episode` int(11) NOT NULL,
-  `path_img` varchar(50) NOT NULL
+  `path_img` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `episode_image`
---
-
-INSERT INTO `episode_image` (`id_image`, `id_season`, `id_episode`, `path_img`) VALUES
-(4, 1, 1, 'images/episodes/5be069ca69fb7.jpg'),
-(5, 1, 1, 'images/episodes/5be099364681e.jpg'),
-(6, 1, 10, 'images/episodes/5be21a819da13.jpg'),
-(9, 1, 1, 'images/episodes/5be229e444be0.jpg'),
-(10, 1, 1, 'images/episodes/5be229efe9803.jpg'),
-(11, 1, 1, 'images/episodes/5be229fb2a54f.jpg'),
-(12, 1, 1, 'images/episodes/5be22bad534ee.jpg'),
-(13, 1, 2, 'images/episodes/5be22ebc67537.jpg'),
-(14, 1, 2, 'images/episodes/5be22ebc6873e.jpg'),
-(15, 1, 2, 'images/episodes/5be22ebc69d17.jpg'),
-(16, 1, 11, 'images/episodes/5be233679fe3e.jpg'),
-(17, 1, 11, 'images/episodes/5be23367a1586.jpg'),
-(18, 1, 11, 'images/episodes/5be23367a2c3e.jpg');
 
 -- --------------------------------------------------------
 
@@ -201,7 +182,7 @@ CREATE TABLE `season` (
 --
 
 INSERT INTO `season` (`id_season`, `cant_episodes`, `season_begin`, `season_end`) VALUES
-(1, 11, '2011-04-17', '2011-06-09'),
+(1, 10, '2011-04-17', '2011-06-09'),
 (2, 10, '2012-04-01', '2012-06-03'),
 (3, 10, '2013-03-31', '2013-06-09'),
 (4, 10, '2014-04-06', '2014-06-15'),
@@ -229,8 +210,8 @@ CREATE TABLE `user_info` (
 
 INSERT INTO `user_info` (`id_user`, `name`, `password`, `email`, `rol`) VALUES
 (1, 'jmga', '$2y$10$3Hj1Dqrg9BgHot88WQZcLu43bBYAvuwuQ1U.kcmfEiDWBHJnlC392', 'jmgametal@gmail.com', 'Administrador'),
-(2, 'martin', '$2y$10$THq5zgyhayZYSihAsfrm4eYpebwzaBm709G0dwCdU5nuKqcnVmDvG', 'martin', 'Limitado'),
-(3, 'matias', '$2y$10$EoZRCz2IyQj0iSQKVqT0KOZ4OUqhd5Xk8ltnieKHhuezqtIeuBL4a', 'matias', 'Limitado');
+(2, 'matias', '$2y$10$DcbaIqy3f71O0F2EH8L.C.qiYE/T2fqJfV4l9nnu7esA3MhPQvY72', 'jmgametal@gmail.com', 'Limitado'),
+(3, 'martin', '$2y$10$CRVtQV5/QXAxCJZI6GZvHOKbWYlrTrCBpkdZ4FYc5LNY4f.eubTXm', 'varelajumartin@gmail', 'Limitado');
 
 --
 -- Índices para tablas volcadas
@@ -277,13 +258,13 @@ ALTER TABLE `user_info`
 -- AUTO_INCREMENT de la tabla `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id_comment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_comment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `episode_image`
 --
 ALTER TABLE `episode_image`
-  MODIFY `id_image` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_image` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `season`

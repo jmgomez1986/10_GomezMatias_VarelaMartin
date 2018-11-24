@@ -1,6 +1,6 @@
 {include file="header.tpl"}
 
-      <form class="formAdminEliminarImagen m-3 text-center" method="post" action="EliminarImagen/{$id_season}/{$id_episode}">
+      <form class="formAdminEliminarImagen m-3 text-center" method="post" action="eliminarImagen/{$id_season}/{$id_episode}">
 
           <div class="row">
             {foreach from=$imagenes item=imagen}
