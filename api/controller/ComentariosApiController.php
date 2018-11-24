@@ -11,7 +11,7 @@ class ComentariosApiController extends Api
     public function __construct()
     {
         parent::__construct();
-        $this->model = new TemporadasModel();
+        $this->model = new ComentariosModel();
     }
 
     public function getComentarios($param = [])

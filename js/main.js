@@ -9,12 +9,8 @@ function loadPage()
   fetch('js/templates/comentarios.handlebars')
   .then(response => response.text())
   .then(template => {
-      let load = document.querySelector('.js-loading');
-      load.classList.remove('d-none');
-      load.innerHTML = 'Loading...';
-
       templateComentarios = Handlebars.compile(template); // compila y prepara el template
-      let timer = setTimeout(function () {
+      let timer = setInterval(function () {
         getComentarios();
       }, 2000);
     });
@@ -55,9 +51,16 @@ function fetchGetComentario(url)
       });
     }
 
+    let load = document.querySelector('.js-loading');
+    if (load != null) {
+      load.classList.remove('d-none');
+      load.innerHTML = 'Loading...';
+    }
+
     fetch(route).then(function (response) {
           if (!response.ok) {
             console.log(response.json());
+            load.classList.add('d-none');
             let elem = document.querySelector('.js-displayError');
             elem.classList.remove('d-none');
             elem.innerHTML =  'El episodio elegido no posee comentarios ';
@@ -70,12 +73,13 @@ function fetchGetComentario(url)
             mostrarComentarios(jsonComentarios, logueado, rol, idEpis, idTemp);
             eliminarComentario();
           } else {
+            load.classList.add('d-none');
             let elem = document.querySelector('.js-displayError');
             elem.classList.remove('d-none');
             elem.innerHTML =  'El episodio elegido no posee comentarios ';
           }
         }).catch(function (e) {
-          let elem = documment.querySelector('.js-displayError');
+          let elem = document.querySelector('.js-displayError');
           elem.innerHTML = 'Error de Conexión';
           console.log(e);
         });

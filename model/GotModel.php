@@ -1,7 +1,5 @@
 <?php //namespace TpWebII;
 
-require_once "config/ConfigApp.php";
-
 class GotModel
 {
     private $host;

@@ -1,7 +1,5 @@
 <?php
 
-require_once "config/ConfigApp.php";
-
 class UsuarioModel
 {
     private $db;

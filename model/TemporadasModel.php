@@ -1,7 +1,5 @@
 <?php
 
-require_once "config/ConfigApp.php";
-
 class TemporadasModel
 {
     private $db;
